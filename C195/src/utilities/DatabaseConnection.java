@@ -31,6 +31,7 @@ public class DatabaseConnection {
         catch(ClassNotFoundException | SQLException e)
         {
             System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return conn;
@@ -45,9 +46,13 @@ public class DatabaseConnection {
         catch(SQLException e)
         {
             System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+    public static Connection getConnection() {
+        return conn;
+    }
 }
 
 
