@@ -1,15 +1,21 @@
 package DBAccess;
 
+// Import statements
 import utilities.DatabaseConnection;
 import models.Countries;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utilities.DatabaseConnection;
-
 import java.sql.*;
 
 public class DBCountries {
 
+    /**
+     * This ObservableList returns all the countries from the countries table the Country ID and Country Name. This is
+     * used in conjunction with the models/Countries.java file that contains the getId and getName methods
+     * @param <Countries>
+     * @return
+     */
     public static <Countries> ObservableList<Countries> getAllCountries() {
 
         ObservableList<Countries> clist = FXCollections.observableArrayList();
@@ -35,6 +41,10 @@ public class DBCountries {
         return clist;
     }
 
+    /**
+     * This method check's the dataabse connection with the create_date and then outputs it to the screen
+     * @throws SQLException
+     */
     public static void checkDatabaseConversion() throws SQLException {
         System.out.println("CREATE DATE TEST");
         String sql = "select Create_Date from countries";
