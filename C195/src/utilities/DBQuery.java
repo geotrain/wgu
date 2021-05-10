@@ -2,6 +2,7 @@ package utilities;
 
 // Import statements
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,5 +21,17 @@ public class DBQuery {
         return statement;
     }
 
+    // PreparedStatement reference
+    private static PreparedStatement statement2;
+
+    // Create preparedStatement Object
+    public static void setPreparedStatement(Connection conn, String sqlStatement) throws SQLException {
+        statement2 = conn.prepareStatement(sqlStatement);
+    }
+
+    // Return preparedStatement object
+    public static PreparedStatement getPreparedStatement() {
+        return statement2;
+    }
 
 }
