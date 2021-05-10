@@ -11,10 +11,16 @@ import utilities.DBConnection;
 import utilities.DBQuery;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Main extends Application {
+
+    private static Object ResultSet;
 
     /**
      * This start method brings up the initial user login screen for a user to enter a username and password to begin
@@ -103,6 +109,26 @@ public class Main extends Application {
             System.out.println(statement.getUpdateCount() + " record updated.");
         else
             System.out.println("No changes were made.");
+
+        /**
+         * ResultSet Object from the countries table to store all records in selectStatement2 variable 
+         */
+        String selectStatement2 = "SELECT * FROM countries;";
+        statement.execute(selectStatement2);
+        ResultSet rs = statement.getResultSet();
+        // Forward Scroll ResultSet
+        while(rs.next()) {
+            int Country_ID2 = rs.getInt("Country_ID");
+            String Country2 = rs.getString("Country");
+            LocalDate Create_Date2 = rs.getDate("Create_Date").toLocalDate();
+            LocalTime Create_Time2 = rs.getTime("Create_Date").toLocalTime();
+            String Created_By2 = rs.getString("Created_By");
+            LocalDateTime Last_Update_2 = rs.getTimestamp("Last_Update").toLocalDateTime();
+            String Last_Updated_By2 = rs.getString("Last_Updated_By");
+            // Display Result Set
+            System.out.println(Country_ID2 + " | " + Country2 + " | " + Create_Date2 + " | " + Create_Time2 + " | " +
+                    Created_By2 + " | " + Last_Update_2 + " | " + Last_Updated_By2);
+        }
 
         /**
          * This will check the database connection upon startup of the the program and do a conversion of the Create_Date
