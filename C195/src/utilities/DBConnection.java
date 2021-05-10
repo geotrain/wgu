@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
+public class DBConnection {
 
     // Declare MySQL connection string variables
     private static final String protocol = "jdbc";

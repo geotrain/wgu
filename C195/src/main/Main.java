@@ -1,14 +1,18 @@
 package main;
 
 // Import statements
+import DBAccess.DBCountries;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utilities.DatabaseConnection;
-import javafx.application.Application;
+import utilities.DBConnection;
+import utilities.DBQuery;
+
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main extends Application {
 
@@ -30,25 +34,93 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException {
 
         /**
-         * This will make the initial connection to the uCertify database. Connection can be found in the
-         * DatabaseConnection.java class
+         * This will make the initial connection to the uCertify database. The method startConnection() is located in
+         * the utilities package in the DBConnection.java class.
          */
-        DatabaseConnection.startConnection();
+        DBConnection.startConnection();
 
         /**
-         * The "DBAccess.DBCountries.checkDatabaseConversion()" will check the database connection upon startup of the
-         * the program and do a conversion of the Create_Date UTC Date/Timestamp and convert it to the user's local time
-         * zone on their system using the application.
+         * This will will establish a JDBC API Connection Interface that will allow a communication with the database.
+         * The method getConnection() is located in the utilities package in the DBConnection.java class.
+         */
+        Connection conn = DBConnection.getConnection();
+
+        /**
+         * This will create the Statement object. The setStatement() method is located in the utilities package in the
+         * DBQuery.java class.
+         */
+        DBQuery.setStatement(conn);
+
+        /**
+         * This is a Statement reference using the DBQuery.java class with the getStatement() method
+         */
+        Statement statement = DBQuery.getStatement();
+
+        /**
+         * Create a Raw SQL INSERT statement for the countries table. Inserting France country record.
+         */
+        //String insertStatement = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By) VALUES('France', '2021-05-09 15:45:09', 'admin', 'admin')";
+
+        /**
+         * Create a SQL INSERT statement for the countries table using variables . Inserting France country record.
+         */
+        String Country = "France";
+        String Create_Date = "2021-05-09 15:45:09";
+        String Created_By = "admin";
+        String Last_Updated_By = "admin";
+        String insertStatement = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By)" +
+                "VALUES( " +
+                "'" + Country + "'," +
+                "'" + Create_Date + "'," +
+                "'" + Created_By + "'," +
+                "'" + Last_Updated_By + "'" +
+                ")";
+
+        // Execute SQL INSERT Statement. Will return a false boolean statement since it is using a INSERT Statement
+        statement.execute(insertStatement);
+        // Confirm rows affected by Raw SLQ INSERT statement into countries table.
+        if(statement.getUpdateCount() > 0)
+            System.out.println(statement.getUpdateCount() + " rows affected.");
+        else
+            System.out.println("No changes were made and no rows were updated.");
+
+        /**
+         * Create a Raw SQL UPDATE statement for the countries table. Updating country record to be changed to Japan.
+         */
+        String updateStatement = "UPDATE countries SET Country = 'Japan' WHERE Country_ID = 100;";
+        statement.execute(updateStatement);
+        if(statement.getUpdateCount() > 0)
+            System.out.println(statement.getUpdateCount() + " record updated.");
+        else
+            System.out.println("No changes were made.");
+
+        /**
+         * Create a Raw SQL DELETE statement for the countries table. Deleting country record.
+         */
+        String deleteStatement = "DELETE FROM countries WHERE Country_ID = 100;";
+        statement.execute(deleteStatement);
+        if(statement.getUpdateCount() > 0)
+            System.out.println(statement.getUpdateCount() + " record updated.");
+        else
+            System.out.println("No changes were made.");
+
+        /**
+         * This will check the database connection upon startup of the the program and do a conversion of the Create_Date
+         * UTC Date/Timestamp and convert it to the user's local time zone on their system using the application. The
+         * method checkDatabaseConversion() is located in the DBAccess package in the DBCountries.java class.
          */
         DBAccess.DBCountries.checkDatabaseConversion();
 
-        // This starts the program in the main method launch(args)
+        /**
+         *  This starts the program in the main method launch(args)
+         */
         launch(args);
 
         /**
-         * This will close the database connection when the program exits
+         * This will close the database connection when the program exits. The method closeConnection() is located in the
+         * utilities package in the DBConnection.java class.
          */
-        DatabaseConnection.closeConnection();
+        DBConnection.closeConnection();
     }
 
 }

@@ -1,11 +1,10 @@
 package DBAccess;
 
 // Import statements
-import utilities.DatabaseConnection;
-import models.Countries;
+import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import utilities.DatabaseConnection;
+
 import java.sql.*;
 
 public class DBCountries {
@@ -23,7 +22,7 @@ public class DBCountries {
         try {
             String sql = "SELECT * FROM countries";
 
-            PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
 
@@ -49,7 +48,7 @@ public class DBCountries {
         System.out.println("CREATE DATE TEST");
         String sql = "select Create_Date from countries";
         try {
-            PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Timestamp ts = rs.getTimestamp("Create_Date");
