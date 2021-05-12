@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class DBQuery {
 
     // Statement reference
-    private static Statement statement;
+    public static Statement statement;
 
     // Create Statement Object
     public static void setStatement(Connection conn) throws SQLException {
