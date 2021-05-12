@@ -25,7 +25,7 @@ public class insertStatement {
      String Create_Date = "2021-05-09 15:45:09";
      String Created_By = "admin";
      String Last_Updated_By = "admin";
-     String insertStatement = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By)" +
+     String insertStatement2 = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By)" +
      "VALUES( " +
      "'" + Country + "'," +
      "'" + Create_Date + "'," +
@@ -34,7 +34,7 @@ public class insertStatement {
      ")";
 
      // Execute SQL INSERT Statement. Will return a false boolean statement since it is using a INSERT Statement
-     //statement.execute(insertStatement);
+     //statement.execute(insertStatement3);
     state
 
      // Confirm rows affected by Raw SLQ INSERT statement into countries table.
@@ -51,10 +51,10 @@ public class insertStatement {
      */
     /**
      // This the RAW SQL Statement saved in insertStatement String variable.
-     String insertStatement = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By) VALUES(?, ?, ?, ?)";
+     String insertStatement4 = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By) VALUES(?, ?, ?, ?)";
 
      // Create setPreparedStatement Object
-     DBQuery.setPreparedStatement(conn, insertStatement);
+     DBQuery.setPreparedStatement(conn, insertStatement4);
 
      // preparedStatementReference
      PreparedStatement ps = DBQuery.getPreparedStatement();
@@ -104,7 +104,7 @@ public class insertStatement {
      if(Country.contains("'"))
      Country = Country.replace("'", "\\'");
 
-     String insertStatement2 = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By)" +
+     String insertStatement5 = "INSERT INTO countries(Country, Create_Date, Created_By, Last_Updated_By)" +
      "VALUES( " +
      "'" + Country + "'," +
      "'" + Create_Date + "'," +
@@ -113,7 +113,7 @@ public class insertStatement {
      ")";
      // Try Catch Block Exception Handling
      try {
-     statement.execute(insertStatement2);
+     statement.execute(insertStatement5);
      if(statement.getUpdateCount() > 0)
      System.out.println(statement.getUpdateCount() + " row(s) affected.");
      else

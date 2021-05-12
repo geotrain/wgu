@@ -23,10 +23,10 @@ public class updateStatement {
      */
     /**
      // This the RAW SQL Statement saved in updateStatement or updateStatement String variable.
-     String updateStatement = "UPDATE countries SET Country = ?, Created_By = ? WHERE Country = ?";
+     String updateStatement2 = "UPDATE countries SET Country = ?, Created_By = ? WHERE Country = ?";
 
      // Create setPreparedStatement Object
-     DBQuery.setPreparedStatement(conn, updateStatement);
+     DBQuery.setPreparedStatement(conn, updateStatement2);
 
      // preparedStatementReference
      PreparedStatement ps = DBQuery.getPreparedStatement();

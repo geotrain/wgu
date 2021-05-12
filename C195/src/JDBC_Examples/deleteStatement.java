@@ -23,10 +23,10 @@ public class deleteStatement {
      */
     /**
      // This the RAW SQL Statement saved in deleteStatement
-     String deleteStatement = "DELETE FROM countries WHERE Country = ?";
+     String deleteStatement2 = "DELETE FROM countries WHERE Country = ?";
 
      // Create setPreparedStatement Object
-     DBQuery.setPreparedStatement(conn, deleteStatement);
+     DBQuery.setPreparedStatement(conn, deleteStatement2);
 
      // preparedStatementReference
      PreparedStatement ps = DBQuery.getPreparedStatement();
