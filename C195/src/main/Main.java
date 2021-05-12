@@ -69,6 +69,7 @@ public class Main extends Application {
         /**
          * Example selectStatement() from JDBC_Examples/selectStatement.java.class
          */
+        JDBC_Examples.selectStatement.selectStatementRaw();
 
         /**
          * Example updateStatement() from JDBC_Examples/selectStatement.java.class
@@ -77,6 +78,7 @@ public class Main extends Application {
         /**
          * Example insertStatement() from JDBC_Examples/selectStatement.java.class
          */
+
 
         /**
          * Example deleteStatement() from JDBC_Examples/selectStatement.java.class

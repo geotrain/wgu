@@ -1,6 +1,23 @@
 package JDBC_Examples;
 
+import utilities.DBConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 public class selectStatement {
+
+    /**
+     * This SELECT raw statement returns all results from the countries table
+     * @return
+     */
+    public static String selectStatementRaw() {
+        System.out.println("COUNTRY");
+        String sql = "SELECT * FROM countries";
+        return sql;
+    }
+
 
     /**
      * ResultSet Object from the countries table to store all records in selectStatement2 variable. This is commented out.
