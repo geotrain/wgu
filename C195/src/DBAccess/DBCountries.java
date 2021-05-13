@@ -29,7 +29,23 @@ public class DBCountries {
             while(rs.next()) {
                 int countryId = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
-                models.Countries C = new models.Countries(countryId, countryName);
+                Date createDate = rs.getDate("Create_Date");
+                Time createDateTime = rs.getTime("Create_Date");
+                String createdBy = rs.getString("Created_By");
+                Date lastUpdateDate = rs.getDate("Last_Update");
+                Time lastUpdate = rs.getTime("Last_Update");
+                String lastUpdatedBy = rs.getString("Last_Updated_By");
+
+                models.Countries C = new models.Countries(
+                        countryId,
+                        countryName,
+                        createDate,
+                        createDateTime,
+                        createdBy,
+                        lastUpdateDate,
+                        lastUpdate,
+                        lastUpdatedBy
+                );
                 clist.add((Countries) C);
             }
 

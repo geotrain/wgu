@@ -18,12 +18,19 @@ public class MainController implements Initializable {
         System.out.println("Initialized");
     }
 
-    public void onButtonAction(ActionEvent actionEvent) {
+    public void onCountriesButtonAction(ActionEvent actionEvent) {
         System.out.println("Button Clicked");
-        TheLabel.setText("You Clicked This");
+        TheLabel.setText("See Terminal For Countries Table Records.");
 
         ObservableList<Countries> countryList = DBCountries.getAllCountries();
         for(Countries C : countryList)
-            System.out.println("Country Id: " + C.getId() + " Name: " + C.getName());
+            System.out.println(
+                    "Country Id: " + C.getId() +
+                    " Name: " + C.getName() +
+                    " Create Date: " + C.getCreateDate() + " " + C.getCreateDateTime() +
+                    " Created By: " +C.getCreatedBy() +
+                    " Last Update: " + C.getLastUpdateDate() + " " + C.getLastUpdate() +
+                    " Last Updated By: " + C.getLastUpdatedBy() + "\n"
+            );
     }
 }

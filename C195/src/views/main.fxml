@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <!-- This is the scene builder for the main screen / login screen when the program is launched. -->
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
-      <Button layoutX="273.0" layoutY="140.0" mnemonicParsing="false" onAction="#onButtonAction" text="Button" />
-      <Label fx:id="TheLabel" layoutX="286.0" layoutY="222.0" text="Label" />
+      <Button layoutX="42.0" layoutY="32.0" mnemonicParsing="false" onAction="#onCountriesButtonAction" text="See Countries" />
+      <Label fx:id="TheLabel" layoutX="202.0" layoutY="233.0" prefHeight="17.0" prefWidth="283.0" text="Click Action Button Above" />
    </children>
 </AnchorPane>

@@ -66,8 +66,6 @@ public class Main extends Application {
          */
         DBAccess.DBCountries.checkDatabaseConversion();
 
-
-
         /**
          *  This starts the program in the main method launch(args)
          */
