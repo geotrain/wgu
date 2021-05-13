@@ -66,23 +66,7 @@ public class Main extends Application {
          */
         DBAccess.DBCountries.checkDatabaseConversion();
 
-        /**
-         * Example selectStatement() from JDBC_Examples/selectStatement.java.class
-         */
-        JDBC_Examples.selectStatement.selectStatementRaw();
 
-        /**
-         * Example updateStatement() from JDBC_Examples/selectStatement.java.class
-         */
-
-        /**
-         * Example insertStatement() from JDBC_Examples/selectStatement.java.class
-         */
-
-
-        /**
-         * Example deleteStatement() from JDBC_Examples/selectStatement.java.class
-         */
 
         /**
          *  This starts the program in the main method launch(args)
