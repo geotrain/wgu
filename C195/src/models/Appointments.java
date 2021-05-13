@@ -13,7 +13,6 @@ public class Appointments {
     private String location;
     private String type;
     private Date start;
-    private Time startTime;
     private Date end;
     private Date createDate;
     private String createdBy;
@@ -40,15 +39,13 @@ public class Appointments {
      * @param userId
      * @param contactId
      */
-    public Appointments(int id, String name, String description, String location, String type, Date start, Date end,
-                        Date createDate, String createdBy, Time lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
+    public Appointments(int id, String name, String description, String location, String type, Date start, Date end, Date createDate, String createdBy, Time lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
         this.id = id;
         this.title = name;
         this.description = description;
         this.location = location;
         this.type = type;
         this.start = start;
-        this.startTime = startTime;
         this.end = end;
         this.createDate = createDate;
         this.createdBy = createdBy;
@@ -154,14 +151,6 @@ public class Appointments {
      */
     public Date setStart() {
         return this.start = start;
-    }
-
-    /**
-     * his getStartTime method that gets the Appointments (Start) from the appointments table.
-     * @return
-     */
-    public Time getStartTime() {
-        return startTime;
     }
 
     /**
