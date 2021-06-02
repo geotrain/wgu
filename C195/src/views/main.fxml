@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!-- This is the scene builder for the main screen after the user logs in. -->
+
+<AnchorPane prefHeight="524.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <Label layoutX="206.0" layoutY="57.0" prefHeight="17.0" prefWidth="296.0" text="Welcome To Main Controller" />
+   </children>
+</AnchorPane>

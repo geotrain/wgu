@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     private TextField passwordTextField;
 
     @FXML
-    public void logInButton(ActionEvent actionEvent)  {
+    public void logInButton(ActionEvent actionEvent) throws IOException {
         System.out.println("Get Username And Password");
         String userName = usernameTextField.getText();
         String passWord = passwordTextField.getText();
@@ -55,6 +55,13 @@ public class LoginController implements Initializable {
         if (userName.equals(DBUsername) && passWord.equals(DBPassword)) {
           System.out.println("This is a valid user");
           // Open up to new  scene
+            Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+            stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene((Parent) root, 500, 525);
+            stage.setTitle("Main Screen");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
         } else if (userName.equals(DBUsername) != true){
             System.out.println("This is not a valid user");
             Alert alert = new Alert(Alert.AlertType.ERROR);
