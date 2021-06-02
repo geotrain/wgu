@@ -57,12 +57,12 @@ public class LoginController implements Initializable {
           // Open up to new  scene
             Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene((Parent) root, 500, 525);
-            stage.setTitle("Main Screen");
+            Scene scene = new Scene((Parent) root, 1050, 850);
+            stage.setTitle("Welcome To Schedule Manager v 1.0");
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-        } else if (!userName.equals(DBUsername) && passWord.equals(DBPassword)) {
+        } else if ((!(userName.equals(DBUsername)) || (!(passWord.equals(DBPassword))))) {
             System.out.println("No Such Username or Password In Database");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
