@@ -62,7 +62,7 @@ public class LoginController implements Initializable {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-        } else if (!userName.equals(DBUsername) && passWord.equals(DBPassword)) {
+        } else if (!(userName.equals(DBUsername) || passWord.equals(DBPassword))) {
             System.out.println("No Such Username or Password In Database");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
