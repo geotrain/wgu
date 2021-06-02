@@ -28,7 +28,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class LoginController implements Initializable {
 
     /**
      * Initialize stage and scene variables for app navigation
@@ -51,16 +51,24 @@ public class MainController implements Initializable {
         String userName = usernameTextField.getText();
         String passWord = passwordTextField.getText();
         String DBUsername = DBUsers.getCurrentUser(userName).getUserName();
-        String DBPassword = DBUsers.getCurrentUser(userName).getPassword();
+        String DBPassword = DBUsers.getCurrentUser(passWord).getPassword();
         if (userName.equals(DBUsername) && passWord.equals(DBPassword)) {
           System.out.println("This is a valid user");
           // Open up to new  scene
-        } else {
+        } else if (userName.equals(DBUsername) != true){
             System.out.println("This is not a valid user");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("You Have Entered An Incorrect Value");
-            alert.setContentText("Please Check Username/Password And Try Again.");
+            alert.setContentText("Please Check Username And Try Again.");
+            alert.showAndWait();
+            return;
+        } else if (userName.equals(DBUsername) != true) {
+            System.out.println("This is not a valid user");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("You Have Entered An Incorrect Value");
+            alert.setContentText("Please Check Password And Try Again.");
             alert.showAndWait();
             return;
         }

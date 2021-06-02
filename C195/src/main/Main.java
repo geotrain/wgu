@@ -1,7 +1,6 @@
 package main;
 
 // Import statements
-import DBAccess.DBCountries;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,11 +9,7 @@ import javafx.stage.Stage;
 import utilities.DBConnection;
 import utilities.DBQuery;
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class Main extends Application {
 
@@ -29,7 +24,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
         primaryStage.setTitle("Appointment User Login");
         primaryStage.setScene(new Scene(root, 600, 275));
         primaryStage.setResizable(false);

@@ -12,6 +12,7 @@ public class DBUsers {
 
     // Declare Private Variables
     private static Users currentUser;
+    private static Users currentPassword;
 
     public static Users getCurrentUser(String uName) {
 
