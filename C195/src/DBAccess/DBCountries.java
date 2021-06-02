@@ -4,7 +4,6 @@ package DBAccess;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.*;
 
 public class DBCountries {

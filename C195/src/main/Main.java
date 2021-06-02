@@ -13,6 +13,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -27,14 +28,18 @@ public class Main extends Application {
      * @throws Exception
      */
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
         primaryStage.setTitle("Appointment User Login");
         primaryStage.setScene(new Scene(root, 600, 275));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
     public static void main(String[] args) throws SQLException {
+
+        // Set French Language
+        Locale.setDefault(new Locale("fr"));
 
         /**
          * This will make the initial connection to the uCertify database. The method startConnection() is located in

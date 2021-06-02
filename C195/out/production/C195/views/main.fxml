@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <!-- This is the scene builder for the main screen / login screen when the program is launched. -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
-      <Button layoutX="42.0" layoutY="32.0" mnemonicParsing="false" onAction="#onCountriesButtonAction" text="See Countries" />
-      <Label fx:id="TheLabel" layoutX="202.0" layoutY="233.0" prefHeight="17.0" prefWidth="283.0" text="Click Action Button Above" />
-      <Button layoutX="175.0" layoutY="32.0" mnemonicParsing="false" onAction="#onAppointmentsButtonAction" text="See Appointments" />
+      <Button layoutX="153.0" layoutY="171.0" mnemonicParsing="false" onAction="#logInButton" prefHeight="25.0" prefWidth="74.0" text="Log In" />
+      <Button layoutX="370.0" layoutY="171.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="25.0" prefWidth="81.0" text="Close" />
+      <TextField fx:id="usernameTextField" layoutX="153.0" layoutY="45.0" prefHeight="25.0" prefWidth="298.0" promptText="Enter User Name" />
+      <TextField fx:id="passwordTextField" layoutX="153.0" layoutY="111.0" prefHeight="25.0" prefWidth="298.0" promptText="Enter Password" />
    </children>
 </AnchorPane>
