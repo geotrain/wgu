@@ -62,20 +62,12 @@ public class LoginController implements Initializable {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-        } else if (userName.equals(DBUsername) != true){
-            System.out.println("This is not a valid user");
+        } else if (!userName.equals(DBUsername) && passWord.equals(DBPassword)) {
+            System.out.println("No Such Username or Password In Database");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("You Have Entered An Incorrect Value");
-            alert.setContentText("Please Check Username And Try Again.");
-            alert.showAndWait();
-            return;
-        } else if (userName.equals(DBUsername) != true) {
-            System.out.println("This is not a valid user");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("You Have Entered An Incorrect Value");
-            alert.setContentText("Please Check Password And Try Again.");
+            alert.setContentText("Please Check Username/Password And Try Again.");
             alert.showAndWait();
             return;
         }
