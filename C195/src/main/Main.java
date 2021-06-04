@@ -40,20 +40,20 @@ public class Main extends Application {
         // If Else statements to decide which language pack to use
         if (Locale.getDefault().getLanguage().equals("de"))
         {
-            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
-                        + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("password")
+                    + " " + rb.getString("signin") + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
             Locale.setDefault(new Locale("de"));
         } else if (Locale.getDefault().getLanguage().equals("es")) {
-            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
-                    + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("password")
+                    + " " + rb.getString("signin") + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
             Locale.setDefault(new Locale("es"));
         } else if (Locale.getDefault().getLanguage().equals("fr")) {
-            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
-                    + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("password")
+                    + " " + rb.getString("signin") + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
             Locale.setDefault(new Locale("fr"));
         } else {
-            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
-                    + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("password")
+                    + " " + rb.getString("signin") + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
             Locale.setDefault(new Locale("en"));
         }
 
