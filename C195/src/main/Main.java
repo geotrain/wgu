@@ -10,6 +10,7 @@ import utilities.DBConnection;
 import utilities.DBQuery;
 import java.sql.*;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
 
@@ -33,8 +34,28 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
 
-        // Set French Language
-        Locale.setDefault(new Locale("fr"));
+        // Set Resource Bundle Object
+        ResourceBundle rb = ResourceBundle.getBundle("main/login", Locale.getDefault());
+
+        // If Else statements to decide which language pack to use
+        if (Locale.getDefault().getLanguage().equals("de"))
+        {
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
+                        + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            Locale.setDefault(new Locale("de"));
+        } else if (Locale.getDefault().getLanguage().equals("es")) {
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
+                    + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            Locale.setDefault(new Locale("es"));
+        } else if (Locale.getDefault().getLanguage().equals("fr")) {
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
+                    + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            Locale.setDefault(new Locale("fr"));
+        } else {
+            System.out.println(rb.getString("title") + " " + rb.getString("username") + " " + rb.getString("signin")
+                    + " " + rb.getString("empty") + " " + rb.getString("incorrect"));
+            Locale.setDefault(new Locale("en"));
+        }
 
         /**
          * This will make the initial connection to the uCertify database. The method startConnection() is located in
