@@ -37,8 +37,7 @@ public class MainController implements Initializable {
         System.out.println("Initialized");
     }
 
-    @FXML
-    public void addAppointment(ActionEvent actionEvent) throws IOException {
+    @FXML public void addAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene((Parent) root, 400, 500);
@@ -48,8 +47,14 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void modifyAppointment(ActionEvent actionEvent) {
+    @FXML public void modifyAppointment(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/modifyAppointment.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 400, 500);
+        stage.setTitle("Modify Appointment");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
