@@ -17,10 +17,10 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     // Main Controller Buttons
-    @FXML private Button viewAllCustomerAppointmentsButton;
-    @FXML private Button viewAllAppointmentsByType;
-    @FXML private Button viewAllContactsSchedulesButton;
-    @FXML private Button viewContactsEmailListButton;
+    @FXML private Button viewCustomerAppointmentsByMonthButton;
+    @FXML private Button viewCustomerAppointmentsByTypeButton;
+    @FXML private Button viewScheduleByContactButton;
+    @FXML private Button contactEmailListButton;
     @FXML private Button logOffButton;
     @FXML private Button exitProgramButton;
     @FXML private Button addAppointmentButton;
@@ -91,16 +91,18 @@ public class MainController implements Initializable {
 
     // Controls Methods
     @FXML
-    public void viewAllContactsSchedules(ActionEvent actionEvent) {
+    public void viewScheduleByContact(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void viewAllCustomerAppointments(ActionEvent actionEvent) {
+    public void viewCustomerAppointmentsByMonth(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void viewContactsEmailList(ActionEvent actionEvent) {
+    public void contactEmailList(ActionEvent actionEvent) {
     }
+
+
 
     @FXML
     public void logOff(ActionEvent actionEvent) throws IOException {
@@ -120,6 +122,6 @@ public class MainController implements Initializable {
     }
 
 
-    public void viewAllAppointmentsByType(ActionEvent actionEvent) {
+    public void viewCustomerAppointmentsByType(ActionEvent actionEvent) {
     }
 }

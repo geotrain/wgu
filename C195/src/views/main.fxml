@@ -46,26 +46,26 @@
             </TableView>
          </children>
       </HBox>
-      <VBox layoutX="777.0" layoutY="483.0" prefHeight="381.0" prefWidth="250.0">
+      <VBox layoutX="784.0" layoutY="464.0" prefHeight="400.0" prefWidth="250.0">
          <children>
-            <ButtonBar prefHeight="79.0" prefWidth="320.0">
+            <ButtonBar prefHeight="79.0" prefWidth="271.0">
               <buttons>
-                <Button fx:id="viewAllCustomerAppointmentsButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAllCustomerAppointments" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View All Customer Appointments" />
+                <Button fx:id="viewCustomerAppointmentsByMonthButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCustomerAppointmentsByMonth" prefHeight="26.0" prefWidth="252.0" snapToPixel="false" text="View Customer Appointemtns By Month" />
               </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="viewAllAppointmentsByType" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAllAppointmentsByType" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View All Appointments By Type" />
+                  <Button fx:id="viewCustomerAppointmentsByTypeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCustomerAppointmentsByType" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View Customer Appointments By Type" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="viewAllContactsSchedulesButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAllContactsSchedules" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View All Coontacts Schedules" />
+                  <Button fx:id="viewScheduleByContactButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewScheduleByContact" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View Schedule By Contact" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="viewContactsEmailListButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewContactsEmailList" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View Contacts Email List" />
+                  <Button fx:id="contactEmailListButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#contactEmailList" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="Generate Contact Email List" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
@@ -124,7 +124,7 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="849.0" layoutY="464.0" prefHeight="26.0" prefWidth="128.0" text="Controls" underline="true">
+      <Label alignment="CENTER" layoutX="852.0" layoutY="439.0" prefHeight="26.0" prefWidth="128.0" text="Controls" underline="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
