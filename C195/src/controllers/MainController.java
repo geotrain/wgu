@@ -63,11 +63,25 @@ public class MainController implements Initializable {
 
     // Add | Modify | Customer
     @FXML
-    public void addCustomer(ActionEvent actionEvent) {
+    public void addCustomer(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/addCustomer.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 400, 450);
+        stage.setTitle("Add Customer");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    public void modifyCustomer(ActionEvent actionEvent) {
+    public void modifyCustomer(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/modifyCustomer.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 400, 450);
+        stage.setTitle("Modify Customer");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
