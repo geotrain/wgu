@@ -17,6 +17,7 @@ public class MainController implements Initializable {
 
     // Main Controller Buttons
     @FXML private Button viewAllCustomerAppointmentsButton;
+    @FXML private Button viewAllAppointmentsByType;
     @FXML private Button viewAllContactsSchedulesButton;
     @FXML private Button viewContactsEmailListButton;
     @FXML private Button logOffButton;
@@ -27,6 +28,7 @@ public class MainController implements Initializable {
     @FXML private Button addCustomerButton;
     @FXML private Button modifyCustomerButton;
     @FXML private Button deleteCustomerButton;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,10 +95,6 @@ public class MainController implements Initializable {
     }
 
 
-
-
-
-
-
-
+    public void viewAllAppointmentsByType(ActionEvent actionEvent) {
+    }
 }

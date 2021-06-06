@@ -55,7 +55,12 @@
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="viewAllContactsSchedulesButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAllContactsSchedules" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View All Contacts Schedules" />
+                  <Button fx:id="viewAllAppointmentsByType" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAllAppointmentsByType" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View All Appointments By Type" />
+               </buttons>
+            </ButtonBar>
+            <ButtonBar prefHeight="79.0" prefWidth="320.0">
+               <buttons>
+                  <Button fx:id="viewAllContactsSchedulesButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewAllContactsSchedules" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View All Coontacts Schedules" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
@@ -119,7 +124,7 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="852.0" layoutY="461.0" prefHeight="26.0" prefWidth="128.0" text="Controls" underline="true">
+      <Label alignment="CENTER" layoutX="849.0" layoutY="464.0" prefHeight="26.0" prefWidth="128.0" text="Controls" underline="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
