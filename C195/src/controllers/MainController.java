@@ -1,5 +1,6 @@
 package controllers;
 
+import com.mysql.cj.jdbc.MysqlSQLXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,9 +37,15 @@ public class MainController implements Initializable {
         System.out.println("Initialized");
     }
 
-    // Add | Modify | Delete Appointment
     @FXML
-    public void addAppointment(ActionEvent actionEvent) {
+    public void addAppointment(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/addAppointment.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 400, 500);
+        stage.setTitle("Add Appointment");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -48,7 +55,6 @@ public class MainController implements Initializable {
     @FXML
     public void deleteAppointment(ActionEvent actionEvent) {
     }
-
 
     // Add | Modify | Customer
     @FXML
