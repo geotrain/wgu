@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import utilities.DBConnection;
 import utilities.DBQuery;
 import java.sql.*;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -80,6 +81,8 @@ public class Main extends Application {
                     + " \n" + rb.getString("signin") + " \n" + rb.getString("empty") + " \n" + rb.getString("incorrect"));
             Locale.setDefault(new Locale("en"));
         }
+
+        System.out.println(ZoneId.systemDefault()); // Convert this to a string for login controller toString
 
         /**
          * This will make the initial connection to the uCertify database. The method startConnection() is located in

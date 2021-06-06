@@ -10,29 +10,21 @@ import java.util.logging.Logger;
 
 public class DBUsers {
 
-    // Declare Private Variables
-    private static Users currentUser;
-    private static Users currentPassword;
+    public static boolean getCurrentUser(String uName, String password) {
 
-    public static Users getCurrentUser(String uName) {
-
-        String sql = "SELECT * FROM users WHERE User_Name = '"+uName + "'";
+        String sql = "SELECT * FROM users";
         try {
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String user = rs.getString("User_Name");
-                String password = rs.getString("Password");
-                System.out.println(user + " " + password);
-                return new Users(rs.getInt("User_ID"),rs.getString("User_Name"),
-                        rs.getString("Password"),rs.getDate("Create_Date"),
-                        rs.getString("Created_By"), rs.getDate("Last_Update"),
-                        rs.getString("Last_Updated_By"));
+                if (rs.getString("User_Name").equals(uName) && rs.getString("password").equals(password)) {
+                    return true;
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return currentUser;
+        return false;
     }
 
     /**

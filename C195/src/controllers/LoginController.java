@@ -50,11 +50,10 @@ public class LoginController implements Initializable {
         System.out.println("Get Username And Password");
         String userName = usernameTextField.getText();
         String passWord = passwordTextField.getText();
-        String DBUsername = DBUsers.getCurrentUser(userName).getUserName();
-        String DBPassword = DBUsers.getCurrentUser(passWord).getPassword();
-        if (userName.equals(DBUsername) && passWord.equals(DBPassword)) {
-          System.out.println("This is a valid user");
-          // Open up to new  scene
+        boolean result = DBUsers.getCurrentUser(userName, passWord);
+        if (result) {
+            System.out.println("This is a valid user");
+            // Open up to new  scene
             Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene((Parent) root, 1060, 875);
@@ -62,7 +61,7 @@ public class LoginController implements Initializable {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-        } else if ((!(userName.equals(DBUsername)) || (!(passWord.equals(DBPassword))))) {
+        } else {
             System.out.println("No Such Username or Password In Database");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
