@@ -1,5 +1,7 @@
 package controllers;
 
+import DBAccess.DBAppointments;
+import DBAccess.DBCustomers;
 import com.mysql.cj.jdbc.MysqlSQLXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -7,16 +9,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
+import models.Appointments;
+import models.Customers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    // Main Controller Buttons
+    // FX Ids For Buttons
     @FXML private Button viewCustomerAppointmentsByMonthButton;
     @FXML private Button viewCustomerAppointmentsByTypeButton;
     @FXML private Button viewScheduleByContactButton;
@@ -30,11 +38,46 @@ public class MainController implements Initializable {
     @FXML private Button modifyCustomerButton;
     @FXML private Button deleteCustomerButton;
 
+    // FX Ids for Appointments Table
+    @FXML private TableView<Appointments> appointmentsTableView;
+    @FXML private TableColumn<Appointments, Integer> appointmentIDColumn;
+    @FXML private TableColumn<Appointments, Integer> appointmentUserIDColumn;
+    @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDColumn;
+    @FXML private TableColumn<Appointments, String> appointmentDescriptionColumn;
+    @FXML private TableColumn<Appointments, String> appointmentTypeColumn;
+    @FXML private TableColumn<Appointments, Date> appointmentStartColumn;
+    @FXML private TableColumn<Appointments, Date> appointmentEndColumn;
+
+    // FX Ids For Customers Table
+    @FXML private TableView<Customers> customersTableView;
+    @FXML private TableColumn<Customers, Integer> customerIDColumn;
+    @FXML private TableColumn<Customers, String> customerNameColumn;
+    @FXML private TableColumn<Customers, String> customerAddressColumn;
+    @FXML private TableColumn<Customers, String> customerPostalCodeColumn;
+    @FXML private TableColumn<Customers, String> customerPhoneColumn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("The Main Controller Is Initialized");
 
-        System.out.println("Initialized");
+        // Populates and initializes the appointments table
+        appointmentIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        appointmentUserIDColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        appointmentCustomerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appointmentTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appointmentStartColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        appointmentEndColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appointmentsTableView.setItems(DBAppointments.getAllAppointments());
+
+        // Populates and initializes the customers table
+        customerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerAddressColumn.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        customerPostalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
+        customerPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
+        customersTableView.setItems(DBCustomers.getAllCustomers());
     }
 
     @FXML public void addAppointment(ActionEvent actionEvent) throws IOException {

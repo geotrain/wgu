@@ -22,26 +22,28 @@
       </Label>
       <HBox layoutX="45.0" layoutY="78.0" prefHeight="325.0" prefWidth="977.0">
          <children>
-            <TableView prefHeight="328.0" prefWidth="1009.0">
+            <TableView fx:id="appointmentsTableView" prefHeight="328.0" prefWidth="1009.0">
               <columns>
-                <TableColumn prefWidth="109.0" text="Appointment ID" />
-                <TableColumn prefWidth="76.0" text="User ID" />
-                  <TableColumn prefWidth="96.0" text="Customer ID" />
-                  <TableColumn prefWidth="292.0" text="Description" />
-                  <TableColumn prefWidth="199.0" text="Start" />
-                  <TableColumn prefWidth="204.0" text="End" />
+                <TableColumn fx:id="appointmentIDColumn" prefWidth="104.0" text="Appointment ID" />
+                <TableColumn fx:id="appointmentUserIDColumn" prefWidth="75.0" text="User ID" />
+                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="87.0" text="Customer ID" />
+                  <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="187.0" text="Description" />
+                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="167.0" text="Type" />
+                  <TableColumn fx:id="appointmentStartColumn" prefWidth="181.0" text="Start" />
+                  <TableColumn fx:id="appointmentEndColumn" prefWidth="250.0" text="End                     " />
               </columns>
             </TableView>
          </children>
       </HBox>
       <HBox layoutX="14.0" layoutY="483.0" prefHeight="325.0" prefWidth="758.0">
          <children>
-            <TableView prefHeight="325.0" prefWidth="759.0">
+            <TableView fx:id="customersTableView" prefHeight="335.0" prefWidth="785.0">
               <columns>
-                <TableColumn prefWidth="171.0" text="Customer ID" />
-                <TableColumn prefWidth="286.0" text="Customer Name" />
-                  <TableColumn prefWidth="143.0" text="Address ID" />
-                  <TableColumn prefWidth="158.0" text="Active" />
+                <TableColumn fx:id="customerIDColumn" prefWidth="108.0" text="Customer ID" />
+                <TableColumn fx:id="customerNameColumn" prefWidth="160.0" text="Customer Name" />
+                  <TableColumn fx:id="customerAddressColumn" prefWidth="165.0" text="Address" />
+                  <TableColumn fx:id="customerPostalCodeColumn" minWidth="0.0" prefWidth="155.0" text="Postal Code" />
+                  <TableColumn fx:id="customerPhoneColumn" prefWidth="245.0" text="Phone                                             " />
               </columns>
             </TableView>
          </children>

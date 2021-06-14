@@ -43,7 +43,21 @@ public class DBAppointments {
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
 
-                models.Appointments A = new models.Appointments(appointmentId,title, description,location,type, start, end, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
+                models.Appointments A = new models.Appointments(
+                        appointmentId,
+                        title,
+                        description,
+                        location,
+                        type,
+                        start,
+                        end,
+                        createDate,
+                        createdBy,
+                        lastUpdate,
+                        lastUpdatedBy,
+                        customerId,
+                        userId,
+                        contactId);
                 appointmentsList.add((Appointments) A);
             }
 

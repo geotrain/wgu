@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
         boolean result = DBUsers.getCurrentUser(userName, passWord);
         if (result) {
             System.out.println("This is a valid user");
-            // Open up to new  scene
+            // Open up to new scene
             Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene((Parent) root, 1060, 875);

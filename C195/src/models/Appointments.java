@@ -25,7 +25,7 @@ public class Appointments {
     /**
      * The Appointments method with the columns from the appointment table
      * @param id
-     * @param name
+     * @param title
      * @param description
      * @param location
      * @param type
@@ -39,9 +39,22 @@ public class Appointments {
      * @param userId
      * @param contactId
      */
-    public Appointments(int id, String name, String description, String location, String type, Date start, Date end, Date createDate, String createdBy, Time lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
+    public Appointments(int id,
+                        String title,
+                        String description,
+                        String location,
+                        String type,
+                        Date start,
+                        Date end,
+                        Date createDate,
+                        String createdBy,
+                        Time lastUpdate,
+                        String lastUpdatedBy,
+                        int customerId,
+                        int userId,
+                        int contactId) {
         this.id = id;
-        this.title = name;
+        this.title = title;
         this.description = description;
         this.location = location;
         this.type = type;
