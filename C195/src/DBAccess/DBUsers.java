@@ -5,6 +5,7 @@ import models.Users;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import utilities.LoginActivity;
 import java.sql.*;
 import java.util.logging.Logger;
 
@@ -18,7 +19,11 @@ public class DBUsers {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (rs.getString("User_Name").equals(uName) && rs.getString("password").equals(password)) {
+                    LoginActivity.login_activity(uName, true);
                     return true;
+                } else {
+                    LoginActivity.login_activity(uName, false);
+                    return false;
                 }
             }
         } catch (SQLException throwables) {
