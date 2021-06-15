@@ -13,7 +13,7 @@
 
 <!-- This is the scene builder for the main screen after the user logs in. -->
 
-<AnchorPane prefHeight="879.0" prefWidth="1063.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<AnchorPane prefHeight="916.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
       <Label alignment="CENTER" layoutX="347.0" layoutY="10.0" prefHeight="26.0" prefWidth="386.0" text="Schedule Manager">
          <font>
@@ -131,5 +131,6 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+      <Label fx:id="errorLabel" layoutX="217.0" layoutY="873.0" prefHeight="17.0" prefWidth="398.0" />
    </children>
 </AnchorPane>

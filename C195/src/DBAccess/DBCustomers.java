@@ -74,9 +74,30 @@ public class DBCustomers {
     {
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String query = "INSERT INTO customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
+            String addQuery = "INSERT INTO customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
                     + "', Postal_Code='" + customerPostalCode + "', Division_ID=" + divisionID;
-            statement.execute(query);
+            statement.execute(addQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * The deleteCustomer method deletes a selected user from the customers table located on the MainController.
+     * @param id
+     * @return
+     */
+    public static boolean deleteCustomer(int id)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String deleteQuery = "DELETE FROM customers WHERE Customer_ID=" + id;
+            statement.execute(deleteQuery);
             if(statement.getUpdateCount() > 0)
                 System.out.println(statement.getUpdateCount() + " row(s) affected.");
             else

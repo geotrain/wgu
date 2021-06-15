@@ -8,18 +8,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import models.Appointments;
 import models.Customers;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -56,6 +57,8 @@ public class MainController implements Initializable {
     @FXML private TableColumn<Customers, String> customerPostalCodeColumn;
     @FXML private TableColumn<Customers, String> customerPhoneColumn;
 
+    // FX Ids for Labels
+    @FXML private Label errorLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -127,10 +130,42 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void deleteCustomer(ActionEvent actionEvent) {
-    }
+    /**
+     * This deleteCustomer method deletes selected customer from customers table.
+     * @param actionEvent
+     */
+    @FXML public void deleteCustomer(ActionEvent actionEvent) {
+        Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
 
+        // Verify user selects a customer when clicking the delete customer button
+        if (selectedCustomer == null) {
+            errorLabel.setText("You must select a customer from the customers table before deleting.");
+            errorLabel.setTextFill(Color.RED);
+            return;
+        } else {
+            errorLabel.setText("");
+        }
+
+        // Alert Message Confirming That They Indeed Want To Delete Selected Customer
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Customer Warning");
+        alert.setHeaderText("Are you sure you want to delete " + selectedCustomer.getCustomerName() + " ?");
+        alert.setContentText("Select yes or no.");
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType cancelButton = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton)
+        {
+            DBCustomers.deleteCustomer(selectedCustomer.getCustomerID());
+            customersTableView.setItems(DBCustomers.getAllCustomers());
+            JDialog frame = null;
+        }
+        else if(result.get() == cancelButton)
+        {
+            actionEvent.consume();
+        }
+    }
 
     // Controls Methods
     @FXML

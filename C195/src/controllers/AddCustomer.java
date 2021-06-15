@@ -64,7 +64,7 @@ public class AddCustomer {
     @FXML void close(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 1060, 875);
+        Scene scene = new Scene((Parent) root, 1060, 900);
         stage.setTitle("Welcome To Schedule Manager v 1.0");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -250,12 +250,10 @@ public class AddCustomer {
         // Label confirming save to database
         addCustomerLabel.setText("You Added A New Customer. Now click close button.");
 
-
-
         // Return to main screen controller
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 1060, 875);
+        Scene scene = new Scene((Parent) root, 1060, 900);
         stage.setTitle("Welcome To Schedule Manager v 1.0");
         stage.setResizable(false);
         stage.setScene(scene);
