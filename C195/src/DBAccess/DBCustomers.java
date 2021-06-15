@@ -74,8 +74,11 @@ public class DBCustomers {
     {
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String addQuery = "INSERT INTO customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
-                    + "', Postal_Code='" + customerPostalCode + "', Division_ID=" + divisionID;
+            String addQuery = "INSERT INTO customers SET Customer_Name='" + customerName
+                    + "', Address='" + customerAddress
+                    + "', Phone='" + customerPhoneNumber
+                    + "', Postal_Code='" + customerPostalCode
+                    + "', Division_ID=" + divisionID;
             statement.execute(addQuery);
             if(statement.getUpdateCount() > 0)
                 System.out.println(statement.getUpdateCount() + " row(s) affected.");
@@ -110,6 +113,8 @@ public class DBCustomers {
 
     /**
      * This addNewCustomer method adds data entered into the customers table.
+     *
+     * @param customerIdTextField
      * @param customerName
      * @param customerAddress
      * @param customerPostalCode
@@ -117,12 +122,17 @@ public class DBCustomers {
      * @param divisionID
      * @return
      */
-    public static boolean updateCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, Integer divisionID)
+    public static boolean updateCustomer(String customerIdTextField, String customerName, String customerAddress, String customerPostalCode,
+                                         String customerPhoneNumber, Integer divisionID)
     {
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String updateQuery = "UPDATE customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
-                    + "', Postal_Code='" + customerPostalCode + "', Division_ID=" + divisionID;
+            String updateQuery = "UPDATE customers SET Customer_Name='" + customerName
+                    + "', Address='" + customerAddress
+                    + "', Phone='" + customerPhoneNumber
+                    + "', Postal_Code='" + customerPostalCode
+                    + "', Division_ID='" + divisionID
+                    + "'WHERE Customer_ID=" + customerIdTextField;
             statement.execute(updateQuery);
             if(statement.getUpdateCount() > 0)
                 System.out.println(statement.getUpdateCount() + " row(s) affected.");

@@ -88,6 +88,7 @@ public class ModifyCustomer {
      */
     @FXML Object save(ActionEvent actionEvent) throws IOException, InterruptedException {
         // Get Data From Add Customer Controller
+        String customer_id = customerIdTextField.getText();
         String customerName = customerNameTextField.getText();
         String customerAddress = address1TextField.getText();
         String customerPostalCode = zipCodeTextField.getText();
@@ -251,7 +252,7 @@ public class ModifyCustomer {
             return null;
         } else {
             // Update Database
-            DBCustomers.updateCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, divisionID);
+            DBCustomers.updateCustomer(customer_id, customerName, customerAddress, customerPostalCode, customerPhoneNumber, divisionID);
         }
 
         // Label confirming save to database
@@ -274,7 +275,7 @@ public class ModifyCustomer {
      */
     public void setCustomerData(Customers customer) {
         customerId = customer;
-        this.customerId.getCustomerID();
+        this.customerIdTextField.setText(String.valueOf(customerId.getCustomerID()));
         this.customerNameTextField.setText(String.valueOf(customerId.getCustomerName()));
         this.address1TextField.setText(String.valueOf(customerId.getCustomerAddress()));
         this.zipCodeTextField.setText(String.valueOf(customerId.getCustomerPostalCode()));
@@ -291,7 +292,7 @@ public class ModifyCustomer {
         countriesChoiceBox.setItems(countriesList);
 
         // This initializes the state provinces choice box
-        stateProvinceChoiceBox.setValue("Alabama");
+        //stateProvinceChoiceBox.setValue("Alabama");
         stateProvinceChoiceBox.setItems(stateProvinceList);
     }
 
