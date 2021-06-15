@@ -1,11 +1,15 @@
 package controllers;
 
+/**
+ * Import statements
+ */
 import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
 import com.mysql.cj.jdbc.MysqlSQLXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,7 +19,6 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import models.Appointments;
 import models.Customers;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -60,8 +63,12 @@ public class MainController implements Initializable {
     // FX Ids for Labels
     @FXML private Label errorLabel;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /**
+     * This method inditializes the customers and appointments tables
+     * @param url
+     * @param resourceBundle
+     */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("The Main Controller Is Initialized");
 
         // Populates and initializes the appointments table
@@ -107,9 +114,12 @@ public class MainController implements Initializable {
     public void deleteAppointment(ActionEvent actionEvent) {
     }
 
-    // Add | Modify | Customer
-    @FXML
-    public void addCustomer(ActionEvent actionEvent) throws IOException {
+    /**
+     * This method opens up the AddCustomer Controller to add a new customer to the database.
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML public void addCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addCustomer.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene((Parent) root, 400, 450);
@@ -119,15 +129,33 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void modifyCustomer(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/modifyCustomer.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 450);
-        stage.setTitle("Modify Customer");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+    /**
+     * This method modifies an existing customer record in the ModifyCustomer controller.
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML public void modifyCustomer(ActionEvent actionEvent) throws IOException {
+        Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
+
+        // Verify user selects a customer when clicking the modify customer button
+        if (selectedCustomer == null) {
+            errorLabel.setText("You must select a customer from the customers table before modifying.");
+            errorLabel.setTextFill(Color.RED);
+            return;
+        } else {
+            errorLabel.setText("");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("../views/modifyCustomer.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((Parent)root, 400, 450);
+            ModifyCustomer controller = fxmlLoader.getController();
+            controller.setCustomerData(customersTableView.getSelectionModel().getSelectedItem());
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Modify Customer");
+            stage.setResizable(false);
+            stage.show();
+        }
     }
 
     /**
@@ -168,22 +196,24 @@ public class MainController implements Initializable {
     }
 
     // Controls Methods
-    @FXML
-    public void viewScheduleByContact(ActionEvent actionEvent) {
+    @FXML public void viewScheduleByContact(ActionEvent actionEvent) {
     }
 
-    @FXML
-    public void viewCustomerAppointmentsByMonth(ActionEvent actionEvent) {
+    @FXML public void viewCustomerAppointmentsByMonth(ActionEvent actionEvent) {
     }
 
-    @FXML
-    public void contactEmailList(ActionEvent actionEvent) {
+    @FXML public void contactEmailList(ActionEvent actionEvent) {
     }
 
+    @FXML public void viewCustomerAppointmentsByType(ActionEvent actionEvent) {
+    }
 
-
-    @FXML
-    public void logOff(ActionEvent actionEvent) throws IOException {
+    /**
+     * This method exits out of the Main Controller and returns to the Login Controller for a new user to log in.
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML public void logOff(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene((Parent) root, 602, 257);
@@ -193,13 +223,12 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void exitProgram(ActionEvent actionEvent) {
+    /**
+     * This method exits the program completely.
+     * @param actionEvent
+     */
+    @FXML public void exitProgram(ActionEvent actionEvent) {
         System.out.println("Exit Button Selected");
         System.exit(0);
-    }
-
-
-    public void viewCustomerAppointmentsByType(ActionEvent actionEvent) {
     }
 }

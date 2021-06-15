@@ -1,5 +1,8 @@
 package models;
 
+/**
+ * Import statements
+ */
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

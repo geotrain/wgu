@@ -1,6 +1,8 @@
 package controllers;
 
-// Import statements
+/**
+ * Import statements
+ */
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 

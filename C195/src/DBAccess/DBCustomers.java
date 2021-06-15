@@ -107,4 +107,30 @@ public class DBCustomers {
         }
         return false;
     }
+
+    /**
+     * This addNewCustomer method adds data entered into the customers table.
+     * @param customerName
+     * @param customerAddress
+     * @param customerPostalCode
+     * @param customerPhoneNumber
+     * @param divisionID
+     * @return
+     */
+    public static boolean updateCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, Integer divisionID)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String updateQuery = "SELECT customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
+                    + "', Postal_Code='" + customerPostalCode + "', Division_ID=" + divisionID;
+            statement.execute(updateQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
 }
