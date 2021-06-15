@@ -116,7 +116,7 @@ public class Main extends Application {
         DBAccess.DBCountries.checkDatabaseConversion();
 
         /**
-         * This sets all the DB Division ID's Right After the Database Connection is made.
+         * This sets all the DB Division ID's Right After the Database Connection Is Made.
          */
         DBDivisions.selectAllDivisions();
 

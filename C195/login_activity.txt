@@ -11,3 +11,33 @@
 2021-06-15T14:38:51.998373-05:00[America/Chicago] Log in for admin is a failure.
 2021-06-15T14:39:00.729535-05:00[America/Chicago] Log in for Hacker is a failure.
 2021-06-15T14:39:06.254622-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T16:07:23.627351-05:00[America/Chicago] Log in for admin is a failure.
+2021-06-15T16:07:32.276609-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T16:14:24.836808-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T16:15:38.610639-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T16:17:45.814603-05:00[America/Chicago] Log in for  is a failure.
+2021-06-15T16:17:51.599080-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T16:17:56.549043-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T16:19:00.174020-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T16:19:11.753376-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T16:19:22.307810-05:00[America/Chicago] Log in for admin is a failure.
+2021-06-15T16:20:13.023380-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T16:21:16.266764-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T16:21:22.408693-05:00[America/Chicago] Log in for  is a failure.
+2021-06-15T16:43:09.834393-05:00[America/Chicago] Log in for  is a failure.
+2021-06-15T16:43:51.630252-05:00[America/Chicago] Log in for admin is a failure.
+2021-06-15T16:43:56.488764-05:00[America/Chicago] Log in for  is a failure.
+2021-06-15T16:56:20.131883-05:00[America/Chicago] Log in for  is a failure.
+2021-06-15T16:56:56.693974-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T16:59:23.273927-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T17:24:34.185982-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T17:26:41.940957-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T17:26:50.113788-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T17:26:51.651238-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T17:27:57.364139-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T17:28:07.834146-05:00[America/Chicago] Log in for Greg is a failure.
+2021-06-15T17:28:19.907917-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T17:28:24.551405-05:00[America/Chicago] Log in for test is a failure.
+2021-06-15T17:28:28.657446-05:00[America/Chicago] Log in for test is a success.
+2021-06-15T17:28:34.596549-05:00[America/Chicago] Log in for admin is a failure.
+2021-06-15T17:31:27.300900-05:00[America/Chicago] Log in for test is a success.

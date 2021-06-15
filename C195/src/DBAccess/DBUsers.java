@@ -11,6 +11,12 @@ import java.util.logging.Logger;
 
 public class DBUsers {
 
+    /**
+     * Checks to see if user and password are found in users table
+     * @param uName
+     * @param password
+     * @return
+     */
     public static boolean getCurrentUser(String uName, String password) {
 
         String sql = "SELECT * FROM users";

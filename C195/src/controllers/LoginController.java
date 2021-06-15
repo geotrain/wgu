@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Appointments;
 import models.Countries;
@@ -25,6 +26,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -43,8 +45,12 @@ public class LoginController implements Initializable {
     @FXML private TextField usernameTextField;
     @FXML private TextField passwordTextField;
 
+    // FX Ids for labels
+    @FXML private Label messageLabel;
+    @FXML private Label zoneIdLabel;
+
     /**
-     * The loginButton method checks if a  username is correct or not then logs into the main controller
+     * The loginButton method checks if a username is correct or not then logs into the main controller
      * @param actionEvent
      * @throws IOException
      */
@@ -52,25 +58,34 @@ public class LoginController implements Initializable {
         System.out.println("Get Username And Password");
         String userName = usernameTextField.getText();
         String passWord = passwordTextField.getText();
-        boolean result = DBUsers.getCurrentUser(userName, passWord);
-        if (result) {
-            System.out.println("This is a valid user");
-            // Open up to new scene
-            Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
-            stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene((Parent) root, 1060, 900);
-            stage.setTitle("Welcome To Schedule Manager v 1.0");
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            System.out.println("No Such Username or Password In Database");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("You Have Entered An Incorrect Value");
-            alert.setContentText("Please Check Username/Password And Try Again.");
-            alert.showAndWait();
-            return;
+        // Verify username or password is not an empty string
+        if (userName.isEmpty()) {
+            messageLabel.setText("You must enter a username before clicking the login button.");
+            messageLabel.setTextFill(Color.RED);
+        } else if (passWord.isEmpty()) {
+            messageLabel.setText("You must enter a password before clicking the login button.");
+            messageLabel.setTextFill(Color.RED);
+        } else if (!(userName.isEmpty() && passWord.isEmpty())) {
+            boolean result = DBUsers.getCurrentUser(userName, passWord);
+            if (result) {
+                System.out.println("This is a valid user");
+                // Open up to new scene
+                Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+                stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene((Parent) root, 1060, 900);
+                stage.setTitle("Welcome To Schedule Manager v 1.0");
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                System.out.println("No Such Username or Password In Database");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("You Have Entered An Incorrect Value");
+                alert.setContentText("Please Check Username/Password And Try Again.");
+                alert.showAndWait();
+                return;
+            }
         }
     }
 
@@ -80,6 +95,11 @@ public class LoginController implements Initializable {
      */
     @FXML public void closeButton(ActionEvent actionEvent) {
         System.out.println("Close Button Selected");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Schedule Manager Exit");
+        alert.setHeaderText(null);
+        alert.setContentText("You are now exiting the program.");
+        alert.showAndWait();
         System.exit(0);
     }
 
@@ -90,5 +110,8 @@ public class LoginController implements Initializable {
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
+
+        // Display local zone id to a label called zoneIdLabel
+        zoneIdLabel.setText(String.valueOf(ZoneId.systemDefault()));
     }
 }

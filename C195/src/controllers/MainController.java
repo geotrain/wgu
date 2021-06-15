@@ -230,6 +230,11 @@ public class MainController implements Initializable {
      */
     @FXML public void exitProgram(ActionEvent actionEvent) {
         System.out.println("Exit Button Selected");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Schedule Manager Exit");
+        alert.setHeaderText(null);
+        alert.setContentText("You are now exiting the program.");
+        alert.showAndWait();
         System.exit(0);
     }
 }
