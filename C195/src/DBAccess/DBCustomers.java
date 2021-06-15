@@ -121,7 +121,7 @@ public class DBCustomers {
     {
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String updateQuery = "SELECT customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
+            String updateQuery = "UPDATE customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
                     + "', Postal_Code='" + customerPostalCode + "', Division_ID=" + divisionID;
             statement.execute(updateQuery);
             if(statement.getUpdateCount() > 0)

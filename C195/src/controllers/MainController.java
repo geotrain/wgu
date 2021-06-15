@@ -134,6 +134,7 @@ public class MainController implements Initializable {
      * @param actionEvent
      * @throws IOException
      */
+
     @FXML public void modifyCustomer(ActionEvent actionEvent) throws IOException {
         Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
 
@@ -147,14 +148,24 @@ public class MainController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("../views/modifyCustomer.fxml"));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene((Parent)root, 400, 450);
+            Scene scene = new Scene(root, 400, 450);
             ModifyCustomer controller = fxmlLoader.getController();
             controller.setCustomerData(customersTableView.getSelectionModel().getSelectedItem());
-            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Modify Customer");
             stage.setResizable(false);
             stage.show();
+
+            /** This Code Given To Me By Wanda Burwick Keeping As An Example
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/modifyCustomer.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            ModifyCustomer controller = fxmlLoader.getController();
+            controller.setCustomerData(customersTableView.getSelectionModel().getSelectedItem());
+             */
         }
     }
 

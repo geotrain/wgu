@@ -71,7 +71,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="activeLabel" text="Active" GridPane.rowIndex="6">
+                  <Label fx:id="stateProvinceLabel" text="State / Province" GridPane.rowIndex="6">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -82,7 +82,7 @@
                   <TextField fx:id="zipCodeTextField" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="phoneNumberTextField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="countriesChoiceBox" prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ChoiceBox fx:id="activeChoiceBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ChoiceBox fx:id="stateProvinceChoiceBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>

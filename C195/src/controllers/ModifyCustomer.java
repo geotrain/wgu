@@ -49,7 +49,7 @@ public class ModifyCustomer {
     @FXML private Label addCustomerLabel;
 
     // FX Ids for Text Fields
-    @FXML private int customerIdTextField;
+    @FXML private TextField customerIdTextField;
     @FXML private TextField customerNameTextField;
     @FXML private TextField address1TextField;
     @FXML private TextField countryTextField;
@@ -274,7 +274,7 @@ public class ModifyCustomer {
      */
     public void setCustomerData(Customers customer) {
         customerId = customer;
-        this.customerIdTextField = customerId.getCustomerID();
+        this.customerId.getCustomerID();
         this.customerNameTextField.setText(String.valueOf(customerId.getCustomerName()));
         this.address1TextField.setText(String.valueOf(customerId.getCustomerAddress()));
         this.zipCodeTextField.setText(String.valueOf(customerId.getCustomerPostalCode()));
