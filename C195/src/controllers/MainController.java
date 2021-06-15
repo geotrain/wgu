@@ -156,16 +156,6 @@ public class MainController implements Initializable {
             stage.setTitle("Modify Customer");
             stage.setResizable(false);
             stage.show();
-
-            /** This Code Given To Me By Wanda Burwick Keeping As An Example
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/modifyCustomer.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-            ModifyCustomer controller = fxmlLoader.getController();
-            controller.setCustomerData(customersTableView.getSelectionModel().getSelectedItem());
-             */
         }
     }
 

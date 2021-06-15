@@ -1,6 +1,7 @@
 package main;
 
 // Import statements
+import DBAccess.DBDivisions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -113,6 +114,11 @@ public class Main extends Application {
          * method checkDatabaseConversion() is located in the DBAccess package in the DBCountries.java class.
          */
         DBAccess.DBCountries.checkDatabaseConversion();
+
+        /**
+         * This sets all the DB Division ID's Right After the Database Connection is made.
+         */
+        DBDivisions.selectAllDivisions();
 
         /**
          *  This starts the program in the main method launch(args)

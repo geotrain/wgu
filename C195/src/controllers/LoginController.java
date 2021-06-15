@@ -1,5 +1,6 @@
 package controllers;
 
+// Import Statements
 import DBAccess.DBAppointments;
 import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
@@ -19,7 +20,6 @@ import models.Countries;
 import models.Customers;
 import models.Users;
 import utilities.DBConnection;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -39,14 +39,16 @@ public class LoginController implements Initializable {
     Stage stage;
     Parent scene;
 
-    @FXML
-    private TextField usernameTextField;
+    // FX Ids for the text fields used for the login screen
+    @FXML private TextField usernameTextField;
+    @FXML private TextField passwordTextField;
 
-    @FXML
-    private TextField passwordTextField;
-
-    @FXML
-    public void logInButton(ActionEvent actionEvent) throws IOException {
+    /**
+     * The loginButton method checks if a  username is correct or not then logs into the main controller
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML public void logInButton(ActionEvent actionEvent) throws IOException {
         System.out.println("Get Username And Password");
         String userName = usernameTextField.getText();
         String passWord = passwordTextField.getText();
@@ -72,49 +74,21 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML
-    public void closeButton(ActionEvent actionEvent) {
+    /**
+     * The closeButton method exits the program
+     * @param actionEvent
+     */
+    @FXML public void closeButton(ActionEvent actionEvent) {
         System.out.println("Close Button Selected");
         System.exit(0);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /**
+     * The initialize method loads the screen
+     * @param url
+     * @param resourceBundle
+     */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
     }
-
-    // Unused Methods From Video Demonstrations
-    /**
-     TheLabel.setText("See Terminal For Countries Table Records.");
-     ObservableList<Countries> countryList = DBCountries.getAllCountries();
-     for(Countries C : countryList)
-     System.out.println(
-     "Country Id: " + C.getId() +
-     " Name: " + C.getName() +
-     " Create Date: " + C.getCreateDate() + " " + C.getCreateDateTime() +
-     " Created By: " + C.getCreatedBy() +
-     " Last Update: " + C.getLastUpdateDate() + " " + C.getLastUpdate() +
-     " Last Updated By: " + C.getLastUpdatedBy() + "\n"
-     );*/
-
-    /**
-     TheLabel.setText("See Terminal For Appointments Table Records.");
-     ObservableList<Appointments> appointmentsList = DBAppointments.getAllAppointments();
-     for(Appointments A : appointmentsList)
-     System.out.println(
-     "Appointment ID: " + A.getId() +
-     " Title: " + A.getTitle() +
-     " Description " + A.getDescription() +
-     " Location: " + A.getLocation() +
-     " Type: " + A.getType() +
-     " Start: " + A.getStart() +
-     " End: " + A.getEnd() +
-     " Create Date: " + A.getCreateDate() +
-     " Created By: " + A.setCreatedBy() +
-     " Last Update: " + A.getLastUpdate() +
-     " Last Updated By: " + A.getLastUpdatedBy() +
-     " Customer ID: " + A.getCustomerId() +
-     " User ID: " + A.getUserId() +
-     " Contact ID: " + A.getContactId() + "\n"
-     );*/
 }
