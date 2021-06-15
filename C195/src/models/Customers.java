@@ -3,6 +3,7 @@ package models;
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import utilities.DBConnection;
 import java.sql.Date;
 import java.sql.Time;

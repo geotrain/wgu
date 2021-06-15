@@ -1,6 +1,7 @@
 package DBAccess;
 
 // Import statements
+import com.mysql.cj.xdevapi.InsertStatement;
 import models.Customers;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
@@ -60,4 +61,29 @@ public class DBCustomers {
         return clist;
     }
 
+    /**
+     * This addNewCustomer method adds data entered into the customers table.
+     * @param customerName
+     * @param customerAddress
+     * @param customerPostalCode
+     * @param customerPhoneNumber
+     * @param divisionID
+     * @return
+     */
+    public static boolean addNewCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, Integer divisionID)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String query = "INSERT INTO customers SET Customer_Name='" + customerName + "', Address='" + customerAddress + "', Phone='" + customerPhoneNumber
+                    + "', Postal_Code='" + customerPostalCode + "', Division_ID=" + divisionID;
+            statement.execute(query);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
 }

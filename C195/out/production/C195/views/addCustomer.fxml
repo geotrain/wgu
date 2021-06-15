@@ -39,8 +39,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="customerIdLabel" prefHeight="17.0" prefWidth="100.0" text="Customer ID">
@@ -53,17 +51,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="address1Label" text="Address Line # 1" GridPane.rowIndex="2">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="address2Label" text="Address Line # 2" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="cityLabel" text="City" GridPane.rowIndex="4">
+                  <Label fx:id="address1Label" text="Address" GridPane.rowIndex="2">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -73,37 +61,35 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="zipCodeLabel" text="Zip Code" GridPane.rowIndex="6">
+                  <Label fx:id="zipCodeLabel" text="Postal Code" GridPane.rowIndex="3">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="phoneNumberLabel" text="Phone Number" GridPane.rowIndex="7">
+                  <Label fx:id="phoneNumberLabel" text="Phone Number" GridPane.rowIndex="4">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="activeLabel" text="Active" GridPane.rowIndex="8">
+                  <Label fx:id="stateProvinceLabel" text="State / Province" GridPane.rowIndex="6">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="customerIdTextField" editable="false" GridPane.columnIndex="1" />
-                  <TextField fx:id="customerNameTextField" promptText="Customer Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="address1TextField" promptText="Address One" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="zipCodeTextField" promptText="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="phoneNumberTextField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="customerIdTextField" editable="false" text="Auto-Generated After Save" GridPane.columnIndex="1" />
+                  <TextField fx:id="customerNameTextField" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="address1TextField" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="postalCodeTextField" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="phoneNumberTextField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="countriesChoiceBox" prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ChoiceBox fx:id="activeChoiceBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField fx:id="address2TextField" promptText="Address Two" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="stateProvinceChoiceBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>
       </VBox>
       <HBox layoutX="1.0" layoutY="375.0" prefHeight="47.0" prefWidth="390.0">
          <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="83.0" text="Save">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButton" prefHeight="25.0" prefWidth="83.0" text="Save">
                <HBox.margin>
                   <Insets left="80.0" />
                </HBox.margin>
