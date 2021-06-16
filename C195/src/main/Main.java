@@ -1,6 +1,7 @@
 package main;
 
 // Import statements
+import DBAccess.DBCountries;
 import DBAccess.DBDivisions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -119,6 +120,8 @@ public class Main extends Application {
          * This sets all the DB Division ID's Right After the Database Connection Is Made.
          */
         DBDivisions.selectAllDivisions();
+
+        DBCountries.selectAllCountries();
 
         /**
          *  This starts the program in the main method launch(args)

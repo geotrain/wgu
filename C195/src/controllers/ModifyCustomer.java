@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Countries;
 import models.Customers;
 import models.Division;
 import utilities.DataProvider;
@@ -60,7 +61,7 @@ public class ModifyCustomer {
     @FXML private TextField phoneNumberTextField;
 
     // FIX Ids for Choice Boxes
-    @FXML private ChoiceBox<String> countriesChoiceBox;
+    @FXML private ChoiceBox<Countries> countriesChoiceBox;
     @FXML private ChoiceBox<Division> stateProvinceChoiceBox;
 
     // FX Ids for buttons
@@ -96,7 +97,7 @@ public class ModifyCustomer {
         String customerAddress = address1TextField.getText();
         String customerPostalCode = zipCodeTextField.getText();
         String customerPhoneNumber = phoneNumberTextField.getText();
-        String customerCountry = countriesChoiceBox.getValue();
+        //String customerCountry = countriesChoiceBox.getValue();
         Integer divisionID = null;
 
 
@@ -148,7 +149,19 @@ public class ModifyCustomer {
         this.zipCodeTextField.setText(String.valueOf(customerId.getCustomerPostalCode()));
         this.phoneNumberTextField.setText(String.valueOf(customerId.getCustomerPhone()));
         stateProvinceChoiceBox.setItems(DataProvider.getAllDivisions());
-
+        countriesChoiceBox.setItems(DataProvider.getAllCountries());
+        for (Division division:DataProvider.getAllDivisions()) {
+            if (division.getDivisionID() == customer.getDivisionID()) {
+                stateProvinceChoiceBox.getSelectionModel().select(division);
+                break;
+            }
+        }
+        for (Countries country:DataProvider.getAllCountries()) {
+            if (country.getId() == stateProvinceChoiceBox.getSelectionModel().getSelectedItem().getCountryID()) {
+                countriesChoiceBox.getSelectionModel().select(country);
+                break;
+            }
+        }
     }
 
     /**
@@ -156,8 +169,7 @@ public class ModifyCustomer {
      */
     @FXML private void initialize() {
         // This initializes the countries choice box
-        countriesChoiceBox.setValue("U.S");
-        countriesChoiceBox.setItems(countriesList);
+
 
     }
 

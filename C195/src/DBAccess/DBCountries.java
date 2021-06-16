@@ -1,9 +1,12 @@
 package DBAccess;
 
 // Import statements
+import models.Countries;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import utilities.DataProvider;
+
 import java.sql.*;
 
 public class DBCountries {
@@ -11,13 +14,12 @@ public class DBCountries {
     /**
      * This ObservableList returns all the countries from the countries table the Country ID and Country Name. This is
      * used in conjunction with the models/Countries.java file that contains the getId and getName methods
+     *
      * @param <Countries>
      * @return
      */
-    public static <Countries> ObservableList<Countries> getAllCountries() {
 
-        ObservableList<Countries> clist = FXCollections.observableArrayList();
-
+    public static void selectAllCountries() {
         try {
             String sql = "SELECT * FROM countries";
 
@@ -25,34 +27,16 @@ public class DBCountries {
 
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 int countryId = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
-                Date createDate = rs.getDate("Create_Date");
-                Time createDateTime = rs.getTime("Create_Date");
-                String createdBy = rs.getString("Created_By");
-                Date lastUpdateDate = rs.getDate("Last_Update");
-                Time lastUpdate = rs.getTime("Last_Update");
-                String lastUpdatedBy = rs.getString("Last_Updated_By");
 
-                models.Countries C = new models.Countries(
-                        countryId,
-                        countryName,
-                        createDate,
-                        createDateTime,
-                        createdBy,
-                        lastUpdateDate,
-                        lastUpdate,
-                        lastUpdatedBy
-                );
-                clist.add((Countries) C);
+                DataProvider.addCountry(new Countries(countryId, countryName));
             }
 
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
-
-        return clist;
     }
 
     /**

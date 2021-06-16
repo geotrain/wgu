@@ -38,7 +38,10 @@ public class Countries {
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
     }
-
+    public Countries(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
     /**
      * The getId method that gets the Countries (Country_ID) from the countries table.
      * @return
@@ -166,5 +169,9 @@ public class Countries {
      */
     public String setLastUpdatedBy() {
         return this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    @Override public String toString() {
+        return name;
     }
 }

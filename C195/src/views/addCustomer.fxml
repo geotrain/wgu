@@ -76,7 +76,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="customerIdTextField" editable="false" text="Auto-Generated After Save" GridPane.columnIndex="1" />
+                  <TextField fx:id="customerIdTextField" editable="false" promptText="Auto-Generated After Save" GridPane.columnIndex="1" />
                   <TextField fx:id="customerNameTextField" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="address1TextField" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="postalCodeTextField" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="3" />

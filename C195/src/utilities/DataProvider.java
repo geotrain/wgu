@@ -3,6 +3,7 @@ package utilities;
 // Import statements
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.Countries;
 import models.Division;
 
 public class DataProvider {
@@ -10,6 +11,7 @@ public class DataProvider {
      * Observable List for the Division ID
      */
     private static ObservableList<Division> allDivisions = FXCollections.observableArrayList();
+    private static ObservableList<Countries> allCountries = FXCollections.observableArrayList();
 
     /**
      * addDivision method
@@ -25,5 +27,13 @@ public class DataProvider {
      */
     public static ObservableList<Division>getAllDivisions() {
         return allDivisions;
+    }
+
+    public static void addCountry(Countries countries) {
+        allCountries.add(countries);
+    }
+
+    public static ObservableList<Countries>getAllCountries() {
+        return allCountries;
     }
 }

@@ -1,7 +1,6 @@
 package models;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDateTime;
 
 public class Appointments {
     /**
@@ -12,11 +11,11 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
-    private Date start;
-    private Date end;
-    private Date createDate;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private LocalDateTime createDate;
     private String createdBy;
-    private Time lastUpdate;
+    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
     private int customerId;
     private int userId;
@@ -44,11 +43,11 @@ public class Appointments {
                         String description,
                         String location,
                         String type,
-                        Date start,
-                        Date end,
-                        Date createDate,
+                        LocalDateTime start,
+                        LocalDateTime end,
+                        LocalDateTime createDate,
                         String createdBy,
-                        Time lastUpdate,
+                        LocalDateTime lastUpdate,
                         String lastUpdatedBy,
                         int customerId,
                         int userId,
@@ -154,7 +153,7 @@ public class Appointments {
      * This getStart method that gets the Appointments (Start) from the appointments table.
      * @return
      */
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
@@ -162,7 +161,7 @@ public class Appointments {
      * This setStart method that gets the Appointments (Start) to the appointments table.
      * @return
      */
-    public Date setStart() {
+    public LocalDateTime setStart() {
         return this.start = start;
     }
 
@@ -170,7 +169,7 @@ public class Appointments {
      * This getEnd method that gets the Appointments (End) from the appointments table
      * @return
      */
-    public Date getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
@@ -178,23 +177,23 @@ public class Appointments {
      * This setEnd method that gets the Appointments (End) to the appointments table
      * @return
      */
-    public Date setEnd() {
+    public LocalDateTime setEnd() {
         return this.end = end;
-    }
+   }
 
     /**
      * This getCreateDate method that gets the Appointments (Create_Date) from the appointments table.
      * @return
      */
-    public Date getCreateDate() {
-        return createDate;
+    public LocalDateTime getCreateDate() {
+       return createDate;
     }
 
     /**
      * This setCreateDate method that sets the Appointments (Create_Date) to the appointments table.
      * @return
      */
-    public Date setCreateDate() {
+    public LocalDateTime setCreateDate() {
         return this.createDate = createDate;
     }
 
@@ -218,15 +217,15 @@ public class Appointments {
      * This getLastUpdate method that gets the Appointments (Last_Update) from the appointments table.
      * @return
      */
-    public Time getLastUpdate() {
-        return lastUpdate;
+    public LocalDateTime getLastUpdate() {
+       return lastUpdate;
     }
 
     /**
      * This setLastUpdate method that sets the Appointments (Last_Update) to the appointments table.
      * @return
      */
-    public Time setLastUpdate() {
+    public LocalDateTime setLastUpdate() {
         return this.lastUpdate = lastUpdate;
     }
 

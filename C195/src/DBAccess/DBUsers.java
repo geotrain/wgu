@@ -18,20 +18,22 @@ public class DBUsers {
      * @return
      */
     public static boolean getCurrentUser(String uName, String password) {
-
+        Boolean result = false;
         String sql = "SELECT * FROM users";
         try {
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                System.out.println(rs.getString("User_Name"));
                 if (rs.getString("User_Name").equals(uName) && rs.getString("password").equals(password)) {
                     LoginActivity.login_activity(uName, true);
-                    return true;
+                    result = true;
                 } else {
                     LoginActivity.login_activity(uName, false);
-                    return false;
+                    result = false;
                 }
             }
+            return result;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

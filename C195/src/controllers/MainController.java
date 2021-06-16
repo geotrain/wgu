@@ -90,10 +90,15 @@ public class MainController implements Initializable {
         customersTableView.setItems(DBCustomers.getAllCustomers());
     }
 
+    /**
+     * This method will open the add appointment controller
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML public void addAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 500);
+        Scene scene = new Scene((Parent) root, 400, 400);
         stage.setTitle("Add Appointment");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -103,7 +108,7 @@ public class MainController implements Initializable {
     @FXML public void modifyAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/modifyAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 500);
+        Scene scene = new Scene((Parent) root, 400, 400);
         stage.setTitle("Modify Appointment");
         stage.setResizable(false);
         stage.setScene(scene);

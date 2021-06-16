@@ -5,6 +5,8 @@ import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DBAppointments {
 
@@ -19,7 +21,7 @@ public class DBAppointments {
     public static <Appointments> ObservableList<Appointments> getAllAppointments() {
 
         ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
-
+        DateTimeFormatter datetimeDTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         try {
             String sql = "SELECT * FROM appointments";
 
@@ -33,27 +35,31 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                Date start = rs.getDate("Start");
-                Date end = rs.getDate("End");
-                Date createDate = rs.getDate("Create_Date");
+                String start = rs.getString("Start");
+                String end = rs.getString("End");
+                String createDate = rs.getString("Create_Date");
                 String createdBy = rs.getString("Created_By");
-                Time lastUpdate = rs.getTime("Last_Update");
+                String lastUpdate = rs.getString("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
 
+                LocalDateTime convertStart = LocalDateTime.parse(start, datetimeDTF);
+                LocalDateTime convertEnd = LocalDateTime.parse(end, datetimeDTF);
+                LocalDateTime convertcreateDate = LocalDateTime.parse(createDate, datetimeDTF);
+                LocalDateTime convertlastUpdate = LocalDateTime.parse(lastUpdate, datetimeDTF);
                 models.Appointments A = new models.Appointments(
                         appointmentId,
                         title,
                         description,
                         location,
                         type,
-                        start,
-                        end,
-                        createDate,
+                        convertStart,
+                        convertEnd,
+                        convertcreateDate,
                         createdBy,
-                        lastUpdate,
+                        convertlastUpdate,
                         lastUpdatedBy,
                         customerId,
                         userId,
