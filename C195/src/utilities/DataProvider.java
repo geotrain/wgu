@@ -1,6 +1,7 @@
 package utilities;
 
 // Import statements
+import DBAccess.DBDivisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Countries;
@@ -35,5 +36,14 @@ public class DataProvider {
 
     public static ObservableList<Countries>getAllCountries() {
         return allCountries;
+    }
+
+    public static ObservableList<Division> getDivisionsByCountryId(int id) {
+        ObservableList<Division> division = FXCollections.observableArrayList();
+        for (Division D: allDivisions) {
+            if (D.getCountryID() == id)
+                division.add(D);
+        }
+        return division;
     }
 }

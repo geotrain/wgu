@@ -3,6 +3,7 @@ package controllers;
 /**
  * Import statements
  */
+import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +26,7 @@ import java.io.IOException;
 
 public class ModifyCustomer {
 
+    /**
     // Observable List For Countries Drop Down Choice Box
     ObservableList<String> countriesList = FXCollections.observableArrayList("U.S", "UK", "Canada");
 
@@ -37,6 +39,7 @@ public class ModifyCustomer {
             "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Northwest Territories", "Alberta", "British Columbia",
             "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Ontario", "Quebec", "Saskatchewan", "Nunavut", "Yukon",
             "Newfoundland and Labrador", "England", "Wales", "Scotland", "Northern Ireland");
+     */
 
     // Declare customerId object for Modify Customer Method
     private Customers customerId;
@@ -170,6 +173,7 @@ public class ModifyCustomer {
     @FXML private void initialize() {
         // This initializes the countries choice box
 
+        countriesChoiceBox.setItems(DataProvider.getAllCountries());
 
     }
 

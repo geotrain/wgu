@@ -1,6 +1,7 @@
 package controllers;
 
 // Import statements
+import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import models.Customers;
+
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +37,6 @@ public class AddAppointment implements Initializable {
 
     // FX IDs for Text Fields
     @FXML private TextField appointmentIdTextField;
-    @FXML private TextField customerIdTextField;
     @FXML private TextField titleTextField;
     @FXML private TextField descriptionTextField;
     @FXML private TextField locationTextField;
@@ -53,19 +55,25 @@ public class AddAppointment implements Initializable {
     // FX Ids for Combo Boxes
     @FXML private ComboBox<String> contactComboBox;
     @FXML private ComboBox<String> typeComboBox;
+    @FXML private ComboBox<Customers> customerComboBox;
 
-    // Combo Boxes Observable Lists
+    // Observable List Combo Box for Meeting Types
     ObservableList<String> meetingType = FXCollections.observableArrayList("Backlog Grooming","De-Briefing","Planning Session",
             "Sprint Planning","Sprint Retrospective","Staff","Daily Scrum");
-
+    // Observable List Combo Box for Contacts
     ObservableList<String> contactName = FXCollections.observableArrayList("Anika Costa", "Daniel Garcia", "Li Lee");
+
+    // Observable List Combo Box for Customers
+    final ObservableList customerName = FXCollections.observableArrayList(DBCustomers.getAllCustomers());
+
+
 
 
     /**
      * This method saves the added data to the appointments database and returns to the main controller
      * @param actionEvent
      */
-    public void save(javafx.event.ActionEvent actionEvent) {
+    public void save(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
 
         // Get Data From Add Customer Controller
        String title = titleTextField.getText();
@@ -76,7 +84,7 @@ public class AddAppointment implements Initializable {
        LocalDate start = startDatePicker.getValue();
        LocalTime startTime = LocalTime.of(startHourChoiceBox.getValue(), startMinuteChoiceBox.getValue());
        LocalTime endTime = LocalTime.of(endHourChoiceBox.getValue(), endMinuteChoiceBox.getValue());
-
+       int customerID = customerComboBox.getValue().getCustomerID();
 
     }
 
@@ -107,5 +115,9 @@ public class AddAppointment implements Initializable {
 
         // Initialize Contact Name Observable List
         contactComboBox.setItems(contactName);
+
+        // ComboBox List for Customers populated from customers table
+        customerComboBox.setItems(customerName);
+
     }
 }

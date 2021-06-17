@@ -66,6 +66,33 @@ public class Customers {
     }
 
     /**
+     * Constructor for getCustomerInfo() method in DBCustomers.java class
+     * @param customerID
+     * @param customerName
+     */
+    /*
+    public Customers(int customerID, String customerName) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+    }*/
+
+    /**
+     * setCustomerId method for getCustomerInfo() method in DBCustomers.java.class
+     * @param customerID
+     */
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    /**
+     * setCustomerName method for getCustomerInfo() method in DBCustomers.java.class
+     * @param customerName
+     */
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    /**
      * The getCustomerID method gets the Users (Customer_ID) from the users table.
      * @return
      */
@@ -226,5 +253,11 @@ public class Customers {
      */
     public int setDivisionID() {
         return this.customerDivisionId = customerDivisionId;
+    }
+
+    @Override
+    public String toString() {
+        return customerName;
+
     }
 }

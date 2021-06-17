@@ -3,6 +3,7 @@ package controllers;
 /**
  * Import statements
  */
+import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import models.Countries;
+import models.Division;
+import utilities.DataProvider;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -37,8 +42,8 @@ public class AddCustomer {
     @FXML private TextField phoneNumberTextField;
 
     // FX Ids for Choice Boxes
-    @FXML private ChoiceBox<String> countriesChoiceBox;
-    @FXML private ChoiceBox<String> stateProvinceChoiceBox;
+    @FXML private ComboBox<Countries> countryComboBox;
+    @FXML private ComboBox<Division> stateProviceComboBox;
 
     // FX IDs for Buttons
     @FXML private Button saveButton;
@@ -86,148 +91,16 @@ public class AddCustomer {
         String customerAddress = address1TextField.getText();
         String customerPostalCode = postalCodeTextField.getText();
         String customerPhoneNumber = phoneNumberTextField.getText();
-        String customerCountry = countriesChoiceBox.getValue();
+
         Integer divisionID = null;
-
-        if (stateProvinceChoiceBox.getValue() == "Alabama") {
-             divisionID = 1;
-        } else if (stateProvinceChoiceBox.getValue() == "Arizona") {
-             divisionID = 2;
-        } else if (stateProvinceChoiceBox.getValue() == "Arkansas") {
-            divisionID = 3;
-        } else if (stateProvinceChoiceBox.getValue() == "California") {
-             divisionID = 4;
-        } else if (stateProvinceChoiceBox.getValue() == "Colorado") {
-             divisionID = 5;
-        } else if (stateProvinceChoiceBox.getValue() == "Connecticut") {
-             divisionID = 6;
-        } else if (stateProvinceChoiceBox.getValue() == "Delaware") {
-             divisionID = 7;
-        } else if (stateProvinceChoiceBox.getValue() == "District of Columbia") {
-             divisionID = 8;
-        } else if (stateProvinceChoiceBox.getValue() == "Florida") {
-             divisionID = 9;
-        } else if (stateProvinceChoiceBox.getValue() == "Georgia") {
-             divisionID = 10;
-        } else if (stateProvinceChoiceBox.getValue() == "Idaho") {
-             divisionID = 11;
-        } else if (stateProvinceChoiceBox.getValue() == "Illinois") {
-             divisionID = 12;
-        } else if (stateProvinceChoiceBox.getValue() == "Indiana") {
-             divisionID = 13;
-        } else if (stateProvinceChoiceBox.getValue() == "Iowa") {
-             divisionID = 14;
-        } else if (stateProvinceChoiceBox.getValue() == "Kansas") {
-             divisionID = 15;
-        } else if (stateProvinceChoiceBox.getValue() == "Kentucky") {
-             divisionID = 16;
-        } else if (stateProvinceChoiceBox.getValue() == "Louisiana") {
-             divisionID = 17;
-        } else if (stateProvinceChoiceBox.getValue() == "Maine") {
-             divisionID = 18;
-        } else if (stateProvinceChoiceBox.getValue() == "Maryland") {
-             divisionID = 19;
-        } else if (stateProvinceChoiceBox.getValue() == "Massachusetts") {
-             divisionID = 20;
-        } else if (stateProvinceChoiceBox.getValue() == "Michigan") {
-             divisionID = 21;
-        } else if (stateProvinceChoiceBox.getValue() == "Minnesota") {
-             divisionID = 22;
-        } else if (stateProvinceChoiceBox.getValue() == "Mississippi") {
-             divisionID = 23;
-        } else if (stateProvinceChoiceBox.getValue() == "Missouri") {
-             divisionID = 24;
-        } else if (stateProvinceChoiceBox.getValue() == "Montana") {
-             divisionID = 25;
-        } else if (stateProvinceChoiceBox.getValue() == "Nebraska") {
-             divisionID = 26;
-        } else if (stateProvinceChoiceBox.getValue() == "Nevada") {
-             divisionID = 27;
-        } else if (stateProvinceChoiceBox.getValue() == "New Hampshire") {
-             divisionID = 28;
-        } else if (stateProvinceChoiceBox.getValue() == "New Jersey") {
-             divisionID = 29;
-        } else if (stateProvinceChoiceBox.getValue() == "New Mexico") {
-             divisionID = 30;
-        } else if (stateProvinceChoiceBox.getValue() == "New York") {
-             divisionID = 31;
-        } else if (stateProvinceChoiceBox.getValue() == "North Carolina") {
-             divisionID = 32;
-        } else if (stateProvinceChoiceBox.getValue() == "North Dakota") {
-             divisionID = 33;
-        } else if (stateProvinceChoiceBox.getValue() == "Ohio") {
-             divisionID = 34;
-        } else if (stateProvinceChoiceBox.getValue() == "Oklahoma") {
-             divisionID = 35;
-        } else if (stateProvinceChoiceBox.getValue() == "Oregon") {
-             divisionID = 36;
-        } else if (stateProvinceChoiceBox.getValue() == "Pennsylvania") {
-             divisionID = 37;
-        } else if (stateProvinceChoiceBox.getValue() == "Rhode Island") {
-             divisionID = 38;
-        } else if (stateProvinceChoiceBox.getValue() == "South Carolina") {
-             divisionID = 39;
-        } else if (stateProvinceChoiceBox.getValue() == "South Dakota") {
-             divisionID = 40;
-        } else if (stateProvinceChoiceBox.getValue() == "Tennessee") {
-             divisionID = 41;
-        } else if (stateProvinceChoiceBox.getValue() == "Texas") {
-             divisionID = 42;
-        } else if (stateProvinceChoiceBox.getValue() == "Utah") {
-             divisionID = 43;
-        } else if (stateProvinceChoiceBox.getValue() == "Vermont") {
-             divisionID = 44;
-        } else if (stateProvinceChoiceBox.getValue() == "Virginia") {
-             divisionID = 45;
-        } else if (stateProvinceChoiceBox.getValue() == "Washington") {
-             divisionID = 46;
-        } else if (stateProvinceChoiceBox.getValue() == "West Virginia") {
-             divisionID = 47;
-        } else if (stateProvinceChoiceBox.getValue() == "Wisconsin") {
-             divisionID = 48;
-        } else if (stateProvinceChoiceBox.getValue() == "Wyoming") {
-             divisionID = 49;
-        } else if (stateProvinceChoiceBox.getValue() == "Hawaii") {
-             divisionID = 52;
-        } else if (stateProvinceChoiceBox.getValue() == "Alaska") {
-             divisionID = 54;
-        } else if (stateProvinceChoiceBox.getValue() == "Northwest Territories") {
-             divisionID = 60;
-        } else if (stateProvinceChoiceBox.getValue() == "Alberta") {
-             divisionID = 61;
-        } else if (stateProvinceChoiceBox.getValue() == "British Columbia") {
-             divisionID = 62;
-        } else if (stateProvinceChoiceBox.getValue() == "Manitoba") {
-             divisionID = 63;
-        } else if (stateProvinceChoiceBox.getValue() == "New Brunswick") {
-             divisionID = 64;
-        } else if (stateProvinceChoiceBox.getValue() == "Nova Scotia") {
-             divisionID = 65;
-        } else if (stateProvinceChoiceBox.getValue() == "Prince Edward Island") {
-             divisionID = 66;
-        } else if (stateProvinceChoiceBox.getValue() == "Ontario") {
-             divisionID = 67;
-        } else if (stateProvinceChoiceBox.getValue() == "Quebec") {
-             divisionID = 68;
-        } else if (stateProvinceChoiceBox.getValue() == "Saskatchewan") {
-             divisionID = 69;
-        } else if (stateProvinceChoiceBox.getValue() == "Nunavut") {
-             divisionID = 70;
-        } else if (stateProvinceChoiceBox.getValue() == "Yukon") {
-             divisionID = 71;
-        } else if (stateProvinceChoiceBox.getValue() == "Newfoundland and Labrador") {
-             divisionID = 72;
-        } else if (stateProvinceChoiceBox.getValue() == "England") {
-             divisionID = 101;
-        } else if (stateProvinceChoiceBox.getValue() == "Wales") {
-             divisionID = 102;
-        } else if (stateProvinceChoiceBox.getValue() == "Scotland") {
-             divisionID = 103;
-        } else if (stateProvinceChoiceBox.getValue() == "Northern Ireland") {
-             divisionID = 104;
+        Division D = stateProviceComboBox.getValue();
+        if (D == null) {
+            addCustomerLabel.setText("The \"Division\" must be selected to continue.");
+            return null;
         }
+        divisionID = D.getDivisionID();
 
-        System.out.println("The state that was chosen was " + stateProvinceChoiceBox.getValue() + " and the value entered into the" +
+        System.out.println("The state that was chosen was " + stateProviceComboBox.getValue() + " and the value entered into the" +
                 " database is " + divisionID);
 
         // Verify text fields cannot be empty
@@ -267,12 +140,12 @@ public class AddCustomer {
      * lists for the country selection choice box and stateProvince selection choice box.
      */
     @FXML private void initialize() {
-        // Observable list for countries choice box, default value is "U.S"
-        countriesChoiceBox.setValue("U.S");
-        countriesChoiceBox.setItems(countriesList);
 
-        // Observable list for state / provinces choice box, default value is "Alabama"
-        stateProvinceChoiceBox.setValue("Alabama");
-        stateProvinceChoiceBox.setItems(stateProvinceList);
+        countryComboBox.setItems(DataProvider.getAllCountries());
+    }
+
+    public void ounCountry(ActionEvent actionEvent) {
+        Countries C = countryComboBox.getValue();
+        stateProviceComboBox.setItems(DataProvider.getDivisionsByCountryId(C.getId()));
     }
 }

@@ -55,7 +55,6 @@
                   <Label fx:id="startTimeLabel" text="Start Time" GridPane.rowIndex="6" />
                   <Label fx:id="endTimeLabel" text="End Time" GridPane.rowIndex="7" />
                   <TextField fx:id="appointmentIdTextField" editable="false" promptText="Auto-Generated After Save" GridPane.columnIndex="1" />
-                  <TextField fx:id="customerIdTextField" editable="false" promptText="Assigned Contact After Save" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <TextField fx:id="titleTextField" promptText="Appointment Title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="descriptionTextField" promptText="Appointment Description" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="locationTextField" promptText="Appointment Location" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -80,6 +79,7 @@
                   <ComboBox fx:id="contactComboBox" prefHeight="25.0" prefWidth="237.0" promptText="Select Contact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="typeComboBox" prefHeight="25.0" prefWidth="238.0" promptText="Select Type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <DatePicker fx:id="startDatePicker" prefHeight="25.0" prefWidth="90.0" promptText="Date" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="customerComboBox" prefHeight="25.0" prefWidth="240.0" promptText="Select Customer" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>
