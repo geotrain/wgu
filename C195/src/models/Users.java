@@ -148,4 +148,12 @@ public class Users {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
+
+    /**
+     * Override to print username to string
+     * @return
+     */
+    @Override public String toString() {
+        return username;
+    }
 }

@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Contacts;
 import models.Customers;
+import models.Users;
 import org.w3c.dom.Text;
 
 import java.awt.event.ActionEvent;
@@ -40,6 +41,8 @@ public class AddAppointment implements Initializable {
     @FXML private Label startTimeLabel;
     @FXML private Label endTimeLabel;
     @FXML private Label customerIdLabel;
+    @FXML private Label userLabel;
+    @FXML private Label userIdLabel;
     @FXML private Label addAppointmentMessageLabel;
 
     // FX IDs for Text Fields
@@ -49,12 +52,13 @@ public class AddAppointment implements Initializable {
     @FXML private TextField locationTextField;
     @FXML private TextField customerIdTextField;
     @FXML private TextField contactIdTextField;
+    @FXML private TextField userIdTextField;
 
     // FX Ids for DatePicker Time Selection
-    @FXML private ChoiceBox<Integer> startMinuteChoiceBox;
-    @FXML private ChoiceBox<Integer> startHourChoiceBox;
-    @FXML private ChoiceBox<Integer> endMinuteChoiceBox;
-    @FXML private ChoiceBox<Integer> endHourChoiceBox;
+    @FXML private ChoiceBox<String> startMinuteChoiceBox;
+    @FXML private ChoiceBox<String> startHourChoiceBox;
+    @FXML private ChoiceBox<String> endMinuteChoiceBox;
+    @FXML private ChoiceBox<String> endHourChoiceBox;
     @FXML private DatePicker startDatePicker;
 
     // FX Ids for the Buttons
@@ -65,6 +69,7 @@ public class AddAppointment implements Initializable {
     @FXML private ComboBox<Contacts> contactComboBox;
     @FXML private ComboBox<String> typeComboBox;
     @FXML private ComboBox<Customers> customerComboBox;
+    @FXML private ComboBox<Users> userComboBox;
 
     // Declare customerId object for Add Appointment Save Method
     private Customers customerId;
@@ -84,23 +89,21 @@ public class AddAppointment implements Initializable {
     // Observable List Combo Box for Customers
     final ObservableList customerName = FXCollections.observableArrayList(DBCustomers.getAllCustomers());
 
-    /**
+    // Observable List Combo Box for Users
+    final ObservableList usersName = FXCollections.observableArrayList(DBUsers.getAllUsers());
+
     // Observable List Choice Box For Starting Hour
-    ObservableList<LocalDateTime> startHourList = FXCollections.observableArrayList(08,09,10,11,12,13,14,15,16,17.18,19,20);
+    ObservableList<String> startHourList = FXCollections.observableArrayList("05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20");
 
     // Observable List Choice Box For Starting Minute
-    ObservableList<LocalDateTime> startMinuteList = FXCollections.observableArrayList(00,01,02,03,04,05,06,07,08,09,10,11,12,
-            13,14,15,16,17.18,19,20,21,22,23,24,25,26,27.28,29,30,31,32,33,34,35,36,37,38,39,40,41.42,43.44,45,46,47.48,49,50,51,
-        52,53,54,55,56,57,58,59);
+    ObservableList<String> startMinuteList = FXCollections.observableArrayList("00","15","30","45");
 
     // Observable List Choice Box For Ending HourObservableList<LocalDateTime> endHourList = FXCollections.observableArrayList(08,09,10,11,12,13,14,15,16,17.18,19,20);
-    ObservableList<LocalDateTime> endHourList = FXCollections.observableArrayList(08,09,10,11,12,13,14,15,16,17.18,19,20);
+    ObservableList<String> endHourList = FXCollections.observableArrayList("05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20");
 
     // Observable List Choice Box For Ending Minute
-    ObservableList<LocalDateTime> endMinuteList = FXCollections.observableArrayList(00,01,02,03,04,05,06,07,08,09,10,11,12,
-            13,14,15,16,17.18,19,20,21,22,23,24,25,26,27.28,29,30,31,32,33,34,35,36,37,38,39,40,41.42,43.44,45,46,47.48,49,50,51,
-            52,53,54,55,56,57,58,59);
-    */
+    ObservableList<String> endMinuteList = FXCollections.observableArrayList("00","15","30","45");
+
 
     /**
      * The displayCustomerId method is used to populate the customer ID text field once the customerComboBox has chosen
@@ -121,37 +124,21 @@ public class AddAppointment implements Initializable {
     }
 
     /**
+     * The displayUserId method is used to populate the user ID text field once the userComboBox has chosen
+     * a user from the user data list
+     * @param actionEvent
+     */
+    @FXML private void displayUserId(javafx.event.ActionEvent actionEvent) {
+        this.userIdTextField.setText(String.valueOf(userComboBox.getValue().getId()));
+    }
+
+    /**
      * This method saves the added data to the appointments database and returns to the main controller
      * @param actionEvent
      */
     public void save(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
 
-        // Get Data From Add Customer Controller
-       String title = titleTextField.getText();
-       String description = descriptionTextField.getText();
-       String location = locationTextField.getText();
-       Integer contactId = contactComboBox.getValue().getContactID();
-       String type = typeComboBox.getValue();
-       LocalDate start = startDatePicker.getValue();
-       LocalTime startTime = LocalTime.of(startHourChoiceBox.getValue(), startMinuteChoiceBox.getValue());
-       LocalTime endTime = LocalTime.of(endHourChoiceBox.getValue(), endMinuteChoiceBox.getValue());
-       Integer customerID = customerComboBox.getValue().getCustomerID();
-       this.customerIdTextField.setText(String.valueOf(customerId.getCustomerID()));
-
-       /*
-       // Get Current  User Id from Global Variable currentUserId located in Login Controller
-       String userId = DBUsers.getCurrentUserLoggedInId(currentUserId);
-       */
-
-       /**
-       // Concatenate Start Date Picker, Start Hour, Start Minute
-        public LocalDateTime atDate(start + " " + startTime);
-
-        // Concatenate Start Date Picker, End Hour, End Minute
-        public LocalDateTime atDate(start + " " + endTime);
-        */
-
-       if (customerID == null) {
+       if (customerComboBox.getValue() == null) {
            addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
        } else if(titleTextField.getText().isEmpty()) {
            addAppointmentMessageLabel.setText("The \"Title\" text field cannot be blank.");
@@ -176,8 +163,46 @@ public class AddAppointment implements Initializable {
        } else if (customerComboBox == null) {
            addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
        } else {
-           DBAppointments.addNewAppointment(title, description, location, contactId, type, customerId);
+           // Get Data From Add Customer Controller
+           String title = titleTextField.getText();
+           String description = descriptionTextField.getText();
+           String location = locationTextField.getText();
+           Integer contactId = contactComboBox.getValue().getContactID();
+           String type = typeComboBox.getValue();
+           LocalDate start = startDatePicker.getValue();
+           LocalTime startTime = LocalTime.of(Integer.parseInt(startHourChoiceBox.getValue()), Integer.parseInt(startMinuteChoiceBox.getValue()));
+           LocalTime endTime = LocalTime.of(Integer.parseInt(endHourChoiceBox.getValue()), Integer.parseInt(endMinuteChoiceBox.getValue()));
+           Integer customerID = customerComboBox.getValue().getCustomerID();
+           Integer userID = userComboBox.getValue().getId();
+
+            /*
+             // Get Current  User Id from Global Variable currentUserId located in Login Controller
+            String userId = DBUsers.getCurrentUserLoggedInId(currentUserId);
+             */
+
+           // Concatenate Start Date Picker, Start Hour, Start Minute
+           LocalDateTime startDateTime = LocalDateTime.of(start, startTime);
+
+           // Concatenate Start Date Picker, End Hour, End Minute
+           LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
+
+           // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
+           // between 8 am - 10 p.m. - TODO
+
+           DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
        }
+        // Label confirming save to database
+        addAppointmentMessageLabel.setText("You Added A New Appointment. Now click close button.");
+
+        // Return to main screen controller
+        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 1060, 900);
+        stage.setTitle("Welcome To Schedule Manager v 1.0");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+        //return null;
     }
 
     /**
@@ -211,7 +236,9 @@ public class AddAppointment implements Initializable {
         // ComboBox List for Customers populated from customers table
         customerComboBox.setItems(customerName);
 
-        /**
+        // ComboBox List for Users populated from the users table
+        userComboBox.setItems((usersName));
+
         // ChoiceBox List for startingHourList
         startHourChoiceBox.setItems(startHourList);
 
@@ -222,7 +249,7 @@ public class AddAppointment implements Initializable {
         endHourChoiceBox.setItems(endHourList);
 
         // ChoiceBox List for startingHourList
-        endHourChoiceBox.setItems(endMinuteList);
-        */
+        endMinuteChoiceBox.setItems(endMinuteList);
+
     }
 }

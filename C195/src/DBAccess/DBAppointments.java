@@ -36,31 +36,27 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                String start = rs.getString("Start");
-                String end = rs.getString("End");
-                String createDate = rs.getString("Create_Date");
+                Timestamp start = rs.getTimestamp("Start");
+                Timestamp end = rs.getTimestamp("End");
+                Timestamp createDate = rs.getTimestamp("Create_Date");
                 String createdBy = rs.getString("Created_By");
-                String lastUpdate = rs.getString("Last_Update");
+                Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
 
-                LocalDateTime convertStart = LocalDateTime.parse(start, datetimeDTF);
-                LocalDateTime convertEnd = LocalDateTime.parse(end, datetimeDTF);
-                LocalDateTime convertcreateDate = LocalDateTime.parse(createDate, datetimeDTF);
-                LocalDateTime convertlastUpdate = LocalDateTime.parse(lastUpdate, datetimeDTF);
                 models.Appointments A = new models.Appointments(
                         appointmentId,
                         title,
                         description,
                         location,
                         type,
-                        convertStart,
-                        convertEnd,
-                        convertcreateDate,
+                        start.toLocalDateTime(),
+                        end.toLocalDateTime(),
+                        createDate.toLocalDateTime(),
                         createdBy,
-                        convertlastUpdate,
+                        lastUpdate.toLocalDateTime(),
                         lastUpdatedBy,
                         customerId,
                         userId,
@@ -71,34 +67,61 @@ public class DBAppointments {
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
-
         return appointmentsList;
     }
 
     /**
-     * addNewAppointment adds a new appointment to the appointments table, it records userId, customerId, and contactId
+     * addNewAppointment adds a new appointment to the appointments table, it records userId, customerId, and contactId, etc.
      * @param title
      * @param description
      * @param location
      * @param contactId
      * @param type
+     * @param start
+     * @param end
      * @param customerId
+     * @param userId
      * @return
      */
-    public static boolean addNewAppointment(String title, String description, String location, Integer contactId,
-                                            String type, Customers customerId) {
+    public static boolean addNewAppointment(
+            String title,
+            String description,
+            String location,
+            Integer contactId,
+            String type,
+            LocalDateTime start,
+            LocalDateTime end,
+            Integer customerId,
+            Integer userId)
+    {
         {
             try {
-                Statement statement = DBConnection.getConnection().createStatement();
-                String addQuery = "INSERT INTO appointments SET Title='" + title
-                        + "', Description='" + description
-                        + "', Location='" + location
-                        + "', Type='" + type
-                        + "', Contact_ID=" + contactId
-                        + "', Customer_ID=" + customerId;
-                statement.execute(addQuery);
-                if(statement.getUpdateCount() > 0)
-                    System.out.println(statement.getUpdateCount() + " row(s) affected.");
+                String addQuery = "INSERT INTO appointments(" +
+                        "Title, " +
+                        "Description, " +
+                        "Location, " +
+                        "Type, " +
+                        "Start, " +
+                        "End, C" +
+                        "ontact_ID, " +
+                        "Customer_ID, " +
+                        "User_ID) " +
+                        "VALUES(?,?,?,?,?,?,?,?,?)";
+
+                PreparedStatement ps = DBConnection.getConnection().prepareStatement(addQuery);
+                ps.setString(1, title);
+                ps.setString(2, description);
+                ps.setString(3, location);
+                ps.setString(4, type);
+                ps.setTimestamp(5, Timestamp.valueOf(start));
+                ps.setTimestamp(6, Timestamp.valueOf(end));
+                ps.setInt(7, contactId);
+                ps.setInt(8, customerId);
+                ps.setInt(9, userId);
+
+                ps.execute();
+                if(ps.getUpdateCount() > 0)
+                    System.out.println(ps.getUpdateCount() + " row(s) affected.");
                 else
                     System.out.println("No changes were made.");
             } catch (SQLException e) {
@@ -106,5 +129,26 @@ public class DBAppointments {
             }
             return false;
         }
+    }
+
+    /**
+     * The deleteCustomer method deletes a selected appointment from the appointments table located on the MainController.
+     * @param id
+     * @return
+     */
+    public static boolean deleteAppointment(int id)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String deleteQuery = "DELETE FROM appointments WHERE Appointment_ID=" + id;
+            statement.execute(deleteQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
     }
 }

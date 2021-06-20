@@ -98,7 +98,7 @@ public class MainController implements Initializable {
     @FXML public void addAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 465);
+        Scene scene = new Scene((Parent) root, 400, 500);
         stage.setTitle("Add Appointment");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -108,15 +108,50 @@ public class MainController implements Initializable {
     @FXML public void modifyAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/modifyAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 465);
+        Scene scene = new Scene((Parent) root, 400, 500);
         stage.setTitle("Modify Appointment");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
 
+    /**
+     * This deleteAppointment method deletes selected appointment from appointments table.
+     * @param actionEvent
+     */
     @FXML
     public void deleteAppointment(ActionEvent actionEvent) {
+        Appointments selectedAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
+
+        // Verify user selects an appointment when clicking the delete appointment button
+        if (selectedAppointment == null) {
+            errorLabel.setText("You must select an appointment before deleting.");
+            errorLabel.setTextFill(Color.RED);
+            return;
+        } else {
+            errorLabel.setText("");
+        }
+
+        // Alert Message Confirming That They Indeed Want To Delete Selected Appointment
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Customer Warning");
+        alert.setHeaderText("Are you sure you want to delete " + selectedAppointment.getDescription() + " ?");
+        alert.setContentText("Select yes or no.");
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType cancelButton = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton)
+        {
+
+            DBAppointments.deleteAppointment(selectedAppointment.getId());
+            appointmentsTableView.setItems(DBAppointments.getAllAppointments());
+            JDialog frame = null;
+        }
+        else if(result.get() == cancelButton)
+        {
+            actionEvent.consume();
+        }
     }
 
     /**
