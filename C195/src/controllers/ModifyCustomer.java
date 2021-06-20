@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Countries;
 import models.Customers;
@@ -64,8 +61,8 @@ public class ModifyCustomer {
     @FXML private TextField phoneNumberTextField;
 
     // FIX Ids for Choice Boxes
-    @FXML private ChoiceBox<Countries> countriesChoiceBox;
-    @FXML private ChoiceBox<Division> stateProvinceChoiceBox;
+    @FXML private ComboBox<Countries> countriesComboBox;
+    @FXML private ComboBox<Division> stateProvinceComboBox;
 
     // FX Ids for buttons
     @FXML private Button saveButton;
@@ -100,13 +97,17 @@ public class ModifyCustomer {
         String customerAddress = address1TextField.getText();
         String customerPostalCode = zipCodeTextField.getText();
         String customerPhoneNumber = phoneNumberTextField.getText();
-        //String customerCountry = countriesChoiceBox.getValue();
+
         Integer divisionID = null;
+        Division D = stateProvinceComboBox.getValue();
+        if (D == null) {
+            addCustomerLabel.setText("The \"Division\" must be selected to continue.");
+            return null;
+        }
+        divisionID = D.getDivisionID();
 
-
-
-        System.out.println("The state that was chosen was " + stateProvinceChoiceBox.getValue() + " and the value entered into the" +
-                " database is " + divisionID);
+        System.out.println("The state that was chosen was " + stateProvinceComboBox.getValue() +
+                " and the value entered into the" + " database is " + divisionID);
 
         // Verify text fields cannot be empty
         if (customerNameTextField.getText().isEmpty()) {
@@ -123,7 +124,8 @@ public class ModifyCustomer {
             return null;
         } else {
             // Update Database
-            DBCustomers.updateCustomer(customer_id, customerName, customerAddress, customerPostalCode, customerPhoneNumber, divisionID);
+            DBCustomers.updateCustomer(customer_id, customerName, customerAddress, customerPostalCode,
+                    customerPhoneNumber, divisionID);
         }
 
         // Label confirming save to database
@@ -151,17 +153,17 @@ public class ModifyCustomer {
         this.address1TextField.setText(String.valueOf(customerId.getCustomerAddress()));
         this.zipCodeTextField.setText(String.valueOf(customerId.getCustomerPostalCode()));
         this.phoneNumberTextField.setText(String.valueOf(customerId.getCustomerPhone()));
-        stateProvinceChoiceBox.setItems(DataProvider.getAllDivisions());
-        countriesChoiceBox.setItems(DataProvider.getAllCountries());
+        stateProvinceComboBox.setItems(DataProvider.getAllDivisions());
+        countriesComboBox.setItems(DataProvider.getAllCountries());
         for (Division division:DataProvider.getAllDivisions()) {
             if (division.getDivisionID() == customer.getDivisionID()) {
-                stateProvinceChoiceBox.getSelectionModel().select(division);
+                stateProvinceComboBox.getSelectionModel().select(division);
                 break;
             }
         }
         for (Countries country:DataProvider.getAllCountries()) {
-            if (country.getId() == stateProvinceChoiceBox.getSelectionModel().getSelectedItem().getCountryID()) {
-                countriesChoiceBox.getSelectionModel().select(country);
+            if (country.getId() == stateProvinceComboBox.getSelectionModel().getSelectedItem().getCountryID()) {
+                countriesComboBox.getSelectionModel().select(country);
                 break;
             }
         }
@@ -171,10 +173,18 @@ public class ModifyCustomer {
      * This method initializes the observable list arrays to populate the countries and the states and provinces.
      */
     @FXML private void initialize() {
-        // This initializes the countries choice box
 
-        countriesChoiceBox.setItems(DataProvider.getAllCountries());
-
+        /**
+         * Initialize the countryComboBox with the getAllCountries Method
+         */
+        countriesComboBox.setItems(DataProvider.getAllCountries());
     }
-
+    /**
+     * The loadCountries is used to populate the state or province depending on which Country is selected.
+     * @param actionEvent
+     */
+    public void loadCountries(ActionEvent actionEvent) {
+        Countries C = countriesComboBox.getValue();
+        stateProvinceComboBox.setItems(DataProvider.getDivisionsByCountryId(C.getId()));
+    }
 }

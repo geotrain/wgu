@@ -70,7 +70,8 @@ public class DBCustomers {
      * @param divisionID
      * @return
      */
-    public static boolean addNewCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, Integer divisionID)
+    public static boolean addNewCustomer(String customerName, String customerAddress, String
+            customerPostalCode, String customerPhoneNumber, Integer divisionID)
     {
         try {
             Statement statement = DBConnection.getConnection().createStatement();

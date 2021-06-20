@@ -121,6 +121,9 @@ public class Main extends Application {
          */
         DBDivisions.selectAllDivisions();
 
+        /**
+         * This sets all the DB Country ID's Right After the Database Connection Is Made.
+         */
         DBCountries.selectAllCountries();
 
         /**

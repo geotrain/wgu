@@ -43,7 +43,7 @@ public class AddCustomer {
 
     // FX Ids for Choice Boxes
     @FXML private ComboBox<Countries> countryComboBox;
-    @FXML private ComboBox<Division> stateProviceComboBox;
+    @FXML private ComboBox<Division> stateProvinceComboBox;
 
     // FX IDs for Buttons
     @FXML private Button saveButton;
@@ -93,14 +93,14 @@ public class AddCustomer {
         String customerPhoneNumber = phoneNumberTextField.getText();
 
         Integer divisionID = null;
-        Division D = stateProviceComboBox.getValue();
+        Division D = stateProvinceComboBox.getValue();
         if (D == null) {
             addCustomerLabel.setText("The \"Division\" must be selected to continue.");
             return null;
         }
         divisionID = D.getDivisionID();
 
-        System.out.println("The state that was chosen was " + stateProviceComboBox.getValue() + " and the value entered into the" +
+        System.out.println("The state that was chosen was " + stateProvinceComboBox.getValue() + " and the value entered into the" +
                 " database is " + divisionID);
 
         // Verify text fields cannot be empty
@@ -118,7 +118,8 @@ public class AddCustomer {
             return null;
         } else {
             // Update Database
-            DBCustomers.addNewCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, divisionID);
+            DBCustomers.addNewCustomer(customerName, customerAddress, customerPostalCode,
+                    customerPhoneNumber, divisionID);
         }
 
         // Label confirming save to database
@@ -141,11 +142,18 @@ public class AddCustomer {
      */
     @FXML private void initialize() {
 
+        /**
+         * Initialize the countryComboBox with the getAllCountries Method
+         */
         countryComboBox.setItems(DataProvider.getAllCountries());
     }
 
-    public void ounCountry(ActionEvent actionEvent) {
+    /**
+     * The loadCountries is used to populate the state or province depending on which Country is selected.
+     * @param actionEvent
+     */
+    public void loadCountries(ActionEvent actionEvent) {
         Countries C = countryComboBox.getValue();
-        stateProviceComboBox.setItems(DataProvider.getDivisionsByCountryId(C.getId()));
+        stateProvinceComboBox.setItems(DataProvider.getDivisionsByCountryId(C.getId()));
     }
 }

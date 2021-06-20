@@ -81,8 +81,8 @@
                   <TextField fx:id="address1TextField" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="postalCodeTextField" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="phoneNumberTextField" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="countryComboBox" onAction="#ounCountry" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="stateProviceComboBox" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="countryComboBox" onAction="#loadCountries" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="stateProvinceComboBox" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>
