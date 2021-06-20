@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
             messageLabel.setText("You must enter a password before clicking the login button.");
             messageLabel.setTextFill(Color.RED);
         } else if (!(userName.isEmpty() && passWord.isEmpty())) {
-            boolean result = DBUsers.getCurrentUser(userName, passWord);
+            boolean result = DBUsers.checkUserNameAndPass(userName, passWord);
             if (result) {
                 System.out.println("This is a valid user");
                 // Open up to new scene

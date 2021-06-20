@@ -1,6 +1,7 @@
 package DBAccess;
 
 // Import statements
+import models.Customers;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,4 +75,36 @@ public class DBAppointments {
         return appointmentsList;
     }
 
+    /**
+     * addNewAppointment adds a new appointment to the appointments table, it records userId, customerId, and contactId
+     * @param title
+     * @param description
+     * @param location
+     * @param contactId
+     * @param type
+     * @param customerId
+     * @return
+     */
+    public static boolean addNewAppointment(String title, String description, String location, Integer contactId,
+                                            String type, Customers customerId) {
+        {
+            try {
+                Statement statement = DBConnection.getConnection().createStatement();
+                String addQuery = "INSERT INTO appointments SET Title='" + title
+                        + "', Description='" + description
+                        + "', Location='" + location
+                        + "', Type='" + type
+                        + "', Contact_ID=" + contactId
+                        + "', Customer_ID=" + customerId;
+                statement.execute(addQuery);
+                if(statement.getUpdateCount() > 0)
+                    System.out.println(statement.getUpdateCount() + " row(s) affected.");
+                else
+                    System.out.println("No changes were made.");
+            } catch (SQLException e) {
+                System.out.println("SQLException: " + e.getMessage());
+            }
+            return false;
+        }
+    }
 }

@@ -66,17 +66,6 @@ public class Customers {
     }
 
     /**
-     * Constructor for getCustomerInfo() method in DBCustomers.java class
-     * @param customerID
-     * @param customerName
-     */
-    /*
-    public Customers(int customerID, String customerName) {
-        this.customerID = customerID;
-        this.customerName = customerName;
-    }*/
-
-    /**
      * setCustomerId method for getCustomerInfo() method in DBCustomers.java.class
      * @param customerID
      */
@@ -255,9 +244,11 @@ public class Customers {
         return this.customerDivisionId = customerDivisionId;
     }
 
-    @Override
-    public String toString() {
+    /**
+     * Override to print customerName to string
+     * @return
+     */
+    @Override public String toString() {
         return customerName;
-
     }
 }

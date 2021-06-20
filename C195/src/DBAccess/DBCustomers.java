@@ -144,40 +144,4 @@ public class DBCustomers {
         }
         return false;
     }
-
-    /**
-     * This ObservableList returns the Customer_Name from all the customers from the customers table.
-     * @param <Customer_Name>
-     * @return
-     */
-    /*
-    public static <Customer_Name> ObservableList<Customers> getCustomerInfo() {
-
-        ObservableList<Customers> cNamelist = FXCollections.observableArrayList();
-
-        try {
-            String sql = "SELECT Customer_ID, Customer_Name FROM customers";
-
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
-
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()) {
-
-                int customerID = rs.getInt("Customer_ID");
-                String customerName = rs.getString("Customer_Name");
-
-                models.Customers C = new models.Customers(
-                        customerID,
-                        customerName
-                );
-                cNamelist.add(C);
-            }
-
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
-        }
-
-        return cNamelist;
-    }*/
 }

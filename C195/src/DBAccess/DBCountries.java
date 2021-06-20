@@ -15,7 +15,6 @@ public class DBCountries {
      * This ObservableList returns all the countries from the countries table the Country ID and Country Name. This is
      * used in conjunction with the models/Countries.java file that contains the getId and getName methods
      *
-     * @param <Countries>
      * @return
      */
 
