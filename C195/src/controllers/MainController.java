@@ -98,7 +98,7 @@ public class MainController implements Initializable {
     @FXML public void addAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addAppointment.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 500);
+        Scene scene = new Scene((Parent) root, 400, 525);
         stage.setTitle("Add Appointment");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -106,13 +106,27 @@ public class MainController implements Initializable {
     }
 
     @FXML public void modifyAppointment(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/modifyAppointment.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 400, 500);
-        stage.setTitle("Modify Appointment");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        Appointments selectAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
+
+        // Verify user selects a customer when clicking the modify customer button
+        if (selectAppointment == null) {
+            errorLabel.setText("You must select an appointment from the appointments table before modifying.");
+            errorLabel.setTextFill(Color.RED);
+            return;
+        } else {
+            errorLabel.setText("");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("../views/modifyAppointment.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, 400, 525);
+            ModifyAppointment controller = fxmlLoader.getController();
+            controller.setAppointmentData(appointmentsTableView.getSelectionModel().getSelectedItem());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Modify Appointment");
+            stage.setResizable(false);
+            stage.show();
+        }
     }
 
     /**

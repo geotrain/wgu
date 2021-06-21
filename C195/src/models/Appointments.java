@@ -1,5 +1,11 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import utilities.DBConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 
 public class Appointments {
@@ -291,5 +297,99 @@ public class Appointments {
      */
     public int setContactId() {
         return this.userId = userId;
+    }
+
+    /**
+     * Override to print type to string
+     * @return
+     */
+    @Override public String toString() {
+        return type;
+    }
+
+    /**
+     * Tis method is used to preload the previously saved contact for appointments and is being called in the
+     * setAppointmentDate() method in the ModifyAppointment controller.
+     * @param contactId
+     * @return
+     */
+    public static Contacts getContactName(int contactId) {
+
+        ObservableList<Contacts> contactlist = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Contact_Name FROM contacts where Contact_ID =" + contactId;
+
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                String contactName = rs.getString("Contact_Name");
+                models.Contacts C = new models.Contacts(contactName);
+                contactlist.add((Contacts) C);
+            }
+
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println("The contact selected was "+ contactlist);
+        return contactlist.get(0);
+    }
+
+    /**
+     * This method is used to preload the previously saved customer for appointments and is being called in the
+     * setAppointmentDate() method in the ModifyAppointment controller.
+     * @param customerId
+     * @return
+     */
+    public static Customers getCustomerName(int customerId) {
+        ObservableList<Customers> customerList = FXCollections.observableArrayList();
+
+        try {
+            String sql2 = "SELECT Customer_Name FROM customers where Customer_ID =" + customerId;
+
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql2);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String customerName = rs.getString(("Customer_Name"));
+                models.Customers CU = new models.Customers(customerName);
+                customerList.add((Customers) CU);
+            }
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println("The customer selected was " + customerList);
+        return customerList.get(0);
+    }
+
+    /**
+     * This method is used to preload the previously saved user for appointments and is being called in the
+     * setAppointmentDate() method in the ModifyAppointment controller.
+     * @param userId
+     * @return
+     */
+    public static Users getUserName(int userId) {
+        ObservableList<Users> userList = FXCollections.observableArrayList();
+
+        try {
+            String sql3 = "SELECT User_Name FROM users where User_ID =" + userId;
+
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql3);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String userName = rs.getString(("User_Name"));
+                models.Users U = new models.Users(userName);
+                userList.add((Users) U);
+            }
+        } catch (Exception throwables){
+                throwables.printStackTrace();
+        }
+        System.out.println("The user selected was " + userList);
+        return userList.get(0);
     }
 }

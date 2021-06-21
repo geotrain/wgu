@@ -20,6 +20,12 @@ public class Contacts {
         this.contactEmail = contactEmail;
     }
 
+    public Contacts(String contactName) {
+
+        this.contactName = contactName;
+
+    }
+
     /**
      * The getContactID method gets the Contacts (Contact_ID) from the contacts table.
      * @return

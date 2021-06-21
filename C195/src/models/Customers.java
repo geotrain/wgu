@@ -66,6 +66,14 @@ public class Customers {
     }
 
     /**
+     * COnstructor for getCustomerName() method in ModifyAppointment Controller
+     * @param customerName
+     */
+    public Customers(String customerName) {
+        this.customerName = customerName;
+    }
+
+    /**
      * setCustomerId method for getCustomerInfo() method in DBCustomers.java.class
      * @param customerID
      */

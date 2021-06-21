@@ -37,6 +37,14 @@ public class Users {
     }
 
     /**
+     * Constructor used for getUserName() method in the Appointments.java and will be called in the ModifyAppointment controller.
+     * @param username
+     */
+    public Users(String username) {
+        this.username = username;
+    }
+
+    /**
      * The getId method that gets the Users (User_ID) from the users table.
      * @return
      */

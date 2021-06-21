@@ -190,19 +190,19 @@ public class AddAppointment implements Initializable {
            // between 8 am - 10 p.m. - TODO
 
            DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
-       }
-        // Label confirming save to database
-        addAppointmentMessageLabel.setText("You Added A New Appointment. Now click close button.");
 
-        // Return to main screen controller
-        Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 1060, 900);
-        stage.setTitle("Welcome To Schedule Manager v 1.0");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-        //return null;
+           // Label confirming save to database
+           addAppointmentMessageLabel.setText("You Added A New Appointment. Now click close button.");
+
+           // Return to main screen controller
+           Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
+           Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+           Scene scene = new Scene((Parent) root, 1060, 900);
+           stage.setTitle("Welcome To Schedule Manager v 1.0");
+           stage.setResizable(false);
+           stage.setScene(scene);
+           stage.show();
+       }
     }
 
     /**
