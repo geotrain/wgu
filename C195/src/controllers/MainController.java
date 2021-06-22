@@ -5,6 +5,7 @@ package controllers;
  */
 import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
+import DBAccess.DBUsers;
 import com.mysql.cj.jdbc.MysqlSQLXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static DBAccess.DBUsers.currentUserId;
 
 public class MainController implements Initializable {
 
@@ -69,7 +72,33 @@ public class MainController implements Initializable {
      * @param resourceBundle
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("The Main Controller Is Initialized");
+
+        /**
+         * Get The currentUser logged in to check if any appointments exist
+         */
+        String currentUser = DBUsers.getCurrentUserLoggedInId(currentUserId);
+        System.out.println("The current user logged in is " + currentUser);
+        Appointments appointment = DBAppointments.appointmentIn15Min();
+        if(appointment != null) {
+            Customers customer = (Customers) DBCustomers.getCustomerAppointments(appointment.getCustomerId());
+            String reminderAppointmentAlert = String.format(
+                    "You have a %s appointment with %s at %s",
+                    appointment.getDescription(),
+                    customer.getCustomerName(),
+                    appointment.checkFifteenMinutes()
+            );
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Appointment Notification");
+            alert.setHeaderText("You Have An Appointment Within 15 Minutes or Less.");
+            alert.setContentText(reminderAppointmentAlert);
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Appointment Notification");
+            alert.setHeaderText("You Do Not Have Any Upcoming Appointments.");
+            alert.setContentText("No Appointments Can Be Found Within The Next 15 Minutes or Less.");
+            alert.showAndWait();
+        }
 
         // Populates and initializes the appointments table
         appointmentIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));

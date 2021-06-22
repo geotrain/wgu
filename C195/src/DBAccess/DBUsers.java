@@ -47,10 +47,9 @@ public class DBUsers {
      * check if the user has an existing appointments within a 15 minute period when the user logs in.
      * @return
      */
-    /*
     public static String getCurrentUserLoggedInId(String currentUserId) {
-         this.currentUserId = currentUserId;
-    }*/
+         return currentUserId;
+    }
 
 
 

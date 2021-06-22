@@ -2,12 +2,15 @@ package DBAccess;
 
 // Import statements
 import javafx.scene.control.TextField;
+import models.Appointments;
 import models.Customers;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DBAppointments {
@@ -71,6 +74,45 @@ public class DBAppointments {
         return appointmentsList;
     }
 
+    /**
+     * appointmentIn15Min method checks to see if the current user logged in has any upcoming appointments
+     * @return
+     */
+    public static Appointments appointmentIn15Min() {
+        Appointments appointment;
+        LocalDateTime now = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zonedDateTime = now.atZone(zoneId);
+        LocalDateTime localDateTime = zonedDateTime.withZoneSameInstant(ZoneId.of("UTC")).toLocalDateTime();
+        LocalDateTime localDateTime1 = localDateTime.plusMinutes(15);
+        String user = DBUsers.getCurrentUserLoggedInId("");
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String sql = "SELECT * FROM appointments WHERE start BETWEEN '" + localDateTime
+                    + "' AND '" + localDateTime1
+                    + "' AND " + "Contact_ID= '"
+                    + user + "'";
+            ResultSet rs = statement.executeQuery(sql);
+
+            if(rs.next()) {
+                appointment = new Appointments(
+                        rs.getInt("Appointment_ID"),
+                        rs.getTimestamp("Start"),
+                        rs.getTimestamp("End"),
+                        rs.getString("Title"),
+                        rs.getString("Description"),
+                        rs.getString("Location"),
+                        rs.getString("Type"),
+                        rs.getInt("Customer_ID"),
+                        rs.getInt("User_ID"),
+                        rs.getInt("Contact_ID"));
+                return appointment;
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return null;
+    }
     /**
      * addNewAppointment adds a new appointment to the appointments table, it records userId, customerId, and contactId, etc.
      * @param title

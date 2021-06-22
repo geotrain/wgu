@@ -144,4 +144,30 @@ public class DBCustomers {
         }
         return false;
     }
+
+    /**
+     * This method returns customerId and check's it against the appointment table to see if a user has an appointment
+     * 15 minutes from now() after the user logs in.
+     * @param customerId
+     * @param <Customers>
+     * @return
+     */
+    public static <Customers> ObservableList<Customers> getCustomerAppointments(int customerId) {
+
+        ObservableList<Customers> appointmentList = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT Customer_ID FROM customers";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                int customerID = rs.getInt("Customer_ID");
+                models.Customers A = new models.Customers(customerID);
+                appointmentList.add((Customers) A);
+            }
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        return appointmentList;
+    }
 }
