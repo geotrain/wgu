@@ -162,18 +162,17 @@ public class ModifyAppointment implements Initializable {
             String title = titleTextField.getText();
             String description = descriptionTextField.getText();
             String location = locationTextField.getText();
-            Integer contactId = contactComboBox.getValue().getContactID();
+            String contactIdNameString = contactComboBox.getValue().toString();
+            Integer contactId = DBCustomers.getContactId(contactIdNameString);
+            System.out.println("Contact ID is " + contactComboBox.getValue());
             String type = typeComboBox.getValue().toString();
             LocalDate start = startDatePicker.getValue();
             LocalTime startTime = LocalTime.of(Integer.parseInt(startHourChoiceBox.getValue()), Integer.parseInt(startMinuteChoiceBox.getValue()));
             LocalTime endTime = LocalTime.of(Integer.parseInt(endHourChoiceBox.getValue()), Integer.parseInt(endMinuteChoiceBox.getValue()));
-            Integer customerID = customerComboBox.getValue().getCustomerID();
-            Integer userID = userComboBox.getValue().getId();
-
-            /*
-             // Get Current  User Id from Global Variable currentUserId located in Login Controller - TODO
-            String userId = DBUsers.getCurrentUserLoggedInId(currentUserId);
-             */
+            String customerIdNameString = customerComboBox.getValue().toString();
+            Integer customerID = DBCustomers.getCustomerId(customerIdNameString);
+            String userIdNameString = userComboBox.getValue().toString();
+            Integer userID = DBCustomers.getUserId(userIdNameString);
 
             // Concatenate Start Date Picker, Start Hour, Start Minute
             LocalDateTime startDateTime = LocalDateTime.of(start, startTime);

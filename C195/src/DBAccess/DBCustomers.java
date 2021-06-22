@@ -170,4 +170,79 @@ public class DBCustomers {
         }
         return appointmentList;
     }
+
+    /**
+     * This getCustomerId method is being used for Modify Appointment controller save method to save the name as a string
+     * if a user decides not to change the customer when modifying an appointment.
+     * @param customerName
+     * @return
+     */
+    public static int getCustomerId(String customerName)
+    {
+        int customerID = 0;
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String customerIdQuery = "SELECT Customer_ID FROM customers WHERE Customer_Name='" + customerName + "'";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(customerIdQuery);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+               customerID = rs.getInt("Customer_ID");
+               return customerID;
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return customerID;
+    }
+
+    /**
+     * This getUserId method is being used for Modify Appointment controller save method to save the name as a string
+     * if a user decides not to change the user when modifying an appointment.
+     * @param userName
+     * @return
+     */
+    public static int getUserId(String userName)
+    {
+        int userID = 0;
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String userIdQuery = "SELECT User_ID FROM users WHERE User_Name='" + userName + "'";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(userIdQuery);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                userID = rs.getInt("User_ID");
+                return userID;
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return userID;
+    }
+
+    /**
+     * This getContactId method is being used for Modify Appointment controller save method to save the name as a string
+     * if a user decides not to change the contact when modifying an appointment.
+     * @param contactName
+     * @return
+     */
+    public static int getContactId(String contactName)
+    {
+        int contactID = 0;
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String contactIdQuery = "SELECT Contact_ID FROM contacts WHERE Contact_Name='" + contactName + "'";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(contactIdQuery);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                contactID = rs.getInt("Contact_ID");
+                return contactID;
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return contactID;
+    }
 }
