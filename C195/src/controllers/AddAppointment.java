@@ -138,31 +138,31 @@ public class AddAppointment implements Initializable {
      */
     public void save(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
 
-       if (customerComboBox.getValue() == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
-       } else if(titleTextField.getText().isEmpty()) {
-           addAppointmentMessageLabel.setText("The \"Title\" text field cannot be blank.");
-       } else if (descriptionTextField.getText().isEmpty()) {
-           addAppointmentMessageLabel.setText("The \"Description\" text field cannot be blank.");
-       } else if (locationTextField.getText().isEmpty()) {
-           addAppointmentMessageLabel.setText("The \"Location\" text field cannot be blank.");
-       } else if (contactComboBox.getValue() == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Contact\" before saving.");
-       } else if (typeComboBox.getValue() == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Type\" before saving.");
-       } else if (startDatePicker.getValue() == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Date\" before saving.");
-       } else if (startHourChoiceBox == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Start Hour\" before saving.");
-       } else if (startMinuteChoiceBox == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Start Minute\" before saving.");
-       } else if (endHourChoiceBox == null) {
-           addAppointmentMessageLabel.setText("You must select a \"End Hour\" before saving.");
-       } else if (endMinuteChoiceBox == null) {
-           addAppointmentMessageLabel.setText("You must select a \"End Minute\" before saving.");
-       } else if (customerComboBox == null) {
-           addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
-       } else {
+        if (customerComboBox.getValue() == null) {
+            addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
+        } else if(titleTextField.getText().isEmpty()) {
+            addAppointmentMessageLabel.setText("The \"Title\" text field cannot be blank.");
+        } else if (descriptionTextField.getText().isEmpty()) {
+            addAppointmentMessageLabel.setText("The \"Description\" text field cannot be blank.");
+        } else if (locationTextField.getText().isEmpty()) {
+            addAppointmentMessageLabel.setText("The \"Location\" text field cannot be blank.");
+        } else if (contactComboBox.getValue() == null) {
+            addAppointmentMessageLabel.setText("You must select a \"Contact\" before saving.");
+        } else if (typeComboBox.getValue() == null) {
+            addAppointmentMessageLabel.setText("You must select a \"Type\" before saving.");
+        } else if (startDatePicker.getValue() == null || startDatePicker.getValue().equals(0)) {
+            addAppointmentMessageLabel.setText("You must select a \"Date\" before saving.");
+        } else if (startHourChoiceBox.getSelectionModel().isEmpty()) {
+            addAppointmentMessageLabel.setText("You must select a \"Start Hour\" before saving.");
+        } else if (startMinuteChoiceBox.getSelectionModel().isEmpty()) {
+            addAppointmentMessageLabel.setText("You must select a \"Start Minute\" before saving.");
+        } else if (endHourChoiceBox.getSelectionModel().isEmpty()) {
+            addAppointmentMessageLabel.setText("You must select a \"End Hour\" before saving.");
+        } else if (endMinuteChoiceBox.getSelectionModel().isEmpty()) {
+            addAppointmentMessageLabel.setText("You must select a \"End Minute\" before saving.");
+        } else if (customerComboBox == null) {
+            addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
+        } else {
            // Get Data From Add Customer Controller
            String title = titleTextField.getText();
            String description = descriptionTextField.getText();
@@ -175,19 +175,23 @@ public class AddAppointment implements Initializable {
            Integer customerID = customerComboBox.getValue().getCustomerID();
            Integer userID = userComboBox.getValue().getId();
 
-            /*
-             // Get Current  User Id from Global Variable currentUserId located in Login Controller
+           /*
+             // Get Current  User Id from Global Variable currentUserId located in Login Controller - TODO
             String userId = DBUsers.getCurrentUserLoggedInId(currentUserId);
              */
 
-           // Concatenate Start Date Picker, Start Hour, Start Minute
-           LocalDateTime startDateTime = LocalDateTime.of(start, startTime);
+            // Concatenate Start Date Picker, Start Hour, Start Minute
+            LocalDateTime startDateTime = LocalDateTime.of(start, startTime);
 
-           // Concatenate Start Date Picker, End Hour, End Minute
-           LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
+            // Concatenate Start Date Picker, End Hour, End Minute
+            LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
 
-           // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
-           // between 8 am - 10 p.m. - TODO
+            // Check if endDateTime isBefore() startDateTime - TODO
+
+            // Check if startDateTime and endDateTime are the same - TODO
+
+            // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
+            // between 8 am - 10 p.m. - TODO
 
            DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
 

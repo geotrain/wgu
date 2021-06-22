@@ -1,6 +1,7 @@
 package DBAccess;
 
 // Import statements
+import javafx.scene.control.TextField;
 import models.Customers;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
@@ -96,14 +97,14 @@ public class DBAppointments {
     {
         {
             try {
-                String addQuery = "INSERT INTO appointments(" +
+                String addQuery = "INSERT INTO appointments(" + // NEED NEW METHOD for updateAppoint() called in modify apointment controller
                         "Title, " +
                         "Description, " +
                         "Location, " +
                         "Type, " +
                         "Start, " +
-                        "End, C" +
-                        "ontact_ID, " +
+                        "End, " +
+                        "Contact_ID, " +
                         "Customer_ID, " +
                         "User_ID) " +
                         "VALUES(?,?,?,?,?,?,?,?,?)";
@@ -142,6 +143,56 @@ public class DBAppointments {
             Statement statement = DBConnection.getConnection().createStatement();
             String deleteQuery = "DELETE FROM appointments WHERE Appointment_ID=" + id;
             statement.execute(deleteQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * updateAppointment updates an existing appointment to the appointments table, it records userId, customerId, and contactId, etc.
+     *
+     * @param appointment_id
+     * @param title
+     * @param description
+     * @param location
+     * @param contactId
+     * @param type
+     * @param start
+     * @param end
+     * @param customerId
+     * @param userId
+     * @return
+     */
+    public static boolean updateAppointment(
+            String appointment_id,
+            String title,
+            String description,
+            String location,
+            Integer contactId,
+            String type,
+            LocalDateTime start,
+            LocalDateTime end,
+            Integer customerId,
+            Integer userId)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String updateQuery = "UPDATE appointments SET Title='" + title
+                    + "', Description='" + description
+                    + "', Location='" + location
+                    + "', Contact_ID='" + contactId
+                    + "', Type='" + type
+                    + "', Start='" + Timestamp.valueOf(start)
+                    + "', End='" + Timestamp.valueOf(end)
+                    + "', Customer_ID='" + customerId
+                    + "', User_ID='" + userId
+                    + "'WHERE Appointment_ID=" + appointment_id;
+            statement.execute(updateQuery);
             if(statement.getUpdateCount() > 0)
                 System.out.println(statement.getUpdateCount() + " row(s) affected.");
             else

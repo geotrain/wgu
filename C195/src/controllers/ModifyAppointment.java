@@ -131,6 +131,7 @@ public class ModifyAppointment implements Initializable {
 
     @FXML
     void save (javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException{
+
         if (customerComboBox.getValue() == null) {
             modifyAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
         } else if(titleTextField.getText().isEmpty()) {
@@ -143,21 +144,21 @@ public class ModifyAppointment implements Initializable {
             modifyAppointmentMessageLabel.setText("You must select a \"Contact\" before saving.");
         } else if (typeComboBox.getValue() == null) {
             modifyAppointmentMessageLabel.setText("You must select a \"Type\" before saving.");
-        } else if (startDatePicker.getValue() == null) {
+        } else if (startDatePicker.getValue() == null || startDatePicker.getValue().equals(0)) {
             modifyAppointmentMessageLabel.setText("You must select a \"Date\" before saving.");
-        } else if (startHourChoiceBox.getValue().isEmpty()) {
+        } else if (startHourChoiceBox.getSelectionModel().isEmpty()) {
             modifyAppointmentMessageLabel.setText("You must select a \"Start Hour\" before saving.");
-        } else if (startMinuteChoiceBox.getValue().isEmpty()) {
+        } else if (startMinuteChoiceBox.getSelectionModel().isEmpty()) {
             modifyAppointmentMessageLabel.setText("You must select a \"Start Minute\" before saving.");
-        } else if (endHourChoiceBox.getValue().isEmpty()) {
+        } else if (endHourChoiceBox.getSelectionModel().isEmpty()) {
             modifyAppointmentMessageLabel.setText("You must select a \"End Hour\" before saving.");
-        } else if (endMinuteChoiceBox.getValue().isEmpty()) {
+        } else if (endMinuteChoiceBox.getSelectionModel().isEmpty()) {
             modifyAppointmentMessageLabel.setText("You must select a \"End Minute\" before saving.");
         } else if (customerComboBox == null) {
             modifyAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
         } else {
             // Get Data From Add Customer Controller
-            String appointmentId = appointmentIdTextField.getText();
+            String appointment_id = appointmentIdTextField.getText();
             String title = titleTextField.getText();
             String description = descriptionTextField.getText();
             String location = locationTextField.getText();
@@ -170,7 +171,7 @@ public class ModifyAppointment implements Initializable {
             Integer userID = userComboBox.getValue().getId();
 
             /*
-             // Get Current  User Id from Global Variable currentUserId located in Login Controller
+             // Get Current  User Id from Global Variable currentUserId located in Login Controller - TODO
             String userId = DBUsers.getCurrentUserLoggedInId(currentUserId);
              */
 
@@ -180,10 +181,14 @@ public class ModifyAppointment implements Initializable {
             // Concatenate Start Date Picker, End Hour, End Minute
             LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
 
+            // Check if endDateTime Comes Before startDateTime - TODO
+
+            // Check if startDateTime and endDateTime are the same - TODO
+
             // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
             // between 8 am - 10 p.m. - TODO
 
-            DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
+            DBAppointments.updateAppointment(appointment_id,title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
 
             // Label confirming save to database
             modifyAppointmentMessageLabel.setText("You Added A New Appointment. Now click close button.");
@@ -228,10 +233,57 @@ public class ModifyAppointment implements Initializable {
         this.contactComboBox.setValue(appointmentId.getContactName(appointmentId.getContactId()));
         this.typeComboBox.setValue(appointment.getType());
         startDatePicker.setValue(LocalDate.from(appointmentId.getStart()));
-        startHourChoiceBox.setValue(String.valueOf(appointmentId.getStart()));
-        startMinuteChoiceBox.setValue(String.valueOf(appointmentId.getStart()));
-        endHourChoiceBox.setValue(String.valueOf(appointmentId.getEnd()));
-        endMinuteChoiceBox.setValue(String.valueOf(appointmentId.getEnd()));
+
+        /** This compares what the startHourChoiceBox value is and if its 5-9 it adds a leading zero
+         * as this returns only a single digit and does not populate the choice box in the modifyAppointment controller.
+         */
+        String hourStart = String.valueOf(LocalTime.from(appointmentId.getStart()).getHour());
+        if (hourStart.length() == 1) {
+            hourStart = "0" + LocalTime.from(appointmentId.getStart()).getHour();
+            this.startHourChoiceBox.setValue(hourStart);
+        } else {
+            hourStart = String.valueOf(LocalTime.from(appointmentId.getStart()).getHour());
+            this.startHourChoiceBox.setValue(hourStart);
+        }
+
+        /**
+         * This compares what the minuteStartChoiceBox value is and if its 5-9 it adds a leading zero
+         * as this returns only a single digit and does not populate the choice box in the modifyAppointment controller.
+         */
+        String minuteStart = String.valueOf(LocalTime.from(appointmentId.getStart()).getMinute());
+        if (minuteStart.length() == 1) {
+            minuteStart = "0" + LocalTime.from(appointmentId.getStart()).getMinute();
+            this.startMinuteChoiceBox.setValue(minuteStart);
+        } else {
+            minuteStart = String.valueOf(LocalTime.from(appointmentId.getStart()).getMinute());
+            this.startMinuteChoiceBox.setValue(minuteStart);
+        }
+
+        /** This compares what the endHourChoiceBox value is and if its 5-9 it adds a leading zero
+         * as this returns only a single digit and does not populate the choice box in the modifyAppointment controller.
+         */
+        String hourEnd = String.valueOf(LocalTime.from(appointmentId.getEnd()).getHour());
+        if (hourEnd.length() == 1) {
+            hourEnd = "0" + LocalTime.from(appointmentId.getEnd()).getHour();
+            this.endHourChoiceBox.setValue(hourEnd);
+        } else {
+            hourEnd = String.valueOf(LocalTime.from(appointmentId.getEnd()).getHour());
+            this.endHourChoiceBox.setValue(hourEnd);
+        }
+
+        /**
+         * This compares what the minuteStartChoiceBox value is and if its 5-9 it adds a leading zero
+         * as this returns only a single digit and does not populate the choice box in the modifyAppointment controller.
+         */
+        String minuteEnd = String.valueOf(LocalTime.from(appointmentId.getEnd()).getMinute());
+        if (minuteEnd.length() == 1) {
+            minuteEnd = "0" + LocalTime.from(appointmentId.getEnd()).getMinute();
+            this.endMinuteChoiceBox.setValue(minuteEnd);
+        } else {
+            minuteEnd = String.valueOf(LocalTime.from(appointmentId.getEnd()).getMinute());
+            this.endMinuteChoiceBox.setValue(minuteEnd);
+        }
+
         this.customerIdTextField.setText(String.valueOf(appointmentId.getCustomerId()));
         this.customerComboBox.setValue(appointmentId.getCustomerName(appointmentId.getCustomerId()));
         this.userIdTextField.setText(String.valueOf(appointmentId.getUserId()));
