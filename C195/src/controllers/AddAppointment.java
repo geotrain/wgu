@@ -18,6 +18,10 @@ import models.Contacts;
 import models.Customers;
 import models.Users;
 import org.w3c.dom.Text;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -25,7 +29,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class AddAppointment implements Initializable {
 
@@ -175,25 +181,32 @@ public class AddAppointment implements Initializable {
            Integer customerID = customerComboBox.getValue().getCustomerID();
            Integer userID = userComboBox.getValue().getId();
 
-           /*
-             // Get Current  User Id from Global Variable currentUserId located in Login Controller - TODO
-            String userId = DBUsers.getCurrentUserLoggedInId(currentUserId);
-             */
-
             // Concatenate Start Date Picker, Start Hour, Start Minute
             LocalDateTime startDateTime = LocalDateTime.of(start, startTime);
 
             // Concatenate Start Date Picker, End Hour, End Minute
             LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
 
-            // Check if endDateTime isBefore() startDateTime - TODO
+            // Check if endDateTime isBefore() startDateTime
+            if (endDateTime.isBefore(startDateTime)) {
+                addAppointmentMessageLabel.setText("You must select a Start Time That Comes Before End Time.");
+            }
 
-            // Check if startDateTime and endDateTime are the same - TODO
+            // Check if startDateTime and endDateTime are the same
+            if (startDateTime.equals(endDateTime)) {
+                addAppointmentMessageLabel.setText("The Start Time And The End Time Cannot Be The Same.");
+            }
 
             // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
-            // between 8 am - 10 p.m. - TODO
+            // between 8 am - 10 p.m.
+            ZoneId userTimeZone = ZoneId.systemDefault();
+            ZoneId easternTimeZoneId = ZoneId.of("America/New_York");
+            //if () {
 
-           DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
+            //}
+
+            // Save To Database
+            DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
 
            // Label confirming save to database
            addAppointmentMessageLabel.setText("You Added A New Appointment. Now click close button.");

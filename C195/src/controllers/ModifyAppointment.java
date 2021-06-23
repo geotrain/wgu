@@ -20,10 +20,11 @@ import models.Users;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class ModifyAppointment implements Initializable {
     // FX Ids for Labels
@@ -180,12 +181,41 @@ public class ModifyAppointment implements Initializable {
             // Concatenate Start Date Picker, End Hour, End Minute
             LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
 
-            // Check if endDateTime Comes Before startDateTime - TODO
+            // Check if endDateTime isBefore() startDateTime
+            if (endDateTime.isBefore(startDateTime)) {
+                modifyAppointmentMessageLabel.setText("You must select a Start Time That Comes Before End Time.");
+            }
 
-            // Check if startDateTime and endDateTime are the same - TODO
+            // Check if startDateTime and endDateTime are the same
+            if (startDateTime == endDateTime) {
+                modifyAppointmentMessageLabel.setText("The Start Time And The End Time Cannot Be The Same.");
+            }
 
             // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
-            // between 8 am - 10 p.m. - TODO
+            // between 8 am - 10 p.m.
+            /*
+            DateTimeFormatter globalFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mma z");
+            DateTimeFormatter etFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mma 'ET'");
+            Calendar now = Calendar.getInstance();
+            long militaryDifference = now.get(Calendar.ZONE_OFFSET);
+            String [] ids = TimeZone.getAvailableIDs();
+            String currentZoneId = null;
+            for (String id : ids) {
+                TimeZone timeZone = TimeZone.getTimeZone(id);
+                if (timeZone.getRawOffset() == militaryDifference) {
+                    currentZoneId = id;
+                    break;
+                }
+                System.out.println(currentZoneId);
+            }
+            ZoneId currentUserZoneId = ZoneId.of(String.valueOf(currentZoneId));
+            ZoneId easternTimeZoneId = ZoneId.of("America/New_York");
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            ZonedDateTime currentUserTime = currentDateTime.atZone(ZoneId.of(String.valueOf(currentUserZoneId)));
+            ZonedDateTime currentESTime = currentUserTime.withZoneSameInstant(easternTimeZoneId);
+            System.out.println(globalFormat.format(currentUserTime));
+            System.out.println(etFormat.format(currentESTime));*/
+
 
             DBAppointments.updateAppointment(appointment_id,title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
 
