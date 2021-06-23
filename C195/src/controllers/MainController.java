@@ -66,6 +66,8 @@ public class MainController implements Initializable {
     // FX Ids for Labels
     @FXML private Label errorLabel;
 
+    // This Annoyance Reminder Flag Keeps The Reminder Screen with Appointments / No Appointments From Only Being Ran Once
+    private static boolean annoyanceReminderFlag = false;
     /**
      * This method inditializes the customers and appointments tables
      * @param url
@@ -77,27 +79,31 @@ public class MainController implements Initializable {
          * Get The currentUser logged in to check if any appointments exist
          */
         String currentUser = DBUsers.getCurrentUserLoggedInId(currentUserId);
-        System.out.println("The current user logged in is " + currentUser); // TODO not working, returning null
-        Appointments appointment = DBAppointments.appointmentIn15Min(); // TODO appointment check not working
-        if (appointment != null) {
-            Customers customer = (Customers) DBCustomers.getCustomerAppointments(appointment.getCustomerId());
-            String reminderAppointmentAlert = String.format(
-                    "You have a %s appointment with %s at %s",
-                    appointment.getDescription(),
-                    customer.getCustomerName(),
-                    appointment.checkFifteenMinutes()
-            );
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Appointment Notification");
-            alert.setHeaderText("You Have An Appointment Within 15 Minutes or Less.");
-            alert.setContentText(reminderAppointmentAlert);
-            alert.showAndWait();
-        } else if (appointment == null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Appointment Notification");
-            alert.setHeaderText("You Do Not Have Any Upcoming Appointments.");
-            alert.setContentText("No Appointments Can Be Found Within The Next 15 Minutes or Less.");
-            alert.showAndWait();
+        System.out.println("The current user logged in is " + currentUser);
+        if (!annoyanceReminderFlag)
+        {
+            annoyanceReminderFlag = true;
+            Appointments appointment = DBAppointments.appointmentIn15Min();
+            if (appointment != null) {
+                Customers customer = (Customers) DBCustomers.getCustomerAppointments(appointment.getCustomerId());
+                String reminderAppointmentAlert = String.format(
+                        "You have a %s appointment with %s at %s",
+                        appointment.getDescription(),
+                        customer.getCustomerName(),
+                        appointment.checkFifteenMinutes()
+                );
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Appointment Notification");
+                alert.setHeaderText("You Have An Appointment Within 15 Minutes or Less.");
+                alert.setContentText(reminderAppointmentAlert);
+                alert.showAndWait();
+            } else if (appointment == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Appointment Notification");
+                alert.setHeaderText("You Do Not Have Any Upcoming Appointments.");
+                alert.setContentText("No Appointments Can Be Found Within The Next 15 Minutes or Less.");
+                alert.showAndWait();
+            }
         }
 
         // Populates and initializes the appointments table
@@ -268,14 +274,11 @@ public class MainController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yesButton)
         {
-            Boolean appointmentResult = DBAppointments.doesCustomerHaveAppointment(selectedCustomer.getCustomerID());
-            if (appointmentResult == true) { // TODO - Not Working
-                errorLabel.setText("You must delete all associated appointments before deleting customer.");
-                errorLabel.setTextFill(Color.RED);
-            }
+            //Boolean appointmentResult = DBAppointments.doesCustomerHaveAppointment(selectedCustomer.getCustomerID());
+            DBAppointments.deleteAppointmentByCustomer(selectedCustomer.getCustomerID());
             DBCustomers.deleteCustomer(selectedCustomer.getCustomerID());
             customersTableView.setItems(DBCustomers.getAllCustomers());
-            JDialog frame = null;
+            //JDialog frame = null;
         }
         else if(result.get() == cancelButton)
         {

@@ -103,17 +103,18 @@ public class AddAppointment implements Initializable {
     final ObservableList usersName = FXCollections.observableArrayList(DBUsers.getAllUsers());
 
     // Observable List Choice Box For Starting Hour
-    ObservableList<String> startHourList = FXCollections.observableArrayList("05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20");
+    ObservableList<String> startHourList = FXCollections.observableArrayList("05","06","07","08","09","10","11","12",
+            "13","14","15","16","17","18","19","20","21","22","23");
 
     // Observable List Choice Box For Starting Minute
     ObservableList<String> startMinuteList = FXCollections.observableArrayList("00","15","30","45");
 
-    // Observable List Choice Box For Ending HourObservableList<LocalDateTime> endHourList = FXCollections.observableArrayList(08,09,10,11,12,13,14,15,16,17.18,19,20);
-    ObservableList<String> endHourList = FXCollections.observableArrayList("05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20");
+    // Observable List Choice Box For Ending Hour
+    ObservableList<String> endHourList = FXCollections.observableArrayList("05","06","07","08","09","10","11","12",
+            "13","14","15","16","17","18","19","20","21","22","23");
 
     // Observable List Choice Box For Ending Minute
     ObservableList<String> endMinuteList = FXCollections.observableArrayList("00","15","30","45");
-
 
     /**
      * The displayCustomerId method is used to populate the customer ID text field once the customerComboBox has chosen
@@ -194,14 +195,16 @@ public class AddAppointment implements Initializable {
             System.out.println("Start Time is " + startDateTime);
             System.out.println("End Time is " + endDateTime);
 
-            // Check if endDateTime isBefore() startDateTime TODO not working
+            // Check if endDateTime isBefore() startDateTime
             if (endDateTime.isBefore(startDateTime)) {
                 addAppointmentMessageLabel.setText("You must select a Start Time That Comes Before End Time.");
+                return;
             }
 
-            // Check if startDateTime and endDateTime are the same TODO not working
-            if (startDateTime.equals(endDateTime)) {
+            // Check if startDateTime and endDateTime are the same
+            if (startDateTime.isEqual(endDateTime)) {
                 addAppointmentMessageLabel.setText("The Start Time And The End Time Cannot Be The Same.");
+                return;
             }
 
             // Check if startDateTime and endDateTime have any overlaps with existing appointments TODO not working
@@ -220,36 +223,36 @@ public class AddAppointment implements Initializable {
                 addAppointmentMessageLabel.setText("There are no scheduling conflicts.");
             }*/
 
+            System.out.println("Start Time is " + startDateTime);
+            System.out.println("End Time is " + endDateTime);
 
             // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
             // between 8 am - 10 p.m.
-            /* - TODO Fix  .ParseException: Unparseable date: "America/Chicago"
             ZoneId userTimeZone = ZoneId.systemDefault();
             ZoneId easternTimeZoneId = ZoneId.of("America/New_York");
             System.out.println("The current user's time zone is: " +userTimeZone);
             System.out.println("The current user's time zone in ET is: " +easternTimeZoneId);
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-            Date userTime = simpleDateFormat.parse(String.valueOf(userTimeZone));
-            Date estTime = simpleDateFormat.parse(String.valueOf(easternTimeZoneId));
-            long timeZoneDifference = Math.abs(userTime.getTime() - estTime.getTime());
-            System.out.println("The Different Between The User's Time Zone and ET Zone is " + timeZoneDifference + " hours.");
-            if (timeZoneDifference == 0) {
-                System.out.println("You are on Eastern Time Zone");
-            } else {
-                ZoneId appointmentTimeZone = easternTimeZoneId - userTimeZone;
-                Integer startAppointmentET = startDateTime.getHour() - appointmentTimeZone;
-                Integer endAppointmentET = endDateTime.getHour() - appointmentTimeZone;
-                if (startAppointmentET < 8 && endAppointmentET > 10) {
-                    // Move Update The Database and Return to main screen controller up here - TODO
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Appointment Schedule Time");
-                    alert.setHeaderText("You Must Select A Time Zone Between 08:00 - 20:00 ET");
-                    alert.setContentText("You will need to change the beginning and/or end time of your" +
-                            "appointment to between 8 a.m. and 10 p.m. ET");
-                    alert.showAndWait();
-                }
-            }*/
+
+            ZonedDateTime localStart = startDateTime.atZone(userTimeZone);
+            ZonedDateTime estStart = localStart.withZoneSameInstant(easternTimeZoneId);
+            ZonedDateTime localEnd = endDateTime.atZone(userTimeZone);
+            ZonedDateTime estEnd = localEnd.withZoneSameInstant(easternTimeZoneId);
+
+            /**
+             * This checks if the local time zone of the user against the eastern time zone then does a comparison to
+             * make sure it falls between 08:00 and 22:00 EST (Office Hours In New York)
+             */
+            if (estStart.toLocalTime().isBefore(LocalTime.of(8,0)) ||
+                    estEnd.toLocalTime().isAfter(LocalTime.of(22,0)) ||
+                    estStart.toLocalTime().isAfter(LocalTime.of(22,0)) ||
+                    estEnd.toLocalTime().isBefore(LocalTime.of(8,0))) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Appointment Schedule Time");
+                alert.setHeaderText("You Must Select A Time Zone Between 08:00 - 22:00 ET");
+                alert.setContentText("You will need to change the beginning and/or end time of your appointment to between 8 a.m. and 10 p.m. ET");
+                alert.showAndWait();
+                return;
+            }
 
             // Save To Database
             DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);

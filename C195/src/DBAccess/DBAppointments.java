@@ -246,28 +246,24 @@ public class DBAppointments {
     }
 
     /**
-     * updateAppointment checks if the selected user has any existing appointments before Customer Deletion on
+     * deleteAppointmentByCustomer checks if the selected user has any existing appointments before Customer Deletion on
      * Main Screen Controller.
-     * @param customerId
+     * @param id
      * @return
      */
-    public static boolean doesCustomerHaveAppointment(Integer customerId) {
-        Boolean outcome = null;
+    public static boolean deleteAppointmentByCustomer(int id)
+    {
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String customerAppointmentCheck = "SELECT * FROM appointments WHERE CUSTOMER_ID=" + customerId;
-            statement.execute(customerAppointmentCheck);
-            outcome = false;
-            if (customerAppointmentCheck.length() == 0) {
-                System.out.println("You may safety delete this appointment");
-            } else {
-                System.out.println("You must delete all appointments associated with " + customerId + "" +
-                        "before deleting the customer record.");
-                outcome = true;
-            }
+            String deleteQuery = "DELETE FROM appointments WHERE Customer_ID=" + id;
+            statement.execute(deleteQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());
         }
-        return outcome;
+        return false;
     }
 }
