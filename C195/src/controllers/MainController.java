@@ -79,7 +79,7 @@ public class MainController implements Initializable {
          * Get The currentUser logged in to check if any appointments exist
          */
         String currentUser = DBUsers.getCurrentUserLoggedInId(currentUserId);
-        System.out.println("The current user logged in is " + currentUser);
+        System.out.println("The current user logged in is " + currentUser); // TODO output is "The current user logged in is null"
         if (!annoyanceReminderFlag)
         {
             annoyanceReminderFlag = true;

@@ -30,7 +30,9 @@ public class DBUsers {
                 System.out.println(rs.getString("User_Name"));
                 if (rs.getString("User_Name").equals(uName) && rs.getString("password").equals(password)) {
                     LoginActivity.login_activity(uName, true);
-                    uName = currentUserId;
+                    // Assign username to global variable currentUserId to see if they have any upcoming appointments within 15 minutes or less
+                    currentUserId = uName;
+                    System.out.println("The value of global variable currentUserId is currently set to " + currentUserId);
                     return true;
                 }
             }
