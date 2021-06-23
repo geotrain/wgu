@@ -18,6 +18,9 @@ import models.Contacts;
 import models.Customers;
 import models.Users;
 import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -30,6 +33,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
@@ -142,7 +146,7 @@ public class AddAppointment implements Initializable {
      * This method saves the added data to the appointments database and returns to the main controller
      * @param actionEvent
      */
-    public void save(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
+    public void save(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException, ParseException {
 
         if (customerComboBox.getValue() == null) {
             addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
@@ -169,17 +173,17 @@ public class AddAppointment implements Initializable {
         } else if (customerComboBox == null) {
             addAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
         } else {
-           // Get Data From Add Customer Controller
-           String title = titleTextField.getText();
-           String description = descriptionTextField.getText();
-           String location = locationTextField.getText();
-           Integer contactId = contactComboBox.getValue().getContactID();
-           String type = typeComboBox.getValue();
-           LocalDate start = startDatePicker.getValue();
-           LocalTime startTime = LocalTime.of(Integer.parseInt(startHourChoiceBox.getValue()), Integer.parseInt(startMinuteChoiceBox.getValue()));
-           LocalTime endTime = LocalTime.of(Integer.parseInt(endHourChoiceBox.getValue()), Integer.parseInt(endMinuteChoiceBox.getValue()));
-           Integer customerID = customerComboBox.getValue().getCustomerID();
-           Integer userID = userComboBox.getValue().getId();
+            // Get Data From Add Customer Controller
+            String title = titleTextField.getText();
+            String description = descriptionTextField.getText();
+            String location = locationTextField.getText();
+            Integer contactId = contactComboBox.getValue().getContactID();
+            String type = typeComboBox.getValue();
+            LocalDate start = startDatePicker.getValue();
+            LocalTime startTime = LocalTime.of(Integer.parseInt(startHourChoiceBox.getValue()), Integer.parseInt(startMinuteChoiceBox.getValue()));
+            LocalTime endTime = LocalTime.of(Integer.parseInt(endHourChoiceBox.getValue()), Integer.parseInt(endMinuteChoiceBox.getValue()));
+            Integer customerID = customerComboBox.getValue().getCustomerID();
+            Integer userID = userComboBox.getValue().getId();
 
             // Concatenate Start Date Picker, Start Hour, Start Minute
             LocalDateTime startDateTime = LocalDateTime.of(start, startTime);
@@ -187,23 +191,65 @@ public class AddAppointment implements Initializable {
             // Concatenate Start Date Picker, End Hour, End Minute
             LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
 
-            // Check if endDateTime isBefore() startDateTime
+            System.out.println("Start Time is " + startDateTime);
+            System.out.println("End Time is " + endDateTime);
+
+            // Check if endDateTime isBefore() startDateTime TODO not working
             if (endDateTime.isBefore(startDateTime)) {
                 addAppointmentMessageLabel.setText("You must select a Start Time That Comes Before End Time.");
             }
 
-            // Check if startDateTime and endDateTime are the same
+            // Check if startDateTime and endDateTime are the same TODO not working
             if (startDateTime.equals(endDateTime)) {
                 addAppointmentMessageLabel.setText("The Start Time And The End Time Cannot Be The Same.");
             }
 
+            // Check if startDateTime and endDateTime have any overlaps with existing appointments TODO not working
+            /*
+            LocalDateTime userStartAppointmentHour = startDateTime.getHour();
+            LocalDateTime userStartAppointmentMinute = startDateTime.getMinute();
+            LocalDateTime userEndAppointmentHour = endDateTime.getHour();
+            LocalDateTime userEndAppointmentMinute = endDateTime.getMinute();
+            LocalDateTime existingUserStartAppointmentHour = DBAppointments.getExistingAppointmentStartHour(); TODO Need To Write
+            LocalDateTime existingUserStartAppointmentMinute = DBAppointments.getExistingAppointmentStartMinute(); TODO Need To Write
+            LocalDateTime existingUserEndAppointmentHour = DBAppointments.getExistingAppointmentEndHour(); TODO Need To Write
+            LocalDateTime existingUserEndAppointmentMinute  = DBAppointments.getExistingAppointmentEndMinute(); TODO Need To Write
+             if (over lapping logic goes here ) {
+                addAppointmentMessageLabel.setText("You have an overlapping appointment already, please fix and try again.");
+            } else {
+                addAppointmentMessageLabel.setText("There are no scheduling conflicts.");
+            }*/
+
+
             // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
             // between 8 am - 10 p.m.
+            /* - TODO Fix  .ParseException: Unparseable date: "America/Chicago"
             ZoneId userTimeZone = ZoneId.systemDefault();
             ZoneId easternTimeZoneId = ZoneId.of("America/New_York");
-            //if () {
-
-            //}
+            System.out.println("The current user's time zone is: " +userTimeZone);
+            System.out.println("The current user's time zone in ET is: " +easternTimeZoneId);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            Date userTime = simpleDateFormat.parse(String.valueOf(userTimeZone));
+            Date estTime = simpleDateFormat.parse(String.valueOf(easternTimeZoneId));
+            long timeZoneDifference = Math.abs(userTime.getTime() - estTime.getTime());
+            System.out.println("The Different Between The User's Time Zone and ET Zone is " + timeZoneDifference + " hours.");
+            if (timeZoneDifference == 0) {
+                System.out.println("You are on Eastern Time Zone");
+            } else {
+                ZoneId appointmentTimeZone = easternTimeZoneId - userTimeZone;
+                Integer startAppointmentET = startDateTime.getHour() - appointmentTimeZone;
+                Integer endAppointmentET = endDateTime.getHour() - appointmentTimeZone;
+                if (startAppointmentET < 8 && endAppointmentET > 10) {
+                    // Move Update The Database and Return to main screen controller up here - TODO
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Appointment Schedule Time");
+                    alert.setHeaderText("You Must Select A Time Zone Between 08:00 - 20:00 ET");
+                    alert.setContentText("You will need to change the beginning and/or end time of your" +
+                            "appointment to between 8 a.m. and 10 p.m. ET");
+                    alert.showAndWait();
+                }
+            }*/
 
             // Save To Database
             DBAppointments.addNewAppointment(title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);

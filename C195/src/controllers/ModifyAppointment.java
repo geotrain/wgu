@@ -20,9 +20,12 @@ import models.Users;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
@@ -131,7 +134,7 @@ public class ModifyAppointment implements Initializable {
     }
 
     @FXML
-    void save (javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException{
+    void save (javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException, ParseException {
 
         if (customerComboBox.getValue() == null) {
             modifyAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
@@ -181,42 +184,50 @@ public class ModifyAppointment implements Initializable {
             // Concatenate Start Date Picker, End Hour, End Minute
             LocalDateTime endDateTime = LocalDateTime.of(start, endTime);
 
-            // Check if endDateTime isBefore() startDateTime
+            // Check if endDateTime isBefore() startDateTime TODO not working
             if (endDateTime.isBefore(startDateTime)) {
                 modifyAppointmentMessageLabel.setText("You must select a Start Time That Comes Before End Time.");
             }
 
-            // Check if startDateTime and endDateTime are the same
-            if (startDateTime == endDateTime) {
+            // Check if startDateTime and endDateTime are the same TODO not working
+            if (startDateTime.equals(endDateTime)) {
                 modifyAppointmentMessageLabel.setText("The Start Time And The End Time Cannot Be The Same.");
             }
 
+            System.out.println("Start Time is " + startDateTime);
+            System.out.println("End Time is " + endDateTime);
+
             // Put Time Zone Conversation From Local Time To EST Time Zone then see if local time piece fits within the EST
             // between 8 am - 10 p.m.
-            /*
-            DateTimeFormatter globalFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mma z");
-            DateTimeFormatter etFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mma 'ET'");
-            Calendar now = Calendar.getInstance();
-            long militaryDifference = now.get(Calendar.ZONE_OFFSET);
-            String [] ids = TimeZone.getAvailableIDs();
-            String currentZoneId = null;
-            for (String id : ids) {
-                TimeZone timeZone = TimeZone.getTimeZone(id);
-                if (timeZone.getRawOffset() == militaryDifference) {
-                    currentZoneId = id;
-                    break;
-                }
-                System.out.println(currentZoneId);
-            }
-            ZoneId currentUserZoneId = ZoneId.of(String.valueOf(currentZoneId));
+            /*  TODO Fix  .ParseException: Unparseable date: "America/Chicago"
+            ZoneId userTimeZone = ZoneId.systemDefault();
             ZoneId easternTimeZoneId = ZoneId.of("America/New_York");
-            LocalDateTime currentDateTime = LocalDateTime.now();
-            ZonedDateTime currentUserTime = currentDateTime.atZone(ZoneId.of(String.valueOf(currentUserZoneId)));
-            ZonedDateTime currentESTime = currentUserTime.withZoneSameInstant(easternTimeZoneId);
-            System.out.println(globalFormat.format(currentUserTime));
-            System.out.println(etFormat.format(currentESTime));*/
+            System.out.println("The current user's time zone is: " +userTimeZone);
+            System.out.println("The current user's time zone in ET is: " +easternTimeZoneId);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            Date userTime = simpleDateFormat.parse(String.valueOf(userTimeZone));
+            Date estTime = simpleDateFormat.parse(String.valueOf(easternTimeZoneId));
+            long timeZoneDifference = Math.abs(userTime.getTime() - estTime.getTime());
+            System.out.println("The Different Between The User's Time Zone and ET Zone is " + timeZoneDifference + " hours.");
+            if (timeZoneDifference == 0) {
+                System.out.println("You are on Eastern Time Zone");
+            } else {
+                ZoneId appointmentTimeZone = easternTimeZoneId - userTimeZone;
+                Integer startAppointmentET = startDateTime.getHour() - appointmentTimeZone;
+                Integer endAppointmentET = endDateTime.getHour() - appointmentTimeZone;
+                if (startAppointmentET < 8 && endAppointmentET > 10) {
+                    // Move Update The Database and Return to main screen controller up here TODO Move DB Update Here
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Appointment Schedule Time");
+                    alert.setHeaderText("You Must Select A Time Zone Between 08:00 - 20:00 ET");
+                    alert.setContentText("You will need to change the beginning and/or end time of your" +
+                            "appointment to between 8 a.m. and 10 p.m. ET");
+                    alert.showAndWait();
+                }
+            } */
 
-
+            // Update the database
             DBAppointments.updateAppointment(appointment_id,title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
 
             // Label confirming save to database
