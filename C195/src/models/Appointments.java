@@ -23,8 +23,8 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private static LocalDateTime start;
+    private static LocalDateTime end;
     private LocalDateTime createDate;
     private String createdBy;
     private LocalDateTime lastUpdate;
@@ -165,7 +165,7 @@ public class Appointments {
      * This getStart method that gets the Appointments (Start) from the appointments table.
      * @return
      */
-    public LocalDateTime getStart() {
+    public static LocalDateTime getStart() {
         return start;
     }
 
@@ -181,7 +181,7 @@ public class Appointments {
      * This getEnd method that gets the Appointments (End) from the appointments table
      * @return
      */
-    public LocalDateTime getEnd() {
+    public static LocalDateTime getEnd() {
         return end;
     }
 

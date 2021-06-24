@@ -413,4 +413,22 @@ public class DBAppointments {
         }
         return false;
     }
+
+    /**
+     * This getAllAppointmentStartTimes will return the LocalDateTime start values from appointments table
+     * @param start
+     * @return
+     */
+    public static LocalDateTime getAllAppointmentStartTimes(LocalDateTime start) {
+        return start;
+    }
+
+    /**
+     * This getAllAppointmentEndTimes will return the LocalDateTime end values from appointments table
+     * @param end
+     * @return
+     */
+    public static LocalDateTime getAllAppointmentEndTimes(LocalDateTime end) {
+        return end;
+    }
 }

@@ -16,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.control.ToggleGroup;
 import models.Appointments;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;

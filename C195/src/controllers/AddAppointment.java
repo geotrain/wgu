@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import models.Appointments;
 import models.Contacts;
 import models.Customers;
 import models.Users;
@@ -207,21 +208,20 @@ public class AddAppointment implements Initializable {
                 return;
             }
 
-            // Check if startDateTime and endDateTime have any overlaps with existing appointments TODO not working
-            /*
-            LocalDateTime userStartAppointmentHour = startDateTime.getHour();
-            LocalDateTime userStartAppointmentMinute = startDateTime.getMinute();
-            LocalDateTime userEndAppointmentHour = endDateTime.getHour();
-            LocalDateTime userEndAppointmentMinute = endDateTime.getMinute();
-            LocalDateTime existingUserStartAppointmentHour = DBAppointments.getExistingAppointmentStartHour(); TODO Need To Write
-            LocalDateTime existingUserStartAppointmentMinute = DBAppointments.getExistingAppointmentStartMinute(); TODO Need To Write
-            LocalDateTime existingUserEndAppointmentHour = DBAppointments.getExistingAppointmentEndHour(); TODO Need To Write
-            LocalDateTime existingUserEndAppointmentMinute  = DBAppointments.getExistingAppointmentEndMinute(); TODO Need To Write
-             if (over lapping logic goes here ) {
-                addAppointmentMessageLabel.setText("You have an overlapping appointment already, please fix and try again.");
-            } else {
-                addAppointmentMessageLabel.setText("There are no scheduling conflicts.");
-            }*/
+            // Check if startDateTime and endDateTime have any overlaps with existing appointments TODO Need to Check Logic
+            LocalDateTime existingAppointmentStartTime = DBAppointments.getAllAppointmentStartTimes(Appointments.getStart());
+            LocalDateTime existingAppointmentEndTime = DBAppointments.getAllAppointmentEndTimes(Appointments.getEnd());
+            if (endDateTime.isBefore(existingAppointmentStartTime) && endDateTime.isAfter(existingAppointmentEndTime)) {
+                addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                return;
+            } else if (startDateTime.isAfter(existingAppointmentStartTime) && startDateTime.isBefore(existingAppointmentEndTime)) {
+                addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                return;
+            } else if (startDateTime.isBefore(existingAppointmentStartTime) && endDateTime.isBefore(existingAppointmentEndTime)) {
+                addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                return;
+            }
+
 
             System.out.println("Start Time is " + startDateTime);
             System.out.println("End Time is " + endDateTime);
