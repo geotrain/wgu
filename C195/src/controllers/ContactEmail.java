@@ -30,7 +30,7 @@ public class ContactEmail implements Initializable {
     @FXML private TableColumn<Contacts, String> contactEmailColumn;
 
     /**
-     * This method will close the add appointment controller without saving any data and returns to the main controller
+     * This method will close the Contact Email controller
      * @param actionEvent
      * @throws IOException
      */

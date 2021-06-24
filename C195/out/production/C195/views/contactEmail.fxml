@@ -34,8 +34,8 @@
       </HBox>
       <TableView fx:id="contactEmailTableView" layoutX="62.0" layoutY="96.0" prefHeight="320.0" prefWidth="544.0">
         <columns>
-           <TableColumn fx:id="contactNameColumn" prefWidth="270.0" text="Contact Name" />
-           <TableColumn fx:id="contactEmailColumn" minWidth="0.0" prefWidth="270.0" text="Email" />
+           <TableColumn fx:id="contactNameColumn" prefWidth="270.0" resizable="false" text="Contact Name" />
+           <TableColumn fx:id="contactEmailColumn" minWidth="0.0" prefWidth="270.0" resizable="false" text="Email" />
         </columns>
       </TableView>
    </children>

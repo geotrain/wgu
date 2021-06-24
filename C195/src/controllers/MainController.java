@@ -289,7 +289,14 @@ public class MainController implements Initializable {
     }
 
     // Controls Methods
-    @FXML public void viewScheduleByContact(ActionEvent actionEvent) {
+    @FXML public void viewScheduleByContact(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/contactSchedule.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 760, 550);
+        stage.setTitle("Contact Schedule");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML public void viewCustomerAppointmentsByMonth(ActionEvent actionEvent) {
@@ -304,7 +311,7 @@ public class MainController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../views/contactEmail.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene((Parent) root, 645, 525);
-        stage.setTitle("Add Appointment");
+        stage.setTitle("Contact Email List");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
