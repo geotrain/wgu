@@ -78,55 +78,25 @@ public class DBAppointments {
      * appointmentIn15Min method checks to see if the current user logged in has any upcoming appointments
      * @return
      */
-    public static Appointments appointmentIn15Min(String id) {
+    public static Appointments appointmentIn15Min() {
         Appointments appointment;
-        LocalDateTime now = LocalDateTime.now();
-        ZoneId zoneId = ZoneId.systemDefault();
-        ZonedDateTime zonedDateTime = now.atZone(zoneId);
-        LocalDateTime localDateTime = zonedDateTime.withZoneSameInstant(ZoneId.of("UTC")).toLocalDateTime();
-        LocalDateTime localDateTime1 = localDateTime.plusMinutes(15);
 
-        String user = DBUsers.getCurrentUserLoggedInId(id);// TODO problem here id is a string needs to be integer
-
-
-        try {
-            Statement statement = DBConnection.getConnection().createStatement();
-            // Convert id (aka currentUserId) into Integer to compare it to the appointment table column User_ID
-            int result = 0;
-            if (user.equals("test")) {
-                result = 1;
-                System.out.println("This is the result " + result);
-                //return result;
-            } else if (user.equals("admin")) {
-                result = 2;
-                System.out.println("This is the result " + result);
-                //return result;
-            } else if (user.equals("greg")) {
-                result = 3;
-                System.out.println("This is the result " + result);
-                //return result;
-                System.out.println("This is the result " + result);
+        /**
+         * LAMBDA JUSTIFICATION: This lambda expression is used here to run a filtered user list "UList" based on
+         * getting the currentUserId being equal to the current appointments by UserID for a 15 minutes or less check
+         * when the user first logs into the program.
+         */
+        ObservableList<Appointments> AList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> UList = AList.filtered(A -> {
+            if (A.getUserId() == DBUsers.currentUserId) {
+                return true;
             }
-            String sql = "SELECT * FROM appointments WHERE start BETWEEN '" + localDateTime + "' AND '" + localDateTime1 + "' AND " + "User_ID= '" + result + "'";
-            System.out.println("appointment15Minute() SQL statement --> " + sql); // Print out SQL Statement
-            ResultSet rs = statement.executeQuery(sql);
-
-            if(rs.next()) {
-                appointment = new Appointments(
-                        rs.getInt("Appointment_ID"),
-                        rs.getTimestamp("Start"),
-                        rs.getTimestamp("End"),
-                        rs.getString("Title"),
-                        rs.getString("Description"),
-                        rs.getString("Location"),
-                        rs.getString("Type"),
-                        rs.getInt("Customer_ID"),
-                        rs.getInt("User_ID"),
-                        rs.getInt("Contact_ID"));
-                return appointment;
+            return false;
+        });
+        for (Appointments A : UList) {
+            if (LocalDateTime.now().isBefore(A.getStart()) && LocalDateTime.now().plusMinutes(15).isAfter(A.getStart())) {
+                return A;
             }
-        } catch (SQLException e) {
-            System.out.println("SQLException: " + e.getMessage());
         }
         return null;
     }
@@ -229,7 +199,7 @@ public class DBAppointments {
      * @return
      */
     public static boolean updateAppointment(
-            String appointment_id,
+            Integer appointment_id,
             String title,
             String description,
             String location,
@@ -241,24 +211,24 @@ public class DBAppointments {
             Integer userId)
     {
         try {
-            Statement statement = DBConnection.getConnection().createStatement();
-            String updateQuery = "UPDATE appointments SET Title='" + title
-                    + "', Description='" + description
-                    + "', Location='" + location
-                    + "', Contact_ID='" + contactId
-                    + "', Type='" + type
-                    + "', Start='" + Timestamp.valueOf(start)
-                    + "', End='" + Timestamp.valueOf(end)
-                    + "', Customer_ID='" + customerId
-                    + "', User_ID='" + userId
-                    + "'WHERE Appointment_ID=" + appointment_id;
-            statement.execute(updateQuery);
-            if(statement.getUpdateCount() > 0)
-                System.out.println(statement.getUpdateCount() + " row(s) affected.");
-            else
-                System.out.println("No changes were made.");
+            String updateQuery = "UPDATE appointments SET Title=?,Description=?,Location=?,Contact_ID=?,Type=?,Start=?,End=?,Customer_ID=?,User_ID=? WHERE Appointment_ID=?";
+
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(updateQuery);
+            ps.setString(1, title);
+            ps.setString(2, description);
+            ps.setString(3, location);
+            ps.setInt(4, contactId);
+            ps.setString(5, type);
+            ps.setTimestamp(6, Timestamp.valueOf(start));
+            ps.setTimestamp(7, Timestamp.valueOf(end));
+            ps.setInt(8, customerId);
+            ps.setInt(9, userId);
+            ps.setInt(10, appointment_id);
+
+            ps.execute();
+
         } catch (SQLException e) {
-            System.out.println("SQLException: " + e.getMessage());
+            e.printStackTrace();
         }
         return false;
     }

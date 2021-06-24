@@ -12,7 +12,7 @@ public class DBUsers {
     /**
      * Declare a global static variable of currentUser
      */
-    public static String currentUserId;
+    public static int currentUserId;
 
     /**
      * Checks to see if user and password are found in users table
@@ -31,7 +31,7 @@ public class DBUsers {
                 if (rs.getString("User_Name").equals(uName) && rs.getString("password").equals(password)) {
                     LoginActivity.login_activity(uName, true);
                     // Assign username to global variable currentUserId to see if they have any upcoming appointments within 15 minutes or less
-                    currentUserId = uName;
+                    currentUserId = rs.getInt("User_ID");
                     System.out.println("The value of global variable currentUserId is currently set to " + currentUserId);
                     return true;
                 }
@@ -42,18 +42,6 @@ public class DBUsers {
         LoginActivity.login_activity(uName, false);
         return false;
     }
-
-    /**
-     * This getCurrentUserLoggedInId method will get the id of the current user logged in and is used to assign a userId
-     * when adding a new appointment, modifying a new appointment, or deleting an appointment. It will also be used to
-     * check if the user has an existing appointments within a 15 minute period when the user logs in.
-     * @return
-     */
-    public static String getCurrentUserLoggedInId(String currentUserId) {
-         return currentUserId;
-    }
-
-
 
     /**
      * This ObservableList returns all the users from the users table the User_ID, User_Name, Password, Create_Date,

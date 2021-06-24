@@ -77,13 +77,13 @@ public class MainController implements Initializable {
         /**
          * Get The currentUser logged in to check if any appointments exist
          */
-        String currentUser = DBUsers.getCurrentUserLoggedInId(currentUserId);
-        System.out.println("The current user logged in is " + currentUser);
+
+
         if (!annoyanceReminderFlag)
         {
             annoyanceReminderFlag = true;
             Customers selectedCustomer = null;
-            Appointments appointment = DBAppointments.appointmentIn15Min(currentUserId);
+            Appointments appointment = DBAppointments.appointmentIn15Min();
             if(appointment != null) {
                 for(Customers customer : DBCustomers.getAllCustomers()) {
                     if (customer.getCustomerID() == appointment.getCustomerId()) {
@@ -91,8 +91,7 @@ public class MainController implements Initializable {
                         break;
                     }
                 }
-                String reminderAppointmentAlert = String.format("You have an %s appointment with %s at %s",
-                        appointment.getDescription(), selectedCustomer.getCustomerName(), appointment.checkFifteenMinutes());
+                String reminderAppointmentAlert = "#" + appointment.getId() + " Type: " + appointment.getType() + " @ " + appointment.getStart();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Appointment Notification");
                 alert.setHeaderText("You Have An Appointment Within 15 Minutes or Less.");

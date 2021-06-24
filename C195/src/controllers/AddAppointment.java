@@ -208,18 +208,30 @@ public class AddAppointment implements Initializable {
                 return;
             }
 
-            // Check if startDateTime and endDateTime have any overlaps with existing appointments TODO Need to Check Logic
-            LocalDateTime existingAppointmentStartTime = DBAppointments.getAllAppointmentStartTimes(Appointments.getStart());
-            LocalDateTime existingAppointmentEndTime = DBAppointments.getAllAppointmentEndTimes(Appointments.getEnd());
-            if (endDateTime.isBefore(existingAppointmentStartTime) && endDateTime.isAfter(existingAppointmentEndTime)) {
-                addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
-                return;
-            } else if (startDateTime.isAfter(existingAppointmentStartTime) && startDateTime.isBefore(existingAppointmentEndTime)) {
-                addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
-                return;
-            } else if (startDateTime.isBefore(existingAppointmentStartTime) && endDateTime.isBefore(existingAppointmentEndTime)) {
-                addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
-                return;
+            /**
+             * LAMBDA JUSTIFICATION: This lambda expression is used here to run a filtered customer list "CList" based on
+             * the CustomerID being equal to the Observable AList which is calling the getAllAppointments() method to return true.
+             */
+            ObservableList<Appointments> AList = DBAppointments.getAllAppointments();
+            ObservableList<Appointments> CList = AList.filtered(A -> {
+                if (A.getCustomerId() == customerID) {
+                    return true;
+                }
+                return false;
+            });
+            for (Appointments appointment : CList) {
+                LocalDateTime AS = appointment.getStart(); // AS means Appointment Start
+                LocalDateTime AE = appointment.getEnd(); // AE means Appointment End
+                if ((AS.isAfter(startDateTime) || AS.isEqual(startDateTime)) && AS.isBefore(endDateTime)) {
+                    addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                    return;
+                } else if (AE.isAfter(startDateTime) && (AE.isBefore(endDateTime) || AE.isEqual(endDateTime))) {
+                    addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                    return;
+                } else if ((AS.isBefore(startDateTime) || AS.isEqual(startDateTime)) && (AE.isAfter(endDateTime) || AE.isEqual(endDateTime))) {
+                    addAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                    return;
+                }
             }
 
             System.out.println("Start Time is " + startDateTime);

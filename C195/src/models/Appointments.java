@@ -23,8 +23,8 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
-    private static LocalDateTime start;
-    private static LocalDateTime end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private LocalDateTime createDate;
     private String createdBy;
     private LocalDateTime lastUpdate;
@@ -165,7 +165,7 @@ public class Appointments {
      * This getStart method that gets the Appointments (Start) from the appointments table.
      * @return
      */
-    public static LocalDateTime getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
@@ -181,7 +181,7 @@ public class Appointments {
      * This getEnd method that gets the Appointments (End) from the appointments table
      * @return
      */
-    public static LocalDateTime getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
@@ -397,174 +397,5 @@ public class Appointments {
         }
         System.out.println("The user selected was " + userList);
         return userList.get(0);
-    }
-
-    /**
-     * This method formats the LocalDateTime with the ZoneDateTime and converts it to see if the appointment is within
-     * 15 minutes of the user's LocalDateTime
-     * @return
-     */
-    public String checkFifteenMinutes() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
-        LocalDateTime localDateTime = LocalDateTime.parse(this.getStart().format(dateTimeFormatter));
-        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("UTC"));
-        ZoneId zid = ZoneId.systemDefault();
-        ZonedDateTime utcDate = zonedDateTime.withZoneSameInstant(zid);
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("kk:mm");
-        LocalTime localTime = LocalTime.parse(utcDate.toString().substring(11,16), timeFormatter);
-        return localTime.toString();
-    }
-
-    /**
-     * Private Variables Declared for the appointmentIn15Min() method
-     */
-    private int Appointment_ID;
-    private Timestamp Start;
-    private Timestamp End;
-    private String Title;
-    private String Description;
-    private String Location;
-    private String Type;
-    private int Customer_ID;
-    private int User_ID;
-    private int Contact_ID;
-    /**
-     * Constructor for appointmentIn15Min() method in the DBAppointments.java class to assist with checking if user
-     * has an appointment within 15 minutes after logging in.
-     * @param Appointment_ID
-     * @param Start
-     * @param End
-     * @param Title
-     * @param Description
-     * @param Location
-     * @param Type
-     * @param Customer_ID
-     * @param User_ID
-     * @param Contact_ID
-     */
-    public Appointments(int Appointment_ID, Timestamp Start, Timestamp End, String Title, String Description,
-                        String Location, String Type, int Customer_ID, int User_ID, int Contact_ID) {
-        this.Appointment_ID = Appointment_ID;
-        this.Start = Start;
-        this.End = End;
-        this.Title = Title;
-        this.Description = Description;
-        this.Location = Location;
-        this.Type = Type;
-        this.Customer_ID = Customer_ID;
-        this.User_ID = User_ID;
-        this.Contact_ID = Contact_ID;
-    }
-
-    /**
-     * getAppointment_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @return
-     */
-    public int getAppointment_ID() {
-        return Appointment_ID;
-    }
-
-    /**
-     * setAppointment_ID for appointmentIn15Min() method in the DBAppointments.java class
-     * @param appointment_ID
-     */
-    public void setAppointment_ID(int appointment_ID) {
-        Appointment_ID = appointment_ID;
-    }
-
-    /**
-     * setStart for appointmentIn15Min() method in the DBAppointments.java class
-     * @param start
-     */
-    public void setStart(Timestamp start) {
-        Start = start;
-    }
-
-    /**
-     * setEnd used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param end
-     */
-    public void setEnd(Timestamp end) {
-        End = end;
-    }
-
-    /**
-     * setTitle used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param title
-     */
-    public void setTitle(String title) {
-        Title = title;
-    }
-
-    /**
-     * setDescription used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param description
-     */
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    /**
-     * setLocation used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param location
-     */
-    public void setLocation(String location) {
-        Location = location;
-    }
-
-    /**
-     * setType used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param type
-     */
-    public void setType(String type) {
-        Type = type;
-    }
-
-    /**
-     * getCustomer_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @return
-     */
-    public int getCustomer_ID() {
-        return Customer_ID;
-    }
-
-    /**
-     * setCustomer_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param customer_ID
-     */
-    public void setCustomer_ID(int customer_ID) {
-        Customer_ID = customer_ID;
-    }
-
-    /**
-     * getUser_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @return
-     */
-    public int getUser_ID() {
-        return User_ID;
-    }
-
-    /**
-     * setUser_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param user_ID
-     */
-    public void setUser_ID(int user_ID) {
-        User_ID = user_ID;
-    }
-
-    /**
-     * getContact_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @return
-     */
-    public int getContact_ID() {
-        return Contact_ID;
-    }
-
-    /**
-     * setContact_ID used for appointmentIn15Min() method in the DBAppointments.java class
-     * @param contact_ID
-     */
-    public void setContact_ID(int contact_ID) {
-        Contact_ID = contact_ID;
     }
 }

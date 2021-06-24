@@ -128,6 +128,7 @@ public class ModifyAppointment implements Initializable {
     /**
      * The displayUserId method is used to populate the user ID text field once the userComboBox has chosen
      * a user from the user data list
+     *
      * @param actionEvent
      */
     @FXML private void displayUserId(javafx.event.ActionEvent actionEvent) {
@@ -197,19 +198,36 @@ public class ModifyAppointment implements Initializable {
                 return;
             }
 
-            // Check if startDateTime and endDateTime have any overlaps with existing appointments TODO Need to Check Logic
-            LocalDateTime existingAppointmentStartTime = DBAppointments.getAllAppointmentStartTimes(Appointments.getStart());
-            LocalDateTime existingAppointmentEndTime = DBAppointments.getAllAppointmentEndTimes(Appointments.getEnd());
-            if (endDateTime.isBefore(existingAppointmentStartTime) && endDateTime.isAfter(existingAppointmentEndTime)) {
-                modifyAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
-                return;
-            } else if (startDateTime.isAfter(existingAppointmentStartTime) && startDateTime.isBefore(existingAppointmentEndTime)) {
-                modifyAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
-                return;
-            } else if (startDateTime.isBefore(existingAppointmentStartTime) && endDateTime.isBefore(existingAppointmentEndTime)) {
-                modifyAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
-                return;
+            /**
+             * LAMBDA JUSTIFICATION: This lambda expression is used here to run a filtered customer list "CList" based on
+             * the CustomerID being equal to the Observable AList which is calling the getAllAppointments() method to return true.
+             */
+            ObservableList<Appointments> AList = DBAppointments.getAllAppointments();
+            ObservableList<Appointments> CList = AList.filtered(A -> {
+                if (A.getCustomerId() == customerID) {
+                    return true;
+                }
+                return false;
+            });
+            for (Appointments appointment : CList) {
+                // See if we are clashing with existing appointment to change time
+                if (appointmentId.getId() == appointment.getId()) {
+                    continue;
+                }
+                LocalDateTime AS = appointment.getStart(); // AS means Appointment Start
+                LocalDateTime AE = appointment.getEnd(); // AE means Appointment End
+                if ((AS.isAfter(startDateTime) || AS.isEqual(startDateTime)) && AS.isBefore(endDateTime)) {
+                    modifyAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                    return;
+                } else if (AE.isAfter(startDateTime) && (AE.isBefore(endDateTime) || AE.isEqual(endDateTime))) {
+                    modifyAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                    return;
+                } else if ((AS.isBefore(startDateTime) || AS.isEqual(startDateTime)) && (AE.isAfter(endDateTime) || AE.isEqual(endDateTime))) {
+                    modifyAppointmentMessageLabel.setText("You are overlapping an existing appointment. Please change times and try again.");
+                    return;
+                }
             }
+
 
             System.out.println("Start Time is " + startDateTime);
             System.out.println("End Time is " + endDateTime);
@@ -243,7 +261,7 @@ public class ModifyAppointment implements Initializable {
             }
 
             // Update the database
-            DBAppointments.updateAppointment(appointment_id,title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
+            DBAppointments.updateAppointment(appointmentId.getId(),title,description,location,contactId,type,startDateTime,endDateTime,customerID,userID);
 
             // Label confirming save to database
             modifyAppointmentMessageLabel.setText("You Added A New Appointment. Now click close button.");
