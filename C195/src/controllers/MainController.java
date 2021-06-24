@@ -79,19 +79,21 @@ public class MainController implements Initializable {
          * Get The currentUser logged in to check if any appointments exist
          */
         String currentUser = DBUsers.getCurrentUserLoggedInId(currentUserId);
-        System.out.println("The current user logged in is " + currentUser); // TODO output is "The current user logged in is null"
+        System.out.println("The current user logged in is " + currentUser);
         if (!annoyanceReminderFlag)
         {
             annoyanceReminderFlag = true;
-            Appointments appointment = DBAppointments.appointmentIn15Min();
-            if (appointment != null) {
-                Customers customer = (Customers) DBCustomers.getCustomerAppointments(appointment.getCustomerId());
-                String reminderAppointmentAlert = String.format(
-                        "You have a %s appointment with %s at %s",
-                        appointment.getDescription(),
-                        customer.getCustomerName(),
-                        appointment.checkFifteenMinutes()
-                );
+            Customers selectedCustomer = null;
+            Appointments appointment = DBAppointments.appointmentIn15Min(currentUserId);
+            if(appointment != null) {
+                for(Customers customer : DBCustomers.getAllCustomers()) {
+                    if (customer.getCustomerID() == appointment.getCustomerId()) {
+                        selectedCustomer = customer;
+                        break;
+                    }
+                }
+                String reminderAppointmentAlert = String.format("You have an %s appointment with %s at %s",
+                        appointment.getDescription(), selectedCustomer.getCustomerName(), appointment.checkFifteenMinutes());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Appointment Notification");
                 alert.setHeaderText("You Have An Appointment Within 15 Minutes or Less.");
@@ -293,7 +295,19 @@ public class MainController implements Initializable {
     @FXML public void viewCustomerAppointmentsByMonth(ActionEvent actionEvent) {
     }
 
-    @FXML public void contactEmailList(ActionEvent actionEvent) {
+    /**
+     * This method opens up the Contact Email List Controller Screen
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML public void contactEmailList(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/contactEmail.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 645, 525);
+        stage.setTitle("Add Appointment");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML public void viewCustomerAppointmentsByType(ActionEvent actionEvent) {

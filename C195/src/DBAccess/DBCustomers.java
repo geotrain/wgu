@@ -10,12 +10,12 @@ import java.sql.*;
 
 public class DBCustomers {
 
-    /** This ObservableList returns all the customers from the customers table. This is
+    /**
+     * This ObservableList returns all the customers from the customers table. This is
      * used in conjunction with the models/Customers.java file that contains the getId and getName methods
-     * @param <Customers>
      * @return
      */
-    public static <Customers> ObservableList<Customers> getAllCustomers() {
+    public static ObservableList<Customers> getAllCustomers() {
 
         ObservableList<Customers> clist = FXCollections.observableArrayList();
 

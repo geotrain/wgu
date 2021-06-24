@@ -78,20 +78,37 @@ public class DBAppointments {
      * appointmentIn15Min method checks to see if the current user logged in has any upcoming appointments
      * @return
      */
-    public static Appointments appointmentIn15Min() {
+    public static Appointments appointmentIn15Min(String id) {
         Appointments appointment;
         LocalDateTime now = LocalDateTime.now();
         ZoneId zoneId = ZoneId.systemDefault();
         ZonedDateTime zonedDateTime = now.atZone(zoneId);
         LocalDateTime localDateTime = zonedDateTime.withZoneSameInstant(ZoneId.of("UTC")).toLocalDateTime();
         LocalDateTime localDateTime1 = localDateTime.plusMinutes(15);
-        String user = DBUsers.getCurrentUserLoggedInId("");
+
+        String user = DBUsers.getCurrentUserLoggedInId(id);// TODO problem here id is a string needs to be integer
+
+
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String sql = "SELECT * FROM appointments WHERE start BETWEEN '" + localDateTime
-                    + "' AND '" + localDateTime1
-                    + "' AND " + "Contact_ID= '"
-                    + user + "'";
+            // Convert id (aka currentUserId) into Integer to compare it to the appointment table column User_ID
+            int result = 0;
+            if (user.equals("test")) {
+                result = 1;
+                System.out.println("This is the result " + result);
+                //return result;
+            } else if (user.equals("admin")) {
+                result = 2;
+                System.out.println("This is the result " + result);
+                //return result;
+            } else if (user.equals("greg")) {
+                result = 3;
+                System.out.println("This is the result " + result);
+                //return result;
+                System.out.println("This is the result " + result);
+            }
+            String sql = "SELECT * FROM appointments WHERE start BETWEEN '" + localDateTime + "' AND '" + localDateTime1 + "' AND " + "User_ID= '" + result + "'";
+            System.out.println("appointment15Minute() SQL statement --> " + sql); // Print out SQL Statement
             ResultSet rs = statement.executeQuery(sql);
 
             if(rs.next()) {
@@ -113,6 +130,7 @@ public class DBAppointments {
         }
         return null;
     }
+
     /**
      * addNewAppointment adds a new appointment to the appointments table, it records userId, customerId, and contactId, etc.
      * @param title

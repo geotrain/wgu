@@ -53,4 +53,41 @@ public class DBContacts {
         return contactlist;
     }
 
+    /**
+     * This getContactsEmailList method returns all emails from the contacts table and is pulled from the ContactEmail Controller
+     * @param <Contacts>
+     * @return
+     */
+    public static <Contacts> ObservableList<Contacts> getContactsEmailList() {
+
+        ObservableList<Contacts> contactEmailList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM contacts;";
+            System.out.println("agetContactEmailList SQL statement --> " + sql); // Print out SQL Statement
+
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+
+                int contactID = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
+                String contactEmail = rs.getString("Email");
+
+                models.Contacts CE = new models.Contacts(
+                        contactID,
+                        contactName,
+                        contactEmail
+                );
+                contactEmailList.add((Contacts) CE);
+            }
+
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        return contactEmailList;
+    }
+
 }

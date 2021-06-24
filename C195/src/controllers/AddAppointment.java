@@ -242,6 +242,7 @@ public class AddAppointment implements Initializable {
              * This checks if the local time zone of the user against the eastern time zone then does a comparison to
              * make sure it falls between 08:00 and 22:00 EST (Office Hours In New York)
              */
+
             if (estStart.toLocalTime().isBefore(LocalTime.of(8,0)) ||
                     estEnd.toLocalTime().isAfter(LocalTime.of(22,0)) ||
                     estStart.toLocalTime().isAfter(LocalTime.of(22,0)) ||
