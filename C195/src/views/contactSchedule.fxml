@@ -34,7 +34,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="contactEmailTableView" layoutX="15.0" layoutY="130.0" prefHeight="352.0" prefWidth="734.0">
+      <TableView fx:id="contactAppointmentTableView" layoutX="15.0" layoutY="130.0" prefHeight="352.0" prefWidth="734.0">
          <columns>
             <TableColumn fx:id="appointmentIdColumn" prefWidth="104.0" text="Appointment ID" />
             <TableColumn fx:id="titleColumn" prefWidth="123.0" text="Title" />
@@ -55,7 +55,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <RadioButton fx:id="contactOneRadioButton" mnemonicParsing="false" onAction="#contactOneSelection" prefHeight="18.0" prefWidth="130.0" selected="true" text="Anika Costa">
+            <RadioButton fx:id="contactOneRadioButton" mnemonicParsing="false" onAction="#contactOneSelection" prefHeight="18.0" prefWidth="130.0" text="Anika Costa">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>

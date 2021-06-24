@@ -48,36 +48,31 @@
             </TableView>
          </children>
       </HBox>
-      <VBox layoutX="784.0" layoutY="464.0" prefHeight="400.0" prefWidth="250.0">
+      <VBox layoutX="784.0" layoutY="464.0" prefHeight="400.0" prefWidth="293.0">
          <children>
             <ButtonBar prefHeight="79.0" prefWidth="271.0">
               <buttons>
-                <Button fx:id="viewCustomerAppointmentsByMonthButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCustomerAppointmentsByMonth" prefHeight="26.0" prefWidth="252.0" snapToPixel="false" text="View Customer Appointemtns By Month" />
+                <Button fx:id="viewCustomerAppointmentsByTypeAndMonthButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCustomerAppointmentsByTypeAndMonth" prefHeight="26.0" prefWidth="312.0" snapToPixel="false" text="Customer Appointments By Type and Month" />
               </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="viewCustomerAppointmentsByTypeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCustomerAppointmentsByType" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View Customer Appointments By Type" />
+                  <Button fx:id="viewScheduleByContactButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewScheduleByContact" prefHeight="26.0" prefWidth="312312.0" snapToPixel="false" text="View Schedule By Contact" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="viewScheduleByContactButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewScheduleByContact" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="View Schedule By Contact" />
+                  <Button fx:id="contactEmailListButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#contactEmailList" prefHeight="26.0" prefWidth="312.0" snapToPixel="false" text="Generate Contact Email List" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="contactEmailListButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#contactEmailList" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="Generate Contact Email List" />
+                  <Button fx:id="logOffButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logOff" prefHeight="26.0" prefWidth="312.0" snapToPixel="false" text="Log Off" />
                </buttons>
             </ButtonBar>
             <ButtonBar prefHeight="79.0" prefWidth="320.0">
                <buttons>
-                  <Button fx:id="logOffButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logOff" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="Log Off" />
-               </buttons>
-            </ButtonBar>
-            <ButtonBar prefHeight="79.0" prefWidth="320.0">
-               <buttons>
-                  <Button fx:id="exitProgramButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitProgram" prefHeight="26.0" prefWidth="228.0" snapToPixel="false" text="Exit Program" />
+                  <Button fx:id="exitProgramButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitProgram" prefHeight="26.0" prefWidth="312.0" snapToPixel="false" text="Exit Program" />
                </buttons>
             </ButtonBar>
          </children>
@@ -126,7 +121,7 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="852.0" layoutY="439.0" prefHeight="26.0" prefWidth="128.0" text="Controls" underline="true">
+      <Label alignment="CENTER" layoutX="796.0" layoutY="447.0" prefHeight="26.0" prefWidth="283.0" text="Controls" underline="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

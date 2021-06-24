@@ -32,8 +32,7 @@ import static DBAccess.DBUsers.currentUserId;
 public class MainController implements Initializable {
 
     // FX Ids For Buttons
-    @FXML private Button viewCustomerAppointmentsByMonthButton;
-    @FXML private Button viewCustomerAppointmentsByTypeButton;
+    @FXML private Button viewCustomerAppointmentsByTypeAndMonthButton;
     @FXML private Button viewScheduleByContactButton;
     @FXML private Button contactEmailListButton;
     @FXML private Button logOffButton;
@@ -299,7 +298,14 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    @FXML public void viewCustomerAppointmentsByMonth(ActionEvent actionEvent) {
+    @FXML public void viewCustomerAppointmentsByTypeAndMonth(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../views/customerAppointmentsByTypeAndMonth.fxml"));
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene((Parent) root, 745, 520);
+        stage.setTitle("Customer Appointment List By Type And Month");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
@@ -315,9 +321,6 @@ public class MainController implements Initializable {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-    }
-
-    @FXML public void viewCustomerAppointmentsByType(ActionEvent actionEvent) {
     }
 
     /**

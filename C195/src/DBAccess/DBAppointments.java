@@ -284,4 +284,133 @@ public class DBAppointments {
         }
         return false;
     }
+
+    /**
+     * This method returns appointments when user select radio button one
+     * @param appointment_id
+     * @param title
+     * @param description
+     * @param contactId
+     * @param type
+     * @param start
+     * @param end
+     * @param customerId
+     * @return
+     */
+    public static boolean getContactOneAppointments(
+            String appointment_id,
+            String title,
+            String description,
+            Integer contactId,
+            String type,
+            LocalDateTime start,
+            LocalDateTime end,
+            Integer customerId)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String contactOneScheduleQuery = "SELECT Title='" + title
+                    + "', Description='" + description
+                    + "', Appointment_ID='" + appointment_id
+                    + "', Type='" + type
+                    + "', Start='" + Timestamp.valueOf(start)
+                    + "', End='" + Timestamp.valueOf(end)
+                    + "', Customer_ID='" + customerId
+                    + "'FROM appointments WHERE Contact_ID=" + contactId;
+            statement.execute(contactOneScheduleQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * This method returns appointments when user select radio button one
+     * @param appointment_id
+     * @param title
+     * @param description
+     * @param contactId
+     * @param type
+     * @param start
+     * @param end
+     * @param customerId
+     * @return
+     */
+    public static boolean getContactTwoAppointments(
+            String appointment_id,
+            String title,
+            String description,
+            Integer contactId,
+            String type,
+            LocalDateTime start,
+            LocalDateTime end,
+            Integer customerId)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String contactOneScheduleQuery = "SELECT Title='" + title
+                    + "', Description='" + description
+                    + "', Appointment_ID='" + appointment_id
+                    + "', Type='" + type
+                    + "', Start='" + Timestamp.valueOf(start)
+                    + "', End='" + Timestamp.valueOf(end)
+                    + "', Customer_ID='" + customerId
+                    + "'FROM appointments WHERE Contact_ID=" + contactId;
+            statement.execute(contactOneScheduleQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * This method returns appointments when user select radio button one
+     * @param appointment_id
+     * @param title
+     * @param description
+     * @param contactId
+     * @param type
+     * @param start
+     * @param end
+     * @param customerId
+     * @return
+     */
+    public static boolean getContactThreeAppointments(
+            String appointment_id,
+            String title,
+            String description,
+            Integer contactId,
+            String type,
+            LocalDateTime start,
+            LocalDateTime end,
+            Integer customerId)
+    {
+        try {
+            Statement statement = DBConnection.getConnection().createStatement();
+            String contactOneScheduleQuery = "SELECT Title='" + title
+                    + "', Description='" + description
+                    + "', Appointment_ID='" + appointment_id
+                    + "', Type='" + type
+                    + "', Start='" + Timestamp.valueOf(start)
+                    + "', End='" + Timestamp.valueOf(end)
+                    + "', Customer_ID='" + customerId
+                    + "'FROM appointments WHERE Contact_ID=" + contactId;
+            statement.execute(contactOneScheduleQuery);
+            if(statement.getUpdateCount() > 0)
+                System.out.println(statement.getUpdateCount() + " row(s) affected.");
+            else
+                System.out.println("No changes were made.");
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return false;
+    }
 }
