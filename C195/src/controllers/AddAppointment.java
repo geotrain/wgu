@@ -222,7 +222,6 @@ public class AddAppointment implements Initializable {
                 return;
             }
 
-
             System.out.println("Start Time is " + startDateTime);
             System.out.println("End Time is " + endDateTime);
 
