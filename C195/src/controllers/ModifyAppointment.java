@@ -1,4 +1,6 @@
 package controllers;
+
+// Import statements
 import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
@@ -16,7 +18,6 @@ import models.Appointments;
 import models.Contacts;
 import models.Customers;
 import models.Users;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -135,8 +136,16 @@ public class ModifyAppointment implements Initializable {
         this.userIdTextField.setText(String.valueOf(userComboBox.getValue().getId()));
     }
 
-    @FXML
-    void save (javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException, ParseException {
+    /**
+     * LAMBDA JUSTIFICATION: This lambda expression is used here to run a filtered customer list "CList" based on
+     * the CustomerID being equal to the Observable AList which is calling the getAllAppointments() method to return true.
+     *
+     * @param actionEvent
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ParseException
+     */
+    @FXML void save (javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException, ParseException {
 
         if (customerComboBox.getValue() == null) {
             modifyAppointmentMessageLabel.setText("You must select a \"Customer\" before saving");
@@ -278,6 +287,11 @@ public class ModifyAppointment implements Initializable {
         return;
     }
 
+    /**
+     * The close method returns to the main screen
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
+     */
     public void close(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -288,8 +302,7 @@ public class ModifyAppointment implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void close(ActionEvent event) throws IOException {
+    @FXML void close(ActionEvent event) throws IOException {
     }
 
     /**

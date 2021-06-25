@@ -1,14 +1,14 @@
 package controllers;
+
 // Import Statements
 import DBAccess.DBAppointments;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,6 +23,12 @@ public class ViewAllCustomerAppointmentsByTpeAndMonth implements Initializable {
 
     // FX ID's Labels
     @FXML private AnchorPane customerReportByTypeAndMonthLabel;
+    @FXML private Label monthLabel;
+    @FXML private Label typeLabel;
+
+    // FX ID's Combo Boxes
+    @FXML private ComboBox<ObservableList> monthComboBox;
+    @FXML private ComboBox<ObservableList> typeComboBox;
 
     // FX ID's Buttons
     @FXML private Button closeButton;
@@ -50,8 +56,8 @@ public class ViewAllCustomerAppointmentsByTpeAndMonth implements Initializable {
 
     /**
      * This method will close the ViewAllCustomerAppointmentsByTypeAndMonth Controller and Return To Main Controller
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is a return statement
      */
     public void close(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
@@ -65,14 +71,28 @@ public class ViewAllCustomerAppointmentsByTpeAndMonth implements Initializable {
 
     /**
      * This initialize method will generate the Appointments By Type and Month Table View
-     * @param url
-     * @param resourceBundle
+     * @param url This is a parameter
+     * @param resourceBundle This is a parameter
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         // Populates and initializes ALL of the appointments by type and month
-        monthColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        //monthColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
+        //typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         //countColumn.getCellValueFactory(new PropertyValueFactory<>("count"))
         customerAppointmentByTypeAndMonthTableView.setItems(DBAppointments.getAllAppointments());
+    }
+
+    /**
+     * This selectMonth action will choose a month generated from an Observable List
+     * @param actionEvent This is a parameter
+     */
+    public void selectMonth(javafx.event.ActionEvent actionEvent) {
+    }
+
+    /**
+     * This selectMonth action will choose a type generated from an Observable List
+     * @param actionEvent This is a parameter
+     */
+    public void selectType(javafx.event.ActionEvent actionEvent) {
     }
 }

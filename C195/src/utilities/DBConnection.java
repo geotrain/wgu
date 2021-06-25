@@ -61,7 +61,7 @@ public class DBConnection {
 
     /**
      * This method gets the connection from the uCertify database when making sql statements throughout the program
-     * @return
+     * @return This is a return statement
      */
     public static Connection getConnection() {
         return conn;

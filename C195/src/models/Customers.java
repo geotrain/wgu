@@ -1,8 +1,6 @@
 package models;
 
-/**
- * Import statements
- */
+//Import statements
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,16 +30,16 @@ public class Customers {
 
     /**
      * The Customers Constructor with the columns from the countries table
-     * @param customerID
-     * @param customerName
-     * @param customerAddress
-     * @param customerPostalCode
-     * @param customerPhone
-     * @param customerCreateDate
-     * @param customerCreatedBy
-     * @param customerLastUpdate
-     * @param customerLastUpdatedBy
-     * @param customerDivisionId
+     * @param customerID This is a parameter
+     * @param customerName This is a parameter
+     * @param customerAddress This is a parameter
+     * @param customerPostalCode This is a parameter
+     * @param customerPhone This is a parameter
+     * @param customerCreateDate This is a parameter
+     * @param customerCreatedBy This is a parameter
+     * @param customerLastUpdate This is a parameter
+     * @param customerLastUpdatedBy This is a parameter
+     * @param customerDivisionId This is a parameter
      */
     public Customers(int customerID,
                      String customerName,
@@ -67,7 +65,7 @@ public class Customers {
 
     /**
      * Constructor for getCustomerName() method in ModifyAppointment Controller
-     * @param customerName
+     * @param customerName This is a parameter
      */
     public Customers(String customerName) {
         this.customerName = customerName;
@@ -79,7 +77,7 @@ public class Customers {
 
     /**
      * setCustomerId method for getCustomerInfo() method in DBCustomers.java.class
-     * @param customerID
+     * @param customerID This is a parameter
      */
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
@@ -87,7 +85,7 @@ public class Customers {
 
     /**
      * setCustomerName method for getCustomerInfo() method in DBCustomers.java.class
-     * @param customerName
+     * @param customerName This is a parameter
      */
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
@@ -95,7 +93,7 @@ public class Customers {
 
     /**
      * The getCustomerID method gets the Users (Customer_ID) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public int getCustomerID() {
         return customerID;
@@ -104,7 +102,7 @@ public class Customers {
     /**
      * The setCustomerID method sets the Users (Customer_ID) to the users table. This is auto-incremented
      * so we will not use this method for this project.
-     * @return
+     * @return This is a return statement
      */
     public int setCustomerID() {
         return this.customerID = customerID;
@@ -112,7 +110,7 @@ public class Customers {
 
     /**
      * The getCustomerName method gets the Users (Customer_Name) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCustomerName() {
        return customerName;
@@ -120,7 +118,7 @@ public class Customers {
 
     /**
      * The setCustomerName method sets the Users (Customer_Name) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public String setCustomerName() {
         return this.customerName = customerName;
@@ -128,7 +126,7 @@ public class Customers {
 
     /**
      * The getCustomerAddress method gets the Users (Address) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCustomerAddress() {
         return customerAddress;
@@ -136,7 +134,7 @@ public class Customers {
 
     /**
      * The setCustomerAddress method sets the Users (Address) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public String setCustomerAddress() {
         return this.customerAddress = customerAddress;
@@ -144,7 +142,7 @@ public class Customers {
 
     /**
      * The getCustomerPostalCode method gets the Users (Postal_Code) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCustomerPostalCode() {
         return customerPostalCode;
@@ -152,7 +150,7 @@ public class Customers {
 
     /**
      * The setCustomerPostalCode method sets the Users (Address) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public String setCustomerPostalCode() {
         return this.customerPostalCode = customerPostalCode;
@@ -160,7 +158,7 @@ public class Customers {
 
     /**
      * The getCustomerPhone method gets the Users (Phone) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCustomerPhone() {
         return customerPhone;
@@ -168,7 +166,7 @@ public class Customers {
 
     /**
      * The setCustomerPhone method sets the Users (Phone) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public String setCustomerPhone() {
         return this.customerPhone = customerPhone;
@@ -176,7 +174,7 @@ public class Customers {
 
     /**
      * The getCustomerCreateDate method gets the Users (Create_Date) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public Date getCustomerCreateDate() {
         return customerCreateDate;
@@ -185,7 +183,7 @@ public class Customers {
     /**
      * The setCustomerCreateDate method gets the Users (Create_Date) from the users table. This is auto-incremented
      * so we will not use this method for this project.
-     * @return
+     * @return This is a return statement
      */
     public Date setCustomerCreateDate() {
         return this.customerCreateDate = customerCreateDate;
@@ -193,7 +191,7 @@ public class Customers {
 
     /**
      * The getCustomerCreatedBy method gets the Users (Created_By) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCustomerCreatedBy() {
         return customerCreatedBy;
@@ -201,7 +199,7 @@ public class Customers {
 
     /**
      * The setCustomerCreatedBy method sets the Users (Created_By) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public String setCustomerCreatedBy() {
         return this.customerCreatedBy = customerCreatedBy;
@@ -209,7 +207,7 @@ public class Customers {
 
     /**
      * The getCustomerLastUpdate method gets the Users (Last_Update) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public Timestamp getCustomerLastUpdate() {
         return customerLastUpdate;
@@ -218,7 +216,7 @@ public class Customers {
     /**
      * The setCustomerLastUpdate method gets the Users (Last_Update) from the users table. This is auto-incremented
      * so we will not use this method for this project.
-     * @return
+     * @return This is a return statement
      */
     public Timestamp setCustomerLastUpdate() {
         return this.customerLastUpdate = customerLastUpdate;
@@ -226,7 +224,7 @@ public class Customers {
 
     /**
      * The getCustomerLastUpdatedBy method gets the Users (Last_Updated_By) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCustomerLastUpdatedBy() {
         return customerLastUpdatedBy;
@@ -234,7 +232,7 @@ public class Customers {
 
     /**
      * The setCustomerLastUpdatedBy method sets the Users (Last_Updated_By) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public String setCustomerLastUpdatedBy() {
         return this.customerLastUpdatedBy = customerLastUpdatedBy;
@@ -242,7 +240,7 @@ public class Customers {
 
     /**
      * The getDivisionID method gets the Users (Division_ID) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public int getDivisionID() {
         return customerDivisionId;
@@ -250,7 +248,7 @@ public class Customers {
 
     /**
      * The setDivisionID method sets the Users (Division_ID) to the users table.
-     * @return
+     * @return This is a return statement
      */
     public int setDivisionID() {
         return this.customerDivisionId = customerDivisionId;
@@ -258,7 +256,7 @@ public class Customers {
 
     /**
      * Override to print customerName to string
-     * @return
+     * @return This is a return statement
      */
     @Override public String toString() {
         return customerName;

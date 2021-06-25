@@ -15,8 +15,8 @@ public class LoginActivity {
 
     /**
      * This login_activity method is called from the LoginController
-     * @param uName
-     * @param success
+     * @param uName This is a parameter
+     * @param success This is a parameter
      */
     public static void login_activity(String uName, boolean success) {
         try (FileWriter fw = new FileWriter(loginActivity, true);

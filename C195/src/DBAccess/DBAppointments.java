@@ -16,8 +16,8 @@ public class DBAppointments {
      * Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID,
      * User_ID, Contact_ID. This is used in conjunction with the models/Appointments.java file that contains the
      * Get methods to be used in the query.
-     * @param <Appointments>
-     * @return
+     * @param <Appointments> This is a parameter
+     * @return This is a return statement
      */
     public static <Appointments> ObservableList<Appointments> getAllAppointments() {
 
@@ -72,7 +72,12 @@ public class DBAppointments {
 
     /**
      * appointmentIn15Min method checks to see if the current user logged in has any upcoming appointments
-     * @return
+     *
+     * LAMBDA JUSTIFICATION: This lambda expression is used here to run a filtered user list "UList" based on
+     * getting the currentUserId being equal to the current appointments by UserID for a 15 minutes or less check
+     * when the user first logs into the program.
+     *
+     * @return This is a return statement
      */
     public static Appointments appointmentIn15Min() {
         Appointments appointment;
@@ -99,16 +104,16 @@ public class DBAppointments {
 
     /**
      * addNewAppointment adds a new appointment to the appointments table, it records userId, customerId, and contactId, etc.
-     * @param title
-     * @param description
-     * @param location
-     * @param contactId
-     * @param type
-     * @param start
-     * @param end
-     * @param customerId
-     * @param userId
-     * @return
+     * @param title This is a parameter
+     * @param description This is a parameter
+     * @param location This is a parameter
+     * @param contactId This is a parameter
+     * @param type This is a parameter
+     * @param start This is a parameter
+     * @param end This is a parameter
+     * @param customerId This is a parameter
+     * @param userId This is a parameter
+     * @return This is a return statement
      */
     public static boolean addNewAppointment(
             String title,
@@ -160,8 +165,8 @@ public class DBAppointments {
 
     /**
      * The deleteCustomer method deletes a selected appointment from the appointments table located on the MainController.
-     * @param id
-     * @return
+     * @param id This is a parameter
+     * @return This is a return statement
      */
     public static boolean deleteAppointment(int id)
     {
@@ -182,17 +187,17 @@ public class DBAppointments {
     /**
      * updateAppointment updates an existing appointment to the appointments table, it records userId, customerId, and contactId, etc.
      *
-     * @param appointment_id
-     * @param title
-     * @param description
-     * @param location
-     * @param contactId
-     * @param type
-     * @param start
-     * @param end
-     * @param customerId
-     * @param userId
-     * @return
+     * @param appointment_id This is a parameter
+     * @param title This is a parameter
+     * @param description This is a parameter
+     * @param location This is a parameter
+     * @param contactId This is a parameter
+     * @param type This is a parameter
+     * @param start This is a parameter
+     * @param end This is a parameter
+     * @param customerId This is a parameter
+     * @param userId This is a parameter
+     * @return This is a return statement
      */
     public static boolean updateAppointment(
             Integer appointment_id,
@@ -232,8 +237,8 @@ public class DBAppointments {
     /**
      * deleteAppointmentByCustomer checks if the selected user has any existing appointments before Customer Deletion on
      * Main Screen Controller.
-     * @param id
-     * @return
+     * @param id This is a parameter
+     * @return This is a return statement
      */
     public static boolean deleteAppointmentByCustomer(int id)
     {
@@ -254,8 +259,8 @@ public class DBAppointments {
     /**
      * getContactScheduleByContactId checks if the selected contact has any appointments associated with them then returns
      * those results to the ContactSchedule controller based on selection from the Contact Combo Box
-     * @param id
-     * @return
+     * @param id This is a parameter
+     * @return This is a return statement
      */
 
     public static ObservableList<Appointments> getContactScheduleByContactId(int id)

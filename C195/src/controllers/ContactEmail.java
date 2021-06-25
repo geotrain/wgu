@@ -1,5 +1,6 @@
 package controllers;
 
+// Import statements
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.Contacts;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,8 +31,8 @@ public class ContactEmail implements Initializable {
 
     /**
      * This method will close the Contact Email controller
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     public void close(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
@@ -46,8 +46,8 @@ public class ContactEmail implements Initializable {
 
     /**
      * The initialize method will load the ContactEmailTableVIew
-     * @param url
-     * @param resourceBundle
+     * @param url This is a parameter
+     * @param resourceBundle This is a parameter
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
 

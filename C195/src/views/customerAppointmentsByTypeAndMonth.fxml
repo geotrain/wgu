@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -35,12 +35,42 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="customerAppointmentByTypeAndMonthTableView" layoutX="35.0" layoutY="99.0" prefHeight="336.0" prefWidth="674.0">
+      <TableView fx:id="customerAppointmentByTypeAndMonthTableView" layoutX="35.0" layoutY="155.0" prefHeight="300.0" prefWidth="680.0">
         <columns>
           <TableColumn fx:id="monthColumn" prefWidth="245.0" text="MONTH" />
           <TableColumn fx:id="typeColumn" prefWidth="226.0" text="TYPE" />
             <TableColumn fx:id="countColumn" prefWidth="199.0" text="COUNT" />
         </columns>
       </TableView>
+      <HBox layoutX="35.0" layoutY="84.0" prefHeight="61.0" prefWidth="646.0">
+         <children>
+            <Label fx:id="monthLabel" prefHeight="35.0" prefWidth="109.0" text="Select Month">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="monthComboBox" onAction="#selectMonth" prefWidth="150.0">
+               <HBox.margin>
+                  <Insets left="20.0" top="15.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Label fx:id="typeLabel" prefHeight="35.0" prefWidth="109.0" text="Select Type">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="typeComboBox" onAction="#selectType" prefHeight="26.0" prefWidth="211.0">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </ComboBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

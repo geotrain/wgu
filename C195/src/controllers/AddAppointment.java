@@ -18,15 +18,12 @@ import models.Appointments;
 import models.Contacts;
 import models.Customers;
 import models.Users;
-import org.w3c.dom.Text;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -146,7 +143,12 @@ public class AddAppointment implements Initializable {
 
     /**
      * This method saves the added data to the appointments database and returns to the main controller
-     * @param actionEvent
+     * LAMBDA JUSTIFICATION: This lambda expression is used here to run a filtered customer list "CList" based on
+     * the CustomerID being equal to the Observable AList which is calling the getAllAppointments() method to return true.
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
+     * @throws InterruptedException This is an exception
+     * @throws ParseException This is an exception
      */
     public void save(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException, ParseException {
 
@@ -285,8 +287,8 @@ public class AddAppointment implements Initializable {
 
     /**
      * This method will close the add appointment controller without saving any data and returns to the main controller
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     public void close(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
@@ -328,6 +330,5 @@ public class AddAppointment implements Initializable {
 
         // ChoiceBox List for startingHourList
         endMinuteChoiceBox.setItems(endMinuteList);
-
     }
 }

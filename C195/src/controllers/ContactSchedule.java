@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.Appointments;
 import models.Contacts;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -53,8 +52,8 @@ public class ContactSchedule implements Initializable {
 
     /**
      * This method will close the Contact Email controller
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     public void close(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
@@ -68,8 +67,8 @@ public class ContactSchedule implements Initializable {
 
     /**
      * This initialize method will generate the Contact Schedule Table View Upon Radio Button Selection
-     * @param url
-     * @param resourceBundle
+     * @param url This is a parameter
+     * @param resourceBundle This is a parameter
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize Contact Name Observable List
@@ -94,6 +93,5 @@ public class ContactSchedule implements Initializable {
     @FXML private void displayContactId(javafx.event.ActionEvent actionEvent) {
         contactIdTextField.setText(String.valueOf(contactComboBox.getValue().getContactID()));
         contactAppointmentTableView.setItems(DBAppointments.getContactScheduleByContactId(Integer.parseInt(contactIdTextField.getText())));
-
     }
 }

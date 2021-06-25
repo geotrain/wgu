@@ -1,8 +1,6 @@
 package controllers;
 
-/**
- * Import statements
- */
+//Import statements
 import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
@@ -18,25 +16,9 @@ import models.Countries;
 import models.Customers;
 import models.Division;
 import utilities.DataProvider;
-
 import java.io.IOException;
 
 public class ModifyCustomer {
-
-    /**
-    // Observable List For Countries Drop Down Choice Box
-    ObservableList<String> countriesList = FXCollections.observableArrayList("U.S", "UK", "Canada");
-
-    // Observable List For State Provinces Drop Down Choice Box
-    ObservableList<String> stateProvinceList = FXCollections.observableArrayList("Alabama","Alaska", "Arizona", "Arkansas", "California",
-            "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-            "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
-            "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota",
-            "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah",
-            "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Northwest Territories", "Alberta", "British Columbia",
-            "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Ontario", "Quebec", "Saskatchewan", "Nunavut", "Yukon",
-            "Newfoundland and Labrador", "England", "Wales", "Scotland", "Northern Ireland");
-     */
 
     // Declare customerId object for Modify Customer Method
     private Customers customerId;
@@ -181,7 +163,7 @@ public class ModifyCustomer {
     }
     /**
      * The loadCountries is used to populate the state or province depending on which Country is selected.
-     * @param actionEvent
+     * @param actionEvent This is a parameter
      */
     public void loadCountries(ActionEvent actionEvent) {
         Countries C = countriesComboBox.getValue();

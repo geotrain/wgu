@@ -6,7 +6,6 @@ import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utilities.DataProvider;
-
 import java.sql.*;
 
 public class DBCountries {
@@ -14,10 +13,7 @@ public class DBCountries {
     /**
      * This ObservableList returns all the countries from the countries table the Country ID and Country Name. This is
      * used in conjunction with the models/Countries.java file that contains the getId and getName methods
-     *
-     * @return
      */
-
     public static void selectAllCountries() {
         try {
             String sql = "SELECT * FROM countries";
@@ -40,7 +36,7 @@ public class DBCountries {
 
     /**
      * This method check's the dataabse connection with the create_date and then outputs it to the screen
-     * @throws SQLException
+     * @throws SQLException This is the thrown statement
      */
     public static void checkDatabaseConversion() throws SQLException {
         System.out.println("CREATE DATE TEST");
@@ -56,5 +52,4 @@ public class DBCountries {
             throwables.printStackTrace();
         }
     }
-
 }

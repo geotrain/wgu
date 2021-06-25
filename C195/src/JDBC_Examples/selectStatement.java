@@ -10,7 +10,7 @@ public class selectStatement {
 
     /**
      * This SELECT raw statement returns all results from the countries table
-     * @return
+     * @return This is a return
      */
     public static String selectStatementRaw() {
         System.out.println("COUNTRY");

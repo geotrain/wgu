@@ -24,11 +24,10 @@ public class Main extends Application {
      * This start method brings up the initial user login screen for a user to enter a username and password to begin
      * using the program. It will throw an error if a user attempts to log in without the correct username and/or password.
      * All log in attempts will be logged in the ../logs/login_activity.txt file.
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage  This is a parameter
+     * @throws Exception This is an exception
      */
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    @Override public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
         primaryStage.setTitle("Appointment User Login");
         primaryStage.setScene(new Scene(root, 600, 275));
@@ -36,6 +35,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * This is the main method () that launches the program
+     * @param args This is a parameter
+     * @throws SQLException This is an exception
+     */
     public static void main(String[] args) throws SQLException {
 
         /**
@@ -137,5 +141,4 @@ public class Main extends Application {
          */
         DBConnection.closeConnection();
     }
-
 }

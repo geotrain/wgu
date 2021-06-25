@@ -1,9 +1,9 @@
 package models;
 
+// Import statements
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utilities.DBConnection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
@@ -35,20 +35,20 @@ public class Appointments {
 
     /**
      * The Appointments method with the columns from the appointment table
-     * @param id
-     * @param title
-     * @param description
-     * @param location
-     * @param type
-     * @param start
-     * @param end
-     * @param createDate
-     * @param createdBy
-     * @param lastUpdate
-     * @param lastUpdatedBy
-     * @param customerId
-     * @param userId
-     * @param contactId
+     * @param id This is a parameter
+     * @param title This is a parameter
+     * @param description This is a parameter
+     * @param location This is a parameter
+     * @param type This is a parameter
+     * @param start This is a parameter
+     * @param end This is a parameter
+     * @param createDate This is a parameter
+     * @param createdBy This is a parameter
+     * @param lastUpdate This is a parameter
+     * @param lastUpdatedBy This is a parameter
+     * @param customerId This is a parameter
+     * @param userId This is a parameter
+     * @param contactId This is a parameter
      */
     public Appointments(int id,
                         String title,
@@ -82,7 +82,7 @@ public class Appointments {
 
     /**
      * The getId method that gets the Appointments (Appointment_ID) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int getId() {
         return id;
@@ -91,7 +91,7 @@ public class Appointments {
     /**
      * The setId method that sets the Appointments (Appointment_ID) to the appointments table. This is auto-incremented
      * so we will not use this method for this project.
-     * @return
+     * @return This is a return statement
      */
     public int setId() {
         return this.id = id;
@@ -99,7 +99,7 @@ public class Appointments {
 
     /**
      * The getName method that gets the Appointments (Title) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String getTitle() {
         return title;
@@ -107,7 +107,7 @@ public class Appointments {
 
     /**
      * The setTitle method that sets the Appointments (Title) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String setTitle() {
         return this.title = title;
@@ -115,7 +115,7 @@ public class Appointments {
 
     /**
      * The getDescription method that gets the Appointment (Description) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String getDescription() {
         return description;
@@ -123,7 +123,7 @@ public class Appointments {
 
     /**
      * This setDescription method that sets the Appointments (Description) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String setDescription() {
         return this.description = description;
@@ -131,7 +131,7 @@ public class Appointments {
 
     /**
      * The getLocation method that gets the Appointments (Location) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String getLocation() {
         return location;
@@ -139,7 +139,7 @@ public class Appointments {
 
     /**
      * The setLocation method that gets the Appointments (Location) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String setLocation() {
         return this.location = location;
@@ -147,7 +147,7 @@ public class Appointments {
 
     /**
      * The getType method that gets the Appointments (Type) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String getType() {
         return type;
@@ -155,7 +155,7 @@ public class Appointments {
 
     /**
      * The setType method that gets the Appointments (Type) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String setType() {
         return this.type = type;
@@ -163,7 +163,7 @@ public class Appointments {
 
     /**
      * This getStart method that gets the Appointments (Start) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime getStart() {
         return start;
@@ -171,7 +171,7 @@ public class Appointments {
 
     /**
      * This setStart method that gets the Appointments (Start) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime setStart() {
         return this.start = start;
@@ -179,7 +179,7 @@ public class Appointments {
 
     /**
      * This getEnd method that gets the Appointments (End) from the appointments table
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime getEnd() {
         return end;
@@ -187,7 +187,7 @@ public class Appointments {
 
     /**
      * This setEnd method that gets the Appointments (End) to the appointments table
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime setEnd() {
         return this.end = end;
@@ -195,7 +195,7 @@ public class Appointments {
 
     /**
      * This getCreateDate method that gets the Appointments (Create_Date) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime getCreateDate() {
        return createDate;
@@ -203,7 +203,7 @@ public class Appointments {
 
     /**
      * This setCreateDate method that sets the Appointments (Create_Date) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime setCreateDate() {
         return this.createDate = createDate;
@@ -211,7 +211,7 @@ public class Appointments {
 
     /**
      * This getCreatedBy method that gets the Appointments (Created_By) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String getCreatedBy()  {
         return createdBy;
@@ -219,7 +219,7 @@ public class Appointments {
 
     /**
      * This setCreatedBy method that sets the Appointments (Created_By) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String setCreatedBy()  {
         return this.createdBy = createdBy;
@@ -227,7 +227,7 @@ public class Appointments {
 
     /**
      * This getLastUpdate method that gets the Appointments (Last_Update) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime getLastUpdate() {
        return lastUpdate;
@@ -235,7 +235,7 @@ public class Appointments {
 
     /**
      * This setLastUpdate method that sets the Appointments (Last_Update) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public LocalDateTime setLastUpdate() {
         return this.lastUpdate = lastUpdate;
@@ -243,7 +243,7 @@ public class Appointments {
 
     /**
      * This getLastUpdatedBy method that gets the Appointments (Last_Updated_By) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String getLastUpdatedBy() {
         return lastUpdatedBy;
@@ -251,7 +251,7 @@ public class Appointments {
 
     /**
      * This setLastUpdatedBy method that sets the Appointments (Last_Updated_By) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public String setLastUpdatedBy() {
         return this.lastUpdatedBy = lastUpdatedBy;
@@ -259,7 +259,7 @@ public class Appointments {
 
     /**
      * This getCustomerId method that gets the Appointments (Customer_ID) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int getCustomerId() {
         return customerId;
@@ -267,7 +267,7 @@ public class Appointments {
 
     /**
      * This setCustomerId method that sets the Appointments (Customer_ID) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int setCustomerId() {
         return this.customerId = customerId;
@@ -275,7 +275,7 @@ public class Appointments {
 
     /**
      * This getUserId method that gets the Appointments (User_ID) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int getUserId() {
         return userId;
@@ -283,7 +283,7 @@ public class Appointments {
 
     /**
      * This setUserId method that sets the Appointments (User_ID) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int setUserId() {
         return this.userId = userId;
@@ -291,7 +291,7 @@ public class Appointments {
 
     /**
      * This getContactId method that gets the Appointments (ContactID) from the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int getContactId() {
         return contactId;
@@ -299,7 +299,7 @@ public class Appointments {
 
     /**
      * This setContactId method that sets the Appointments (ContactID) to the appointments table.
-     * @return
+     * @return This is a return statement
      */
     public int setContactId() {
         return this.userId = userId;
@@ -307,7 +307,7 @@ public class Appointments {
 
     /**
      * Override to print type to string
-     * @return
+     * @return This is a return statement
      */
     @Override public String toString() {
         return type;
@@ -316,8 +316,8 @@ public class Appointments {
     /**
      * Tis method is used to preload the previously saved contact for appointments and is being called in the
      * setAppointmentDate() method in the ModifyAppointment controller.
-     * @param contactId
-     * @return
+     * @param contactId This is a parameter
+     * @return This is a return statement
      */
     public static Contacts getContactName(int contactId) {
 
@@ -346,8 +346,8 @@ public class Appointments {
     /**
      * This method is used to preload the previously saved customer for appointments and is being called in the
      * setAppointmentDate() method in the ModifyAppointment controller.
-     * @param customerId
-     * @return
+     * @param customerId This is a parameter
+     * @return This is a return statement
      */
     public static Customers getCustomerName(int customerId) {
         ObservableList<Customers> customerList = FXCollections.observableArrayList();
@@ -374,8 +374,8 @@ public class Appointments {
     /**
      * This method is used to preload the previously saved user for appointments and is being called in the
      * setAppointmentDate() method in the ModifyAppointment controller.
-     * @param userId
-     * @return
+     * @param userId This is a parameter
+     * @return This is a return statement
      */
     public static Users getUserName(int userId) {
         ObservableList<Users> userList = FXCollections.observableArrayList();

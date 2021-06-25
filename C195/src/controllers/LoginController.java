@@ -51,8 +51,8 @@ public class LoginController implements Initializable {
 
     /**
      * The loginButton method checks if a username is correct or not then logs into the main controller
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     @FXML public void logInButton(ActionEvent actionEvent) throws IOException {
         System.out.println("Get Username And Password");
@@ -91,7 +91,7 @@ public class LoginController implements Initializable {
 
     /**
      * The closeButton method exits the program
-     * @param actionEvent
+     * @param actionEvent This is a parameter
      */
     @FXML public void closeButton(ActionEvent actionEvent) {
         System.out.println("Close Button Selected");
@@ -105,8 +105,8 @@ public class LoginController implements Initializable {
 
     /**
      * The initialize method loads the screen
-     * @param url
-     * @param resourceBundle
+     * @param url This is a parameter
+     * @param resourceBundle This is a parameter
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");

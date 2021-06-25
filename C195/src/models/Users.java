@@ -1,5 +1,6 @@
 package models;
 
+// Import statements
 import java.sql.Date;
 import java.sql.Time;
 
@@ -17,13 +18,13 @@ public class Users {
 
     /**
      * The Users method with the columns from the users table
-     * @param id
-     * @param username
-     * @param password
-     * @param createDateDate
-     * @param createdBy
-     * @param lastUpdateDate
-     * @param lastUpdatedBy
+     * @param id This is a parameter
+     * @param username This is a parameter
+     * @param password This is a parameter
+     * @param createDateDate This is a parameter
+     * @param createdBy This is a parameter
+     * @param lastUpdateDate This is a parameter
+     * @param lastUpdatedBy This is a parameter
      */
     public Users(int id, String username,String password, Date createDateDate,  String createdBy,
                  Date lastUpdateDate,  String lastUpdatedBy) {
@@ -38,7 +39,7 @@ public class Users {
 
     /**
      * Constructor used for getUserName() method in the Appointments.java and will be called in the ModifyAppointment controller.
-     * @param username
+     * @param username This is a parameter
      */
     public Users(String username) {
         this.username = username;
@@ -46,7 +47,7 @@ public class Users {
 
     /**
      * The getId method that gets the Users (User_ID) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public int getId() {
         return this.id;
@@ -55,7 +56,7 @@ public class Users {
     /**
      * The setId method that sets the Users (User_ID) to the users table. This is auto-incremented so we will not use
      * this method for this project.
-     * @return
+     * @return This is a return statement
      */
     public int setId() {
         return this.id = id;
@@ -63,7 +64,7 @@ public class Users {
 
     /**
      * The getUsername method that gets the Users (User_Name) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getUserName() {
         return this.username;
@@ -71,7 +72,7 @@ public class Users {
 
     /**
      * The setUserName method that sets the Users (User_Name) to the users table.
-     * @return void
+     * @param username This is a parameter
      */
     public void setUserName(String username) {
          this.username = username;
@@ -79,7 +80,7 @@ public class Users {
 
     /**
      * The getPassword method that gets the Users (Password) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getPassword() {
         return this.password;
@@ -87,7 +88,7 @@ public class Users {
 
     /**
      * The setPassword method that sets the Users (Password) to the users table.
-     * @return void
+     * @param password This is a parameter
      */
     public void setPassword(String password) {
         this.password = password;
@@ -95,7 +96,7 @@ public class Users {
 
     /**
      * The getCreateDateDate method that gets the Users (Create_Date) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public Date getCreateDateDate() {
         return this.createDateDate;
@@ -103,7 +104,7 @@ public class Users {
 
     /**
      * The setCreateDateDate method that sets the Users (Create_Date) to the users table.
-     * @return void
+     * @param createDateDate This is a parameter
      */
     public void setCreateDateDate(Date createDateDate) {
         this.createDateDate = createDateDate;
@@ -111,7 +112,7 @@ public class Users {
 
     /**
      * The getCreatedBy method that gets the Users (Created_By) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getCreatedBy() {
         return this.createdBy;
@@ -119,7 +120,7 @@ public class Users {
 
     /**
      * The setCreatedBy method that sets the Users (Created_By) to the users table.
-     * @return void
+     * @param createdBy This is a parameter
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
@@ -127,7 +128,7 @@ public class Users {
 
     /**
      * The getLastUpdateDate method that gets the Users (Last_Update) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public Date getLastUpdateDate() {
         return this.lastUpdateDate;
@@ -135,7 +136,7 @@ public class Users {
 
     /**
      * The setLastUpdateDate method that sets the Users (Last_Update) to the users table.
-     * @return
+     * @param lastUpdateDate This is a parameter
      */
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
@@ -143,7 +144,7 @@ public class Users {
 
     /**
      * The getLastUpdatedBy method that gets the Users (Last_Updated_By) from the users table.
-     * @return
+     * @return This is a return statement
      */
     public String getLastUpdatedBy() {
         return this.lastUpdatedBy;
@@ -151,7 +152,7 @@ public class Users {
 
     /**
      * The setLastUpdatedBy method that sets the Users (Last_Updated_By) to the users table.
-     * @return void
+     * @param lastUpdatedBy This is a parameter
      */
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
@@ -159,7 +160,7 @@ public class Users {
 
     /**
      * Override to print username to string
-     * @return
+     * @return This is a return statement
      */
     @Override public String toString() {
         return username;

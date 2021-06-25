@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import models.Countries;
 import utilities.DBConnection;
 import utilities.DataProvider;
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +18,8 @@ public class DBContacts {
      * used in conjunction with the models/Contacts.java file that contains the getContactId, getContactName, and
      * getContactEmail methods.
      *
-     * @param <Contacts>
-     * @return
+     * @param <Contacts> This is a parameter
+     * @return This is a return statement
      */
     public static <Contacts> ObservableList<Contacts> getAllContacts() {
 
@@ -55,8 +54,8 @@ public class DBContacts {
 
     /**
      * This getContactsEmailList method returns all emails from the contacts table and is pulled from the ContactEmail Controller
-     * @param <Contacts>
-     * @return
+     * @param <Contacts> This is a parameter
+     * @return This is a return statement
      */
     public static <Contacts> ObservableList<Contacts> getContactsEmailList() {
 

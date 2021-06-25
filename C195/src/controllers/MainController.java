@@ -1,8 +1,6 @@
 package controllers;
 
-/**
- * Import statements
- */
+// Import statements
 import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
 import DBAccess.DBUsers;
@@ -26,7 +24,6 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import static DBAccess.DBUsers.currentUserId;
 
 public class MainController implements Initializable {
@@ -69,16 +66,14 @@ public class MainController implements Initializable {
     private static boolean annoyanceReminderFlag = false;
     /**
      * This method inditializes the customers and appointments tables
-     * @param url
-     * @param resourceBundle
+     * @param url This is a parameter
+     * @param resourceBundle This is a parameter
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
 
         /**
          * Get The currentUser logged in to check if any appointments exist
          */
-
-
         if (!annoyanceReminderFlag)
         {
             annoyanceReminderFlag = true;
@@ -127,8 +122,8 @@ public class MainController implements Initializable {
 
     /**
      * This method will open the add appointment controller
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     @FXML public void addAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addAppointment.fxml"));
@@ -140,6 +135,11 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * This modify appointment modifies an appointment in the modify appointment controller
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
+     */
     @FXML public void modifyAppointment(ActionEvent actionEvent) throws IOException {
         Appointments selectAppointment = appointmentsTableView.getSelectionModel().getSelectedItem();
 
@@ -166,7 +166,7 @@ public class MainController implements Initializable {
 
     /**
      * This deleteAppointment method deletes selected appointment from appointments table.
-     * @param actionEvent
+     * @param actionEvent This is a parameter
      */
     @FXML
     public void deleteAppointment(ActionEvent actionEvent) {
@@ -204,8 +204,8 @@ public class MainController implements Initializable {
 
     /**
      * This method opens up the AddCustomer Controller to add a new customer to the database.
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     @FXML public void addCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/addCustomer.fxml"));
@@ -219,8 +219,8 @@ public class MainController implements Initializable {
 
     /**
      * This method modifies an existing customer record in the ModifyCustomer controller.
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
 
     @FXML public void modifyCustomer(ActionEvent actionEvent) throws IOException {
@@ -249,7 +249,7 @@ public class MainController implements Initializable {
 
     /**
      * This deleteCustomer method deletes selected customer from customers table.
-     * @param actionEvent
+     * @param actionEvent This is a parameter
      */
     @FXML public void deleteCustomer(ActionEvent actionEvent) {
         Customers selectedCustomer = customersTableView.getSelectionModel().getSelectedItem();
@@ -286,7 +286,11 @@ public class MainController implements Initializable {
         }
     }
 
-    // Controls Methods
+    /**
+     * This method generates a report to view a schedule by contact id
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
+     */
     @FXML public void viewScheduleByContact(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/contactSchedule.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -297,6 +301,11 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * This view customer appointment by type and month generates a report when selecting a month and type sorted
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
+     */
     @FXML public void viewCustomerAppointmentsByTypeAndMonth(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/customerAppointmentsByTypeAndMonth.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -309,8 +318,8 @@ public class MainController implements Initializable {
 
     /**
      * This method opens up the Contact Email List Controller Screen
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     @FXML public void contactEmailList(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/contactEmail.fxml"));
@@ -324,8 +333,8 @@ public class MainController implements Initializable {
 
     /**
      * This method exits out of the Main Controller and returns to the Login Controller for a new user to log in.
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent This is a parameter
+     * @throws IOException This is an exception
      */
     @FXML public void logOff(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
@@ -339,7 +348,7 @@ public class MainController implements Initializable {
 
     /**
      * This method exits the program completely.
-     * @param actionEvent
+     * @param actionEvent This is a parameter
      */
     @FXML public void exitProgram(ActionEvent actionEvent) {
         System.out.println("Exit Button Selected");

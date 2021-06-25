@@ -16,9 +16,9 @@ public class DBUsers {
 
     /**
      * Checks to see if user and password are found in users table
-     * @param uName
-     * @param password
-     * @return
+     * @param uName This is a parameter
+     * @param password This is a parameter
+     * @return This is a return statement
      */
     public static boolean checkUserNameAndPass(String uName, String password) {
 
@@ -48,8 +48,8 @@ public class DBUsers {
      * Created_By, Last_Update, Last_Updated_By. This is used in conjunction with the models/Users.java file that
      * contains the getId, getUserName, getPassword, getCreateDate, getCreateDateTime, getCreatedBy, getLastUpdateDate,
      * getLastUpdateTime, and getlastUpdatedBy methods.
-     * @param <Users>
-     * @return
+     * @param <Users>  This is a parameter
+     * @return This is a return
      */
     public static <Users> ObservableList<Users> getAllUsers() {
 

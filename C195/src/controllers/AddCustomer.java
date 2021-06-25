@@ -1,8 +1,6 @@
 package controllers;
 
-/**
- * Import statements
- */
+// Import statements
 import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
 import javafx.collections.FXCollections;
@@ -17,7 +15,6 @@ import javafx.stage.Stage;
 import models.Countries;
 import models.Division;
 import utilities.DataProvider;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -150,7 +147,7 @@ public class AddCustomer {
 
     /**
      * The loadCountries is used to populate the state or province depending on which Country is selected.
-     * @param actionEvent
+     * @param actionEvent This is a parameter
      */
     public void loadCountries(ActionEvent actionEvent) {
         Countries C = countryComboBox.getValue();

@@ -11,27 +11,43 @@ public class DBQuery {
     // Statement reference
     public static Statement statement;
 
-    // Create Statement Object
+    /**
+     * This creates a static object
+     * @param conn This is a parameter
+     * @throws SQLException This is an exception
+     */
     public static void setStatement(Connection conn) throws SQLException {
         statement = conn.createStatement();
     }
 
-    // Return statement object
+    /**
+     * This is the return statement object
+     * @return This is a return
+     */
     public static Statement getStatement() {
         return statement;
     }
 
-    // PreparedStatement reference
+    /**
+     * This is a prepared statement reference
+     */
     private static PreparedStatement statement2;
 
-    // Create preparedStatement Object
+    /**
+     * This is a create prepared statement object
+     * @param conn This is a parameter
+     * @param sqlStatement This is a parameter
+     * @throws SQLException This is an exception
+     */
     public static void setPreparedStatement(Connection conn, String sqlStatement) throws SQLException {
         statement2 = conn.prepareStatement(sqlStatement);
     }
 
-    // Return preparedStatement object
+    /**
+     * This is a return prepared statement object
+     * @return This is a return statement
+     */
     public static PreparedStatement getPreparedStatement() {
         return statement2;
     }
-
 }

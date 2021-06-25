@@ -8,9 +8,9 @@ public class Division {
 
     /**
      * Constructor for Division Class
-     * @param divisionID
-     * @param countryID
-     * @param division
+     * @param divisionID This is a parameter
+     * @param countryID This is a parameter
+     * @param division This is a parameter
      */
     public Division(int divisionID, int countryID, String division) {
         this.divisionID = divisionID;
@@ -20,7 +20,7 @@ public class Division {
 
     /**
      * getDivisionID method returns divisionID
-     * @return
+     * @return This is a return statement
      */
     public int getDivisionID() {
         return divisionID;
@@ -28,7 +28,7 @@ public class Division {
 
     /**
      * setDivisionID method returns divisionID
-     * @param divisionID
+     * @param divisionID This is a parameter
      */
     public void setDivisionID(int divisionID) {
         this.divisionID = divisionID;
@@ -36,7 +36,7 @@ public class Division {
 
     /**
      * getCountryID method returns countryID
-     * @return
+     * @return This is a return statement
      */
     public int getCountryID() {
         return countryID;
@@ -44,7 +44,7 @@ public class Division {
 
     /**
      * setCountryID method returns countryID
-     * @param countryID
+     * @param countryID This is a parameter
      */
     public void setCountryID(int countryID) {
         this.countryID = countryID;
@@ -52,7 +52,7 @@ public class Division {
 
     /**
      * getDivision method returns division
-     * @return
+     * @return This is a return statement
      */
     public String getDivision() {
         return division;
@@ -60,13 +60,16 @@ public class Division {
 
     /**
      * setDivision method returns division
-     * @param division
+     * @param division This is a parameter
      */
     public void setDivision(String division) {
         this.division = division;
     }
 
-    // Override method to convert division to a String
+    /**
+     * This changes division to a string
+     * @return This is a return statement
+     */
     @Override public String toString() {
         return division;
     }

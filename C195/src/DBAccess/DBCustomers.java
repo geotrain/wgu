@@ -13,7 +13,7 @@ public class DBCustomers {
     /**
      * This ObservableList returns all the customers from the customers table. This is
      * used in conjunction with the models/Customers.java file that contains the getId and getName methods
-     * @return
+     * @return This is the return statement
      */
     public static ObservableList<Customers> getAllCustomers() {
 
@@ -63,12 +63,12 @@ public class DBCustomers {
 
     /**
      * This addNewCustomer method adds data entered into the customers table.
-     * @param customerName
-     * @param customerAddress
-     * @param customerPostalCode
-     * @param customerPhoneNumber
-     * @param divisionID
-     * @return
+     * @param customerName  This is a returned parameter
+     * @param customerAddress This is a returned parameter
+     * @param customerPostalCode This is a returned parameter
+     * @param customerPhoneNumber This is a returned parameter
+     * @param divisionID This is a parameter
+     * @return This is the return statement
      */
     public static boolean addNewCustomer(String customerName, String customerAddress, String
             customerPostalCode, String customerPhoneNumber, Integer divisionID)
@@ -93,8 +93,8 @@ public class DBCustomers {
 
     /**
      * The deleteCustomer method deletes a selected user from the customers table located on the MainController.
-     * @param id
-     * @return
+     * @param id  This is a returned parameter
+     * @return This is the return statement
      */
     public static boolean deleteCustomer(int id)
     {
@@ -115,13 +115,13 @@ public class DBCustomers {
     /**
      * This addNewCustomer method adds data entered into the customers table.
      *
-     * @param customerIdTextField
-     * @param customerName
-     * @param customerAddress
-     * @param customerPostalCode
-     * @param customerPhoneNumber
-     * @param divisionID
-     * @return
+     * @param customerIdTextField This is a returned parameter
+     * @param customerName This is a returned parameter
+     * @param customerAddress This is a returned parameter
+     * @param customerPostalCode This is a returned parameter
+     * @param customerPhoneNumber This is a returned parameter
+     * @param divisionID This is a returned parameter
+     * @return This is a return
      */
     public static boolean updateCustomer(String customerIdTextField, String customerName, String customerAddress, String customerPostalCode,
                                          String customerPhoneNumber, Integer divisionID)
@@ -148,9 +148,9 @@ public class DBCustomers {
     /**
      * This method returns customerId and check's it against the appointment table to see if a user has an appointment
      * 15 minutes from now() after the user logs in.
-     * @param customerId
-     * @param <Customers>
-     * @return
+     * @param customerId this is a returned parameter
+     * @param <Customers> this is a returned parameter
+     * @return this is the return statement
      */
     public static <Customers> ObservableList<Customers> getCustomerAppointments(int customerId) {
 
@@ -174,8 +174,8 @@ public class DBCustomers {
     /**
      * This getCustomerId method is being used for Modify Appointment controller save method to save the name as a string
      * if a user decides not to change the customer when modifying an appointment.
-     * @param customerName
-     * @return
+     * @param customerName the customerName is the name of the customer
+     * @return this is the return statement
      */
     public static int getCustomerId(String customerName)
     {
@@ -199,8 +199,8 @@ public class DBCustomers {
     /**
      * This getUserId method is being used for Modify Appointment controller save method to save the name as a string
      * if a user decides not to change the user when modifying an appointment.
-     * @param userName
-     * @return
+     * @param userName This is a parameter
+     * @return This is a return statement
      */
     public static int getUserId(String userName)
     {
@@ -224,8 +224,8 @@ public class DBCustomers {
     /**
      * This getContactId method is being used for Modify Appointment controller save method to save the name as a string
      * if a user decides not to change the contact when modifying an appointment.
-     * @param contactName
-     * @return
+     * @param contactName This is a parameter
+     * @return This is a return statement
      */
     public static int getContactId(String contactName)
     {
