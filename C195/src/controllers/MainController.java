@@ -309,7 +309,7 @@ public class MainController implements Initializable {
     @FXML public void viewCustomerAppointmentsByTypeAndMonth(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/customerAppointmentsByTypeAndMonth.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 745, 520);
+        Scene scene = new Scene((Parent) root, 745, 275);
         stage.setTitle("Customer Appointment List By Type And Month");
         stage.setResizable(false);
         stage.setScene(scene);

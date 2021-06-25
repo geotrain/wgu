@@ -43,52 +43,16 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException {
 
         /**
-        *** This is an example of a local resource bundle to change languages only for the app
-        Locale france = new Locale("fr", "FR");
-        Locale espanol = new Locale("es", "ES");
-        Locale german = new Locale("de", "DE");
-        Locale english = Locale.ENGLISH;
+         * These are used to to test in French "fr", Spanish "es", and German "de". To test in a specific language
+         * simply uncomment the line corresponding to the language you want to test.
+         */
+        // Locale.setDefault(new Locale("en"));
+        // Locale.setDefault(new Locale("fr"));
+        // Locale.setDefault(new Locale("de"));
+        // Locale.setDefault(new Locale("es"));
 
-        Scanner keyboard = new Scanner(System.in);
-        System.out.print("Enter A Language (es, de, fr, en): " );
-        String languageCode = keyboard.nextLine();
-
-        if (languageCode.equals("es")) {
-            Locale.setDefault(new Locale("es"));
-        } else if (languageCode.equals("fr")) {
-            Locale.setDefault(new Locale("fr"));
-        } else if (languageCode.equals("de")) {
-            Locale.setDefault(new Locale("de"));
-        } else if (languageCode.equals("en")) {
-            Locale.setDefault(new Locale("en"));
-        } else {
-            System.out.println("Language you entered not supported.");
-        }*/
-
-        // Set Resource Bundle Object
-        ResourceBundle rb = ResourceBundle.getBundle("main/login", Locale.getDefault());
-
-        // If Else statements to decide which language pack to use
-        if (Locale.getDefault().getLanguage().equals("de"))
-        {
-            System.out.println(rb.getString("title") + " \n" + rb.getString("username") + " \n" + rb.getString("password")
-                    + " \n" + rb.getString("signin") + " \n" + rb.getString("empty") + " \n" + rb.getString("incorrect"));
-            Locale.setDefault(new Locale("de"));
-        } else if (Locale.getDefault().getLanguage().equals("es")) {
-            System.out.println(rb.getString("title") + " \n" + rb.getString("username") + " \n" + rb.getString("password")
-                    + " \n" + rb.getString("signin") + " \n" + rb.getString("empty") + " \n" + rb.getString("incorrect"));
-            Locale.setDefault(new Locale("es"));
-        } else if (Locale.getDefault().getLanguage().equals("fr")) {
-            System.out.println(rb.getString("title") + " \n" + rb.getString("username") + " \n" + rb.getString("password")
-                    + " \n" + rb.getString("signin") + " \n" + rb.getString("empty") + " \n" + rb.getString("incorrect"));
-            Locale.setDefault(new Locale("fr"));
-        } else {
-            System.out.println(rb.getString("title") + " \n" + rb.getString("username") + " \n" + rb.getString("password")
-                    + " \n" + rb.getString("signin") + " \n" + rb.getString("empty") + " \n" + rb.getString("incorrect"));
-            Locale.setDefault(new Locale("en"));
-        }
-
-        System.out.println(ZoneId.systemDefault()); // Convert this to a string for login controller toString
+        // Convert this to a string for login controller toString
+        System.out.println(ZoneId.systemDefault());
 
         /**
          * This will make the initial connection to the uCertify database. The method startConnection() is located in

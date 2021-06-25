@@ -2,6 +2,7 @@ package controllers;
 
 // Import Statements
 import DBAccess.DBAppointments;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Appointments;
 import java.awt.event.ActionEvent;
@@ -25,19 +27,47 @@ public class ViewAllCustomerAppointmentsByTpeAndMonth implements Initializable {
     @FXML private AnchorPane customerReportByTypeAndMonthLabel;
     @FXML private Label monthLabel;
     @FXML private Label typeLabel;
+    @FXML private Label errorLabel;
+    @FXML private Label countLabel;
+
+    // FX ID's Text Fields
+    @FXML private TextField countTextField;
 
     // FX ID's Combo Boxes
-    @FXML private ComboBox<ObservableList> monthComboBox;
-    @FXML private ComboBox<ObservableList> typeComboBox;
+    @FXML private ComboBox<String> monthComboBox;
+    @FXML private ComboBox<String> typeComboBox;
 
     // FX ID's Buttons
     @FXML private Button closeButton;
 
-    // FX ID's Table View and Table Columns
-    @FXML private TableView<Appointments> customerAppointmentByTypeAndMonthTableView;
-    @FXML private TableColumn<Appointments, Date> monthColumn;
-    @FXML private TableColumn<Appointments, String> typeColumn;
-    @FXML private TableColumn<Appointments, Integer> countColumn;
+    // Declare global variables to share with DBAppointments.getCustomerTypeAndMonthReport() method
+    private static String monthSelected;
+    private static String typeSelected;
+
+    // Observable List Combo Box for Meeting Types
+    ObservableList<String> meetingType = FXCollections.observableArrayList(
+            "Backlog Grooming",
+            "De-Briefing",
+            "Planning Session",
+            "Sprint Planning",
+            "Sprint Retrospective",
+            "Staff",
+            "Daily Scrum");
+
+    // Observable List Combo Box for Meeting Types
+    ObservableList<String> monthName = FXCollections.observableArrayList(
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December");
 
     /**
      * This method will close the ViewAllCustomerAppointmentsByTypeAndMonth Controller and Return To Main Controller
@@ -75,24 +105,59 @@ public class ViewAllCustomerAppointmentsByTpeAndMonth implements Initializable {
      * @param resourceBundle This is a parameter
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Populates and initializes ALL of the appointments by type and month
-        //monthColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        //typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        //countColumn.getCellValueFactory(new PropertyValueFactory<>("count"))
-        customerAppointmentByTypeAndMonthTableView.setItems(DBAppointments.getAllAppointments());
-    }
+        // Set label to clear
+        errorLabel.setText("");
 
-    /**
-     * This selectMonth action will choose a month generated from an Observable List
-     * @param actionEvent This is a parameter
-     */
-    public void selectMonth(javafx.event.ActionEvent actionEvent) {
+        // Initialize Meeting Type Observable List
+        typeComboBox.setItems(meetingType);
+
+        // Initialize Meeting Type Observable List
+        monthComboBox.setItems(monthName);
     }
 
     /**
      * This selectMonth action will choose a type generated from an Observable List
      * @param actionEvent This is a parameter
      */
-    public void selectType(javafx.event.ActionEvent actionEvent) {
+    public void selectMonthType(javafx.event.ActionEvent actionEvent) {
+        monthSelected = monthComboBox.getValue();
+        typeSelected = typeComboBox.getValue();
+        System.out.println("The selections were " + monthSelected + " for month and " + typeSelected + " for type.");
+        if (monthSelected == null) {
+            errorLabel.setText("Please select a month before selecting type.");
+            errorLabel.setTextFill(Color.RED);
+            return;
+        } else {
+            // Set label to clear
+            errorLabel.setText("");
+            Integer monthTypeCount = DBAppointments.getCustomerTypeAndMonthReport(typeSelected, monthSelected);
+            System.out.println("This is monthTypeCount " + monthTypeCount);
+            countLabel.setText("Type And Month Count");
+            countTextField.setText(String.valueOf(monthTypeCount));
+            //countLabel.setText("Count : " + monthTypeCount);
+        }
+    }
+
+    /**
+     * This clearErroLabel will set the error label to empty once a selection is made
+     * @param actionEvent This is a parameter
+     */
+    public void clearErrorLabel(javafx.event.ActionEvent actionEvent) {
+        // Set label to clear
+        errorLabel.setText("");
+        typeComboBox.getItems().clear();
+        countTextField.clear();
+        countLabel.setText("Type And Month Count");
+        // Observable List Combo Box for Meeting Types
+        ObservableList<String> meetingType = FXCollections.observableArrayList(
+                "Backlog Grooming",
+                "De-Briefing",
+                "Planning Session",
+                "Sprint Planning",
+                "Sprint Retrospective",
+                "Staff",
+                "Daily Scrum");
+        // Initialize Meeting Type Observable List
+        typeComboBox.setItems(meetingType);
     }
 }

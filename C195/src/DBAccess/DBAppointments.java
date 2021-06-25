@@ -1,11 +1,13 @@
 package DBAccess;
 
 // Import statements
+import controllers.ViewAllCustomerAppointmentsByTpeAndMonth;
 import models.Appointments;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -309,5 +311,36 @@ public class DBAppointments {
             throwables.printStackTrace();
         }
         return appointmentsList;
+    }
+
+    // Global variable returnedCount used in ViewAllCustomerAppointmentsByTypeAndMonth Controller
+    private static Integer returnedCount = 0;
+
+    /**
+     * This method gets the typeSelected and monthSelected global variables from ViewAllCustomerAppointmentsByTypeAndMonth
+     * then runs a query to get the COUNT for each of those parameters, then the returned string is parsed into an integer
+     * where the value is passed back to ViewAllCustomerAppointmentsByTypeAndMonth controller and displayed in a table view
+     * @param typeSelected This is a parameter
+     * @param monthSelected This is a parameter
+     * @return This is a return statement
+     */
+    public static Integer getCustomerTypeAndMonthReport(String typeSelected, String monthSelected) {
+        try {
+            String monthTypeQuery = "SELECT COUNT(*) FROM appointments WHERE monthname(start)=? AND TYPE=?";
+
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(monthTypeQuery);
+
+            ps.setString(1, monthSelected);
+            ps.setString(2, typeSelected);
+
+            ps.executeQuery();
+            ps.getResultSet().next();
+            returnedCount = ps.getResultSet().getInt(1);
+            System.out.println("The monthly type query count total is" + returnedCount);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return returnedCount;
     }
 }
