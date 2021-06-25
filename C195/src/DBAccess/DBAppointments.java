@@ -1,16 +1,12 @@
 package DBAccess;
 
 // Import statements
-import javafx.scene.control.TextField;
 import models.Appointments;
-import models.Customers;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DBAppointments {
@@ -256,149 +252,57 @@ public class DBAppointments {
     }
 
     /**
-     * This method returns appointments when user select radio button one
-     * @param appointment_id
-     * @param title
-     * @param description
-     * @param contactId
-     * @param type
-     * @param start
-     * @param end
-     * @param customerId
+     * getContactScheduleByContactId checks if the selected contact has any appointments associated with them then returns
+     * those results to the ContactSchedule controller based on selection from the Contact Combo Box
+     * @param id
      * @return
      */
-    public static boolean getContactOneAppointments(
-            String appointment_id,
-            String title,
-            String description,
-            Integer contactId,
-            String type,
-            LocalDateTime start,
-            LocalDateTime end,
-            Integer customerId)
+
+    public static ObservableList<Appointments> getContactScheduleByContactId(int id)
     {
+        ObservableList<Appointments> appointmentsList = FXCollections.observableArrayList();
         try {
             Statement statement = DBConnection.getConnection().createStatement();
-            String contactOneScheduleQuery = "SELECT Title='" + title
-                    + "', Description='" + description
-                    + "', Appointment_ID='" + appointment_id
-                    + "', Type='" + type
-                    + "', Start='" + Timestamp.valueOf(start)
-                    + "', End='" + Timestamp.valueOf(end)
-                    + "', Customer_ID='" + customerId
-                    + "'FROM appointments WHERE Contact_ID=" + contactId;
-            statement.execute(contactOneScheduleQuery);
-            if(statement.getUpdateCount() > 0)
-                System.out.println(statement.getUpdateCount() + " row(s) affected.");
-            else
-                System.out.println("No changes were made.");
-        } catch (SQLException e) {
-            System.out.println("SQLException: " + e.getMessage());
+            String contactScheduleQuery = "SELECT * FROM appointments WHERE Contact_ID=" + id;
+
+            ResultSet rs = statement.executeQuery(contactScheduleQuery);
+
+            while(rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String location = rs.getString("Location");
+                String type = rs.getString("Type");
+                Timestamp start = rs.getTimestamp("Start");
+                Timestamp end = rs.getTimestamp("End");
+                Timestamp createDate = rs.getTimestamp("Create_Date");
+                String createdBy = rs.getString("Created_By");
+                Timestamp lastUpdate = rs.getTimestamp("Last_Update");
+                String lastUpdatedBy = rs.getString("Last_Updated_By");
+                int customerId = rs.getInt("Customer_ID");
+                int userId = rs.getInt("User_ID");
+                int contactId = rs.getInt("Contact_ID");
+
+                models.Appointments A = new models.Appointments(
+                        appointmentId,
+                        title,
+                        description,
+                        location,
+                        type,
+                        start.toLocalDateTime(),
+                        end.toLocalDateTime(),
+                        createDate.toLocalDateTime(),
+                        createdBy,
+                        lastUpdate.toLocalDateTime(),
+                        lastUpdatedBy,
+                        customerId,
+                        userId,
+                        contactId);
+                appointmentsList.add((Appointments) A);
+            }
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
         }
-        return false;
-    }
-
-    /**
-     * This method returns appointments when user select radio button one
-     * @param appointment_id
-     * @param title
-     * @param description
-     * @param contactId
-     * @param type
-     * @param start
-     * @param end
-     * @param customerId
-     * @return
-     */
-    public static boolean getContactTwoAppointments(
-            String appointment_id,
-            String title,
-            String description,
-            Integer contactId,
-            String type,
-            LocalDateTime start,
-            LocalDateTime end,
-            Integer customerId)
-    {
-        try {
-            Statement statement = DBConnection.getConnection().createStatement();
-            String contactOneScheduleQuery = "SELECT Title='" + title
-                    + "', Description='" + description
-                    + "', Appointment_ID='" + appointment_id
-                    + "', Type='" + type
-                    + "', Start='" + Timestamp.valueOf(start)
-                    + "', End='" + Timestamp.valueOf(end)
-                    + "', Customer_ID='" + customerId
-                    + "'FROM appointments WHERE Contact_ID=" + contactId;
-            statement.execute(contactOneScheduleQuery);
-            if(statement.getUpdateCount() > 0)
-                System.out.println(statement.getUpdateCount() + " row(s) affected.");
-            else
-                System.out.println("No changes were made.");
-        } catch (SQLException e) {
-            System.out.println("SQLException: " + e.getMessage());
-        }
-        return false;
-    }
-
-    /**
-     * This method returns appointments when user select radio button one
-     * @param appointment_id
-     * @param title
-     * @param description
-     * @param contactId
-     * @param type
-     * @param start
-     * @param end
-     * @param customerId
-     * @return
-     */
-    public static boolean getContactThreeAppointments(
-            String appointment_id,
-            String title,
-            String description,
-            Integer contactId,
-            String type,
-            LocalDateTime start,
-            LocalDateTime end,
-            Integer customerId)
-    {
-        try {
-            Statement statement = DBConnection.getConnection().createStatement();
-            String contactOneScheduleQuery = "SELECT Title='" + title
-                    + "', Description='" + description
-                    + "', Appointment_ID='" + appointment_id
-                    + "', Type='" + type
-                    + "', Start='" + Timestamp.valueOf(start)
-                    + "', End='" + Timestamp.valueOf(end)
-                    + "', Customer_ID='" + customerId
-                    + "'FROM appointments WHERE Contact_ID=" + contactId;
-            statement.execute(contactOneScheduleQuery);
-            if(statement.getUpdateCount() > 0)
-                System.out.println(statement.getUpdateCount() + " row(s) affected.");
-            else
-                System.out.println("No changes were made.");
-        } catch (SQLException e) {
-            System.out.println("SQLException: " + e.getMessage());
-        }
-        return false;
-    }
-
-    /**
-     * This getAllAppointmentStartTimes will return the LocalDateTime start values from appointments table
-     * @param start
-     * @return
-     */
-    public static LocalDateTime getAllAppointmentStartTimes(LocalDateTime start) {
-        return start;
-    }
-
-    /**
-     * This getAllAppointmentEndTimes will return the LocalDateTime end values from appointments table
-     * @param end
-     * @return
-     */
-    public static LocalDateTime getAllAppointmentEndTimes(LocalDateTime end) {
-        return end;
+        return appointmentsList;
     }
 }

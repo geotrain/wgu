@@ -2,20 +2,20 @@ package controllers;
 // Import Statments
 import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
+import DBAccess.DBCustomers;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.scene.control.ToggleGroup;
 import models.Appointments;
+import models.Contacts;
+
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -27,9 +27,13 @@ public class ContactSchedule implements Initializable {
     // FX ID's Labels
     @FXML private Label contactsEmailListLabel;
     @FXML private Label chooseContactLabel;
+    @FXML private Label contactIdSelectedLabel;
 
-    // FX ID's Buttons'
+    // FX ID's Buttons
     @FXML private Button closeButton;
+
+    // FX ID's ComboBoxes
+    @FXML private ComboBox<Contacts> contactComboBox;
 
     // FX ID's Table View and Table Columns
     @FXML private TableView<Appointments> contactAppointmentTableView;
@@ -41,13 +45,11 @@ public class ContactSchedule implements Initializable {
     @FXML private TableColumn<Appointments, Date> endColumn;
     @FXML private TableColumn<Appointments, Integer> customerIdColumn;
 
-    // FX ID's Radio Buttons
-    @FXML private RadioButton contactOneRadioButton;
-    @FXML private RadioButton contactTwoRadioButton;
-    @FXML private RadioButton contactThreeRadioButton;
+    // FX ID's Text Fields
+    @FXML private TextField contactIdTextField;
 
-    @FXML
-    private ToggleGroup contactToggleGroup;
+    // Observable List Combo Box for Contacts
+    final ObservableList contactName = FXCollections.observableArrayList(DBContacts.getAllContacts());
 
     /**
      * This method will close the Contact Email controller
@@ -70,6 +72,9 @@ public class ContactSchedule implements Initializable {
      * @param resourceBundle
      */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Initialize Contact Name Observable List
+        contactComboBox.setItems(contactName);
+
         // Populates and initializes ALL of the contact appointments table list table view
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -82,51 +87,13 @@ public class ContactSchedule implements Initializable {
     }
 
     /**
-     * This method returns only appointments for contactOneSelection radio button one
+     * The displayContactId method is used to populate the customer ID text field once the customerComboBox has chosen
+     * a customer from the customer data list
      * @param actionEvent
      */
-    public void contactOneSelection(javafx.event.ActionEvent actionEvent) {
-        // Populates and initializes the appointments table list table view set by contactOneSelection default
-        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        //contactAppointmentTableView.setItems(DBAppointments.getContactOneAppointments(contactId)); //TODO not working
-    }
+    @FXML private void displayContactId(javafx.event.ActionEvent actionEvent) {
+        contactIdTextField.setText(String.valueOf(contactComboBox.getValue().getContactID()));
+        contactAppointmentTableView.setItems(DBAppointments.getContactScheduleByContactId(Integer.parseInt(contactIdTextField.getText())));
 
-    /**
-     * This method returns only appointments for contactOneSelection radio button two
-     * @param actionEvent
-     */
-    public void contactTwoSelection(javafx.event.ActionEvent actionEvent) {
-        // Populates and initializes the appointments table list table view set by contactOneSelection default
-        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        //contactAppointmentTableView.setItems(DBAppointments.getContactTwoAppointments(contactId); //TODO not working
     }
-
-    /**
-     * This method returns only appointments for contactOneSelection radio button three
-     * @param actionEvent
-     */
-    public void contactThreeSelection(javafx.event.ActionEvent actionEvent) {
-        // Populates and initializes the appointments table list table view set by contactOneSelection default
-        appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        //contactAppointmentTableView.setItems(DBAppointments.getContactThreeAppointments(contactId)); TODO not working
-    }
-
 }

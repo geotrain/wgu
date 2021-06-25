@@ -127,7 +127,7 @@ public class AddAppointment implements Initializable {
     }
 
     /**
-     * The displayCustomerId method is used to populate the customer ID text field once the customerComboBox has chosen
+     * The displayContactId method is used to populate the customer ID text field once the customerComboBox has chosen
      * a customer from the customer data list
      * @param actionEvent
      */
