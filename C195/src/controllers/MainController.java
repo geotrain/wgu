@@ -5,6 +5,8 @@ import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
 import DBAccess.DBUsers;
 import com.mysql.cj.jdbc.MysqlSQLXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +24,8 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import static DBAccess.DBUsers.currentUserId;
@@ -46,7 +50,9 @@ public class MainController implements Initializable {
     @FXML private TableColumn<Appointments, Integer> appointmentIDColumn;
     @FXML private TableColumn<Appointments, Integer> appointmentUserIDColumn;
     @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDColumn;
+    @FXML private TableColumn<Appointments, String> appointmentTitleColumn;
     @FXML private TableColumn<Appointments, String> appointmentDescriptionColumn;
+    @FXML private TableColumn<Appointments, String> appointmentLocationColumn;
     @FXML private TableColumn<Appointments, String> appointmentTypeColumn;
     @FXML private TableColumn<Appointments, Date> appointmentStartColumn;
     @FXML private TableColumn<Appointments, Date> appointmentEndColumn;
@@ -61,6 +67,12 @@ public class MainController implements Initializable {
 
     // FX Ids for Labels
     @FXML private Label errorLabel;
+
+    // FX ID's for Radio Buttons And Toggle Group
+    @FXML private ToggleGroup appointmentToggleGroup;
+    @FXML private RadioButton viewAllAppointmentsRadioButton;
+    @FXML private RadioButton viewCurrentMonthAppointmentsRadioButton;
+    @FXML private RadioButton viewCurrentWeekAppointmentsRadioButton;
 
     // This Annoyance Reminder Flag Keeps The Reminder Screen with Appointments / No Appointments From Only Being Ran Once
     private static boolean annoyanceReminderFlag = false;
@@ -105,7 +117,9 @@ public class MainController implements Initializable {
         appointmentIDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         appointmentUserIDColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
         appointmentCustomerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        appointmentTitleColumn.setCellValueFactory( new PropertyValueFactory<>("title"));
         appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         appointmentTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         appointmentStartColumn.setCellValueFactory(new PropertyValueFactory<>("start"));
         appointmentEndColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
@@ -184,7 +198,7 @@ public class MainController implements Initializable {
         // Alert Message Confirming That They Indeed Want To Delete Selected Appointment
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Delete Customer Warning");
-        alert.setHeaderText("Are you sure you want to delete " + selectedAppointment.getDescription() + " ?");
+        alert.setHeaderText("Are you sure you want to delete Appointment ID " + selectedAppointment.getId() + " " + selectedAppointment.getType() + " meeting?");
         alert.setContentText("Select yes or no.");
         ButtonType yesButton = new ButtonType("Yes");
         ButtonType cancelButton = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -194,7 +208,10 @@ public class MainController implements Initializable {
         {
             DBAppointments.deleteAppointment(selectedAppointment.getId());
             appointmentsTableView.setItems(DBAppointments.getAllAppointments());
-            JDialog frame = null;
+            Alert deletionAlert = new Alert(Alert.AlertType.WARNING);
+            deletionAlert.setContentText("Appointment Deleted.");
+            deletionAlert.setHeaderText("Deleted Appointment ID " + selectedAppointment.getId() + " " + selectedAppointment.getType() + " meeting.");
+            deletionAlert.showAndWait();
         }
         else if(result.get() == cancelButton)
         {
@@ -277,8 +294,8 @@ public class MainController implements Initializable {
             //Boolean appointmentResult = DBAppointments.doesCustomerHaveAppointment(selectedCustomer.getCustomerID());
             DBAppointments.deleteAppointmentByCustomer(selectedCustomer.getCustomerID());
             DBCustomers.deleteCustomer(selectedCustomer.getCustomerID());
+            appointmentsTableView.setItems(DBAppointments.getAllAppointments());
             customersTableView.setItems(DBCustomers.getAllCustomers());
-            //JDialog frame = null;
         }
         else if(result.get() == cancelButton)
         {
@@ -358,5 +375,52 @@ public class MainController implements Initializable {
         alert.setContentText("You are now exiting the program.");
         alert.showAndWait();
         System.exit(0);
+    }
+
+    /**
+     * This viewAllAppointments filters to all appointments  when the viewAllAppointmentsRadioButton is selected
+     * @param actionEvent This is a parameter
+     */
+    public void viewAllAppointments(ActionEvent actionEvent) {
+        appointmentsTableView.getItems().clear();
+        appointmentsTableView.setItems(DBAppointments.getAllAppointments());
+    }
+
+    /**
+     * This viewAppointmentCurrentMethod filters all appointments by Month when the
+     * viewCurrentMonthAppointmentsRadioButton is selected
+     * @param actionEvent This is a parameter
+     */
+    public void viewAppointmentsCurrentMonth(ActionEvent actionEvent) {
+        appointmentsTableView.getItems().clear();
+        ObservableList<Appointments> AppointmentsList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> AppointmentsMonthList = FXCollections.observableArrayList();
+        appointmentsTableView.setItems(AppointmentsMonthList);
+        for (Appointments AddAppointment : AppointmentsList) {
+            if (LocalDateTime.now().getMonth() == AddAppointment.getStart().getMonth()) {
+                AppointmentsMonthList.add(AddAppointment);
+            }
+        }
+    }
+
+    /**
+     * This viewAppointmentsCurrentWeek filters all appointments by Month when the
+     * viewCurrentWeekAppointmentsRadioButton is selected
+     * @param actionEvent This is a parameter
+     */
+    public void viewAppointmentsCurrentWeek(ActionEvent actionEvent) {
+        appointmentsTableView.getItems().clear();
+        ObservableList<Appointments> AppointmentList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> AppointmentWeekList = FXCollections.observableArrayList();
+        appointmentsTableView.setItems(AppointmentWeekList);
+        LocalDateTime Sunday = LocalDateTime.now();
+        while (Sunday.getDayOfWeek() != DayOfWeek.SUNDAY) {
+            Sunday = Sunday.minusDays(1);
+        }
+        for (Appointments AddAppointment : AppointmentList) {
+            if (Sunday.isBefore(AddAppointment.getStart()) && Sunday.plusDays(7).isAfter(AddAppointment.getStart())) {
+                AppointmentWeekList.add(AddAppointment);
+            }
+        }
     }
 }

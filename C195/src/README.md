@@ -7,6 +7,13 @@
 * *JavaSDK: Java_version:* "11.0.8"
 * *SQL_Driver_Version:* mysql-connector-java-8.0.22
 
+# Title and Purpose.
+
+The purpose of this application is to provide an easy to use appointment scheduler for users to be able to manage all of their
+meetings. The user has the ability to add new customers, manage customers, or delete customers within the application. The user
+also has the ability to manage these appointments and assign them to contacts and customers. The title of this application is
+called "Schedule Manager." The current version is 1.0.
+
 ## Users
 * You can log into the system with the following cretentials:
   * Username: *test* Password: *test*

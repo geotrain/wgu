@@ -58,7 +58,7 @@ public class ModifyCustomer {
     @FXML void close(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/main.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene((Parent) root, 1060, 900);
+        Scene scene = new Scene((Parent) root, 1090, 900);
         stage.setTitle("Welcome To Schedule Manager v 1.0");
         stage.setResizable(false);
         stage.setScene(scene);

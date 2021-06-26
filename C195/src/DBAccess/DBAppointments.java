@@ -1,14 +1,13 @@
 package DBAccess;
 
 // Import statements
-import controllers.ViewAllCustomerAppointmentsByTpeAndMonth;
 import models.Appointments;
 import utilities.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 public class DBAppointments {
