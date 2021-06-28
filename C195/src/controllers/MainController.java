@@ -354,6 +354,7 @@ public class MainController implements Initializable {
      * @throws IOException This is an exception
      */
     @FXML public void logOff(ActionEvent actionEvent) throws IOException {
+        annoyanceReminderFlag = false;
         Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene((Parent) root, 602, 257);
