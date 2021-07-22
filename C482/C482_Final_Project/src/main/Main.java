@@ -26,7 +26,7 @@ public class Main extends Application {
     @Override public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/main_screen.fxml"));
         primaryStage.setTitle("Inventory Management System");
-        primaryStage.setScene(new Scene(root, 900, 525));
+        primaryStage.setScene(new Scene(root, 500, 525));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
