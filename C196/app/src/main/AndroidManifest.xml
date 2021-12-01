@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="android.reserver.c196_greg_westmoreland">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.C196_Greg_Westmoreland">
+        <activity
+            android:name=".All.UI.DetailedAssessmentView"
+            android:exported="false"
+            android:label="Detailed Assessment View"/>
+        <activity
+            android:name=".All.UI.DetailedTermView"
+            android:exported="false"
+            android:label="Detailed Term View"/>
+        <activity
+            android:name=".All.UI.DetailedCourseView"
+            android:exported="false"
+            android:label="Detailed Course View"/>
+        <activity
+            android:name=".All.UI.AssessmentsList"
+            android:exported="false"
+            android:label="Assessment List"/>
+        <activity
+            android:name=".All.UI.CoursesList"
+            android:exported="false"
+            android:label="Course List"/>
+        <activity
+            android:name=".All.UI.TermsList"
+            android:exported="false"
+            android:label="Terms List"/>
+        <activity
+            android:name=".All.UI.MainActivity"
+            android:exported="true"
+            android:label="C196 Mobile App">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
