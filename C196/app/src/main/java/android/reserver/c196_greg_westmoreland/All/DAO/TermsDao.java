@@ -1,6 +1,6 @@
 package android.reserver.c196_greg_westmoreland.All.DAO;
 
-import android.reserver.c196_greg_westmoreland.All.Entities.Thing;
+import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -12,16 +12,17 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface ThingDao {
+public interface TermsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Thing thing);
+    void insert(TermsEntity termsEntity);
 
     @Update
-    void update(Thing thing);
+    void update(TermsEntity termsEntity);
 
     @Delete
-    void delete(Thing thing);
+    void delete(TermsEntity termsEntity);
 
-    @Query("SELECT * FROM THING_TABLE ORDER BY thingID ASC")
-    List<Thing> getAllThings();
+    @Query("SELECT * FROM TERMS_TABLE ORDER BY termID ASC")
+    List<TermsEntity> getAllTerms();
+
 }

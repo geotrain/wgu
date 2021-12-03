@@ -10,31 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_Greg_Westmoreland">
         <activity
-            android:name=".All.UI.DetailedAssessmentView"
+            android:name=".All.UI.ZAssessments.DetailedAssessmentView"
             android:exported="false"
             android:label="Detailed Assessment View"/>
         <activity
-            android:name=".All.UI.DetailedTermView"
+            android:name=".All.UI.Terms.DetailedTermView"
             android:exported="false"
             android:label="Detailed Term View"/>
         <activity
-            android:name=".All.UI.DetailedCourseView"
+            android:name=".All.UI.Courses.DetailedCourseView"
             android:exported="false"
             android:label="Detailed Course View"/>
         <activity
-            android:name=".All.UI.AssessmentsList"
+            android:name=".All.UI.ZAssessments.AssessmentsList"
             android:exported="false"
             android:label="Assessment List"/>
         <activity
-            android:name=".All.UI.CoursesList"
+            android:name=".All.UI.Courses.CoursesList"
             android:exported="false"
             android:label="Course List"/>
         <activity
-            android:name=".All.UI.TermsList"
+            android:name=".All.UI.Terms.TermsList"
             android:exported="false"
             android:label="Terms List"/>
         <activity
-            android:name=".All.UI.MainActivity"
+            android:name=".All.UI.Main.MainActivity"
             android:exported="true"
             android:label="C196 Mobile App">
             <intent-filter>

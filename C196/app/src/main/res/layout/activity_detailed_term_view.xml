@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".All.UI.DetailedTermView">
+    tools:context=".All.UI.Terms.DetailedTermView">
 
     <ScrollView
         android:layout_width="409dp"
@@ -65,8 +65,21 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/save_term"
-                    android:onClick="saveTerm" />
+                    android:layout_marginLeft="15dp"
+                    android:onClick="saveTerm"
+                    android:text="@string/save_term" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="150dp"
+                        android:onClick="date"
+                        android:text="@string/pick_date"
+                        tools:ignore="OnClick" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
