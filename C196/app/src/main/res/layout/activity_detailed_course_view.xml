@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".All.UI.Courses.DetailedCourseView">
+    tools:context=".All.UI.Courses.Courses_Edit_Existing_Course">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

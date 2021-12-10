@@ -9,34 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196_Greg_Westmoreland">
+        <receiver
+            android:name=".All.UI.MyReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <activity
-            android:name=".All.UI.ZAssessments.DetailedAssessmentView"
+            android:name=".All.UI.Assessments.Assessments_Edit_Existing_Assessment"
             android:exported="false"
-            android:label="Detailed Assessment View"/>
+            android:label="Detailed Assessment View" />
         <activity
-            android:name=".All.UI.Terms.DetailedTermView"
+            android:name=".All.UI.Terms.Terms_List"
             android:exported="false"
-            android:label="Detailed Term View"/>
+            android:label="Terms List" />
         <activity
-            android:name=".All.UI.Courses.DetailedCourseView"
+            android:name=".All.UI.Courses.Courses_Edit_Existing_Course"
             android:exported="false"
-            android:label="Detailed Course View"/>
+            android:label="Detailed Course View" />
         <activity
-            android:name=".All.UI.ZAssessments.AssessmentsList"
+            android:name=".All.UI.Assessments.AssessmentsList"
             android:exported="false"
-            android:label="Assessment List"/>
+            android:label="Assessments List" />
         <activity
             android:name=".All.UI.Courses.CoursesList"
             android:exported="false"
-            android:label="Course List"/>
+            android:label="Courses List" />
         <activity
-            android:name=".All.UI.Terms.TermsList"
+            android:name=".All.UI.Terms.Terms_Add_New_Term"
             android:exported="false"
-            android:label="Terms List"/>
+            android:label="Add New Term" />
         <activity
-            android:name=".All.UI.Main.MainActivity"
+            android:name=".All.UI.Terms.Terms_Edit_Existing_Term"
+            android:exported="false"
+            android:label="Edit Existing Term" />
+        <activity
+            android:name=".All.UI.Main.MainActivity_Home"
             android:exported="true"
-            android:label="C196 Mobile App">
+            android:label="Scheduler Mobile App Version 1.0">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
