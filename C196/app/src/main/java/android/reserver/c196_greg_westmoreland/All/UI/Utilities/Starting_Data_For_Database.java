@@ -11,7 +11,7 @@ import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartData {
+public class Starting_Data_For_Database {
 
     /**
      * This Array List holds start data to populate the terms_table with 3 terms when the app is launched

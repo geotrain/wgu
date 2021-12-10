@@ -11,7 +11,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class Date_Picker_Fragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     // Declare TextView variable datePickerView
     private TextView datePickerView;
@@ -22,7 +22,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
      * This method DatePickerFragment is used in Terms Edit Existing Terms java class
      * @param datePickerView
      */
-    public DatePickerFragment(TextView datePickerView) {
+    public Date_Picker_Fragment(TextView datePickerView) {
         this.datePickerView = datePickerView;
     }
 

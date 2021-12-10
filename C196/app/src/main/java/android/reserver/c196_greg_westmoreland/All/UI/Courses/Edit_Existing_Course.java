@@ -5,30 +5,21 @@ package android.reserver.c196_greg_westmoreland.All.UI.Courses;
  */
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.CourseStatusEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.TermsEditExistingTermAdapter;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_Edit_Existing_Term;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_List;
 import android.reserver.c196_greg_westmoreland.R;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Courses.CoursesList;
-import android.reserver.c196_greg_westmoreland.All.UI.Main.MainActivity_Home;
-import android.reserver.c196_greg_westmoreland.All.UI.MyReceiver;
-import android.reserver.c196_greg_westmoreland.All.UI.Utilities.DatePickerFragment;
-import android.reserver.c196_greg_westmoreland.R;
+import android.reserver.c196_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
+import android.reserver.c196_greg_westmoreland.All.UI.My_Receiver;
+import android.reserver.c196_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,16 +27,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.snackbar.Snackbar;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class Courses_Edit_Existing_Course extends AppCompatActivity {
+public class Edit_Existing_Course extends AppCompatActivity {
 
     /**
      * Declaration of variables used int he terms list details screen
@@ -84,7 +74,7 @@ public class Courses_Edit_Existing_Course extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courses_edit_existing_course);
+        setContentView(R.layout.activity_edit_existing_course);
         Button addCourseBtn = (Button) findViewById(R.id.addAssessment);
 
         /**
@@ -93,7 +83,7 @@ public class Courses_Edit_Existing_Course extends AppCompatActivity {
 
         id = getIntent().getIntExtra("termID", -1);
         if (id == -1) {
-            id = Courses_Edit_Existing_Course.courseID;
+            id = Edit_Existing_Course.courseID;
         }
         repository = new SchedulerRepository(getApplication());
         List<CoursesEntity> allCourses = repository.getAllCourses();
@@ -203,10 +193,10 @@ public class Courses_Edit_Existing_Course extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Long trigger = myDate.getTime();
-                Intent intent = new Intent(Courses_Edit_Existing_Course.this, MyReceiver.class);
+                Intent intent = new Intent(Edit_Existing_Course.this, My_Receiver.class);
                 intent.putExtra("key","message I want to see"); // <-- CHANGE THIS TO SEND COURSE ID, START, END DATES, ASSESSMENTS GOING FOR IT
-                PendingIntent sender=PendingIntent.getBroadcast(Courses_Edit_Existing_Course.this,
-                        ++MainActivity_Home.numAlert,intent,0);
+                PendingIntent sender=PendingIntent.getBroadcast(Edit_Existing_Course.this,
+                        ++Main_Activity_Home_Page.numAlert,intent,0);
                 AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
                 return true;
@@ -220,7 +210,7 @@ public class Courses_Edit_Existing_Course extends AppCompatActivity {
                 if (false) {
                     repository.delete(currentCourse);
                 } else {
-                    Toast.makeText(Courses_Edit_Existing_Course.this, "Can't delete a course " +
+                    Toast.makeText(Edit_Existing_Course.this, "Can't delete a course " +
                             "that has assessments associated with it", Toast.LENGTH_LONG).show();
                 }
         }
@@ -255,7 +245,7 @@ public class Courses_Edit_Existing_Course extends AppCompatActivity {
         //CoursesEntity newCourse = new CoursesEntity(++id, courseName, courseStartDate, courseEndDate,
                 //courseStatus, courseInstructorName, courseInstructorPhone, courseInstructorEmail);
         //repository.update(newCourse);
-        Intent intent = new Intent( Courses_Edit_Existing_Course.this, CoursesList.class);
+        Intent intent = new Intent( Edit_Existing_Course.this, List_Courses.class);
         startActivity(intent);
     }
 
@@ -276,7 +266,7 @@ public class Courses_Edit_Existing_Course extends AppCompatActivity {
     public void showDatePicker(View view) {
         int viewID = view.getId();
         TextView datePickerView = findViewById(viewID);
-        DialogFragment newFragment = new DatePickerFragment(datePickerView);
+        DialogFragment newFragment = new Date_Picker_Fragment(datePickerView);
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }

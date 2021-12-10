@@ -1,26 +1,18 @@
-package android.reserver.c196_greg_westmoreland.All.UI.Terms;
+package android.reserver.c196_greg_westmoreland.All.UI.Courses;
 
-import android.content.Context;
-import android.content.Intent;
-import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
-import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
-import android.reserver.c196_greg_westmoreland.R;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.List;
-
-public class TermsEditExistingTermAdapter extends RecyclerView.Adapter<TermsEditExistingTermAdapter.CourseViewHolder> {
-
+//public class CoursesEditExistingCourseAdapter extends RecyclerView.Adapter<CoursesEditExistingCourseAdapter.AssessmentViewHolder> {
+/*
     private final LayoutInflater mInflater;
     private final Context context;
-    public List<CoursesEntity> mCourses;
     private List<AssessmentsEntity> mAssessments;
 
-    public TermsEditExistingTermAdapter(Context context) {
+    public CoursesEditExistingCourseAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
+        this.context = context;
+    }
+
+    public CoursesEditExistingCourseAdapter(LayoutInflater mInflater, Context context) {
+        this.mInflater = mInflater;
         this.context = context;
     }
 
@@ -37,7 +29,7 @@ public class TermsEditExistingTermAdapter extends RecyclerView.Adapter<TermsEdit
                 public void onClick (View v) {
                     int position = getAdapterPosition();
                     final CoursesEntity currentCourse = mCourses.get(position);
-                    Intent intent = new Intent(context, Terms_Edit_Existing_Term.class);
+                    Intent intent = new Intent(context, Courses_Edit_Existing_Course.class);
                     intent.putExtra("courseID", currentCourse.getCourseID());
                     intent.putExtra("termID", currentCourse.getTermID());
                     intent.putExtra("position", position);
@@ -48,29 +40,29 @@ public class TermsEditExistingTermAdapter extends RecyclerView.Adapter<TermsEdit
     }
 
     @Override
-    public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CoursesEditExistingCourseAdapter.AssessmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
-        return new CourseViewHolder(itemView);
+        return new CoursesEditExistingCourseAdapter.CourseViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(CourseViewHolder holder, int position) {
+    public void onBindViewHolder(TermsEditExistingTermAdapter.AssessmentViewHolder holder, int position) {
         if(mCourses != null) {
-            final CoursesEntity currentCourse = mCourses.get(position);
-            holder.courseItemView.setText((currentCourse.getCourseName()));
+            final CoursesEntity currentAssessment = mCourses.get(position);
+            holder.AssessmentViewHolder.setText((currentAssessment.getCourseName()));
 
-            String filteredCourseList = "";
-            for (CoursesEntity course: mCourses){
-                if (course.getTermID() == Terms_Edit_Existing_Term.termID) // TODO get intent from for termID
-                    filteredCourseList = filteredCourseList + course.getCourseName() + "\n";
+            String filteredAssessmentList = "";
+            for (AssessmentsEntity assessment: mAssessments){
+                if (assessment.getCourseID() == currentAssessment.getCourseID())
+                    filteredAssessmentList = filteredAssessmentList + assessment.getAssessmentName() + "\n";
             }
-            if (filteredCourseList != "")
-                holder.assessmentItemView.setText(filteredCourseList);
+            if (filteredAssessmentList != "")
+                holder.assessmentItemView.setText(filteredAssessmentList);
             else
                 holder.assessmentItemView.setVisibility(View.GONE);
 
         } else {
-            holder.courseItemView.setText("no name");
+            holder.assessmentItemView.setText("no name");
         }
     }
 
@@ -81,11 +73,6 @@ public class TermsEditExistingTermAdapter extends RecyclerView.Adapter<TermsEdit
         else return 0;
     }
 
-    public void setCourses(List<CoursesEntity> courses) {
-        mCourses = courses;
-        notifyDataSetChanged();
-    }
-
     public void setAssessments(List<AssessmentsEntity> assessments) {
         mAssessments = assessments;
         notifyDataSetChanged();
@@ -93,5 +80,7 @@ public class TermsEditExistingTermAdapter extends RecyclerView.Adapter<TermsEdit
     public CoursesEntity getCourseAt(int position) {
         return mCourses.get(position);
     }
+/**
 
-}
+
+}*/

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".All.UI.Terms.Terms_Edit_Existing_Term">
+    tools:context=".All.UI.Terms.Add_New_Term">
 
     <ScrollView
         android:layout_width="409dp"
@@ -40,10 +40,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/start_date"/>
                 <EditText
+                    android:id="@+id/Start_Date"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:focusable="false"
                     android:hint="MM/DD/YYYY"
-                    android:id="@+id/Start_Date"/>
+                    android:inputType="date"
+                    android:onClick="showDatePicker"
+                    android:tag="term_start_date_edit"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,10 +59,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/end_date"/>
                 <EditText
+                    android:id="@+id/End_Date"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:focusable="false"
                     android:hint="MM/DD/YYYY"
-                    android:id="@+id/End_Date"/>
+                    android:inputType="date"
+                    android:onClick="showDatePicker"
+                    android:tag="term_start_date_edit"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.R;
 
-public class Assessments_Edit_Existing_Assessment extends AppCompatActivity {
+public class Edit_Existing_Assessment extends AppCompatActivity {
     private SchedulerRepository repository;
 
     public static int courseIdAssessmentEditPage = -1;
@@ -20,6 +20,6 @@ public class Assessments_Edit_Existing_Assessment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailed_asssesment_view);
+        setContentView(R.layout.activity_asssesment_view);
     }
 }

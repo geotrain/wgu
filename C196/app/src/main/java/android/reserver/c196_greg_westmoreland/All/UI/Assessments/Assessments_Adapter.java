@@ -3,19 +3,6 @@ package android.reserver.c196_greg_westmoreland.All.UI.Assessments;
 /**
  * Import statements
  */
-import android.content.Context;
-import android.content.Intent;
-import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_Edit_Existing_Term;
-import android.reserver.c196_greg_westmoreland.R;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.collection.CircularArray;
-import androidx.recyclerview.widget.RecyclerView;
-import java.text.BreakIterator;
-import java.util.List;
 
 //public class AssessmentsAdapter extends RecyclerView.Adapter<AssessmentsAdapter.AssessmentViewHolder> {
     /*

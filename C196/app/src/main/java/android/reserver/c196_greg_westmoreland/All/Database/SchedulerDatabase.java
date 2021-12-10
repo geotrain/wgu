@@ -16,7 +16,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import android.reserver.c196_greg_westmoreland.All.UI.Utilities.StartData;
+import android.reserver.c196_greg_westmoreland.All.UI.Utilities.Starting_Data_For_Database;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -87,15 +87,14 @@ public abstract class SchedulerDatabase extends RoomDatabase {
             // Database Write Executor
             databaseWriteExecutor.execute(() -> {
 
-                // These delete all data upon starting the app
-                //mTermsDao.deleteAllTerms();;
-                //mCoursesDao.deleteAllCourses();
-                //mAssessmentsDao.deleteAllAssessments();
+                // These delete all data upon starting the app, comment these out before submission // TODO Comment These Out
+                mTermsDao.deleteAllTerms();;
+                mCoursesDao.deleteAllCourses();
+                mAssessmentsDao.deleteAllAssessments();
 
-
-                mTermsDao.insertAllTerms(StartData.getStartTerms());
-                mCoursesDao.insertAllCourses(StartData.getStartCourses());
-                mAssessmentsDao.insertAllAssessments(StartData.getStartAssessments());
+                mTermsDao.insertAllTerms(Starting_Data_For_Database.getStartTerms());
+                mCoursesDao.insertAllCourses(Starting_Data_For_Database.getStartCourses());
+                mAssessmentsDao.insertAllAssessments(Starting_Data_For_Database.getStartAssessments());
             });
         }
     };

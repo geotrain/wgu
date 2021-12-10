@@ -6,8 +6,6 @@ package android.reserver.c196_greg_westmoreland.All.UI.Courses;
 import android.content.Context;
 import android.content.Intent;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
-import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_Edit_Existing_Term;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +14,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseViewHolder> {
+public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course_View_Holder> {
 
-    class CourseViewHolder extends RecyclerView.ViewHolder {
+    class Course_View_Holder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
 
-        private CourseViewHolder(View itemView){
+        private Course_View_Holder(View itemView){
             super(itemView);
             courseItemView = itemView.findViewById(R.id.course_item_text_view);
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -29,7 +27,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
                 public void onClick (View v) {
                     int position = getAdapterPosition();
                     final CoursesEntity currentCourse = mCourses.get(position);
-                    Intent intent = new Intent(context, Courses_Edit_Existing_Course.class);
+                    Intent intent = new Intent(context, Edit_Existing_Course.class);
                     intent.putExtra("position", position);
                     intent.putExtra("courseID", currentCourse.getCourseID());
                     intent.putExtra("termID", currentCourse.getTermID());
@@ -43,25 +41,25 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
     private Context context = null;
     public List<CoursesEntity> mCourses; // Cached copy of words
 
-    public CoursesAdapter(Context context) {
+    public Courses_Adapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
-    public CoursesAdapter() {
+    public Courses_Adapter() {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
     
     @Override
-    public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Course_View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
 
-        return new CourseViewHolder(itemView);
+        return new Course_View_Holder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(CourseViewHolder holder, int position) {
+    public void onBindViewHolder(Course_View_Holder holder, int position) {
         if(mCourses != null) {
             CoursesEntity currentCourse = mCourses.get(position);
             holder.courseItemView.setText((currentCourse.getCourseName()));

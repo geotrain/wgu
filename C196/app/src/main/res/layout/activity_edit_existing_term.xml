@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".All.UI.Terms.Terms_Edit_Existing_Term">
+    tools:context=".All.UI.Terms.Edit_Existing_Term">
 
     <ScrollView
         android:layout_width="match_parent"

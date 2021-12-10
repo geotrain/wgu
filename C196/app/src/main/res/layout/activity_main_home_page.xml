@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".All.UI.Main.MainActivity_Home">
+    tools:context=".All.UI.Main.Main_Activity_Home_Page">
 
     <TextView
         android:layout_width="wrap_content"

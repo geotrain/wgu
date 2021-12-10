@@ -6,13 +6,13 @@ package android.reserver.c196_greg_westmoreland.All.UI.Main;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.reserver.c196_greg_westmoreland.All.UI.Assessments.AssessmentsList;
-import android.reserver.c196_greg_westmoreland.All.UI.Courses.CoursesList;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_List;
+import android.reserver.c196_greg_westmoreland.All.UI.Assessments.List_Assessments;
+import android.reserver.c196_greg_westmoreland.All.UI.Courses.List_Courses;
+import android.reserver.c196_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.View;
 
-public class MainActivity_Home extends AppCompatActivity {
+public class Main_Activity_Home_Page extends AppCompatActivity {
 
     /**
      * This variable sets the numAlert variable for the notify in the terms list detail screen
@@ -26,7 +26,7 @@ public class MainActivity_Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_home);
+        setContentView(R.layout.activity_main_home_page);
     }
 
     /**
@@ -34,7 +34,7 @@ public class MainActivity_Home extends AppCompatActivity {
      * @param view
      */
     public void seeAllTerms(View view) {
-        Intent intent = new Intent(MainActivity_Home.this, Terms_List.class);
+        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Terms.class);
         startActivity(intent);
     }
 
@@ -43,7 +43,7 @@ public class MainActivity_Home extends AppCompatActivity {
      * @param view
      */
     public void seeAllAssessments(View view) {
-        Intent intent = new Intent(MainActivity_Home.this, AssessmentsList.class);
+        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Assessments.class);
         startActivity(intent);
     }
 
@@ -52,7 +52,7 @@ public class MainActivity_Home extends AppCompatActivity {
      * @param view
      */
     public void seeAllCourses(View view) {
-        Intent intent = new Intent(MainActivity_Home.this, CoursesList.class);
+        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Courses.class);
         startActivity(intent);
     }
 }

@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_List;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,7 @@ import android.view.View;
 import java.util.List;
 import java.util.Objects;
 
-public class CoursesList extends AppCompatActivity {
+public class List_Courses extends AppCompatActivity {
 
     public static int courseID;
     /**
@@ -41,7 +40,7 @@ public class CoursesList extends AppCompatActivity {
         repository.getAllCourses();
         RecyclerView recyclerView = findViewById(R.id.coursesListRecyclerView);
 
-        final CoursesAdapter coursesAdapter = new CoursesAdapter(this);
+        final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
         recyclerView.setAdapter(coursesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         coursesAdapter.setCourses(repository.getAllCourses());
@@ -76,7 +75,7 @@ public class CoursesList extends AppCompatActivity {
             case R.id.refresh:
                 repository = new SchedulerRepository(getApplication());
                 List<CoursesEntity> allCourses = repository.getAllCourses();
-                final CoursesAdapter coursesAdapter = new CoursesAdapter(this);
+                final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
                 RecyclerView recyclerView = findViewById(R.id.coursesListRecyclerView);
                 recyclerView.setAdapter(coursesAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -86,7 +85,7 @@ public class CoursesList extends AppCompatActivity {
     }
 
     public void addNewCourse(View view) {
-        Intent intent = new Intent(CoursesList.this, Courses_Add_New_Course.class);
+        Intent intent = new Intent(List_Courses.this, Add_New_Course.class);
         startActivity(intent);
     }
 }

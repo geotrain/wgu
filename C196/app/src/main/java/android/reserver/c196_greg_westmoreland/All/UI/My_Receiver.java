@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 import static android.content.Context.NOTIFICATION_SERVICE;
 
-public class MyReceiver extends BroadcastReceiver {
+public class My_Receiver extends BroadcastReceiver {
 
     /**
      * Declration of variables used as My receiver

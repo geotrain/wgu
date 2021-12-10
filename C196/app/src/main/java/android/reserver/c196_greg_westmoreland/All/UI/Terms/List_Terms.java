@@ -10,10 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Assessments.AssessmentsList;
-import android.reserver.c196_greg_westmoreland.All.UI.Assessments.Assessments_Add_New_Assessment;
-import android.reserver.c196_greg_westmoreland.All.UI.Courses.CoursesList;
-import android.reserver.c196_greg_westmoreland.All.UI.Courses.Courses_Add_New_Course;
+import android.reserver.c196_greg_westmoreland.All.UI.Assessments.Add_New_Assessment;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +18,7 @@ import android.view.View;
 import java.util.List;
 import java.util.Objects;
 
-public class Terms_List extends AppCompatActivity {
+public class List_Terms extends AppCompatActivity {
     /**
      * Declare Database Repository
      */
@@ -35,14 +32,14 @@ public class Terms_List extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // This tells which activity screen.xml this file is associated with
-        setContentView(R.layout.activity_terms_list);
+        setContentView(R.layout.activity_list_terms);
         // Call Instance from repository and getAllTerms
         repository = new SchedulerRepository(getApplication());
         // this is really just to set up the database if there isn't one on your device yet-otherwise
         repository.getAllTerms();
         RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
 
-        final TermsListAdapter termsAdapter = new TermsListAdapter(this);
+        final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
         recyclerView.setAdapter(termsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termsAdapter.setTerms(repository.getAllTerms());
@@ -77,7 +74,7 @@ public class Terms_List extends AppCompatActivity {
             case R.id.refresh:
                 repository = new SchedulerRepository(getApplication());
                 List<TermsEntity> allTerms = repository.getAllTerms();
-                final TermsListAdapter termsAdapter = new TermsListAdapter(this);
+                final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
                 RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
                 recyclerView.setAdapter(termsAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -91,7 +88,7 @@ public class Terms_List extends AppCompatActivity {
      * @param view
      */
     public void addNewTerm(View view) {
-        Intent intent = new Intent(Terms_List.this, Terms_Add_New_Term.class);
+        Intent intent = new Intent(List_Terms.this, Add_New_Term.class);
         startActivity(intent);
     }
 
@@ -100,7 +97,7 @@ public class Terms_List extends AppCompatActivity {
      * @param view
      */
     public void addNewAssessment(View view) {
-        Intent intent = new Intent(Terms_List.this, Assessments_Add_New_Assessment.class);
+        Intent intent = new Intent(List_Terms.this, Add_New_Assessment.class);
         startActivity(intent);
     }
 }

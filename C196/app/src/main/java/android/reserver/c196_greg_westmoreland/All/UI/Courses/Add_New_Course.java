@@ -6,12 +6,10 @@ package android.reserver.c196_greg_westmoreland.All.UI.Courses;
 import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
-import android.reserver.c196_greg_westmoreland.All.Entities.CourseStatusEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.TermsListAdapter;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_Add_New_Term;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.Terms_List;
+import android.reserver.c196_greg_westmoreland.All.UI.Terms.List_Terms_Adapter;
+import android.reserver.c196_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.Objects;
 
-public class Courses_Add_New_Course extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Add_New_Course extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     /**
      * Declaration of variables used int the terms list details screen
@@ -59,7 +57,7 @@ public class Courses_Add_New_Course extends AppCompatActivity implements Adapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courses_add_new_course);
+        setContentView(R.layout.activity_add_new_course);
         id = getIntent().getIntExtra("courseID",-1);
         termID = getIntent().getIntExtra("termID", -1);
         courseName = getIntent().getStringExtra("Course_Name");
@@ -115,7 +113,7 @@ public class Courses_Add_New_Course extends AppCompatActivity implements Adapter
             case R.id.refresh:
                 repository = new SchedulerRepository(getApplication());
                 List<TermsEntity> allTerms = repository.getAllTerms();
-                final TermsListAdapter termsAdapter = new TermsListAdapter(this);
+                final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
                 RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
                 recyclerView.setAdapter(termsAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -150,7 +148,7 @@ public class Courses_Add_New_Course extends AppCompatActivity implements Adapter
         CoursesEntity newCourse = new CoursesEntity(++id, courseName, termID, courseStartDate,
                 courseEndDate, courseStatusEntity, courseInstructorName, courseInstructorPhone, courseInstructorEmail );
         repository.insert(newCourse);
-        Intent intent = new Intent( Courses_Add_New_Course.this, Terms_List.class);
+        Intent intent = new Intent( Add_New_Course.this, List_Terms.class);
         startActivity(intent);
     }
 

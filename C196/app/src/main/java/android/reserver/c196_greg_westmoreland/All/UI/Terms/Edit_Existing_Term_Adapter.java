@@ -1,40 +1,34 @@
-package android.reserver.c196_greg_westmoreland.All.UI.Courses;
+package android.reserver.c196_greg_westmoreland.All.UI.Terms;
 
 import android.content.Context;
 import android.content.Intent;
 import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Terms.TermsEditExistingTermAdapter;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-//public class CoursesEditExistingCourseAdapter extends RecyclerView.Adapter<CoursesEditExistingCourseAdapter.AssessmentViewHolder> {
-/*
+public class Edit_Existing_Term_Adapter extends RecyclerView.Adapter<Edit_Existing_Term_Adapter.Course_View_Holder> {
+
     private final LayoutInflater mInflater;
     private final Context context;
+    public List<CoursesEntity> mCourses;
     private List<AssessmentsEntity> mAssessments;
 
-    public CoursesEditExistingCourseAdapter(Context context) {
+    public Edit_Existing_Term_Adapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
-    public CoursesEditExistingCourseAdapter(LayoutInflater mInflater, Context context) {
-        this.mInflater = mInflater;
-        this.context = context;
-    }
-
-    class CourseViewHolder extends RecyclerView.ViewHolder {
+    class Course_View_Holder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
         private final TextView assessmentItemView;
 
-        private CourseViewHolder(View itemView){
+        private Course_View_Holder(View itemView){
             super(itemView);
             courseItemView = itemView.findViewById(R.id.course_item_text_view);
             assessmentItemView = itemView.findViewById(R.id.course_assessment_list);
@@ -43,7 +37,7 @@ import java.util.List;
                 public void onClick (View v) {
                     int position = getAdapterPosition();
                     final CoursesEntity currentCourse = mCourses.get(position);
-                    Intent intent = new Intent(context, Courses_Edit_Existing_Course.class);
+                    Intent intent = new Intent(context, Edit_Existing_Term.class);
                     intent.putExtra("courseID", currentCourse.getCourseID());
                     intent.putExtra("termID", currentCourse.getTermID());
                     intent.putExtra("position", position);
@@ -54,29 +48,29 @@ import java.util.List;
     }
 
     @Override
-    public CoursesEditExistingCourseAdapter.AssessmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Course_View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
-        return new CoursesEditExistingCourseAdapter.CourseViewHolder(itemView);
+        return new Course_View_Holder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(TermsEditExistingTermAdapter.AssessmentViewHolder holder, int position) {
+    public void onBindViewHolder(Course_View_Holder holder, int position) {
         if(mCourses != null) {
-            final CoursesEntity currentAssessment = mCourses.get(position);
-            holder.AssessmentViewHolder.setText((currentAssessment.getCourseName()));
+            final CoursesEntity currentCourse = mCourses.get(position);
+            holder.courseItemView.setText((currentCourse.getCourseName()));
 
-            String filteredAssessmentList = "";
-            for (AssessmentsEntity assessment: mAssessments){
-                if (assessment.getCourseID() == currentAssessment.getCourseID())
-                    filteredAssessmentList = filteredAssessmentList + assessment.getAssessmentName() + "\n";
+            String filteredCourseList = "";
+            for (CoursesEntity course: mCourses){
+                if (course.getTermID() == Edit_Existing_Term.termID) // TODO get intent from for termID
+                    filteredCourseList = filteredCourseList + course.getCourseName() + "\n";
             }
-            if (filteredAssessmentList != "")
-                holder.assessmentItemView.setText(filteredAssessmentList);
+            if (filteredCourseList != "")
+                holder.assessmentItemView.setText(filteredCourseList);
             else
                 holder.assessmentItemView.setVisibility(View.GONE);
 
         } else {
-            holder.assessmentItemView.setText("no name");
+            holder.courseItemView.setText("no name");
         }
     }
 
@@ -87,6 +81,11 @@ import java.util.List;
         else return 0;
     }
 
+    public void setCourses(List<CoursesEntity> courses) {
+        mCourses = courses;
+        notifyDataSetChanged();
+    }
+
     public void setAssessments(List<AssessmentsEntity> assessments) {
         mAssessments = assessments;
         notifyDataSetChanged();
@@ -94,7 +93,5 @@ import java.util.List;
     public CoursesEntity getCourseAt(int position) {
         return mCourses.get(position);
     }
-/**
 
-
-}*/
+}

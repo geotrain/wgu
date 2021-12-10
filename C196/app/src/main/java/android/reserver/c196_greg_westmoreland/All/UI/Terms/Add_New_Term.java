@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Utilities.DatePickerFragment;
+import android.reserver.c196_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +24,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Objects;
 
-public class Terms_Add_New_Term extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Add_New_Term extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     /**
      * Declaration of variables used int he terms list details screen
@@ -50,7 +50,7 @@ public class Terms_Add_New_Term extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_terms_add_new_term);
+        setContentView(R.layout.activity_add_new_term);
         id = getIntent().getIntExtra("termID",-1);
         termName = getIntent().getStringExtra("Term_Name");
         termStartDate = getIntent().getStringExtra("Start_Date");
@@ -93,7 +93,7 @@ public class Terms_Add_New_Term extends AppCompatActivity implements AdapterView
             case R.id.refresh:
                 repository = new SchedulerRepository(getApplication());
                 List<TermsEntity> allTerms = repository.getAllTerms();
-                final TermsListAdapter termsAdapter = new TermsListAdapter(this);
+                final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
                 RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
                 recyclerView.setAdapter(termsAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -124,7 +124,7 @@ public class Terms_Add_New_Term extends AppCompatActivity implements AdapterView
 
         TermsEntity newTerm = new TermsEntity(++id, termName, termStartDate, termEndDate);
         repository.insert(newTerm);
-        Intent intent = new Intent( Terms_Add_New_Term.this, Terms_List.class);
+        Intent intent = new Intent( Add_New_Term.this, List_Terms.class);
         startActivity(intent);
 
     }
@@ -136,7 +136,7 @@ public class Terms_Add_New_Term extends AppCompatActivity implements AdapterView
     public void showDatePicker(View view) {
         int viewID = view.getId();
         TextView datePickerView = findViewById(viewID);
-        DialogFragment newFragment = new DatePickerFragment(datePickerView);
+        DialogFragment newFragment = new Date_Picker_Fragment(datePickerView);
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
