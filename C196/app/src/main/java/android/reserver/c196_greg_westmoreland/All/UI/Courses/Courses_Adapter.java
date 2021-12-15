@@ -16,9 +16,16 @@ import java.util.List;
 
 public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course_View_Holder> {
 
+    /**
+     * This method is the course adapter used with the courses list class
+     */
     class Course_View_Holder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
 
+        /**
+         * The Course View Holder has the on click method that is used when the courses list class page is loaded
+         * @param itemView
+         */
         private Course_View_Holder(View itemView){
             super(itemView);
             courseItemView = itemView.findViewById(R.id.course_item_text_view);
@@ -37,20 +44,34 @@ public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course
         }
     }
 
+    // Declare variables
     private final LayoutInflater mInflater;
     private Context context = null;
     public List<CoursesEntity> mCourses; // Cached copy of words
 
+    /**
+     * The courses adapter inflates the lay out screen for the courses list
+     * @param context
+     */
     public Courses_Adapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
+    /**
+     * The courses adapter inflates the lay out screen for the courses list
+     */
     public Courses_Adapter() {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
-    
+
+    /**
+     * On Create View Holder inflates the course list item layout screen
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public Course_View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
@@ -58,6 +79,11 @@ public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course
         return new Course_View_Holder(itemView);
     }
 
+    /**
+     * The on bind view holder loades the courses entity array and filters the courses
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(Course_View_Holder holder, int position) {
         if(mCourses != null) {
@@ -69,7 +95,7 @@ public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course
     }
 
     /**
-     *
+     * This method assignes the notify date set change
      * @param words
      */
     public void setWords(List<CoursesEntity> words) {
@@ -87,11 +113,15 @@ public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course
             return mCourses.size();
         else return 0;
     }
-    
+
+    /**
+     * This method gets the position at the course ID selected
+     * @param position
+     * @return
+     */
     public CoursesEntity getCourseAt(int position) {
         return mCourses.get(position);
     }
-
 
     /**
      * Set Terms method

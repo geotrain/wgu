@@ -42,10 +42,6 @@
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:onClick="showDatePicker"
                     android:hint="MM/DD/YYYY"
                     android:id="@+id/Start_Date"/>
             </LinearLayout>
@@ -61,10 +57,6 @@
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:onClick="showDatePicker"
                     android:hint="MM/DD/YYYY"
                     android:id="@+id/End_Date"/>
             </LinearLayout>
@@ -76,14 +68,12 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Course Status:" />
-
+                    android:text="Course Status" />
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:hint="In Progress, Completed"
                     android:id="@+id/Course_status"/>
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -131,26 +121,6 @@
                     android:hint="name@wgu.edu"
                     android:id="@+id/Course_Instructor_Email"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Course Note:" />
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Optional"
-                    android:id="@+id/Optional_Course_Note"/>
-            </LinearLayout>
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

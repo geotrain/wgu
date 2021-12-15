@@ -14,15 +14,17 @@
             android:id="@+id/assessment_item_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Course:" />
+            android:text="Assessment:" />
+
 
         <TextView
-            android:id="@+id/course_assessment_list"
+            android:id="@+id/assessment_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/assessment_item_text_view"
             android:layout_marginLeft="16dp"
             android:background="@android:color/holo_blue_bright"
-            android:text="Assessments:" />
+            android:text="Assessment" />
+
     </RelativeLayout>
 </LinearLayout>

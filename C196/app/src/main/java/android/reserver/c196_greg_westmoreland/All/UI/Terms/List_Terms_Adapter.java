@@ -20,17 +20,15 @@ public class List_Terms_Adapter extends RecyclerView.Adapter<List_Terms_Adapter.
      * This class is the terms view holder for the recycle view
      */
     class Term_View_Holder extends RecyclerView.ViewHolder {
-        private final TextView termItemView;
-        private final TextView termItemView2;
-        private final TextView termItemView3;
-        private final TextView termItemView4;
+        private final TextView termNameView;
+        private final TextView termStartDateView;
+        private final TextView termEndDateView;
 
         private Term_View_Holder(View itemView) {
             super(itemView);
-            termItemView = itemView.findViewById(R.id.termView);
-            termItemView2=itemView.findViewById(R.id.termView2);
-            termItemView3=itemView.findViewById(R.id.termView3);
-            termItemView4=itemView.findViewById(R.id.termView4);
+            termNameView = itemView.findViewById(R.id.term_name);
+            termStartDateView=itemView.findViewById(R.id.term_start_date);
+            termEndDateView=itemView.findViewById(R.id.term_end_date);
             itemView.setOnClickListener(new View.OnClickListener() {
                 /**
                  * This is used when the user clicks an action on the screen
@@ -88,16 +86,14 @@ public class List_Terms_Adapter extends RecyclerView.Adapter<List_Terms_Adapter.
     public void onBindViewHolder(Term_View_Holder holder, int position) {
         if(mTerms != null) {
             final TermsEntity current = mTerms.get(position);
-            holder.termItemView.setText(current.getTermName());
-            holder.termItemView2.setText(Integer.toString(current.getTermID()));
-            holder.termItemView3.setText(String.valueOf(current.getTermStartDate()));
-            holder.termItemView4.setText(String.valueOf(current.getTermEndDate()));
+            holder.termNameView.setText(current.getTermName());
+            holder.termStartDateView.setText(String.valueOf(current.getTermStartDate()));
+            holder.termEndDateView.setText(String.valueOf(current.getTermEndDate()));
         } else {
             // Covers the case of data not being ready yet.
-            holder.termItemView.setText("No Terms Name");
-            holder.termItemView2.setText("No Terms ID");
-            holder.termItemView3.setText("No Terms Start Date");
-            holder.termItemView4.setText("No Terms End Date");
+            holder.termNameView.setText("No Terms Name");
+            holder.termStartDateView.setText("No Terms Start Date");
+            holder.termEndDateView.setText("No Terms End Date");
         }
     }
 

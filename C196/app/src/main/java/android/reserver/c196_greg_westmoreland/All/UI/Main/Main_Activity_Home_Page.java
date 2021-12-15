@@ -6,6 +6,7 @@ package android.reserver.c196_greg_westmoreland.All.UI.Main;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.UI.Assessments.List_Assessments;
 import android.reserver.c196_greg_westmoreland.All.UI.Courses.List_Courses;
 import android.reserver.c196_greg_westmoreland.All.UI.Terms.List_Terms;
@@ -13,6 +14,8 @@ import android.reserver.c196_greg_westmoreland.R;
 import android.view.View;
 
 public class Main_Activity_Home_Page extends AppCompatActivity {
+
+    private SchedulerRepository repository;
 
     /**
      * This variable sets the numAlert variable for the notify in the terms list detail screen
@@ -27,6 +30,10 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home_page);
+
+        // Creates DB upon the main screen loading
+        repository = new SchedulerRepository(getApplication());
+        repository.getAllTerms();
     }
 
     /**
@@ -34,7 +41,7 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
      * @param view
      */
     public void seeAllTerms(View view) {
-        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Terms.class);
+    Intent intent = new Intent(Main_Activity_Home_Page.this, List_Terms.class);
         startActivity(intent);
     }
 

@@ -13,27 +13,10 @@
             android:name=".All.UI.My_Receiver"
             android:enabled="true"
             android:exported="true"></receiver>
-
-        <activity
-            android:name=".All.UI.Assessments.Edit_Existing_Assessment"
-            android:exported="false"
-            android:label="Detailed Assessment View" />
         <activity
             android:name=".All.UI.Terms.List_Terms"
             android:exported="false"
             android:label="Terms List" />
-        <activity
-            android:name=".All.UI.Courses.Edit_Existing_Course"
-            android:exported="false"
-            android:label="Detailed Course View" />
-        <activity
-            android:name=".All.UI.Assessments.List_Assessments"
-            android:exported="false"
-            android:label="Assessments List" />
-        <activity
-            android:name=".All.UI.Courses.List_Courses"
-            android:exported="false"
-            android:label="Courses List" />
         <activity
             android:name=".All.UI.Terms.Add_New_Term"
             android:exported="false"
@@ -43,12 +26,35 @@
             android:exported="false"
             android:label="Edit Existing Term" />
         <activity
+            android:name=".All.UI.Courses.List_Courses"
+            android:exported="false"
+            android:label="Courses List" />
+        <activity
+            android:name=".All.UI.Courses.Add_New_Course"
+            android:exported="false"
+            android:label="Add New Course" />
+        <activity
+            android:name=".All.UI.Courses.Edit_Existing_Course"
+            android:exported="false"
+            android:label="Edit Existing Course" />
+        <activity
+            android:name=".All.UI.Assessments.List_Assessments"
+            android:exported="false"
+            android:label="Assessments List" />
+        <activity
+            android:name=".All.UI.Assessments.Add_New_Assessment"
+            android:exported="false"
+            android:label="Add New Assessment" />
+        <activity
+            android:name=".All.UI.Assessments.Edit_Existing_Assessment"
+            android:exported="false"
+            android:label="Edit Existing Assessment" />
+        <activity
             android:name=".All.UI.Main.Main_Activity_Home_Page"
             android:exported="true"
             android:label="Scheduler Mobile App Version 1.0">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

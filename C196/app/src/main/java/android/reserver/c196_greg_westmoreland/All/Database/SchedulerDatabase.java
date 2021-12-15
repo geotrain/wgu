@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 /**
  * The @Database references
  */
-@Database(entities = {TermsEntity.class, CoursesEntity.class, AssessmentsEntity.class}, version = 12, exportSchema = false)
+@Database(entities = {TermsEntity.class, CoursesEntity.class, AssessmentsEntity.class}, version = 14, exportSchema = false)
 
 /**
  * The @Types Converter references
@@ -87,10 +87,12 @@ public abstract class SchedulerDatabase extends RoomDatabase {
             // Database Write Executor
             databaseWriteExecutor.execute(() -> {
 
-                // These delete all data upon starting the app, comment these out before submission // TODO Comment These Out
+                // These delete all data upon starting the app, comment these out for database persistence
+                /*
                 mTermsDao.deleteAllTerms();;
                 mCoursesDao.deleteAllCourses();
                 mAssessmentsDao.deleteAllAssessments();
+                 */
 
                 mTermsDao.insertAllTerms(Starting_Data_For_Database.getStartTerms());
                 mCoursesDao.insertAllCourses(Starting_Data_For_Database.getStartCourses());

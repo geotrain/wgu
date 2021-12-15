@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
+import android.reserver.c196_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import java.util.Objects;
 
 public class List_Courses extends AppCompatActivity {
 
+    // Declare variables
     public static int courseID;
     /**
      * Declare Database Repository
@@ -84,8 +86,12 @@ public class List_Courses extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addNewCourse(View view) {
-        Intent intent = new Intent(List_Courses.this, Add_New_Course.class);
+    /**
+     * This method navigates to home screen
+     * @param view
+     */
+    public void returnToHome(View view) {
+        Intent intent = new Intent(List_Courses.this, Main_Activity_Home_Page.class);
         startActivity(intent);
     }
 }

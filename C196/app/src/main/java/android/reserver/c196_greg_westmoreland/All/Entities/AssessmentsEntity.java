@@ -31,9 +31,10 @@ public class AssessmentsEntity {
                 '}';
     }
 
-    private AssessmentTypeEntity assessmentType;
+    private String assessmentType;
     private String assessmentStartDate;
     private String assessmentEndDate;
+
 
     /**
      * Constructor
@@ -45,7 +46,7 @@ public class AssessmentsEntity {
      * @param assessmentEndDate
      */
     public AssessmentsEntity(int assessmentID, String assessmentName, int courseID,
-                             AssessmentTypeEntity assessmentType, String assessmentStartDate,
+                             String assessmentType, String assessmentStartDate,
                              String assessmentEndDate) {
         this.assessmentID = assessmentID;
         this.assessmentName = assessmentName;
@@ -53,7 +54,6 @@ public class AssessmentsEntity {
         this.assessmentType = assessmentType;
         this.assessmentStartDate = assessmentStartDate;
         this.assessmentEndDate = assessmentEndDate;
-
     }
 
     /**
@@ -77,6 +77,7 @@ public class AssessmentsEntity {
      * @return
      */
     public String getAssessmentName() {
+
         return assessmentName;
     }
 
@@ -92,7 +93,7 @@ public class AssessmentsEntity {
      * This method gets the assessment type from the assessments_table
      * @return
      */
-    public AssessmentTypeEntity getAssessmentType() {
+    public String getAssessmentType() {
         return assessmentType;
     }
 
@@ -100,7 +101,7 @@ public class AssessmentsEntity {
      * This method sets the assessment type to the assessments_table
      * @param assessmentType
      */
-    public void setAssessmentType(AssessmentTypeEntity assessmentType) {
+    public void setAssessmentType(String assessmentType) {
         this.assessmentType = assessmentType;
     }
 

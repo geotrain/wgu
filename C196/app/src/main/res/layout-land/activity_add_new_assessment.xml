@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    tools:context=".All.UI.Courses.Add_New_Course">
+    tools:context=".All.UI.Assessments.Add_New_Assessment">
 
     <ScrollView
         android:layout_width="409dp"
@@ -20,15 +20,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
+
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/course_name"/>
+                    android:text="Assessment Name" />
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:hint="Math, English, etc"
-                    android:id="@+id/Course_Name"/>
+                    android:hint="Objective/Performance"
+                    android:id="@+id/Assessment_Name"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,14 +39,40 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Course Start Date" />
+                    android:text="Associated Course ID" />
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:onClick="showDatePicker"
+                    android:hint="Math, English, etc"
+                    android:id="@+id/Course_ID"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Assessment Type" />
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Performance/Objective"
+                    android:id="@+id/Assessment_Type"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Assessment Start Date" />
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
                     android:hint="MM/DD/YYYY"
                     android:id="@+id/Start_Date"/>
             </LinearLayout>
@@ -57,14 +84,10 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Course End Date" />
+                    android:text="Assessment End Date" />
                 <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:onClick="showDatePicker"
                     android:hint="MM/DD/YYYY"
                     android:id="@+id/End_Date"/>
             </LinearLayout>
@@ -73,94 +96,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Course Status:" />
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:hint="In Progress, Completed"
-                    android:id="@+id/Course_status"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Instructor Name" />
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:hint="John Doe"
-                    android:id="@+id/Course_Instructor_Name"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Instructor Phone" />
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:hint="214-555-1212"
-                    android:id="@+id/Course_Instructor_Phone"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Instructor Email" />
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:hint="name@wgu.edu"
-                    android:id="@+id/Course_Instructor_Email"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Course Note:" />
-
-                <EditText
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Optional"
-                    android:id="@+id/Optional_Course_Note"/>
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:onClick="saveCourse"
-                    android:text="@string/save_course" />
+                    android:onClick="saveAssessment"
+                    android:text="Save Assessment" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

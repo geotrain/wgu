@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Assessments.Add_New_Assessment;
+import android.reserver.c196_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +36,7 @@ public class List_Terms extends AppCompatActivity {
         // Call Instance from repository and getAllTerms
         repository = new SchedulerRepository(getApplication());
         // this is really just to set up the database if there isn't one on your device yet-otherwise
-        repository.getAllTerms();
+       // repository.getAllTerms();
         RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
 
         final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
@@ -93,11 +93,11 @@ public class List_Terms extends AppCompatActivity {
     }
 
     /**
-     * This method is used to navigate to the add a new assessment screen
+     * This method navigates to home screen
      * @param view
      */
-    public void addNewAssessment(View view) {
-        Intent intent = new Intent(List_Terms.this, Add_New_Assessment.class);
+    public void returnHome(View view) {
+        Intent intent = new Intent(List_Terms.this, Main_Activity_Home_Page.class);
         startActivity(intent);
     }
 }

@@ -4,28 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".All.UI.Assessments.List_Assessments">
+    tools:context=".All.UI.Courses.List_Courses">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/assessmentsListRecyclerView"
+        android:id="@+id/coursesListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:listitem="@layout/assessment_list_item"/>
-
-    <Button
-        android:id="@+id/homeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="1150dp"
-        android:layout_marginBottom="36dp"
-        android:text="Home"
-        android:onClick="returnToTheHome"
-        app:layout_constraintBottom_toTopOf="@+id/assessmentsListRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:listitem="@layout/terms_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

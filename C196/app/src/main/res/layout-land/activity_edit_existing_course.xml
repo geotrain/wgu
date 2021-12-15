@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    tools:context=".All.UI.Terms.Edit_Existing_Term">
+    android:background="@android:color/background_light">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/snackbar_termedit"
+            android:id="@+id/snackbar_course_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
@@ -27,21 +26,28 @@
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/image_term_name"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
                 <EditText
-                    android:id="@+id/Existing_Term_Name"
+                    android:id="@+id/Existing_Course_Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:hint="Term name"
+                    android:hint="Course name"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/Existing_Course_Status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:hint="In Progress, Dropped, Completed, Planning To Take"
                     android:inputType="textPersonName"/>
 
             </LinearLayout>
@@ -51,12 +57,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
-
-
-                <ImageView
-                    android:id="@+id/imageViewtest"
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -69,10 +69,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
-                        android:text="Start Date" />
+                        android:text="Start Date:" />
 
                     <EditText
-                        android:id="@+id/Start_Date"
+                        android:id="@+id/Existing_Course_Start_Date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:ems="8"
@@ -80,7 +80,7 @@
                         android:hint="DD/MM/YYYY"
                         android:inputType="date"
                         android:onClick="showDatePicker"
-                        android:tag="term_start_date_edit" />
+                        android:tag="course_start_date_edit" />
 
                 </LinearLayout>
 
@@ -94,36 +94,87 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
-                        android:text="End Date" />
+                        android:text="End Date:" />
 
                     <EditText
-                        android:id="@+id/End_Date"
+                        android:id="@+id/Existing_Course_End_Date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:focusable="false"
                         android:hint="DD/MM/YYYY"
                         android:inputType="date"
                         android:onClick="showDatePicker"
-                        android:tag="term_end_date_edit" />
+                        android:tag="course_end_date_edit" />
 
                 </LinearLayout>
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/termSaveBtn"
-                android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:onClick="saveTerm"
-                android:text="Save Existing Term" />
+                android:layout_marginStart="3dp"
+                android:text="Course Instructor Name:" />
+
+            <EditText
+                android:id="@+id/Existing_Course_Instructor_Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:tag="course_instructor_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="Course Instructor Name:" />
+
+            <EditText
+                android:id="@+id/Existing_Course_Instructor_Phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:tag="course_instructor_phone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="Course Instructor Name:" />
+
+            <EditText
+                android:id="@+id/Existing_Course_Instructor_Email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:tag="course_instructor_email" />
+
+        </LinearLayout>
 
             <Button
-                android:id="@+id/seeAllTermsBtn"
-                android:layout_width="200dp"
+                android:id="@+id/courseSaveBtn"
+                android:layout_width="263dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:onClick="seeAllTerms"
-                android:text="See All Terms" />
+                android:layout_marginLeft="60dp"
+                android:onClick="saveCourse"
+                android:text="Save Course" />
+
+            <Button
+                android:id="@+id/seeCoursesBtn"
+                android:layout_width="263dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:onClick="seeCourses"
+                android:text="See All Courses" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -137,24 +188,25 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/course_recyclerview"
+                    android:id="@+id/assessment_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/holo_blue_light"
                     tools:layout_editor_absoluteX="50dp"
                     tools:layout_editor_absoluteY="194dp"
-                    tools:listitem="@layout/course_list_item" />
+                    tools:listitem="@layout/assessment_list_item" />
 
                 <Button
-                    android:id="@+id/addCourse"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/addAssessment"
+                    android:layout_width="263dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="140dp"
                     android:layout_marginTop="10dp"
-                    android:contentDescription="Add Course"
-                    android:onClick="addCourseToTerm"
-                    android:text="Add Course"
+                    android:layout_marginLeft="60dp"
+                    android:contentDescription="Add Assessment"
+                    android:onClick="addAssessmentToCourse"
+                    android:text="Add Assessment"
                     app:layout_constraintTop_toBottomOf="@+id/course_recyclerview" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

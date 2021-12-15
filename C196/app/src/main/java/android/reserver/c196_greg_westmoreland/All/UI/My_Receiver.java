@@ -17,7 +17,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public class My_Receiver extends BroadcastReceiver {
 
     /**
-     * Declration of variables used as My receiver
+     * Declaration of variables used as My receiver
      */
     String channel_id = "test";
     static int notificationID;
@@ -38,9 +38,6 @@ public class My_Receiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(notificationID++, n);
     }
-
-    // TODO: This method is called when the BroadcastReceiver is receiving
-    // an Intent broadcast.
 
     /**
      * Create Notification Method using the channel id

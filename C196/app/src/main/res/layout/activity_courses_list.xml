@@ -15,29 +15,17 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:listitem="@layout/terms_list_item" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+    <Button
+        android:id="@+id/homeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:contentDescription="@string/add_a_new_course_plus_button"
-        android:onClick="addNewCourse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_c196_add_foreground"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,RedundantDescriptionCheck" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="183dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="1150dp"
         android:layout_marginBottom="36dp"
-        android:background="@color/white"
-        android:text="@string/add_a_new_course"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Home"
+        android:onClick="returnToHome"
+        app:layout_constraintBottom_toTopOf="@+id/coursesListRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

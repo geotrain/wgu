@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.c196_greg_westmoreland.All.UI.Assessments.Edit_Existing_Assessment;
 import android.reserver.c196_greg_westmoreland.All.UI.Courses.Add_New_Course;
 import android.reserver.c196_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.c196_greg_westmoreland.All.UI.My_Receiver;
@@ -117,7 +116,6 @@ public class Edit_Existing_Term extends AppCompatActivity {
         /**
          * Show associated courses with an existing term that is being edited
          */
-
         RecyclerView recyclerView = findViewById(R.id.course_recyclerview);
         final Edit_Existing_Term_Adapter adapter = new Edit_Existing_Term_Adapter(this);
         recyclerView.setAdapter(adapter);
@@ -138,10 +136,10 @@ public class Edit_Existing_Term extends AppCompatActivity {
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT) {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
                 return false;
             }
-
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
@@ -178,9 +176,10 @@ public class Edit_Existing_Term extends AppCompatActivity {
             case R.id.share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, existingTermName + " begins " + existingTermStartDate +
+                        " and ends on " + existingTermEndDate);
                 // Here you will be setting the title of the content
-                sendIntent.putExtra(Intent.EXTRA_TITLE, "Send message title");
+                sendIntent.putExtra(Intent.EXTRA_TITLE, "Share Information about " + existingTermName);
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
@@ -197,7 +196,8 @@ public class Edit_Existing_Term extends AppCompatActivity {
                 }
                 Long trigger = myDate.getTime();
                 Intent intent = new Intent(Edit_Existing_Term.this, My_Receiver.class);
-                intent.putExtra("key", "message I want to see"); // <-- CHANGE THIS TO SEND COURSE ID, START, END DATES, ASSESSMENTS GOING FOR IT
+                intent.putExtra("key", existingTermName + " begins " + existingTermStartDate +
+                        " and ends on " + existingTermEndDate);
                 PendingIntent sender = PendingIntent.getBroadcast(Edit_Existing_Term.this,
                         ++Main_Activity_Home_Page.numAlert, intent, 0);
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -209,12 +209,20 @@ public class Edit_Existing_Term extends AppCompatActivity {
                         currentTerm = p;
                 }
                 // Variable false
-                boolean dontDelete = false;
-                if (false) {
-                    repository.delete(currentTerm);
-                } else {
-                    Toast.makeText(Edit_Existing_Term.this, "Can't delete a term " +
-                            "that has courses associated with it", Toast.LENGTH_LONG).show();
+                //boolean dontDelete = false;
+                int id = item.getItemId();
+
+                if (id == R.id.delete) {
+                    if (numCourses == 0) {
+                        repository.delete(currentTerm);
+                        intent = new Intent(Edit_Existing_Term.this, List_Terms.class);
+                        startActivity(intent);
+                        Toast.makeText(Edit_Existing_Term.this, "Term has been successfully " +
+                                "deleted.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(Edit_Existing_Term.this, "You cannot delete a term " +
+                                "that has courses associated with it", Toast.LENGTH_SHORT).show();
+                    }
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -247,15 +255,39 @@ public class Edit_Existing_Term extends AppCompatActivity {
      * This method takes existing data from the term and saves the changes to the database
      * @param view
      */
-    public void saveTerm(View view) {
+    public void saveTerm(View view) throws ParseException {
+
         String termName = existingEditTermName.getText().toString();
         String termStartDate = existingEditTermStartDate.getText().toString();
         String termEndDate = existingEditTermEndDate.getText().toString();
 
-        TermsEntity newTerm = new TermsEntity(id, termName, termStartDate, termEndDate);
-        repository.update(newTerm);
-        Intent intent = new Intent(Edit_Existing_Term.this, List_Terms.class);
-        startActivity(intent);
+        String startDateFromScreen = existingEditTermStartDate.getText().toString();
+        String endDateFromScreen = existingEditTermEndDate.getText().toString();
+        String myFormat = "MM/dd/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        // Check if Term End Date is before Term Start Date
+        if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
+            Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Check if term name, term start date, or term end date fields are empty
+        if (existingEditTermName.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please supply a term name before saving.", Toast.LENGTH_LONG).show();
+            return;
+        } else if (existingEditTermStartDate.getText().toString().trim().isEmpty()) {
+                Toast.makeText(this, "Please supply a start date before saving.", Toast.LENGTH_LONG).show();
+                return;
+        } else if (existingEditTermEndDate.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please supply an end date before saving.", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            TermsEntity newTerm = new TermsEntity(id, termName, termStartDate, termEndDate);
+            repository.update(newTerm);
+            Intent intent = new Intent(Edit_Existing_Term.this, List_Terms.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -266,7 +298,15 @@ public class Edit_Existing_Term extends AppCompatActivity {
         // Navigate to Courses_Add_New_Course class
         Intent intent = new Intent(Edit_Existing_Term.this, Add_New_Course.class);
         intent.putExtra("termID", id);
-        Edit_Existing_Assessment.courseIdAssessmentEditPage = -1;
+        startActivity(intent);
+    }
+
+    /**
+     * This method returns to the Terms List screen used for navigation
+     * @param view
+     */
+    public void seeAllTerms(View view) {
+        Intent intent = new Intent(Edit_Existing_Term.this, List_Terms.class);
         startActivity(intent);
     }
 }

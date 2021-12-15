@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
@@ -20,8 +19,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Add_New_Term extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -116,17 +118,40 @@ public class Add_New_Term extends AppCompatActivity implements AdapterView.OnIte
      * This method takes the input data and saves it as a new term
      * @param view
      */
-    public void saveTerm(View view) {
+    public void saveTerm(View view) throws ParseException {
+
         String termName = editTermName.getText().toString();
         String termStartDate = editTermStartDate.getText().toString();
         String termEndDate = editTermEndDate.getText().toString();
 
+        String startDateFromScreen = editTermStartDate.getText().toString();
+        String endDateFromScreen = editTermEndDate.getText().toString();
+        String myFormat = "MM/dd/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        TermsEntity newTerm = new TermsEntity(++id, termName, termStartDate, termEndDate);
-        repository.insert(newTerm);
-        Intent intent = new Intent( Add_New_Term.this, List_Terms.class);
-        startActivity(intent);
+        // Check if Term End Date is before Term Start Date
+        if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
+            Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
+            return;
+        }
 
+        // Check if term name, term start date, or term end date fields are empty
+        if (editTermName == null || editTermName.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please supply a term name before saving.", Toast.LENGTH_LONG).show();
+
+            return;
+        } else if (editTermStartDate == null || editTermStartDate.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please supply a start date before saving.", Toast.LENGTH_LONG).show();
+            return;
+        } else if (editTermEndDate == null || editTermEndDate.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please supply an end date before saving.", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            TermsEntity newTerm = new TermsEntity(++id, termName, termStartDate, termEndDate);
+            repository.insert(newTerm);
+            Intent intent = new Intent( Add_New_Term.this, List_Terms.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -140,13 +165,22 @@ public class Add_New_Term extends AppCompatActivity implements AdapterView.OnIte
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+    /**
+     * This method has the code that deals when an item is selected on the screen
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
+    /**
+     * This method has the code when nothing is selected on the screen
+     * @param parent
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

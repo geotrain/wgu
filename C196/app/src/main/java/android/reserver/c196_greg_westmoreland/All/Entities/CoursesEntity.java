@@ -24,6 +24,8 @@ public class CoursesEntity {
     private String courseName;
     private int termID;
 
+    public CoursesEntity() {
+    }
 
     @Override
     public String toString() {
@@ -38,6 +40,7 @@ public class CoursesEntity {
     private String courseInstructorName;
     private String courseInstructorPhone;
     private String courseInstructorEmail;
+    private String optionalCourseNote;
 
     /**
      * Constructor
@@ -50,10 +53,11 @@ public class CoursesEntity {
      * @param courseInstructorName
      * @param courseInstructorPhone
      * @param courseInstructorEmail
+     * @param optionalCourseNote
      */
     public CoursesEntity(int courseID, String courseName, int termID, String courseStartDate, String courseEndDate,
                          String courseStatus, String courseInstructorName, String courseInstructorPhone,
-                         String courseInstructorEmail) {
+                         String courseInstructorEmail, String optionalCourseNote) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.termID = termID;
@@ -63,6 +67,7 @@ public class CoursesEntity {
         this.courseInstructorName = courseInstructorName;
         this.courseInstructorPhone = courseInstructorPhone;
         this.courseInstructorEmail = courseInstructorEmail;
+        this.optionalCourseNote = optionalCourseNote;
     }
 
     /**
@@ -191,6 +196,22 @@ public class CoursesEntity {
      */
     public void setCourseInstructorEmail(String courseInstructorEmail) {
         this.courseInstructorEmail = courseInstructorEmail;
+    }
+
+    /**
+     * This method gets the optional course note from the courses_table
+     * @return
+     */
+    public String getOptionalCourseNote() {
+        return optionalCourseNote;
+    }
+
+    /**
+     * This method sets the optional course note to the courses_table
+     * @param optionalCourseNote
+     */
+    public void setOptionalCourseNote(String optionalCourseNote) {
+        this.optionalCourseNote = optionalCourseNote;
     }
 
     /**

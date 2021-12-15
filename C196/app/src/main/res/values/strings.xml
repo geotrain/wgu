@@ -25,4 +25,18 @@
     <string name="course_instructor_phone">Course Instructor Name</string>
     <string name="course_instructor_email">Course Instructor Email</string>
     <string name="see_all_terms">SEE ALL TERMS</string>
+    <string name="assessment_name">assessment_name</string>
+    <string name="assessment_type">assessment_type</string>
+    <string name="course_status_spinner">Course Status</string>
+    <string-array name="course_status">
+        <item>In Progress</item>
+        <item>Completed</item>
+        <item>Dropped</item>
+        <item>Planning To Take</item>
+    </string-array>
+    <string name="assessment_status_spinner">Course Status</string>
+    <string-array name="assessment_status">
+        <item>Perf_Assessment</item>
+        <item>Obj_Assessment</item>
+    </string-array>
 </resources>
