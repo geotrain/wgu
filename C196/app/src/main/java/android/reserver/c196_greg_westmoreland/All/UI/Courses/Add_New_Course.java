@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.c196_greg_westmoreland.All.UI.Terms.Edit_Existing_Term;
+import android.reserver.c196_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.c196_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
@@ -180,7 +181,7 @@ public class Add_New_Course extends AppCompatActivity implements AdapterView.OnI
                     courseEndDate, courseStatusEntity, courseInstructorName, courseInstructorPhone,
                     courseInstructorEmail, optionalCourseNote);
             repository.insert(newCourse);
-            Intent intent = new Intent( Add_New_Course.this, Edit_Existing_Term.class);
+            Intent intent = new Intent( Add_New_Course.this, List_Terms.class);
             intent.putExtra("termID", termID);
             startActivity(intent);
         }

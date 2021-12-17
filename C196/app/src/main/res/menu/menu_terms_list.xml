@@ -13,9 +13,14 @@
         android:id="@+id/share"
         app:showAsAction="never"/>
 
-    <item android:title="Notify"
+    <item android:title="Notify Start Date"
         android:orderInCategory="100"
-        android:id="@+id/notify"
+        android:id="@+id/notifyStartDate"
+        app:showAsAction="never"/>
+
+    <item android:title="Notify End Date"
+        android:orderInCategory="100"
+        android:id="@+id/notifyEndDate"
         app:showAsAction="never"/>
 
 </menu>

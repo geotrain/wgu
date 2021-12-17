@@ -126,7 +126,6 @@
                 android:id="@+id/Existing_Course_Instructor_Name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:focusable="false"
                 android:inputType="textPersonName"
                 android:tag="course_instructor_name" />
 
@@ -140,7 +139,6 @@
                 android:id="@+id/Existing_Course_Instructor_Phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:focusable="false"
                 android:inputType="textPersonName"
                 android:tag="course_instructor_phone" />
 
@@ -154,7 +152,6 @@
                 android:id="@+id/Existing_Course_Instructor_Email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:focusable="false"
                 android:inputType="textPersonName"
                 android:tag="course_instructor_email" />
 

@@ -184,24 +184,41 @@ public class Edit_Existing_Term extends AppCompatActivity {
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
                 return true;
-            case R.id.notify:
+            case R.id.notifyStartDate:
                 dateFromScreen = existingEditTermStartDate.getText().toString();
-                String myFormat = "MM/dd/yyyy"; //In which you need put here
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                Date myDate = null;
+                String myStartFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf_start = new SimpleDateFormat(myStartFormat, Locale.US);
+                Date myStartDate = null;
                 try {
-                    myDate = sdf.parse(dateFromScreen);
+                    myStartDate = sdf_start.parse(dateFromScreen);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Long trigger = myDate.getTime();
-                Intent intent = new Intent(Edit_Existing_Term.this, My_Receiver.class);
-                intent.putExtra("key", existingTermName + " begins " + existingTermStartDate +
-                        " and ends on " + existingTermEndDate);
-                PendingIntent sender = PendingIntent.getBroadcast(Edit_Existing_Term.this,
-                        ++Main_Activity_Home_Page.numAlert, intent, 0);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                Long triggerStart = myStartDate.getTime();
+                Intent intentStart = new Intent(Edit_Existing_Term.this, My_Receiver.class);
+                intentStart.putExtra("key", existingTermName + " begins on " + existingTermStartDate);
+                PendingIntent senderStart = PendingIntent.getBroadcast(Edit_Existing_Term.this,
+                        ++Main_Activity_Home_Page.numAlert, intentStart, 0);
+                AlarmManager alarmManagerStart = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerStart.set(AlarmManager.RTC_WAKEUP, triggerStart, senderStart);
+                return true;
+            case R.id.notifyEndDate:
+                dateFromScreen = existingEditTermEndDate.getText().toString();
+                String myEndFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf_end = new SimpleDateFormat(myEndFormat, Locale.US);
+                Date myEndDate = null;
+                try {
+                    myEndDate = sdf_end.parse(dateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long triggerEnd = myEndDate.getTime();
+                Intent intentEnd = new Intent(Edit_Existing_Term.this, My_Receiver.class);
+                intentEnd.putExtra("key", existingTermName + " ends on " + existingTermEndDate);
+                PendingIntent senderEnd = PendingIntent.getBroadcast(Edit_Existing_Term.this,
+                        ++Main_Activity_Home_Page.numAlert, intentEnd, 0);
+                AlarmManager alarmManagerEnd = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, triggerEnd, senderEnd);
                 return true;
             case R.id.delete:
                 for (TermsEntity p : repository.getAllTerms()) {
@@ -215,8 +232,8 @@ public class Edit_Existing_Term extends AppCompatActivity {
                 if (id == R.id.delete) {
                     if (numCourses == 0) {
                         repository.delete(currentTerm);
-                        intent = new Intent(Edit_Existing_Term.this, List_Terms.class);
-                        startActivity(intent);
+                        intentStart = new Intent(Edit_Existing_Term.this, List_Terms.class);
+                        startActivity(intentStart);
                         Toast.makeText(Edit_Existing_Term.this, "Term has been successfully " +
                                 "deleted.", Toast.LENGTH_LONG).show();
                     } else {

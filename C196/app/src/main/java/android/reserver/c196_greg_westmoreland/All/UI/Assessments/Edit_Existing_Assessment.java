@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
+import android.reserver.c196_greg_westmoreland.All.UI.Courses.Edit_Existing_Course;
 import android.reserver.c196_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.c196_greg_westmoreland.All.UI.My_Receiver;
 import android.reserver.c196_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
@@ -128,24 +129,41 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
                 return true;
-            case R.id.notify:
+            case R.id.notifyStartDate:
                 dateFromScreen = editExistingAssessmentStartDate.getText().toString();
-                String myFormat = "MM/dd/yyyy"; //In which you need put here
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                Date myDate=null;
+                String myStartFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf_start = new SimpleDateFormat(myStartFormat, Locale.US);
+                Date myStartDate = null;
                 try {
-                    myDate=sdf.parse(dateFromScreen);
+                    myStartDate=sdf_start.parse(dateFromScreen);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Long trigger = myDate.getTime();
-                Intent intent = new Intent(Edit_Existing_Assessment.this, My_Receiver.class);
-                intent.putExtra("key", existingAssessmentName + " begins " + existingAssessmentStartDate +
-                        " and ends on " + existingAssessmentEndDate);
-                PendingIntent sender=PendingIntent.getBroadcast(Edit_Existing_Assessment.this,
-                        ++Main_Activity_Home_Page.numAlert,intent,0);
-                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                Long triggerStart = myStartDate.getTime();
+                Intent intentStart = new Intent(Edit_Existing_Assessment.this, My_Receiver.class);
+                intentStart.putExtra("key", existingAssessmentName + " begins on " + existingAssessmentStartDate);
+                PendingIntent senderStart=PendingIntent.getBroadcast(Edit_Existing_Assessment.this,
+                        ++Main_Activity_Home_Page.numAlert,intentStart,0);
+                AlarmManager alarmManagerStart=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                alarmManagerStart.set(AlarmManager.RTC_WAKEUP, triggerStart, senderStart);
+                return true;
+            case R.id.notifyEndDate:
+                dateFromScreen = editExistingAssessmentEndDate.getText().toString();
+                String myEndFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf_end = new SimpleDateFormat(myEndFormat, Locale.US);
+                Date myEndDate = null;
+                try {
+                    myEndDate = sdf_end.parse(dateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long triggerEnd = myEndDate.getTime();
+                Intent intentEnd = new Intent(Edit_Existing_Assessment.this, My_Receiver.class);
+                intentEnd.putExtra("key", existingAssessmentName + " ends on " + existingAssessmentEndDate);
+                PendingIntent senderEnd = PendingIntent.getBroadcast(Edit_Existing_Assessment.this,
+                        ++Main_Activity_Home_Page.numAlert, intentEnd, 0);
+                AlarmManager alarmManagerEnd = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, triggerEnd, senderEnd);
                 return true;
             case R.id.delete:
                 for (AssessmentsEntity a : repository.getAllAssessments()) {
@@ -158,8 +176,8 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
 
                 if (id == R.id.delete) {
                     repository.delete(currentAssessment);
-                    intent = new Intent(Edit_Existing_Assessment.this, List_Assessments.class);
-                    startActivity(intent);
+                    intentStart = new Intent(Edit_Existing_Assessment.this, List_Assessments.class);
+                    startActivity(intentStart);
                     Toast.makeText(Edit_Existing_Assessment.this, "Assessment has been successfully " +
                             "deleted.", Toast.LENGTH_LONG).show();
                 } else {
@@ -185,6 +203,7 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
      * @param view
      */
     public void saveAssessment(View view) throws ParseException {
+        int courseID = currentAssessment.getCourseID();
         String assessmentName = editExistingAssessmentName.getText().toString();
         String assessmentTypeEntity = editExistingAssessmentType.getText().toString();
         String assessmentStartDate = editExistingAssessmentStartDate.getText().toString();
@@ -215,7 +234,9 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
             AssessmentsEntity newAssessment = new AssessmentsEntity(id, assessmentName, courseID, assessmentTypeEntity,
                     assessmentStartDate, assessmentEndDate);
             repository.update(newAssessment);
-            Intent intent = new Intent( Edit_Existing_Assessment.this, List_Assessments.class);
+            Toast.makeText(this, "Assessment saved.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent( Edit_Existing_Assessment.this, Edit_Existing_Course.class);
+            intent.putExtra("courseID", courseID);
             startActivity(intent);
         }
     }

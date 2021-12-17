@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 /**
  * The @Database references
  */
-@Database(entities = {TermsEntity.class, CoursesEntity.class, AssessmentsEntity.class}, version = 14, exportSchema = false)
+@Database(entities = {TermsEntity.class, CoursesEntity.class, AssessmentsEntity.class}, version = 16, exportSchema = false)
 
 /**
  * The @Types Converter references
@@ -92,7 +92,7 @@ public abstract class SchedulerDatabase extends RoomDatabase {
                 mTermsDao.deleteAllTerms();;
                 mCoursesDao.deleteAllCourses();
                 mAssessmentsDao.deleteAllAssessments();
-                 */
+                */
 
                 mTermsDao.insertAllTerms(Starting_Data_For_Database.getStartTerms());
                 mCoursesDao.insertAllCourses(Starting_Data_For_Database.getStartCourses());

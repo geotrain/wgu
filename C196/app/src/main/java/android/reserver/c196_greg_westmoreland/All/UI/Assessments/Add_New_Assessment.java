@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.c196_greg_westmoreland.All.UI.Courses.Edit_Existing_Course;
+import android.reserver.c196_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.c196_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.Menu;
@@ -157,7 +158,7 @@ public class Add_New_Assessment extends AppCompatActivity implements AdapterView
             AssessmentsEntity newAssessment = new AssessmentsEntity(++id, assessmentName, courseID, assessmentType,
                     assessmentStartDate, assessmentEndDate);
             repository.insert(newAssessment);
-            Intent intent = new Intent( Add_New_Assessment.this, Edit_Existing_Course.class);
+            Intent intent = new Intent( Add_New_Assessment.this, List_Terms.class);
             intent.putExtra("courseID", courseID);
             startActivity(intent);
         }

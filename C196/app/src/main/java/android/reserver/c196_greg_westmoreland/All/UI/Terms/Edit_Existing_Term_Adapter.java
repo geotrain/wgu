@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
+import android.reserver.c196_greg_westmoreland.All.UI.Courses.Edit_Existing_Course;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ public class Edit_Existing_Term_Adapter extends RecyclerView.Adapter<Edit_Existi
                 public void onClick (View v) {
                     int position = getAdapterPosition();
                     final CoursesEntity currentCourse = mCourses.get(position);
-                    Intent intent = new Intent(context, Edit_Existing_Term.class);
+                    Intent intent = new Intent(context, Edit_Existing_Course.class);
                     intent.putExtra("courseID", currentCourse.getCourseID());
                     intent.putExtra("termID", currentCourse.getTermID());
                     intent.putExtra("position", position);

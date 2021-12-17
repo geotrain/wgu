@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.c196_greg_westmoreland.All.UI.Assessments.Add_New_Assessment;
+import android.reserver.c196_greg_westmoreland.All.UI.Terms.Edit_Existing_Term;
 import android.reserver.c196_greg_westmoreland.R;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -193,32 +194,49 @@ public class Edit_Existing_Course extends AppCompatActivity {
             case R.id.share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, existingCourseName + " begins " + existingCourseStartDate +
-                        " and ends on " + existingCourseEndDate);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, existingCourseName + " begins " + existingCourseStartDate  +
+                        "\nCourse Note: " + existingOptionalCourseNote);
                 // Here you will be setting the title of the content
                 sendIntent.putExtra(Intent.EXTRA_TITLE, "Share Information about " + existingCourseName);
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
                 return true;
-            case R.id.notify:
+            case R.id.notifyStartDate:
                 dateFromScreen = editExistingCourseStartDate.getText().toString();
-                String myFormat = "MM/dd/yyyy"; //In which you need put here
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                Date myDate=null;
+                String myStartFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf_start = new SimpleDateFormat(myStartFormat, Locale.US);
+                Date myStartDate = null;
                 try {
-                    myDate = sdf.parse(dateFromScreen);
+                    myStartDate = sdf_start.parse(dateFromScreen);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Long trigger = myDate.getTime();
-                Intent intent = new Intent(Edit_Existing_Course.this, My_Receiver.class);
-                intent.putExtra("key", existingCourseName + " begins " + existingCourseStartDate +
-                        " and ends on " + existingCourseEndDate);
-                PendingIntent sender=PendingIntent.getBroadcast(Edit_Existing_Course.this,
-                        ++Main_Activity_Home_Page.numAlert,intent,0);
-                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                Long triggerStart = myStartDate.getTime();
+                Intent intentStart = new Intent(Edit_Existing_Course.this, My_Receiver.class);
+                intentStart.putExtra("key", existingCourseName + " begins on " + existingCourseStartDate);
+                PendingIntent senderStart=PendingIntent.getBroadcast(Edit_Existing_Course.this,
+                        ++Main_Activity_Home_Page.numAlert,intentStart,0);
+                AlarmManager alarmManagerStart=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                alarmManagerStart.set(AlarmManager.RTC_WAKEUP, triggerStart, senderStart);
+                return true;
+            case R.id.notifyEndDate:
+                dateFromScreen = editExistingCourseEndDate.getText().toString();
+                String myEndFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf_end = new SimpleDateFormat(myEndFormat, Locale.US);
+                Date myEndDate = null;
+                try {
+                    myEndDate = sdf_end.parse(dateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long triggerEnd = myEndDate.getTime();
+                Intent intentEnd = new Intent(Edit_Existing_Course.this, My_Receiver.class);
+                intentEnd.putExtra("key", existingCourseName + " ends on " + existingCourseEndDate);
+                PendingIntent senderEnd = PendingIntent.getBroadcast(Edit_Existing_Course.this,
+                        ++Main_Activity_Home_Page.numAlert, intentEnd, 0);
+                AlarmManager alarmManagerEnd = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, triggerEnd, senderEnd);
                 return true;
             case R.id.delete:
                 for (CoursesEntity c : repository.getAllCourses()) {
@@ -232,8 +250,8 @@ public class Edit_Existing_Course extends AppCompatActivity {
                 if (id == R.id.delete) {
                     if (numAssessments == 0) {
                         repository.delete(currentCourse);
-                        intent = new Intent(Edit_Existing_Course.this, List_Courses.class);
-                        startActivity(intent);
+                        intentStart = new Intent(Edit_Existing_Course.this, List_Courses.class);
+                        startActivity(intentStart);
                         Toast.makeText(Edit_Existing_Course.this, "Course has been successfully " +
                                 "deleted.", Toast.LENGTH_LONG).show();
                     } else {
@@ -260,13 +278,14 @@ public class Edit_Existing_Course extends AppCompatActivity {
      * @param view
      */
     public void saveCourse(View view) throws ParseException {
+        int termID = currentCourse.getTermID();
         String courseName = editExistingCourseName.getText().toString();
         String courseStartDate = editExistingCourseStartDate.getText().toString();
         String courseEndDate = editExistingCourseEndDate.getText().toString();
-        String courseStatus = editExistingCourseStatus.getClass().toString();
+        String courseStatus = editExistingCourseStatus.getText().toString();
         String courseInstructorName = editExistingCourseInstructorName.getText().toString();
         String courseInstructorPhone = editExistingCourseInstructorPhone.getText().toString();
-        String courseInstructorEmail = editExistingCourseInstructorPhone.getText().toString();
+        String courseInstructorEmail = editExistingCourseInstructorEmail.getText().toString();
         String optionalCourseNote = editExistingOptionalCourseNote.getText().toString();
 
         String startDateFromScreen = editExistingCourseStartDate.getText().toString();
@@ -306,7 +325,9 @@ public class Edit_Existing_Course extends AppCompatActivity {
             CoursesEntity newCourse = new CoursesEntity(id, courseName, termID, courseStartDate, courseEndDate,
                     courseStatus, courseInstructorName, courseInstructorPhone, courseInstructorEmail, optionalCourseNote);
             repository.update(newCourse);
-            Intent intent = new Intent( Edit_Existing_Course.this, List_Courses.class);
+            Intent intent = new Intent( Edit_Existing_Course.this, Edit_Existing_Term.class);
+            intent.putExtra("termID", termID);
+            intent.putExtra("courseID", courseID);
             startActivity(intent);
         }
     }

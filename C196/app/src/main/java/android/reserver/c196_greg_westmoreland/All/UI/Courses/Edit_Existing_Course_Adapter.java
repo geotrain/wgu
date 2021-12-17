@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.reserver.c196_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.c196_greg_westmoreland.All.Entities.CoursesEntity;
+import android.reserver.c196_greg_westmoreland.All.UI.Assessments.Edit_Existing_Assessment;
 import android.reserver.c196_greg_westmoreland.R;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,9 +49,8 @@ public class Edit_Existing_Course_Adapter extends RecyclerView.Adapter<Edit_Exis
                 @Override
                 public void onClick (View v) {
                     int position = getAdapterPosition();
-                    CircularArray<Object> mAssessments = null;
-                    final AssessmentsEntity currentAssessment = (AssessmentsEntity) mAssessments.get(position);
-                    Intent intent = new Intent(context, Edit_Existing_Course.class);
+                    final AssessmentsEntity currentAssessment = mAssessments.get(position);
+                    Intent intent = new Intent(context, Edit_Existing_Assessment.class);
                     intent.putExtra("assessmentID", currentAssessment.getAssessmentID());
                     intent.putExtra("courseID", currentAssessment.getCourseID());
                     intent.putExtra("position", position);

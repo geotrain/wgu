@@ -64,7 +64,6 @@
                         android:id="@+id/Existing_Assessment_Type"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:focusable="false"
                         android:hint="Performance/Objective"
                         android:tag="existing_assessment_type" />
 

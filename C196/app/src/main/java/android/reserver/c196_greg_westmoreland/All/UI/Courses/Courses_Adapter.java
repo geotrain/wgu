@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
@@ -39,6 +41,7 @@ public class Courses_Adapter extends RecyclerView.Adapter<Courses_Adapter.Course
                     intent.putExtra("courseID", currentCourse.getCourseID());
                     intent.putExtra("termID", currentCourse.getTermID());
                     context.startActivity(intent);
+
                 }
             });
         }
