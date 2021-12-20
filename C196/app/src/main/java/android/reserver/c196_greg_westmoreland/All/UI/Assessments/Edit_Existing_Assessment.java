@@ -207,7 +207,7 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
         String assessmentName = editExistingAssessmentName.getText().toString();
         String assessmentTypeEntity = editExistingAssessmentType.getText().toString();
         String assessmentStartDate = editExistingAssessmentStartDate.getText().toString();
-        String assessmentEndDate = editExistingAssessmentStartDate.getText().toString();
+        String assessmentEndDate = editExistingAssessmentEndDate.getText().toString();
 
         String startDateFromScreen = editExistingAssessmentStartDate.getText().toString();
         String endDateFromScreen = editExistingAssessmentEndDate.getText().toString();

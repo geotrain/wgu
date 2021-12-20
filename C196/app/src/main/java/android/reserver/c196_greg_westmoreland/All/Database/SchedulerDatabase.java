@@ -88,6 +88,7 @@ public abstract class SchedulerDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
 
                 // These delete all data upon starting the app, comment these out for database persistence
+
                 /*
                 mTermsDao.deleteAllTerms();;
                 mCoursesDao.deleteAllCourses();

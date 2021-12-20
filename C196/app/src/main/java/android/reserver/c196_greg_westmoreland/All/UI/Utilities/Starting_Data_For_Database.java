@@ -30,15 +30,15 @@ public class Starting_Data_For_Database {
     public static List<CoursesEntity> getStartCourses() {
         List<CoursesEntity> startCourse = new ArrayList<>();
         startCourse.add(new CoursesEntity(1, "Algebra", 1,
-                "01/01/2021", "01/31/2021", "Plan to take",
+                "12/01/2021", "12/08/2021", "Plan to take",
                 "John Smith", "210-123-1234",
                 "jsmith@wgu.edu", "Very Hard Class"));
         startCourse.add(new CoursesEntity(2, "History", 2,
-                "02/01/2021", "02/28/2021", "In Progress",
+                "12/09/2021", "12/17/2021", "In Progress",
                 "Tyler Love", "210-345-5678",
                 "tloveh@wgu.edu", "Take First Semester"));
         startCourse.add(new CoursesEntity(3, "Chemistry", 3,
-                "03/01/2021", "03/31/2021", "Dropped",
+                "12/18/2021", "12/26/2021", "Dropped",
                 "Susan Jones", "210-321-4321",
                 "sjones@wgu.edu", "Do Not Take With Algebra"));
         return startCourse;
@@ -51,17 +51,17 @@ public class Starting_Data_For_Database {
     public static List<AssessmentsEntity> getStartAssessments() {
         List<AssessmentsEntity> startAssessment = new ArrayList<>();
         startAssessment.add(new AssessmentsEntity(1, "Objective 1", 1,
-                "Objective", "01/01/2021", "01/31/2021"));
+                "Objective", "12/01/2021", "12/07/2021"));
         startAssessment.add(new AssessmentsEntity(2, "Performance 1", 1,
-                "Objective", "01/01/2021", "01/31/2021"));
+                "Objective", "12/07/2021", "12/08/2021"));
         startAssessment.add(new AssessmentsEntity(3, "Objective 2", 2,
-                "Objective", "02/01/2021", "02/28/2021"));
+                "Objective", "12/09/2021", "12/16/2021"));
         startAssessment.add(new AssessmentsEntity(4, "Performance 2", 2,
-                "Objective", "01/01/2021", "01/31/2021"));
+                "Objective", "12/16/2021", "12/17/2021"));
         startAssessment.add(new AssessmentsEntity(5, "Objective 3", 3,
-                "Objective", "02/01/2021", "02/28/2021"));
+                "Objective", "12/18/2021", "12/25/2021"));
         startAssessment.add(new AssessmentsEntity(6, "Performance 3", 3,
-                "Performance", "03/01/2021", "03/31/2021"));
+                "Performance", "12/25/2021", "12/26/2021"));
         return startAssessment;
     }
 }
