@@ -6,7 +6,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "android.reserver.c196_greg_westmoreland"
+        applicationId "android.reserver.c868_greg_westmoreland"
         minSdk 26
         targetSdk 31
         versionCode 1
