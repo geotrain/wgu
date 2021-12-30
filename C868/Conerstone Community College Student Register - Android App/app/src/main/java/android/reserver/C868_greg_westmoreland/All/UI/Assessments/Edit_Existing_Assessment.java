@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Courses.Edit_Existing_Course;
-import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.My_Receiver;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.C868_greg_westmoreland.R;
@@ -143,7 +143,7 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
                 Intent intentStart = new Intent(Edit_Existing_Assessment.this, My_Receiver.class);
                 intentStart.putExtra("key", existingAssessmentName + " begins on " + existingAssessmentStartDate);
                 PendingIntent senderStart=PendingIntent.getBroadcast(Edit_Existing_Assessment.this,
-                        ++Main_Activity_Home_Page.numAlert,intentStart,0);
+                        ++Main_Activity_Log_In_Page.numAlert,intentStart,0);
                 AlarmManager alarmManagerStart=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 alarmManagerStart.set(AlarmManager.RTC_WAKEUP, triggerStart, senderStart);
                 return true;
@@ -161,7 +161,7 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
                 Intent intentEnd = new Intent(Edit_Existing_Assessment.this, My_Receiver.class);
                 intentEnd.putExtra("key", existingAssessmentName + " ends on " + existingAssessmentEndDate);
                 PendingIntent senderEnd = PendingIntent.getBroadcast(Edit_Existing_Assessment.this,
-                        ++Main_Activity_Home_Page.numAlert, intentEnd, 0);
+                        ++Main_Activity_Log_In_Page.numAlert, intentEnd, 0);
                 AlarmManager alarmManagerEnd = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, triggerEnd, senderEnd);
                 return true;

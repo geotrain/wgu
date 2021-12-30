@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
-import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -92,7 +92,7 @@ public class List_Assessments extends AppCompatActivity {
      * @param view
      */
     public void returnToTheHome(View view) {
-        Intent intent = new Intent(List_Assessments.this, Main_Activity_Home_Page.class);
+        Intent intent = new Intent(List_Assessments.this, Main_Activity_Log_In_Page.class);
         startActivity(intent);
     }
 }

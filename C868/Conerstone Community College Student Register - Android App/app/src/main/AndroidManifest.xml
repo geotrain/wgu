@@ -51,6 +51,10 @@
             android:label="Edit Existing Assessment" />
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page"
+            android:exported="false"
+            android:label="SAYOP Home Page" />
+        <activity
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page"
             android:exported="true"
             android:label="C.C.C. SAYOP Mobile App 2.0">
             <intent-filter>

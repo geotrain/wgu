@@ -3,24 +3,19 @@ package android.reserver.C868_greg_westmoreland.All.UI.Main;
 /**
  * Import statements
  */
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.UI.Assessments.List_Assessments;
 import android.reserver.C868_greg_westmoreland.All.UI.Courses.List_Courses;
 import android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Objects;
 
 public class Main_Activity_Home_Page extends AppCompatActivity {
-
-    private SchedulerRepository repository;
-
-    /**
-     * This variable sets the numAlert variable for the notify in the terms list detail screen
-     */
-    public static int numAlert;
 
     /**
      * This method when the main screen (home screen) is created
@@ -31,9 +26,9 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home_page);
 
-        // Creates DB upon the main screen loading
-        repository = new SchedulerRepository(getApplication());
-        repository.getAllTerms();
+        // Add backward navigation to action bar
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     /**
@@ -41,7 +36,7 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
      * @param view
      */
     public void seeAllTerms(View view) {
-    Intent intent = new Intent(Main_Activity_Home_Page.this, List_Terms.class);
+        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Terms.class);
         startActivity(intent);
     }
 
@@ -63,9 +58,22 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * This method is used to navigate to the reports list screen
+     * @param view
+     */
     public void seeAllReports(View view) {
+        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Courses.class);
+        startActivity(intent);
     }
 
-    public void logIn(View view) {
+    /**
+     * This method is used to navigate to the search list screen
+     * @param view
+     */
+    public void search(View view) {
+        Intent intent = new Intent(Main_Activity_Home_Page.this, List_Courses.class);
+        startActivity(intent);
     }
+
 }
