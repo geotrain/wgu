@@ -6,6 +6,8 @@ package android.reserver.C868_greg_westmoreland.All.UI.Utilities;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
+import android.reserver.C868_greg_westmoreland.All.Entities.UsersEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +65,16 @@ public class Starting_Data_For_Database {
         startAssessment.add(new AssessmentsEntity(6, "Performance 3", 3,
                 "Performance", "12/25/2021", "12/26/2021"));
         return startAssessment;
+    }
+
+    /**
+     * This Array List holds start data to populate the users_table with 2 users when the app is launched
+     * @return
+     */
+    public static List<UsersEntity> getStartUsers() {
+        List<UsersEntity> startUser = new ArrayList<>();
+        startUser.add(new UsersEntity(1, "admin", "admin"));
+        startUser.add(new UsersEntity(2, "student", "password"));
+        return startUser;
     }
 }
