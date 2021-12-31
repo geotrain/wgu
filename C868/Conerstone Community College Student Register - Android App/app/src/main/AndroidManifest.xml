@@ -50,6 +50,14 @@
             android:exported="false"
             android:label="Edit Existing Assessment" />
         <activity
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Reports_Page"
+            android:exported="false"
+            android:label="SAYOP Reports Page" />
+        <activity
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Search_Page"
+            android:exported="false"
+            android:label="SAYOP Search Page" />
+        <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page"
             android:exported="false"
             android:label="SAYOP Home Page" />
