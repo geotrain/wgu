@@ -57,4 +57,11 @@ public interface UsersDao {
      */
     @Query("DELETE FROM USERS_TABLE")
     void deleteAllUsers();
+
+    /**
+     * Query to check username and password from users table
+     */
+    @Query("SELECT * FROM USERS_TABLE")
+    List<UsersEntity>checkUsernameAndPassword();
+
 }

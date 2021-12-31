@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_add_new_assessment.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_add_new_term.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_edit_existing_course.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_edit_existing_term.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_list_terms.xml" value="0.28229166666666666" />

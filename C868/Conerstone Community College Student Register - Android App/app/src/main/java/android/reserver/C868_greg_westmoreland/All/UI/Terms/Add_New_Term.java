@@ -138,7 +138,6 @@ public class Add_New_Term extends AppCompatActivity implements AdapterView.OnIte
         // Check if term name, term start date, or term end date fields are empty
         if (editTermName == null || editTermName.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Please supply a term name before saving.", Toast.LENGTH_LONG).show();
-
             return;
         } else if (editTermStartDate == null || editTermStartDate.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Please supply a start date before saving.", Toast.LENGTH_LONG).show();
