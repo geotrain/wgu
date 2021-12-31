@@ -9,8 +9,11 @@
         <entry key="app/src/main/res/layout/activity_list_terms.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_main_home_page.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main_log_in_page.xml" value="0.26413255360623783" />
+        <entry key="app/src/main/res/layout/activity_main_reports_page.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/layout/activity_main_search_page.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/layout/assessment_list_item.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/menu_terms_list.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/menu_terms_list_recylceview.xml" value="0.33" />
       </map>
     </option>
   </component>
