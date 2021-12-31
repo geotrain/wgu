@@ -6,15 +6,23 @@ package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
+import android.reserver.C868_greg_westmoreland.All.UI.Assessments.List_Assessments;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -71,7 +79,11 @@ public class List_Terms extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
+            case R.id.home_screen_from_terms_screen:
+                returnToHomePage();
+            //case R.id.terms_screen_to_add_new_term_screen:
+                //addANewTerm();
+            case R.id.refresh_terms:
                 repository = new SchedulerRepository(getApplication());
                 List<TermsEntity> allTerms = repository.getAllTerms();
                 final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
@@ -79,8 +91,19 @@ public class List_Terms extends AppCompatActivity {
                 recyclerView.setAdapter(termsAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 termsAdapter.setTerms(allTerms);
+                Toast.makeText(this, "Terms List Refreshed.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void returnToHomePage() {
+        Intent intent = new Intent(List_Terms.this, Main_Activity_Home_Page.class);
+        startActivity(intent);
+    }
+
+    private void addANewTerm() {
+        Intent intent = new Intent(List_Terms.this, Add_New_Term.class);
+        startActivity(intent);
     }
 
     /**
@@ -97,7 +120,7 @@ public class List_Terms extends AppCompatActivity {
      * @param view
      */
     public void returnHome(View view) {
-        Intent intent = new Intent(List_Terms.this, Main_Activity_Log_In_Page.class);
+        Intent intent = new Intent(List_Terms.this, Main_Activity_Home_Page.class);
         startActivity(intent);
     }
 }

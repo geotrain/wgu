@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
+import android.reserver.C868_greg_westmoreland.All.UI.Assessments.Add_New_Assessment;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
@@ -92,14 +94,13 @@ public class Add_New_Term extends AppCompatActivity implements AdapterView.OnIte
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
-                repository = new SchedulerRepository(getApplication());
-                List<TermsEntity> allTerms = repository.getAllTerms();
-                final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
-                RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
-                recyclerView.setAdapter(termsAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                termsAdapter.setTerms(allTerms);
+            case R.id.home_screen_from_add_new_term_screen:
+                Intent intent = new Intent( Add_New_Term.this, Main_Activity_Home_Page.class);
+                startActivity(intent);
+            case R.id.terms_screen_from_add_new_term_screen:
+                Intent intent2 = new Intent( Add_New_Term.this, List_Terms.class);
+                startActivity(intent2);
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -110,7 +111,7 @@ public class Add_New_Term extends AppCompatActivity implements AdapterView.OnIte
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_term, menu);
         return true;
     }
 

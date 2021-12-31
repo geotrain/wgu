@@ -15,17 +15,5 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:listitem="@layout/terms_list_item" />
 
-    <Button
-        android:id="@+id/homeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="1150dp"
-        android:layout_marginBottom="36dp"
-        android:text="Home"
-        android:onClick="returnToHome"
-        app:layout_constraintBottom_toTopOf="@+id/coursesListRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

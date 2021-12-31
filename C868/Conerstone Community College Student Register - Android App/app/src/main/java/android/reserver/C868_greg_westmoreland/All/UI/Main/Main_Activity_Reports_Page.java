@@ -48,7 +48,7 @@ public class Main_Activity_Reports_Page extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_reports_list, menu);
         return true;
     }
 
@@ -64,14 +64,9 @@ public class Main_Activity_Reports_Page extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
-                repository = new SchedulerRepository(getApplication());
-                List<AssessmentsEntity> allAssessments = repository.getAllAssessments();
-                final Assessments_Adapter assessmentsAdapter = new Assessments_Adapter(this);
-                RecyclerView recyclerView = findViewById(R.id.assessmentsListRecyclerView);
-                recyclerView.setAdapter(assessmentsAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                assessmentsAdapter.setAssessments(allAssessments);
+            case R.id.home_screen:
+                Intent intent = new Intent(Main_Activity_Reports_Page.this, Main_Activity_Home_Page.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Assessments.Add_New_Assessment;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Terms.Edit_Existing_Term;
 import android.reserver.C868_greg_westmoreland.R;
 import androidx.fragment.app.DialogFragment;
@@ -259,9 +260,22 @@ public class Edit_Existing_Course extends AppCompatActivity {
                                 "that has assessments associated with it", Toast.LENGTH_SHORT).show();
                     }
                 }
+            case R.id.home:
+                intentStart = new Intent(Edit_Existing_Course.this, Main_Activity_Home_Page.class);
+                startActivity(intentStart);
+            case R.id.add_new_assessment:
+                addAssessmentToExistingCourse();
             }
         return super.onOptionsItemSelected(item);
     }
+
+    private void addAssessmentToExistingCourse() {
+        // Navigate to Add_New_Assessment class
+        Intent intent = new Intent(Edit_Existing_Course.this, Add_New_Assessment.class);
+        intent.putExtra("courseID", id);
+        startActivity(intent);
+    }
+
 
     /**
      * This method inflates the menu and adds items to the action bar
@@ -269,7 +283,7 @@ public class Edit_Existing_Course extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list, menu);
+        getMenuInflater().inflate(R.menu.menu_courses_list, menu);
         return true;
     }
 

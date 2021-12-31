@@ -10,11 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
+import android.reserver.C868_greg_westmoreland.All.UI.Courses.List_Courses;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -59,7 +63,7 @@ public class List_Assessments extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_assessments_list_recycleview, menu);
         return true;
     }
 
@@ -75,7 +79,9 @@ public class List_Assessments extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
+            case R.id.home_screen_from_assessments_screen:
+                returnToHomePage();
+            case R.id.refresh_assessments:
                 repository = new SchedulerRepository(getApplication());
                 List<AssessmentsEntity> allAssessments = repository.getAllAssessments();
                 final Assessments_Adapter assessmentsAdapter = new Assessments_Adapter(this);
@@ -83,8 +89,14 @@ public class List_Assessments extends AppCompatActivity {
                 recyclerView.setAdapter(assessmentsAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 assessmentsAdapter.setAssessments(allAssessments);
+                Toast.makeText(this, "Assessments List Refreshed.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void returnToHomePage() {
+        Intent intent = new Intent(List_Assessments.this, Main_Activity_Home_Page.class);
+        startActivity(intent);
     }
 
     /**

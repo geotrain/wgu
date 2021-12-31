@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home Screen"
+        android:orderInCategory="100"
+        android:id="@+id/home_screen_from_courses_screen"
+        app:showAsAction="never"/>
+
+    <item android:title="Refresh Courses List"
+        android:orderInCategory="100"
+        android:id = "@+id/refresh_courses"
+        app:showAsAction="never"/>
+
+</menu>

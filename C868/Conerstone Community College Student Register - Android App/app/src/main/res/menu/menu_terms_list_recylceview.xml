@@ -2,8 +2,19 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Refresh"
+    <item android:title="Home Screen"
+        android:orderInCategory="100"
+        android:id="@+id/home_screen_from_terms_screen"
+        app:showAsAction="never"/>
+
+    <item android:title="Add A New Term"
+        android:orderInCategory="100"
+        android:id="@+id/terms_screen_to_add_new_term_screen"
+        app:showAsAction="never"/>
+
+    <item android:title="Refresh Terms List"
           android:orderInCategory="100"
-          android:id = "@+id/refresh"
+          android:id = "@+id/refresh_terms"
           app:showAsAction="never"/>
+
 </menu>

@@ -17,6 +17,7 @@ import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Courses.Add_New_Course;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.My_Receiver;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
@@ -241,8 +242,20 @@ public class Edit_Existing_Term extends AppCompatActivity {
                                 "that has courses associated with it", Toast.LENGTH_SHORT).show();
                     }
                 }
+            case R.id.home:
+                intentStart = new Intent(Edit_Existing_Term.this, Main_Activity_Home_Page.class);
+                startActivity(intentStart);
+            case R.id.add_new_course:
+                addCourseToExistingTerm();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addCourseToExistingTerm() {
+        // Navigate to Courses_Add_New_Course class
+        Intent intent = new Intent(Edit_Existing_Term.this, Add_New_Course.class);
+        intent.putExtra("termID", id);
+        startActivity(intent);
     }
 
     /**

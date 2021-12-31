@@ -10,11 +10,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
+import android.reserver.C868_greg_westmoreland.All.UI.Assessments.List_Assessments;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
+import android.reserver.C868_greg_westmoreland.All.UI.Terms.Add_New_Term;
+import android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -58,7 +64,7 @@ public class List_Courses extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_courses_list_recylceview, menu);
         return true;
     }
 
@@ -74,7 +80,9 @@ public class List_Courses extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
+            case R.id.home_screen_from_courses_screen:
+                returnToHomePage();
+            case R.id.refresh_courses:
                 repository = new SchedulerRepository(getApplication());
                 List<CoursesEntity> allCourses = repository.getAllCourses();
                 final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
@@ -82,8 +90,14 @@ public class List_Courses extends AppCompatActivity {
                 recyclerView.setAdapter(coursesAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 coursesAdapter.setCourses(allCourses);
+                Toast.makeText(this, "Courses List Refreshed.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void returnToHomePage() {
+        Intent intent = new Intent(List_Courses.this, Main_Activity_Home_Page.class);
+        startActivity(intent);
     }
 
     /**

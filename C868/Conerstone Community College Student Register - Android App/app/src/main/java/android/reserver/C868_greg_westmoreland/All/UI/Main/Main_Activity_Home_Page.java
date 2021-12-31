@@ -51,7 +51,7 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_home_screen_recycleview, menu);
         return true;
     }
 
@@ -67,14 +67,9 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
-                repository = new SchedulerRepository(getApplication());
-                List<AssessmentsEntity> allAssessments = repository.getAllAssessments();
-                final Assessments_Adapter assessmentsAdapter = new Assessments_Adapter(this);
-                RecyclerView recyclerView = findViewById(R.id.assessmentsListRecyclerView);
-                recyclerView.setAdapter(assessmentsAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                assessmentsAdapter.setAssessments(allAssessments);
+            case R.id.log_in_screen:
+                Intent intent = new Intent(Main_Activity_Home_Page.this, Main_Activity_Log_In_Page.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

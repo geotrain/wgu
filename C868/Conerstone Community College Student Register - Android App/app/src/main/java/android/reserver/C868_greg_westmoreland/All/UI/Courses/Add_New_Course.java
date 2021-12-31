@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
+import android.reserver.C868_greg_westmoreland.All.UI.Terms.Add_New_Term;
+import android.reserver.C868_greg_westmoreland.All.UI.Terms.Edit_Existing_Term;
 import android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.C868_greg_westmoreland.R;
@@ -109,14 +112,12 @@ public class Add_New_Course extends AppCompatActivity implements AdapterView.OnI
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
-                repository = new SchedulerRepository(getApplication());
-                List<CoursesEntity> allCourses = repository.getAllCourses();
-                final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
-                RecyclerView recyclerView = findViewById(R.id.coursesListRecyclerView);
-                recyclerView.setAdapter(coursesAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                coursesAdapter.setCourses(allCourses);
+            case R.id.home_screen_from_add_new_term_screen:
+                Intent intent = new Intent( Add_New_Course.this, Main_Activity_Home_Page.class);
+                startActivity(intent);
+            case R.id.courses_screen_from_add_new_course_screen:
+                Intent intent2 = new Intent( Add_New_Course.this, List_Courses.class);
+                startActivity(intent2);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -127,7 +128,7 @@ public class Add_New_Course extends AppCompatActivity implements AdapterView.OnI
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_course, menu);
         return true;
     }
 
@@ -180,7 +181,7 @@ public class Add_New_Course extends AppCompatActivity implements AdapterView.OnI
                     courseEndDate, courseStatusEntity, courseInstructorName, courseInstructorPhone,
                     courseInstructorEmail, optionalCourseNote);
             repository.insert(newCourse);
-            Intent intent = new Intent( Add_New_Course.this, List_Terms.class);
+            Intent intent = new Intent( Add_New_Course.this, Edit_Existing_Term.class);
             intent.putExtra("termID", termID);
             startActivity(intent);
         }

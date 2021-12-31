@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
+import android.reserver.C868_greg_westmoreland.All.UI.Courses.Add_New_Course;
+import android.reserver.C868_greg_westmoreland.All.UI.Courses.Edit_Existing_Course;
+import android.reserver.C868_greg_westmoreland.All.UI.Courses.List_Courses;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.C868_greg_westmoreland.R;
@@ -97,14 +101,12 @@ public class Add_New_Assessment extends AppCompatActivity implements AdapterView
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.refresh:
-                repository = new SchedulerRepository(getApplication());
-                List<AssessmentsEntity> allAssessments = repository.getAllAssessments();
-                final Assessments_Adapter assessmentsAdapter = new Assessments_Adapter(this);
-                RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
-                recyclerView.setAdapter(assessmentsAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                assessmentsAdapter.setAssessments(allAssessments);
+            case R.id.home_screen_from_add_new_assessment_screen:
+                Intent intent = new Intent( Add_New_Assessment.this, Main_Activity_Home_Page.class);
+                startActivity(intent);
+            case R.id.assessments_screen_from_add_new_assessment_screen:
+                Intent intent2 = new Intent( Add_New_Assessment.this, List_Assessments.class);
+                startActivity(intent2);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -115,7 +117,7 @@ public class Add_New_Assessment extends AppCompatActivity implements AdapterView
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_assessment, menu);
         return true;
     }
 
@@ -157,7 +159,7 @@ public class Add_New_Assessment extends AppCompatActivity implements AdapterView
             AssessmentsEntity newAssessment = new AssessmentsEntity(++id, assessmentName, courseID, assessmentType,
                     assessmentStartDate, assessmentEndDate);
             repository.insert(newAssessment);
-            Intent intent = new Intent( Add_New_Assessment.this, List_Terms.class);
+            Intent intent = new Intent( Add_New_Assessment.this, Edit_Existing_Course.class);
             intent.putExtra("courseID", courseID);
             startActivity(intent);
         }

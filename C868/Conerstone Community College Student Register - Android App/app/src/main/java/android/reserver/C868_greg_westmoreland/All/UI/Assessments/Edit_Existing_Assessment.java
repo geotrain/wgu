@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Courses.Edit_Existing_Course;
+import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.My_Receiver;
+import android.reserver.C868_greg_westmoreland.All.UI.Terms.Edit_Existing_Term;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
@@ -184,6 +186,9 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
                     Toast.makeText(Edit_Existing_Assessment.this, "We were unable to " +
                             "delete the assessment.", Toast.LENGTH_SHORT).show();
                 }
+            case R.id.home:
+                intentStart = new Intent(Edit_Existing_Assessment.this, Main_Activity_Home_Page.class);
+                startActivity(intentStart);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -194,7 +199,7 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list, menu);
+        getMenuInflater().inflate(R.menu.menu_assessments_list, menu);
         return true;
     }
 
