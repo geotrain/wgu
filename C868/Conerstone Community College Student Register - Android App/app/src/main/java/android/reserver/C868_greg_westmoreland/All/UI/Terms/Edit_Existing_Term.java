@@ -238,13 +238,14 @@ public class Edit_Existing_Term extends AppCompatActivity {
                         Toast.makeText(Edit_Existing_Term.this, "Term has been successfully " +
                                 "deleted.", Toast.LENGTH_LONG).show();
                     } else {
+                        intentStart = new Intent(Edit_Existing_Term.this, List_Terms.class);
+                        startActivity(intentStart);
                         Toast.makeText(Edit_Existing_Term.this, "You cannot delete a term " +
                                 "that has courses associated with it", Toast.LENGTH_SHORT).show();
                     }
                 }
-            case R.id.home:
-                intentStart = new Intent(Edit_Existing_Term.this, Main_Activity_Home_Page.class);
-                startActivity(intentStart);
+            case R.id.home_screen_from_edit_term_screen:
+               returnToHome();
             case R.id.add_new_course:
                 addCourseToExistingTerm();
         }
@@ -255,6 +256,11 @@ public class Edit_Existing_Term extends AppCompatActivity {
         // Navigate to Courses_Add_New_Course class
         Intent intent = new Intent(Edit_Existing_Term.this, Add_New_Course.class);
         intent.putExtra("termID", id);
+        startActivity(intent);
+    }
+
+    private void returnToHome() {
+        Intent intent = new Intent(Edit_Existing_Term.this, Main_Activity_Home_Page.class);
         startActivity(intent);
     }
 

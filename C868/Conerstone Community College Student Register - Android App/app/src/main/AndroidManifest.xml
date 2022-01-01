@@ -12,7 +12,8 @@
         <receiver
             android:name="android.reserver.C868_greg_westmoreland.All.UI.My_Receiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true">
+        </receiver>
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms"
             android:exported="false"
@@ -24,7 +25,7 @@
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Terms.Edit_Existing_Term"
             android:exported="false"
-            android:label="Edit Existing Term" />
+            android:label="Edit Term" />
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Courses.List_Courses"
             android:exported="false"
@@ -36,7 +37,7 @@
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Courses.Edit_Existing_Course"
             android:exported="false"
-            android:label="Edit Existing Course" />
+            android:label="Edit Course" />
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Assessments.List_Assessments"
             android:exported="false"
@@ -48,15 +49,11 @@
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Assessments.Edit_Existing_Assessment"
             android:exported="false"
-            android:label="Edit Existing Assessment" />
+            android:label="Edit Assessment" />
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Reports_Page"
             android:exported="false"
             android:label="SAYOP Reports Page" />
-        <activity
-            android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Search_Page"
-            android:exported="false"
-            android:label="SAYOP Search Page" />
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page"
             android:exported="false"

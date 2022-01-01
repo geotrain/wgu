@@ -2,9 +2,11 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Home Screen"
-        android:orderInCategory="100"
+    <item
         android:id="@+id/home_screen"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="102"
+        android:title="Home Screen"
+        app:showAsAction="always" />
 
 </menu>

@@ -95,6 +95,9 @@ public class List_Courses extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Returns to home page used in navigational menu
+     */
     private void returnToHomePage() {
         Intent intent = new Intent(List_Courses.this, Main_Activity_Home_Page.class);
         startActivity(intent);

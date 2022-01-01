@@ -10,19 +10,23 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
 
-    <item android:title="Home Screen"
-        android:orderInCategory="100"
+    <item
+        android:id="@+id/refresh_terms"
+        android:icon="@drawable/ic_refresh"
+        android:orderInCategory="102"
+        android:title="refresh_label"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/home_screen_from_terms_screen"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="102"
+        android:title="home_label"
+        app:showAsAction="always" />
 
     <item android:title="Add A New Term"
         android:orderInCategory="100"
         android:id="@+id/terms_screen_to_add_new_term_screen"
         app:showAsAction="never"/>
-
-    <item android:title="Refresh Terms List"
-          android:orderInCategory="100"
-          android:id = "@+id/refresh_terms"
-          app:showAsAction="never"/>
 
 </menu>

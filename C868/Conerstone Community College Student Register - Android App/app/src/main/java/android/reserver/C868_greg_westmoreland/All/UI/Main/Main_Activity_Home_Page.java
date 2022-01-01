@@ -110,13 +110,4 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * This method is used to navigate to the search list screen
-     * @param view
-     */
-    public void search(View view) {
-        Intent intent = new Intent(Main_Activity_Home_Page.this, Main_Activity_Search_Page.class);
-        startActivity(intent);
-    }
-
 }

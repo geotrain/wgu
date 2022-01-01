@@ -82,8 +82,8 @@ public class List_Terms extends AppCompatActivity {
                 return true;
             case R.id.home_screen_from_terms_screen:
                 returnToHomePage();
-            //case R.id.terms_screen_to_add_new_term_screen:
-                //addANewTerm();
+            case R.id.terms_screen_to_add_new_term_screen:
+                addANewTerm();
             case R.id.refresh_terms:
                 repository = new SchedulerRepository(getApplication());
                 List<TermsEntity> allTerms = repository.getAllTerms();
@@ -97,11 +97,17 @@ public class List_Terms extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * This method returns to home page and is called from the navigational menu
+     */
     private void returnToHomePage() {
         Intent intent = new Intent(List_Terms.this, Main_Activity_Home_Page.class);
         startActivity(intent);
     }
 
+    /**
+     * This method navigates to add a new term and is called from the navigational menu
+     */
     private void addANewTerm() {
         Intent intent = new Intent(List_Terms.this, Add_New_Term.class);
         startActivity(intent);

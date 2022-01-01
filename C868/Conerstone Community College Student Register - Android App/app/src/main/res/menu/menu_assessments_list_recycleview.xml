@@ -10,14 +10,18 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
 
-    <item android:title="Home Screen"
-        android:orderInCategory="100"
-        android:id="@+id/home_screen_from_assessments_screen"
-        app:showAsAction="never"/>
+    <item
+        android:id="@+id/refresh_assessments"
+        android:icon="@drawable/ic_refresh"
+        android:orderInCategory="102"
+        android:title="Refresh Assessments List"
+        app:showAsAction="always" />
 
-    <item android:title="Refresh Assessments List"
-        android:orderInCategory="100"
-        android:id = "@+id/refresh_assessments"
-        app:showAsAction="never"/>
+    <item
+        android:id="@+id/home_screen_from_assessments_screen"
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="102"
+        android:title="Home Screen"
+        app:showAsAction="always" />
 
 </menu>

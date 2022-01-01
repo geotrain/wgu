@@ -269,13 +269,15 @@ public class Edit_Existing_Course extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * This method navigates to add a new assessment being called from the navigational menu
+     */
     private void addAssessmentToExistingCourse() {
         // Navigate to Add_New_Assessment class
         Intent intent = new Intent(Edit_Existing_Course.this, Add_New_Assessment.class);
         intent.putExtra("courseID", id);
         startActivity(intent);
     }
-
 
     /**
      * This method inflates the menu and adds items to the action bar

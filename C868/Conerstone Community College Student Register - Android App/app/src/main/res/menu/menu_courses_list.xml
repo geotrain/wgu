@@ -9,15 +9,23 @@
         android:title="@string/share_label"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/ic_delete"
+        android:orderInCategory="102"
+        android:title="Delete Course"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="102"
+        android:title="Home Screen"
+        app:showAsAction="always" />
+
     <item android:title="Add Assessment"
         android:orderInCategory="100"
         android:id="@+id/add_new_assessment"
-        app:showAsAction="never"
-        />
-
-    <item android:title="Delete Course"
-        android:orderInCategory="100"
-        android:id="@+id/delete"
         app:showAsAction="never"
         />
 
@@ -29,11 +37,6 @@
     <item android:title="Notify Course Date"
         android:orderInCategory="100"
         android:id="@+id/notifyEndDate"
-        app:showAsAction="never"/>
-
-    <item android:title="Home Screen"
-        android:orderInCategory="100"
-        android:id="@+id/home"
         app:showAsAction="never"/>
 
 </menu>

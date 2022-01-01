@@ -94,6 +94,9 @@ public class List_Assessments extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * This method is called from the navigational menu
+     */
     private void returnToHomePage() {
         Intent intent = new Intent(List_Assessments.this, Main_Activity_Home_Page.class);
         startActivity(intent);
