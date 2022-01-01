@@ -2,25 +2,27 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_share"
+        android:orderInCategory="102"
+        android:title="@string/share_label"
+        app:showAsAction="always" />
+
     <item android:title="Delete Assessment"
         android:orderInCategory="100"
         android:id="@+id/delete"
         app:showAsAction="never"
         />
 
-    <item android:title="Send Notification For Assessment Start Date"
+    <item android:title="Notify Assessment Start"
         android:orderInCategory="100"
         android:id="@+id/notifyStartDate"
         app:showAsAction="never"/>
 
-    <item android:title="Send Notification For Assessment End Date"
+    <item android:title="Notify Assessment End"
         android:orderInCategory="100"
         android:id="@+id/notifyEndDate"
-        app:showAsAction="never"/>
-
-    <item android:title="Share Course Information via SMS/Email"
-        android:orderInCategory="100"
-        android:id="@+id/share"
         app:showAsAction="never"/>
 
     <item android:title="Home Screen"

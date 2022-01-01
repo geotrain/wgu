@@ -2,6 +2,14 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/coursesSearch"
+        android:icon="@drawable/ic_search"
+        android:orderInCategory="102"
+        android:title="@string/search_label"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+
     <item android:title="Home Screen"
         android:orderInCategory="100"
         android:id="@+id/home_screen_from_courses_screen"

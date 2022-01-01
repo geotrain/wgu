@@ -55,6 +55,7 @@ public class List_Terms extends AppCompatActivity {
         // Add backward navigation to action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
 
     /**
