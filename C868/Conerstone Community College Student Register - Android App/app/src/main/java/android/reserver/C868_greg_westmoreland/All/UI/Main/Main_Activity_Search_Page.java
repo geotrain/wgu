@@ -79,4 +79,7 @@ public class Main_Activity_Search_Page extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void search(View view) {
+
+    }
 }

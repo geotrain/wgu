@@ -27,12 +27,12 @@
     <string name="see_all_terms">SEE ALL TERMS</string>
     <string name="assessment_name">assessment_name</string>
     <string name="assessment_type">assessment_type</string>
-    <string name="course_status_spinner">Course Status</string>
-    <string-array name="course_status">
-        <item>In Progress</item>
-        <item>Completed</item>
-        <item>Dropped</item>
-        <item>Planning To Take</item>
+    <string name="report_spinner">Generate_Report</string>
+    <string-array name="report_choice">
+        <item name="See Terms">In Progress</item>
+        <item name="See Courses">In Progress</item>
+        <item name="See Assessments">In Progress</item>
+        <item name="See Instructors">In Progress</item>
     </string-array>
     <string name="assessment_status_spinner">Course Status</string>
     <string-array name="assessment_status">
