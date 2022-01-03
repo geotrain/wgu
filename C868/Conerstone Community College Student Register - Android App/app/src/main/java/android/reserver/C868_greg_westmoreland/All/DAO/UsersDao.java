@@ -62,6 +62,6 @@ public interface UsersDao {
      * Query to check username and password from users table
      */
     @Query("SELECT * FROM USERS_TABLE")
-    List<UsersEntity>checkUsernameAndPassword();
+        List<UsersEntity>checkUsernameAndPassword();
 
 }

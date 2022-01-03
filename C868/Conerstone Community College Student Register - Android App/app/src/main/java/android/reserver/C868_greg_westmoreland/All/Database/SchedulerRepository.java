@@ -40,7 +40,8 @@ public class SchedulerRepository {
     private List<CoursesEntity> mAllCoursesEntities;
     private List<AssessmentsEntity> mAllAssessmentsEntities;
     private List<UsersEntity> mAllUsersEntities;
-    private static List<UsersEntity> mAllUserNamesAndPasswords;
+    private static List<UsersEntity> mAllUserList;
+    private static List<UsersEntity> mAllUserPass;
     private static int NUMBER_OF_THREADS=4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -129,29 +130,37 @@ public class SchedulerRepository {
      * This method checks username and password from the users_table
      * @return
      */
-    /*
-    public static boolean checkUsernameAndPassword(String uName, String password) {
-            ResultSet rs = databaseExecutor.execute(()-> {
-            SchedulerRepository mUserNamesAndPasswords = null;
-            mAllUserNamesAndPasswords = mUserNamesAndPasswords.checkUsernameAndPassword();
+
+    public boolean checkUsernameAndPassword(String uName, String password) {
+            databaseExecutor.execute(()-> {
+            mAllUserList = mUsersDAO.getAllUsers();
+            mAllUserPass = mUsersDAO.getAllUsers();
         });
+        System.out.println(getAllUsers().toString());
         try {
-            //ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getString("User_Name"));
-                if (rs.getString("User_Name").equals(uName) && rs.getString("password").equals(password)) {
-                    LoginActivity.login_activity(uName, true);
-                    currentUserId = rs.getInt("User_ID");
-                    System.out.println("The value of global variable currentUserId is currently set to " + currentUserId);
+            // For loop for iterating over the List
+            for (int i = 0; i < mAllUserList.size(); i++) {
+                // Print Usernames and passwords from the database in logs
+                System.out.println(mAllUserList.get(i));
+                if (mAllUserList.get(i).getUsername().equals(uName) && mAllUserList.get(i)
+                        .getPassword().equals(password)) {
+                    // Print username and passwords found
+                    System.out.println("Found username " + mAllUserList.get(i).getUsername() +
+                            "with password " + mAllUserList.get(i).getPassword());
                     return true;
+                } else {
+                    // Print username and passwords not found
+                    System.out.println("Did not find username " + mAllUserList.get(i).getUsername() +
+                            "with password " + mAllUserList.get(i).getPassword());
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         LoginActivity.login_activity(uName, false);
         return false;
-    }*/
+    }
+
 
 
     /**

@@ -28,6 +28,7 @@ public class UsersEntity {
     public String toString() {
         return "Users{" +
                 "username='" + username + '\'' +
+                "password='" + password + '\'' +
                 '}';
     }
 

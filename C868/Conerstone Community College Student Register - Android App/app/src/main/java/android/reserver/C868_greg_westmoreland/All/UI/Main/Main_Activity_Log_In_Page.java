@@ -67,15 +67,14 @@ public class Main_Activity_Log_In_Page extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         } else if (!(editUsername.getText().toString().trim().isEmpty() && editPassword.getText()
                 .toString().trim().isEmpty())) {
-            //boolean result = repository.checkUsernameAndPassword(username, password);
-            //if (result) {
-            if (true) {
+            boolean result = repository.checkUsernameAndPassword(username, password);
+            if (result) {
                 Intent intent = new Intent(Main_Activity_Log_In_Page.this,
                         Main_Activity_Home_Page.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "You have entered an incorrect username: "
-                        + editUsername + " or password: " + editPassword, Toast.LENGTH_LONG).show();
+                        + username + " or password: " + password, Toast.LENGTH_LONG).show();
             }
         }
     }
