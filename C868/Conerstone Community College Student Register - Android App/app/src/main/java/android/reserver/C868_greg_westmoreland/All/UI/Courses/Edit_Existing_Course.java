@@ -348,6 +348,12 @@ public class Edit_Existing_Course extends AppCompatActivity {
             Date start = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(startDateFromScreen);
             Date end = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(endDateFromScreen);
 
+            long diff = end.getTime() - start.getTime();
+
+            TimeUnit time = TimeUnit.DAYS;
+            long difference = time.convert(diff, TimeUnit.MILLISECONDS);
+            System.out.println("The difference in days is : "+ difference);
+
             // Check if Term End Date is before Term Start Date
             if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
                 Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
@@ -355,7 +361,7 @@ public class Edit_Existing_Course extends AppCompatActivity {
             } else if (sdf.parse(startDateFromScreen).equals(sdf.parse(endDateFromScreen))) {
                 Toast.makeText(this, "The start date and end date cannot the same date.", Toast.LENGTH_LONG).show();
                 return;
-            } else if (start.compareTo(end) > 31) {
+            } else if (difference >= 31) {
                 Toast.makeText(this, "The start and end dates must be 30 days or less.",
                         Toast.LENGTH_LONG).show();
                 return;
