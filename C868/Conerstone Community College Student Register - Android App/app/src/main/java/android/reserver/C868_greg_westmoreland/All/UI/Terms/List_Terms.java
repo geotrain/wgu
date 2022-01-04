@@ -80,10 +80,16 @@ public class List_Terms extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
-            case R.id.home_screen_from_terms_screen:
+            case R.id.list_terms_to_home:
                 returnToHomePage();
-            case R.id.terms_screen_to_add_new_term_screen:
+                return true;
+            case R.id.list_terms_add_new_term:
                 addANewTerm();
+                return true;
+            case R.id.termsSearch:
+                // Write code to search terms list for recycleView
+                Toast.makeText(this, "Terms List Search.", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.refresh_terms:
                 repository = new SchedulerRepository(getApplication());
                 List<TermsEntity> allTerms = repository.getAllTerms();
@@ -93,6 +99,7 @@ public class List_Terms extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 termsAdapter.setTerms(allTerms);
                 Toast.makeText(this, "Terms List Refreshed.", Toast.LENGTH_SHORT).show();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -119,15 +126,6 @@ public class List_Terms extends AppCompatActivity {
      */
     public void addNewTerm(View view) {
         Intent intent = new Intent(List_Terms.this, Add_New_Term.class);
-        startActivity(intent);
-    }
-
-    /**
-     * This method navigates to home screen
-     * @param view
-     */
-    public void returnHome(View view) {
-        Intent intent = new Intent(List_Terms.this, Main_Activity_Home_Page.class);
         startActivity(intent);
     }
 }

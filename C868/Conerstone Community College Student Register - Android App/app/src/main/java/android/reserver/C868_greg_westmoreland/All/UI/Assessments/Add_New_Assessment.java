@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -131,15 +132,31 @@ public class Add_New_Assessment extends AppCompatActivity implements AdapterView
         String assessmentStartDate = editAssessmentStartDate.getText().toString();
         String assessmentEndDate = editAssessmentEndDate.getText().toString();
 
-        String startDateFromScreen = editAssessmentStartDate.getText().toString();
-        String endDateFromScreen = editAssessmentEndDate.getText().toString();
-        String myFormat = "MM/dd/yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        try {
+            String startDateFromScreen = editAssessmentStartDate.getText().toString();
+            String endDateFromScreen = editAssessmentEndDate.getText().toString();
 
-        // Check if Term End Date is before Term Start Date
-        if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
-            Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
+            String myFormat = "MM/dd/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+            Date start = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(startDateFromScreen);
+            Date end = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(endDateFromScreen);
+
+            // Check if Term End Date is before Term Start Date
+            if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
+                Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
+                return;
+            } else if (sdf.parse(startDateFromScreen).equals(sdf.parse(endDateFromScreen))) {
+                Toast.makeText(this, "The start date and end date cannot the same date.", Toast.LENGTH_LONG).show();
+                return;
+            } else if (start.compareTo(end) > 31) {
+            Toast.makeText(this, "The start and end dates must be 30 days or less.",
+                    Toast.LENGTH_LONG).show();
             return;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
         // Check if term name, term start date, or term end date fields are empty

@@ -88,6 +88,7 @@ public class Main_Activity_Reports_Page extends AppCompatActivity implements Ada
             case R.id.home_screen:
                 Intent intent = new Intent(Main_Activity_Reports_Page.this, Main_Activity_Home_Page.class);
                 startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,9 +112,19 @@ public class Main_Activity_Reports_Page extends AppCompatActivity implements Ada
     @Override
     public void onItemSelected(AdapterView<?> spinner, View arg1, int position, long id) {
         // Write code to generate report selected from reports spinner
-
-        // make toast of name of report that is selected in the reports spinner
-        Toast.makeText(getApplicationContext(), "You selected " + reports[position], Toast.LENGTH_LONG).show();
+        if (R.id.reportSpinner == 0) {
+            // make toast of name of report that is selected in the reports spinner
+            Toast.makeText(getApplicationContext(), "You selected " + reports[position], Toast.LENGTH_LONG).show();
+        } else if (R.id.reportSpinner == 1) {
+            // make toast of name of report that is selected in the reports spinner
+            Toast.makeText(getApplicationContext(), "You selected " + reports[position], Toast.LENGTH_LONG).show();
+        } else if (R.id.reportSpinner == 2) {
+            // make toast of name of report that is selected in the reports spinner
+            Toast.makeText(getApplicationContext(), "You selected " + reports[position], Toast.LENGTH_LONG).show();
+        } else if ((R.id.reportSpinner == 3)) {
+            // make toast of name of report that is selected in the reports spinner
+            Toast.makeText(getApplicationContext(), "You selected " + reports[position], Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

@@ -6,8 +6,10 @@ package android.reserver.C868_greg_westmoreland.All.UI.Assessments;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
@@ -31,6 +33,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class Edit_Existing_Assessment extends AppCompatActivity {
 
@@ -175,22 +178,48 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
                 // Variable false
                 //boolean dontDelete = false;
                 int id = item.getItemId();
-
                 if (id == R.id.delete) {
-                    repository.delete(currentAssessment);
-                    intentStart = new Intent(Edit_Existing_Assessment.this, List_Assessments.class);
-                    startActivity(intentStart);
-                    Toast.makeText(Edit_Existing_Assessment.this, "Assessment has been successfully " +
-                            "deleted.", Toast.LENGTH_LONG).show();
+                    AlertDialog alertDialog = new AlertDialog.Builder(this)
+                            .setTitle("Alert")
+                            .setMessage("Are you sure you want to delete the assessment?")
+                            .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    deleteExistingAssessment();
+                                    return;
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .create();
+                    alertDialog.setCancelable(true);
+                    alertDialog.show();
                 } else {
                     Toast.makeText(Edit_Existing_Assessment.this, "We were unable to " +
                             "delete the assessment.", Toast.LENGTH_SHORT).show();
                 }
+                return true;
             case R.id.home:
                 intentStart = new Intent(Edit_Existing_Assessment.this, Main_Activity_Home_Page.class);
                 startActivity(intentStart);
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * This method deletes an assessment when user clicks on delete icon in navigation menu
+     */
+    public void deleteExistingAssessment() {
+        repository.delete(currentAssessment);
+        Intent intentStart = new Intent(Edit_Existing_Assessment.this, List_Assessments.class);
+        startActivity(intentStart);
+        Toast.makeText(Edit_Existing_Assessment.this, "Assessment has been successfully " +
+                "deleted.", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -214,15 +243,30 @@ public class Edit_Existing_Assessment extends AppCompatActivity {
         String assessmentStartDate = editExistingAssessmentStartDate.getText().toString();
         String assessmentEndDate = editExistingAssessmentEndDate.getText().toString();
 
-        String startDateFromScreen = editExistingAssessmentStartDate.getText().toString();
-        String endDateFromScreen = editExistingAssessmentEndDate.getText().toString();
-        String myFormat = "MM/dd/yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        try {
+            String startDateFromScreen = editExistingAssessmentStartDate.getText().toString();
+            String endDateFromScreen = editExistingAssessmentEndDate.getText().toString();
 
-        // Check if Term End Date is before Term Start Date
-        if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
-            Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
-            return;
+            String myFormat = "MM/dd/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+            Date start = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(startDateFromScreen);
+            Date end = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(endDateFromScreen);
+
+            // Check if Term End Date is before Term Start Date
+            if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
+                Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
+                return;
+            } else if (sdf.parse(startDateFromScreen).equals(sdf.parse(endDateFromScreen))) {
+                Toast.makeText(this, "The start date and end date cannot the same date.", Toast.LENGTH_LONG).show();
+                return;
+            } else if (start.compareTo(end) > 31) {
+                Toast.makeText(this, "The start and end dates must be 30 days or less.",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
         // Check if term name, term start date, or term end date fields are empty

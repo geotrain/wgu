@@ -82,6 +82,7 @@ public class List_Courses extends AppCompatActivity {
                 return true;
             case R.id.home_screen_from_courses_screen:
                 returnToHomePage();
+                return true;
             case R.id.refresh_courses:
                 repository = new SchedulerRepository(getApplication());
                 List<CoursesEntity> allCourses = repository.getAllCourses();
@@ -91,6 +92,7 @@ public class List_Courses extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 coursesAdapter.setCourses(allCourses);
                 Toast.makeText(this, "Courses List Refreshed.", Toast.LENGTH_SHORT).show();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

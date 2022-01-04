@@ -4,6 +4,9 @@ package android.reserver.C868_greg_westmoreland.All.UI.Courses;
  * Import statements
  */
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Assessments.Add_New_Assessment;
@@ -38,6 +41,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class Edit_Existing_Course extends AppCompatActivity {
 
@@ -192,6 +196,13 @@ public class Edit_Existing_Course extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 return true;
+            case R.id.home:
+                Intent intentStart = new Intent(Edit_Existing_Course.this, Main_Activity_Home_Page.class);
+                startActivity(intentStart);
+                return true;
+            case R.id.add_new_assessment:
+                addAssessmentToExistingCourse();
+                return true;
             case R.id.share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
@@ -214,7 +225,7 @@ public class Edit_Existing_Course extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Long triggerStart = myStartDate.getTime();
-                Intent intentStart = new Intent(Edit_Existing_Course.this, My_Receiver.class);
+                intentStart = new Intent(Edit_Existing_Course.this, My_Receiver.class);
                 intentStart.putExtra("key", existingCourseName + " begins on " + existingCourseStartDate);
                 PendingIntent senderStart=PendingIntent.getBroadcast(Edit_Existing_Course.this,
                         ++Main_Activity_Log_In_Page.numAlert,intentStart,0);
@@ -250,23 +261,46 @@ public class Edit_Existing_Course extends AppCompatActivity {
 
                 if (id == R.id.delete) {
                     if (numAssessments == 0) {
-                        repository.delete(currentCourse);
-                        intentStart = new Intent(Edit_Existing_Course.this, List_Courses.class);
-                        startActivity(intentStart);
-                        Toast.makeText(Edit_Existing_Course.this, "Course has been successfully " +
-                                "deleted.", Toast.LENGTH_LONG).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                                .setTitle("Alert")
+                                .setMessage("Are you sure you want to delete the course?")
+                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        deleteExistingCourse();
+                                        return;
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                })
+                                .create();
+                        alertDialog.setCancelable(true);
+                        alertDialog.show();
                     } else {
+                        try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(Edit_Existing_Course.this, "You cannot delete a course " +
-                                "that has assessments associated with it", Toast.LENGTH_SHORT).show();
+                                "that has assessments associated with it", Toast.LENGTH_LONG).show();
                     }
                 }
-            case R.id.home:
-                intentStart = new Intent(Edit_Existing_Course.this, Main_Activity_Home_Page.class);
-                startActivity(intentStart);
-            case R.id.add_new_assessment:
-                addAssessmentToExistingCourse();
+                return true;
             }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteExistingCourse() {
+        repository.delete(currentCourse);
+        Intent intentStart = new Intent(Edit_Existing_Course.this, List_Courses.class);
+        startActivity(intentStart);
+        Toast.makeText(Edit_Existing_Course.this, "Course has been successfully " +
+                "deleted.", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -304,15 +338,31 @@ public class Edit_Existing_Course extends AppCompatActivity {
         String courseInstructorEmail = editExistingCourseInstructorEmail.getText().toString();
         String optionalCourseNote = editExistingOptionalCourseNote.getText().toString();
 
-        String startDateFromScreen = editExistingCourseStartDate.getText().toString();
-        String endDateFromScreen = editExistingCourseEndDate.getText().toString();
-        String myFormat = "MM/dd/yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        try {
+            String startDateFromScreen = editExistingCourseStartDate.getText().toString();
+            String endDateFromScreen = editExistingCourseEndDate.getText().toString();
 
-        // Check if Term End Date is before Term Start Date
-        if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
-            Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
-            return;
+            String myFormat = "MM/dd/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+            Date start = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(startDateFromScreen);
+            Date end = new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(endDateFromScreen);
+
+            // Check if Term End Date is before Term Start Date
+            if (sdf.parse(endDateFromScreen).before(sdf.parse(startDateFromScreen))) {
+                Toast.makeText(this, "The end date cannot be before the start date.", Toast.LENGTH_LONG).show();
+                return;
+            } else if (sdf.parse(startDateFromScreen).equals(sdf.parse(endDateFromScreen))) {
+                Toast.makeText(this, "The start date and end date cannot the same date.", Toast.LENGTH_LONG).show();
+                return;
+            } else if (start.compareTo(end) > 31) {
+                Toast.makeText(this, "The start and end dates must be 30 days or less.",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
         // Check if term name, term start date, or term end date fields are empty

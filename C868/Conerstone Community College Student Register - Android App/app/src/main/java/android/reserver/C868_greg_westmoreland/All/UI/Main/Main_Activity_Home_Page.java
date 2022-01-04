@@ -70,6 +70,7 @@ public class Main_Activity_Home_Page extends AppCompatActivity {
             case R.id.log_in_screen:
                 Intent intent = new Intent(Main_Activity_Home_Page.this, Main_Activity_Log_In_Page.class);
                 startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

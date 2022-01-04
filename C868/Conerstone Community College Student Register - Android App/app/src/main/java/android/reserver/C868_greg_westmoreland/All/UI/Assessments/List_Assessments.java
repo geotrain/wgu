@@ -81,6 +81,7 @@ public class List_Assessments extends AppCompatActivity {
                 return true;
             case R.id.home_screen_from_assessments_screen:
                 returnToHomePage();
+                return true;
             case R.id.refresh_assessments:
                 repository = new SchedulerRepository(getApplication());
                 List<AssessmentsEntity> allAssessments = repository.getAllAssessments();
@@ -90,6 +91,7 @@ public class List_Assessments extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 assessmentsAdapter.setAssessments(allAssessments);
                 Toast.makeText(this, "Assessments List Refreshed.", Toast.LENGTH_SHORT).show();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

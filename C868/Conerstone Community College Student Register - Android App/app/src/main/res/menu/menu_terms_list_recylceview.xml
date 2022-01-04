@@ -5,7 +5,7 @@
     <item
         android:id="@+id/termsSearch"
         android:icon="@drawable/ic_search"
-        android:orderInCategory="102"
+        android:orderInCategory="100"
         android:title="@string/search_label"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
@@ -13,20 +13,21 @@
     <item
         android:id="@+id/refresh_terms"
         android:icon="@drawable/ic_refresh"
-        android:orderInCategory="102"
+        android:orderInCategory="101"
         android:title="refresh_label"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/home_screen_from_terms_screen"
+        android:id="@+id/list_terms_to_home"
         android:icon="@drawable/ic_home"
-        android:orderInCategory="102"
+        android:orderInCategory="103"
         android:title="home_label"
         app:showAsAction="always" />
 
-    <item android:title="Add A New Term"
-        android:orderInCategory="100"
-        android:id="@+id/terms_screen_to_add_new_term_screen"
+    <item
+        android:id="@+id/list_terms_add_new_term"
+        android:title="Add A New Term"
+        android:orderInCategory="104"
         app:showAsAction="never"/>
 
 </menu>
