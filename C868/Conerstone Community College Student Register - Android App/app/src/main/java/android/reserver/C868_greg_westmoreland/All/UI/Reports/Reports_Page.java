@@ -128,7 +128,7 @@ public class Reports_Page extends AppCompatActivity implements AdapterView.OnIte
 
         if (spinnerResult.equals("Terms Report")) {
             System.out.println(parent.getItemAtPosition(1));
-            Toast.makeText(getApplicationContext(), reports[position] + " was selected.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
             RecyclerView recyclerView = findViewById(R.id.reportsTermRecyclerView);
             final Reports_Terms_Adapter reportsAdapter = new Reports_Terms_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
@@ -137,7 +137,7 @@ public class Reports_Page extends AppCompatActivity implements AdapterView.OnIte
 
         } else if (spinnerResult.equals("Courses Report")) {
             System.out.println(parent.getItemAtPosition(2));
-            Toast.makeText(getApplicationContext(), reports[position] + " was selected.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
             RecyclerView recyclerView = findViewById(R.id.reportsCourseRecyclerView);
             final Reports_Courses_Adapter reportsAdapter = new Reports_Courses_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
@@ -146,7 +146,7 @@ public class Reports_Page extends AppCompatActivity implements AdapterView.OnIte
 
         } else if (spinnerResult.equals("Assessments Report")) {
             System.out.println(parent.getItemAtPosition(3));
-            Toast.makeText(getApplicationContext(), reports[position] + " was selected.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
             RecyclerView recyclerView = findViewById(R.id.reportsAssessmentsRecyclerView);
             final Reports_Assessments_Adapter reportsAdapter = new Reports_Assessments_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
@@ -155,7 +155,7 @@ public class Reports_Page extends AppCompatActivity implements AdapterView.OnIte
 
         } else if (spinnerResult.equals("Instructor Report")) {
             System.out.println(parent.getItemAtPosition(4));
-            Toast.makeText(getApplicationContext(), reports[position] + " was selected.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
             RecyclerView recyclerView = findViewById(R.id.reportsInstructorRecyclerView);
             final Reports_Instructors_Adapter reportsAdapter = new Reports_Instructors_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);

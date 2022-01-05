@@ -50,52 +50,83 @@
                         android:layout_width="match_parent"
                         android:layout_height="66dp"
                         android:layout_weight="1"
-                        android:prompt="@array/report_choice"/>
+                        android:label="@array/report_choice"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/reportsLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="560dp"
-                android:orientation="horizontal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reportsTermRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                tools:listitem="@layout/report_terms_list_item" />
+                tools:listitem="@layout/report_terms_list_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reportsCourseRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                tools:listitem="@layout/report_courses_list_item" />
+                tools:listitem="@layout/report_courses_list_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reportsAssessmentsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                tools:listitem="@layout/report_assessments_list_item" />
+                tools:listitem="@layout/report_assessments_list_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reportsInstructorRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/holo_orange_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                tools:listitem="@layout/report_instructor_list_item" />
+                tools:listitem="@layout/report_instructors_list_item" />
 
         </LinearLayout>
     </ScrollView>

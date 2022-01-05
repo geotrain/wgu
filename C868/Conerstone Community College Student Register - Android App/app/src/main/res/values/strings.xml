@@ -30,10 +30,10 @@
     <string name="report_spinner">Generate_Report</string>
     <string-array name="report_choice">
         <item name="Select Report">Select Report</item>
-        <item name="See Terms">Generate Terms Report</item>
-        <item name="See Courses">Generate Courses Report</item>
-        <item name="See Assessments">Generate Assessments Report</item>
-        <item name="See Instructors">Generate Instructors Report</item>
+        <item name="See Terms">Terms Report</item>
+        <item name="See Courses">Courses Report</item>
+        <item name="See Assessments">Assessments Report</item>
+        <item name="See Instructors">Instructors Report</item>
     </string-array>
     <string name="assessment_status_spinner">Course Status</string>
     <string name="search_label">searchLabel</string>
