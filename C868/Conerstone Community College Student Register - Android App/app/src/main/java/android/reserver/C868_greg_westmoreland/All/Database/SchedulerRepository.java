@@ -161,8 +161,6 @@ public class SchedulerRepository {
         return false;
     }
 
-
-
     /**
      * This method inserts all terms in the terms_table
      * @param termsEntity
@@ -353,5 +351,73 @@ public class SchedulerRepository {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * This method gets all courses from the courses_table
+     * @return
+     */
+    public List<CoursesEntity> getAllInstructorsReport() {
+        databaseExecutor.execute(()-> {
+            mAllCoursesEntities = mCoursesDAO.getAllInstructorsReport();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllCoursesEntities;
+    }
+
+    /**
+     * This method gets all courses from the courses_table
+     * @return
+     */
+    public List<CoursesEntity> getAllCoursesReport() {
+        databaseExecutor.execute(()-> {
+            mAllCoursesEntities = mCoursesDAO.getAllCoursesReports();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllCoursesEntities;
+    }
+
+    /**
+     * This method gets all terms from the terms_table
+     * @return
+     */
+    public List<TermsEntity> getAllTermsReport() {
+        databaseExecutor.execute(()-> {
+            mAllTermsEntities = mTermsDAO.getAllTermsReport();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllTermsEntities;
+    }
+
+    /**
+     * This method gets all assessments from the assessments_table
+     * @return
+     */
+    public List<AssessmentsEntity> getAllAssessmentsReport() {
+        databaseExecutor.execute(()-> {
+            mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsReport();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllAssessmentsEntities;
     }
 }

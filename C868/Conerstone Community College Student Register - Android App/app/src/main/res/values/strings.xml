@@ -29,16 +29,13 @@
     <string name="assessment_type">assessment_type</string>
     <string name="report_spinner">Generate_Report</string>
     <string-array name="report_choice">
-        <item name="See Terms">In Progress</item>
-        <item name="See Courses">In Progress</item>
-        <item name="See Assessments">In Progress</item>
-        <item name="See Instructors">In Progress</item>
+        <item name="Select Report">Select Report</item>
+        <item name="See Terms">Generate Terms Report</item>
+        <item name="See Courses">Generate Courses Report</item>
+        <item name="See Assessments">Generate Assessments Report</item>
+        <item name="See Instructors">Generate Instructors Report</item>
     </string-array>
     <string name="assessment_status_spinner">Course Status</string>
     <string name="search_label">searchLabel</string>
     <string name="share_label">share_label</string>
-    <string-array name="assessment_status">
-        <item>Perf_Assessment</item>
-        <item>Obj_Assessment</item>
-    </string-array>
 </resources>

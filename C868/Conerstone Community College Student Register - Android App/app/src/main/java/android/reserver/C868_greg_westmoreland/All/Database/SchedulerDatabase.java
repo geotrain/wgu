@@ -27,7 +27,7 @@ import java.util.concurrent.Executors;
  * The @Database references
  */
 @Database(entities = {TermsEntity.class, CoursesEntity.class, AssessmentsEntity.class, UsersEntity.class},
-        version = 18, exportSchema = false)
+        version = 19, exportSchema = false)
 
 /**
  * The @Types Converter references

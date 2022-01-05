@@ -51,7 +51,7 @@
             android:exported="false"
             android:label="Edit Assessment" />
         <activity
-            android:name="android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Reports_Page"
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Reports.Reports_Page"
             android:exported="false"
             android:label="SAYOP Reports Page" />
         <activity

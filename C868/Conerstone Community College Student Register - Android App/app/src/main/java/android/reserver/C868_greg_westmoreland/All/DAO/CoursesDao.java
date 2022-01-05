@@ -58,4 +58,20 @@ public interface CoursesDao {
      */
     @Query("DELETE FROM COURSES_TABLE")
     void deleteAllCourses();
+
+    /**
+     * Query to get all courses from the courses_table
+     * @return
+     */
+    @Query("SELECT courseID, courseInstructorName, courseInstructorPhone, courseInstructorEmail, termID " +
+            "FROM COURSES_TABLE ORDER BY courseInstructorName ASC")
+    List<CoursesEntity> getAllInstructorsReport();
+
+    /**
+     * Query to get all courses from the courses_table
+     * @return
+     */
+    @Query("SELECT courseID, courseName, courseStartDate, courseEndDate, termID " +
+            "FROM COURSES_TABLE ORDER BY courseName ASC")
+    List<CoursesEntity> getAllCoursesReports();
 }

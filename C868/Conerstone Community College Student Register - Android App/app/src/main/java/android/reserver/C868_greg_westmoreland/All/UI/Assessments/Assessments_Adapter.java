@@ -17,7 +17,7 @@ import java.util.List;
 public class Assessments_Adapter extends RecyclerView.Adapter<Assessments_Adapter.AssessmentViewHolder> {
 
     /**
-     * This class extends the recylce view adapater for assessments
+     * This class extends the recycle view adapter for assessments
      */
     class AssessmentViewHolder extends RecyclerView.ViewHolder {
        private final TextView assessmentItemView;

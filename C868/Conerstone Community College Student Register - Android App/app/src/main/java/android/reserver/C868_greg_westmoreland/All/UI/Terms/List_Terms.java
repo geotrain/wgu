@@ -44,7 +44,7 @@ public class List_Terms extends AppCompatActivity {
         // Call Instance from repository and getAllTerms
         repository = new SchedulerRepository(getApplication());
         // this is really just to set up the database if there isn't one on your device yet-otherwise
-       // repository.getAllTerms();
+        // repository.getAllTerms();
         RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
 
         final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);

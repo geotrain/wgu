@@ -62,4 +62,11 @@ public interface TermsDao {
      */
     @Query("DELETE FROM TERMS_TABLE")
     void deleteAllTerms();
+
+    /**
+     * Query to get all terms from the terms_table
+     * @return
+     */
+    @Query("SELECT termID, termName, termStartDate, termEndDate FROM TERMS_TABLE ORDER BY termName ASC")
+    List<TermsEntity>getAllTermsReport();
 }

@@ -12,6 +12,9 @@
         <entry key="app/src/main/res/layout-land/activity_main_search_page.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout-land/assessment_list_item.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout-land/course_list_item.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/report_assessments_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/report_courses_list_item.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/layout-land/report_terms_list_item.xml" value="0.29635416666666664" />
         <entry key="app/src/main/res/layout-land/terms_list_item.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout/activity_add_new_assessment.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_add_new_term.xml" value="0.25" />
@@ -25,8 +28,13 @@
         <entry key="app/src/main/res/layout/activity_main_log_in_page.xml" value="0.26413255360623783" />
         <entry key="app/src/main/res/layout/activity_main_reports_page.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main_search_page.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/layout/activity_reports_page.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/assessment_list_item.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/course_list_item.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/report_assessments_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/report_courses_list_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/report_instructors_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/report_terms_list_item.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/terms_list_item.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/menu/menu_add_new_assessments.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/menu/menu_add_new_course.xml" value="0.24259259259259258" />

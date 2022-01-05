@@ -58,4 +58,12 @@ public interface AssessmentsDao {
      */
     @Query("DELETE FROM ASSESSMENTS_TABLE")
     void deleteAllAssessments();
+
+    /**
+     * Query to get all assessments from the assessments_table
+     * @return
+     */
+    @Query("SELECT assessmentID, assessmentName, assessmentStartDate, assessmentEndDate, courseID FROM " +
+            "ASSESSMENTS_TABLE ORDER BY assessmentID ASC")
+    List<AssessmentsEntity> getAllAssessmentsReport();
 }
