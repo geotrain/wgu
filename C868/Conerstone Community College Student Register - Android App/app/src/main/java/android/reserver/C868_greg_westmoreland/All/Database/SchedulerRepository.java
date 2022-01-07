@@ -1,7 +1,7 @@
 package android.reserver.C868_greg_westmoreland.All.Database;
 
-/**
- * Import statements
+/*
+  Import statements
  */
 import android.app.Application;
 import android.reserver.C868_greg_westmoreland.All.DAO.AssessmentsDao;
@@ -13,12 +13,7 @@ import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.UsersEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.LoginActivity;
-
-import androidx.room.util.DBUtil;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -39,6 +34,7 @@ public class SchedulerRepository {
     private List<TermsEntity> mAllTermsEntities;
     private List<CoursesEntity> mAllCoursesEntities;
     private List<AssessmentsEntity> mAllAssessmentsEntities;
+    private ArrayList<AssessmentsEntity> mAllAssessmentsSearchEntities;
     private List<UsersEntity> mAllUsersEntities;
     private static List<UsersEntity> mAllUserList;
     private static List<UsersEntity> mAllUserPass;
@@ -411,6 +407,19 @@ public class SchedulerRepository {
     public List<AssessmentsEntity> getAllAssessmentsReport() {
         databaseExecutor.execute(()-> {
             mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsReport();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllAssessmentsEntities;
+    }
+
+    public List<AssessmentsEntity> searchAllAssessments() {
+        databaseExecutor.execute(()-> {
+            mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsSearch();
         });
 
         try {

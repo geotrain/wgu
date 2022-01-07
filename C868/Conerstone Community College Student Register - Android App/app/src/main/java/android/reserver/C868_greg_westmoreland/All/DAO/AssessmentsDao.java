@@ -66,4 +66,11 @@ public interface AssessmentsDao {
     @Query("SELECT assessmentID, assessmentName, assessmentStartDate, assessmentEndDate, courseID FROM " +
             "ASSESSMENTS_TABLE ORDER BY assessmentID ASC")
     List<AssessmentsEntity> getAllAssessmentsReport();
+
+    /**
+     * Query to get all assessments from the assessments_table
+     * @return
+     */
+    @Query("SELECT * FROM ASSESSMENTS_TABLE ORDER BY assessmentID ASC")
+    List<AssessmentsEntity> getAllAssessmentsSearch();
 }
