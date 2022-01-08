@@ -4,6 +4,8 @@ package android.reserver.C868_greg_westmoreland.All.DAO;
  * Import statements
  */
 import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
+import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -74,4 +76,12 @@ public interface CoursesDao {
     @Query("SELECT courseID, courseName, courseStartDate, courseEndDate, termID " +
             "FROM COURSES_TABLE ORDER BY courseName ASC")
     List<CoursesEntity> getAllCoursesReports();
+
+    /**
+     * Search using variable 'query' to get all term names, start dates, end dates from the terms_table
+     * @return
+     */
+    @Query("SELECT courseID, courseName, courseStartDate, courseEndDate, termID FROM COURSES_TABLE " +
+            "WHERE courseName LIKE :query OR courseStartDate LIKE :query OR courseEndDate LIKE :query")
+    List<TermsEntity>getAllCoursesSearch(String query);
 }
