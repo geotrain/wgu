@@ -27,7 +27,7 @@ import java.util.concurrent.Executors;
  * The @Database references
  */
 @Database(entities = {TermsEntity.class, CoursesEntity.class, AssessmentsEntity.class, UsersEntity.class},
-        version = 19, exportSchema = false)
+        version = 20, exportSchema = false)
 
 /**
  * The @Types Converter references
@@ -94,7 +94,6 @@ public abstract class SchedulerDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
 
                 // These delete all data upon starting the app, comment these out for database persistence
-
                 mTermsDao.deleteAllTerms();;
                 mCoursesDao.deleteAllCourses();
                 mAssessmentsDao.deleteAllAssessments();
