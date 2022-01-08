@@ -53,5 +53,4 @@ public class Assessments_Search_Results extends Activity {
             assessmentsAdapter.setAssessments(repository.getAllAssessmentsSearch(query));
         }
     }
-
 }

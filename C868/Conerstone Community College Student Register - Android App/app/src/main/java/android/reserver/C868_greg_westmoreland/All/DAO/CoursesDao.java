@@ -83,5 +83,5 @@ public interface CoursesDao {
      */
     @Query("SELECT courseID, courseName, courseStartDate, courseEndDate, termID FROM COURSES_TABLE " +
             "WHERE courseName LIKE :query OR courseStartDate LIKE :query OR courseEndDate LIKE :query")
-    List<TermsEntity>getAllCoursesSearch(String query);
+    List<CoursesEntity>getAllCoursesSearch(String query);
 }

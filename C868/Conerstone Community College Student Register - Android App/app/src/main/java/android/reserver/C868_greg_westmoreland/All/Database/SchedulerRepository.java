@@ -453,7 +453,7 @@ public class SchedulerRepository {
      */
     public List<CoursesEntity> getAllCoursesSearch(String query) {
         databaseExecutor.execute(()-> {
-            mAllCoursesEntities = mCoursesDAO.getAllCoursesReports();
+            mAllCoursesEntities = mCoursesDAO.getAllCoursesSearch(query);
         });
 
         try {
@@ -470,7 +470,7 @@ public class SchedulerRepository {
      */
     public List<AssessmentsEntity> getAllAssessmentsSearch(String query) {
         databaseExecutor.execute(()-> {
-            mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsSearch();
+            mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsSearch(query);
         });
 
         try {

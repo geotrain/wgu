@@ -80,7 +80,7 @@ public interface AssessmentsDao {
      * Search using variable 'query' to get all assessment names, start dates, end dates from the assessments_table
      * @return
      */
-    @Query("SELECT assessmentID, assessmentName, assessmentStartDate, assessmentEndDate FROM " +
+    @Query("SELECT assessmentID, assessmentName, assessmentStartDate, assessmentEndDate, courseID FROM " +
             "ASSESSMENTS_TABLE WHERE assessmentName LIKE :query OR assessmentStartDate LIKE :query OR " +
             "assessmentEndDate LIKE :query")
     List<AssessmentsEntity>getAllAssessmentsSearch(String query);
