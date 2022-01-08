@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">C196_Greg_Westmoreland</string>
+    <string name="app_name">C868_CCC_SYAOP_Mobile_App</string>
     <string name="enter">Enter</string>
     <string name="add_a_new_term">Add A New Term</string>
     <string name="term_name">Term Name</string>
@@ -38,4 +38,5 @@
     <string name="assessment_status_spinner">Course Status</string>
     <string name="search_label">searchLabel</string>
     <string name="share_label">share_label</string>
+    <string name="search_hint">search_hint</string>
 </resources>

@@ -429,4 +429,21 @@ public class SchedulerRepository {
         }
         return mAllAssessmentsEntities;
     }
+
+    /**
+     * This method gets all terms from the terms_table
+     * @return
+     */
+    public List<TermsEntity> getAllTermsSearch(String query) {
+        databaseExecutor.execute(()-> {
+            mAllTermsEntities = mTermsDAO.getAllTermsSearch(query);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllTermsEntities;
+    }
 }

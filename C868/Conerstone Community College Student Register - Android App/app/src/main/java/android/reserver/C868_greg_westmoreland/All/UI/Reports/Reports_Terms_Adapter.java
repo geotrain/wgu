@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Reports_Terms_Adapter extends RecyclerView.Adapter<Reports_Terms_Adapter.TermsViewHolder> {
     /**
-     * This class extends the recycle view adapter for assessments
+     * This class extends the recycle view adapter for terms
      */
     class TermsViewHolder extends RecyclerView.ViewHolder {
         private final TextView termNameView;

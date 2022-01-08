@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/menu/menu_search_list.xml" value="0.24259259259259258" />
         <entry key="app/src/main/res/menu/menu_terms_list.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_terms_list_recylceview.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/searchable.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>

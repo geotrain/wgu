@@ -10,6 +10,7 @@ import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
  */
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.Ignore;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -58,7 +59,7 @@ public interface TermsDao {
     List<TermsEntity>getAllTerms();
 
     /**
-     * Query to delte all terms from the terms table
+     * Query to delete all terms from the terms table
      */
     @Query("DELETE FROM TERMS_TABLE")
     void deleteAllTerms();
@@ -69,4 +70,12 @@ public interface TermsDao {
      */
     @Query("SELECT termID, termName, termStartDate, termEndDate FROM TERMS_TABLE ORDER BY termName ASC")
     List<TermsEntity>getAllTermsReport();
+
+    /**
+     * Search using variable 'query' to get all term names, start dates, end dates from the terms_table
+     * @return
+     */
+    @Query("SELECT termID, termName, termStartDate, termEndDate FROM TERMS_TABLE WHERE termName LIKE :query " +
+            "OR termStartDate LIKE :query OR termendDate LIKE :query")
+    List<TermsEntity>getAllTermsSearch(String query);
 }

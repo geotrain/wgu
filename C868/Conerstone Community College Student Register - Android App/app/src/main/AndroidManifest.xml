@@ -18,6 +18,15 @@
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms"
             android:exported="false"
             android:label="Terms List" />
+        <meta-data android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+        <activity
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Terms.Terms_Search_Results"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Terms.Add_New_Term"
             android:exported="false"
@@ -68,5 +77,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

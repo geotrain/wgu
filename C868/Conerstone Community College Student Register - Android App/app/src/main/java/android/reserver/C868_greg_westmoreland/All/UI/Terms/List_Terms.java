@@ -6,31 +6,28 @@ package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
-
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
-import android.reserver.C868_greg_westmoreland.All.UI.Assessments.List_Assessments;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
-import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.List;
 import java.util.Objects;
 
-public class List_Terms extends AppCompatActivity {
+public class List_Terms extends AppCompatActivity implements View.OnClickListener {
     /**
      * Declare Database Repository
      */
     private SchedulerRepository repository;
+
 
     /**
      * This method loads the get all terms, adapter when the screen loads
@@ -55,7 +52,6 @@ public class List_Terms extends AppCompatActivity {
         // Add backward navigation to action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
 
     /**
@@ -65,6 +61,12 @@ public class List_Terms extends AppCompatActivity {
      */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.termsSearch).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
@@ -127,5 +129,23 @@ public class List_Terms extends AppCompatActivity {
     public void addNewTerm(View view) {
         Intent intent = new Intent(List_Terms.this, Add_New_Term.class);
         startActivity(intent);
+    }
+
+    /**
+     * onClick method
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    /**
+     * onPointerCaptureChanged method
+     * @param hasCapture
+     */
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
