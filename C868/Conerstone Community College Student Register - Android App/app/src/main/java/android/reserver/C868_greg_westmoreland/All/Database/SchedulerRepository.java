@@ -453,7 +453,7 @@ public class SchedulerRepository {
      */
     public List<CoursesEntity> getAllCoursesSearch(String query) {
         databaseExecutor.execute(()-> {
-            mAllTermsEntities = mCoursesDAO.getAllCoursesSearch(query);
+            mAllCoursesEntities = mCoursesDAO.getAllCoursesReports();
         });
 
         try {
@@ -462,5 +462,22 @@ public class SchedulerRepository {
             e.printStackTrace();
         }
         return mAllCoursesEntities;
+    }
+
+    /**
+     * This method gets all terms from the terms_table
+     * @return
+     */
+    public List<AssessmentsEntity> getAllAssessmentsSearch(String query) {
+        databaseExecutor.execute(()-> {
+            mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsSearch();
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllAssessmentsEntities;
     }
 }

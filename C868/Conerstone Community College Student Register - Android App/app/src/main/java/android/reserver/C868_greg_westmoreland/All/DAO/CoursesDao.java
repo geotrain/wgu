@@ -78,7 +78,7 @@ public interface CoursesDao {
     List<CoursesEntity> getAllCoursesReports();
 
     /**
-     * Search using variable 'query' to get all term names, start dates, end dates from the terms_table
+     * Search using variable 'query' to get all course names, start dates, end dates from the courses_table
      * @return
      */
     @Query("SELECT courseID, courseName, courseStartDate, courseEndDate, termID FROM COURSES_TABLE " +

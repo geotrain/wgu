@@ -28,6 +28,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Courses.Courses_Search_Results"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="android.reserver.C868_greg_westmoreland.All.UI.Assessments.Assessments_Search_Results"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="android.reserver.C868_greg_westmoreland.All.UI.Terms.Add_New_Term"
             android:exported="false"
             android:label="Add New Term" />

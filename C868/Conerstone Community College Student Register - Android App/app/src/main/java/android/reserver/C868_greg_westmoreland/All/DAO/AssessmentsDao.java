@@ -4,6 +4,8 @@ package android.reserver.C868_greg_westmoreland.All.DAO;
  * Import statements
  */
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
+import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -73,4 +75,13 @@ public interface AssessmentsDao {
      */
     @Query("SELECT * FROM ASSESSMENTS_TABLE ORDER BY assessmentID ASC")
     List<AssessmentsEntity> getAllAssessmentsSearch();
+
+    /**
+     * Search using variable 'query' to get all assessment names, start dates, end dates from the assessments_table
+     * @return
+     */
+    @Query("SELECT assessmentID, assessmentName, assessmentStartDate, assessmentEndDate FROM " +
+            "ASSESSMENTS_TABLE WHERE assessmentName LIKE :query OR assessmentStartDate LIKE :query OR " +
+            "assessmentEndDate LIKE :query")
+    List<AssessmentsEntity>getAllAssessmentsSearch(String query);
 }
