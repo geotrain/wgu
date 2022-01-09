@@ -80,7 +80,7 @@ public class List_Assessments extends AppCompatActivity {
         searchView.setSubmitButtonEnabled(true);
         searchView.setIconified(true);
         searchView.setIconifiedByDefault(true);
-        searchView.setQueryHint("Search Terms List");
+        searchView.setQueryHint("Search Assessments");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             /**

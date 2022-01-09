@@ -77,7 +77,7 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
         searchView.setSubmitButtonEnabled(true);
         searchView.setIconified(true);
         searchView.setIconifiedByDefault(true);
-        searchView.setQueryHint("Search Terms List");
+        searchView.setQueryHint("Search Terms");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             /**

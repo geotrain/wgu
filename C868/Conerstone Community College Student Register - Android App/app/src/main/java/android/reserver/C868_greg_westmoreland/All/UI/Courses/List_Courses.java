@@ -84,7 +84,7 @@ public class List_Courses extends AppCompatActivity {
         searchView.setSubmitButtonEnabled(true);
         searchView.setIconified(true);
         searchView.setIconifiedByDefault(true);
-        searchView.setQueryHint("Search Terms List");
+        searchView.setQueryHint("Search Courses");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             /**
