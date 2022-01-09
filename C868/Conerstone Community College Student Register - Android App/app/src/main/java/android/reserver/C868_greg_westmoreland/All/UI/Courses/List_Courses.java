@@ -77,16 +77,15 @@ public class List_Courses extends AppCompatActivity {
         inflater.inflate(R.menu.menu_courses_list_recylceview, menu);
 
         // Associate searchable configuration with the SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.coursesSearch).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         searchView.setSubmitButtonEnabled(true);
         searchView.setIconified(true);
         searchView.setIconifiedByDefault(true);
         searchView.setQueryHint("Search Courses");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
             /**
              * onQueryTextSubmit method
              * @param query
@@ -95,7 +94,7 @@ public class List_Courses extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 search(query);
-                return true;
+                return false;
             }
 
             /**
@@ -105,8 +104,8 @@ public class List_Courses extends AppCompatActivity {
              */
             @Override
             public boolean onQueryTextChange(String query) {
-                //search(query);
-                return false;
+                search(query);
+                return true;
             }
         });
         return true;
@@ -122,7 +121,11 @@ public class List_Courses extends AppCompatActivity {
         if (query != null) {
             mSearchTerms = searchResults;
             final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
+            recyclerView = findViewById(R.id.coursesListRecyclerView);
             recyclerView.setAdapter(coursesAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            coursesAdapter.setCourses(searchResults);
+            coursesAdapter.setCourses(mSearchTerms);
         }
     }
 
