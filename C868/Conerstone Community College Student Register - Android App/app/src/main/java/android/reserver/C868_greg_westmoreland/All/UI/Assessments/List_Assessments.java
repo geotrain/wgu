@@ -74,15 +74,15 @@ public class List_Assessments extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_assessments_list_recycleview, menu);
 
         // Associate searchable configuration with the SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.assessmentsSearch).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setSubmitButtonEnabled(true);
         searchView.setIconified(true);
         searchView.setIconifiedByDefault(true);
         searchView.setQueryHint("Search Assessments");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
             /**
              * onQueryTextSubmit method
              * @param query
@@ -91,7 +91,7 @@ public class List_Assessments extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 search(query);
-                return true;
+                return false;
             }
 
             /**
@@ -101,8 +101,8 @@ public class List_Assessments extends AppCompatActivity {
              */
             @Override
             public boolean onQueryTextChange(String query) {
-                //search(query);
-                return false;
+                search(query);
+                return true;
             }
         });
         return true;
@@ -118,7 +118,11 @@ public class List_Assessments extends AppCompatActivity {
         if (query != null) {
             mSearchTerms = searchResults;
             final Assessments_Adapter assessmentsAdapter = new Assessments_Adapter(this);
+            recyclerView = findViewById(R.id.assessmentsListRecyclerView);
             recyclerView.setAdapter(assessmentsAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            assessmentsAdapter.setAssessments(searchResults);
+            assessmentsAdapter.setAssessments(mSearchTerms);
         }
     }
 

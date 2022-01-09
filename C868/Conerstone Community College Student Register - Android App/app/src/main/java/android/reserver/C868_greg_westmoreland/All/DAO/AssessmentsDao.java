@@ -81,7 +81,7 @@ public interface AssessmentsDao {
      * @return
      */
     @Query("SELECT assessmentID, assessmentName, assessmentStartDate, assessmentEndDate, courseID FROM " +
-            "ASSESSMENTS_TABLE WHERE assessmentName LIKE :query OR assessmentStartDate LIKE :query OR " +
-            "assessmentEndDate LIKE :query")
+            "ASSESSMENTS_TABLE WHERE assessmentName LIKE '%' || :query || '%' OR assessmentStartDate " +
+            "LIKE '%' || :query || '%' OR assessmentEndDate LIKE '%' || :query || '%'")
     List<AssessmentsEntity>getAllAssessmentsSearch(String query);
 }
