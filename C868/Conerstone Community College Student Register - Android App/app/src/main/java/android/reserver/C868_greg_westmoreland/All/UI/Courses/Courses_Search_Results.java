@@ -47,13 +47,14 @@ public class Courses_Search_Results extends Activity {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-
-            // Search TermsDAO to query the db for termName, termStartDate, termEndDate
-            RecyclerView recyclerView = findViewById(R.id.coursesListRecyclerView);
-            final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
-            recyclerView.setAdapter(coursesAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            coursesAdapter.setCourses(repository.getAllCoursesSearch(query));
+            System.out.println(query);
+            if (query != null) {
+                final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
+                RecyclerView recyclerView = findViewById(R.id.coursesListRecyclerView);
+                recyclerView.setAdapter(coursesAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                coursesAdapter.setCourses(repository.getAllCoursesSearch(query));
+            }
         }
     }
 }

@@ -6,19 +6,25 @@ package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.reserver.C868_greg_westmoreland.All.DAO.TermsDao;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +34,10 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
      */
     private SchedulerRepository repository;
 
+    // Variables for Search
+    private List<TermsEntity> mSearchTerms;
+    private RecyclerView recyclerView;
+
 
     /**
      * This method loads the get all terms, adapter when the screen loads
@@ -36,15 +46,12 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // This tells which activity screen.xml this file is associated with
         setContentView(R.layout.activity_list_terms);
-        // Call Instance from repository and getAllTerms
         repository = new SchedulerRepository(getApplication());
-        // this is really just to set up the database if there isn't one on your device yet-otherwise
-        // repository.getAllTerms();
-        RecyclerView recyclerView = findViewById(R.id.termsListRecyclerView);
 
+        setTitle("Terms List");
         final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
+        recyclerView = findViewById(R.id.termsListRecyclerView);
         recyclerView.setAdapter(termsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termsAdapter.setTerms(repository.getAllTerms());
@@ -60,14 +67,56 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list_recylceview, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_terms_list_recylceview, menu);
 
         // Associate searchable configuration with the SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.termsSearch).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setIconified(true);
+        searchView.setIconifiedByDefault(true);
+        searchView.setQueryHint("Search Terms List");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
+            /**
+             * onQueryTextSubmit method
+             * @param query
+             * @return
+             */
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                return false;
+            }
+
+            /**
+             * onQueryTextChange
+             * @param query
+             * @return
+             */
+            @Override
+            public boolean onQueryTextChange(String query) {
+                search(query);
+                return false;
+            }
+        });
         return true;
+    }
+
+    /**
+     * Method used for string search
+     * @param query
+     */
+    public void search(String query) {
+        List<TermsEntity> searchResults = repository.getAllTermsSearch(query);
+        System.out.println(query);
+        if (query != null) {
+            mSearchTerms = searchResults;
+            final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
+            recyclerView.setAdapter(termsAdapter);
+        }
     }
 
     /**

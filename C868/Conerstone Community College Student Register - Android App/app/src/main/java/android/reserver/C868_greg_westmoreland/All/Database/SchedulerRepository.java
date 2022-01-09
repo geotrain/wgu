@@ -141,13 +141,13 @@ public class SchedulerRepository {
                 if (mAllUserList.get(i).getUsername().equals(uName) && mAllUserList.get(i)
                         .getPassword().equals(password)) {
                     // Print username and passwords found
-                    System.out.println("Found username " + mAllUserList.get(i).getUsername() +
-                            "with password " + mAllUserList.get(i).getPassword());
+                    System.out.println("Found username=" + mAllUserList.get(i).getUsername() +
+                            " with password=" + mAllUserList.get(i).getPassword());
                     return true;
                 } else {
                     // Print username and passwords not found
-                    System.out.println("Did not find username " + mAllUserList.get(i).getUsername() +
-                            "with password " + mAllUserList.get(i).getPassword());
+                    System.out.println("Did not find username=" + mAllUserList.get(i).getUsername() +
+                            " with password=" + mAllUserList.get(i).getPassword());
                 }
             }
         } catch (Exception e) {

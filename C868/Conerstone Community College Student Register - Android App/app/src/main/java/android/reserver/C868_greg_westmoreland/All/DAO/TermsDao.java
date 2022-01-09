@@ -3,6 +3,8 @@ package android.reserver.C868_greg_westmoreland.All.DAO;
 /**
  * Import statements
  */
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 
 /**
@@ -15,6 +17,8 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
