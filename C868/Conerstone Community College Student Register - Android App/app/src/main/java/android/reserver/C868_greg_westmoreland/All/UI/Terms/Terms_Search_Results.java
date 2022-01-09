@@ -1,8 +1,10 @@
 package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 
+/*
 /**
  * Import statements
  */
+/*
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -18,31 +20,21 @@ public class Terms_Search_Results extends Activity {
     /**
      * Declare Database Repository
      */
+/*
     private SchedulerRepository repository;
 
-    /**
-     * onCreate method
-     * @param savedInstanceState
-     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handleIntent(getIntent());
     }
 
-    /**
-     * onNewIntent method
-     * @param intent
-     */
     @Override
     protected void onNewIntent(Intent intent) {
         handleIntent(intent);
     }
 
-    /**
-     * handleIntent method
-     * @param intent
-     */
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -58,4 +50,4 @@ public class Terms_Search_Results extends Activity {
             }
         }
     }
-}
+}*/

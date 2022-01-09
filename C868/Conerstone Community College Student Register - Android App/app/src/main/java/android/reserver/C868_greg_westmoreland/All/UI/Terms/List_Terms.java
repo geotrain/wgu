@@ -89,7 +89,7 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
             @Override
             public boolean onQueryTextSubmit(String query) {
                 search(query);
-                return true;
+                return false;
             }
 
             /**
@@ -99,8 +99,8 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
              */
             @Override
             public boolean onQueryTextChange(String query) {
-                //search(query);
-                return false;
+                search(query);
+                return true;
             }
         });
         return true;
@@ -116,11 +116,15 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
         if (query != null) {
             mSearchTerms = searchResults;
             final List_Terms_Adapter termsAdapter = new List_Terms_Adapter(this);
+            recyclerView = findViewById(R.id.termsListRecyclerView);
             recyclerView.setAdapter(termsAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            termsAdapter.setTerms(searchResults);
+            termsAdapter.setTerms(mSearchTerms);
         }
     }
 
-    /**
+    /**admin
      * This method is called when the backward arrow button for navigation is used. It is also used
      * when the users refreshes the screen
      * @param item

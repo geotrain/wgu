@@ -79,7 +79,9 @@ public interface TermsDao {
      * Search using variable 'query' to get all term names, start dates, end dates from the terms_table
      * @return
      */
-    @Query("SELECT termID, termName, termStartDate, termEndDate FROM TERMS_TABLE WHERE termName LIKE :query " +
-            "OR termStartDate LIKE :query OR termendDate LIKE :query")
+    @Query("SELECT termID, termName, termStartDate, termEndDate FROM TERMS_TABLE WHERE termName LIKE '%' " +
+            "|| :query || '%' OR termStartDate LIKE '%' || :query || '%' OR termEndDate LIKE '%' || :query || '%'")
     List<TermsEntity>getAllTermsSearch(String query);
+
+
 }
