@@ -91,7 +91,7 @@ public class List_Assessments extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 search(query);
-                return false;
+                return true;
             }
 
             /**
@@ -101,7 +101,7 @@ public class List_Assessments extends AppCompatActivity {
              */
             @Override
             public boolean onQueryTextChange(String query) {
-                search(query);
+                //search(query);
                 return false;
             }
         });

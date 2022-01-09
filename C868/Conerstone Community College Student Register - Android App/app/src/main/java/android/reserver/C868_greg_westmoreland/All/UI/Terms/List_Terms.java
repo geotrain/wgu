@@ -17,6 +17,7 @@ import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.R;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -78,8 +79,8 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
         searchView.setIconified(true);
         searchView.setIconifiedByDefault(true);
         searchView.setQueryHint("Search Terms");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
             /**
              * onQueryTextSubmit method
              * @param query
@@ -88,7 +89,7 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
             @Override
             public boolean onQueryTextSubmit(String query) {
                 search(query);
-                return false;
+                return true;
             }
 
             /**
@@ -98,7 +99,7 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
              */
             @Override
             public boolean onQueryTextChange(String query) {
-                search(query);
+                //search(query);
                 return false;
             }
         });
