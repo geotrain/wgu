@@ -25,12 +25,20 @@ public class Reports_Courses_Adapter extends RecyclerView.Adapter<Reports_Course
         private final TextView courseStartDateView;
         private final TextView courseEndDateView;
 
+        /**
+         * Courses View Holder loads data
+         * @param itemView
+         */
         private CoursesViewHolder(View itemView){
             super(itemView);
             courseNameView = itemView.findViewById(R.id.report_course_name);
             courseStartDateView=itemView.findViewById(R.id.report_course_start_date);
             courseEndDateView=itemView.findViewById(R.id.report_course_end_date);
             itemView.setOnClickListener(new View.OnClickListener() {
+                /**
+                 * This method loads course information when clicked
+                 * @param v
+                 */
                 @Override
                 public void onClick (View v) {
                     int position = getAdapterPosition();

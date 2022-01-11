@@ -4,8 +4,6 @@ package android.reserver.C868_greg_westmoreland.All.DAO;
  * Import statements
  */
 import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
-import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;

@@ -160,12 +160,24 @@ public class Edit_Existing_Course extends AppCompatActivity {
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT) {
+            /**
+             * This method moves the recycle view when moved
+             * @param recyclerView
+             * @param viewHolder
+             * @param target
+             * @return
+             */
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                                   RecyclerView.ViewHolder target) {
                 return false;
             }
 
+            /**
+             * This method allows the assessment to be deleted when the user swipes the assessment
+             * @param viewHolder
+             * @param direction
+             */
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 repository.delete(adapter.getAssessmentAt(viewHolder.getAdapterPosition()));
@@ -295,6 +307,9 @@ public class Edit_Existing_Course extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method deletes an existing course
+     */
     private void deleteExistingCourse() {
         repository.delete(currentCourse);
         Intent intentStart = new Intent(Edit_Existing_Course.this, List_Courses.class);

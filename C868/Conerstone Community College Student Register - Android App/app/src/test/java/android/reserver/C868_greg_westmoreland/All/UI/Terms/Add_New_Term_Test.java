@@ -1,5 +1,8 @@
 package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 
+/**
+ * Import statements
+ */
 import static org.junit.Assert.assertEquals;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
@@ -20,6 +23,9 @@ public class Add_New_Term_Test {
     // Declare integer id for db
     int id = 0;
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Failure() {
         TermsEntity newTerm = new TermsEntity(
@@ -31,6 +37,9 @@ public class Add_New_Term_Test {
         assertEquals(1, newTerm.getTermID());
     }
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Failure_EmptyTermName() {
         String termName = "";
@@ -45,6 +54,9 @@ public class Add_New_Term_Test {
         assertEquals("", newTerm.getTermName());
     }
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Failure_EmptyStartDate() {
         String termName = "Term Name";
@@ -60,6 +72,9 @@ public class Add_New_Term_Test {
         assertEquals(termEndDate, newTerm.getTermEndDate());
     }
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Success() {
         TermsEntity newTerm = new TermsEntity(
@@ -70,6 +85,9 @@ public class Add_New_Term_Test {
         repository.insert(newTerm);
     }
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Failure_EmptyEndDate() {
         String termName = "Term Name";
@@ -85,6 +103,9 @@ public class Add_New_Term_Test {
         assertEquals(termEndDate, newTerm.getTermEndDate());
     }
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Failure_StartDateAfterEndDate() {
         String termName = "Term Name";
@@ -100,6 +121,9 @@ public class Add_New_Term_Test {
         assertEquals(termEndDate, newTerm.getTermEndDate());
     }
 
+    /**
+     * Unit Test
+     */
     @Test
     public void testSaveTerm_Failure_StartDateEqualsEndDate() throws ParseException {
         String termName = "Term Name";

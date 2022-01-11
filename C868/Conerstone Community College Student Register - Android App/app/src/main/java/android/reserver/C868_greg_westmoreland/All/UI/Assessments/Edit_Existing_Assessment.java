@@ -18,7 +18,6 @@ import android.reserver.C868_greg_westmoreland.All.UI.Courses.Edit_Existing_Cour
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Log_In_Page;
 import android.reserver.C868_greg_westmoreland.All.UI.My_Receiver;
-import android.reserver.C868_greg_westmoreland.All.UI.Terms.Edit_Existing_Term;
 import android.reserver.C868_greg_westmoreland.All.UI.Utilities.Date_Picker_Fragment;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;

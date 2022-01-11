@@ -27,6 +27,10 @@ public class CoursesEntity {
     public CoursesEntity() {
     }
 
+    /**
+     * Method converts to string
+     * @return
+     */
     @Override
     public String toString() {
         return "Courses{" +
@@ -34,6 +38,7 @@ public class CoursesEntity {
                 '}';
     }
 
+    // Declare variables
     private String courseStartDate;
     private String courseEndDate;
     private String courseStatus;

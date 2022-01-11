@@ -24,6 +24,10 @@ public class List_Terms_Adapter extends RecyclerView.Adapter<List_Terms_Adapter.
         private final TextView termStartDateView;
         private final TextView termEndDateView;
 
+        /**
+         * This method holds the terms information
+         * @param itemView
+         */
         private Term_View_Holder(View itemView) {
             super(itemView);
             termNameView = itemView.findViewById(R.id.term_name);

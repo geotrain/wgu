@@ -23,6 +23,10 @@ public class TermsEntity {
      */
     private String termName;
 
+    /**
+     * Convert to string
+     * @return
+     */
     @Override
     public String toString() {
         return "Terms{" +
@@ -30,6 +34,7 @@ public class TermsEntity {
                 '}';
     }
 
+    // Declare variables
     private String termStartDate;
     private String termEndDate;
 

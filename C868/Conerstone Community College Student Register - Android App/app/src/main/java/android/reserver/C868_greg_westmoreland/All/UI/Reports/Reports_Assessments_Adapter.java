@@ -24,12 +24,20 @@ public class Reports_Assessments_Adapter extends RecyclerView.Adapter<Reports_As
         private final TextView assessmentStartDateView;
         private final TextView assessmentEndDateView;
 
+        /**
+         * Assessments View Holder for Reports page
+         * @param itemView
+         */
         private AssessmentsViewHolder(View itemView){
             super(itemView);
             assessmentNameView = itemView.findViewById(R.id.report_assessment_name);
             assessmentStartDateView=itemView.findViewById(R.id.report_assessment_start_date);
             assessmentEndDateView=itemView.findViewById(R.id.report_assessment_end_date);
             itemView.setOnClickListener(new View.OnClickListener() {
+                /**
+                 * On Click it loads the following
+                 * @param v
+                 */
                 @Override
                 public void onClick (View v) {
                     int position = getAdapterPosition();

@@ -37,11 +37,19 @@ public class Edit_Existing_Term_Adapter extends RecyclerView.Adapter<Edit_Existi
         private final TextView courseItemView;
         private final TextView assessmentItemView;
 
+        /**
+         * This method holds the course information
+         * @param itemView
+         */
         private Course_View_Holder(View itemView){
             super(itemView);
             courseItemView = itemView.findViewById(R.id.course_item_text_view);
             assessmentItemView = itemView.findViewById(R.id.assessment_list);
             itemView.setOnClickListener(new View.OnClickListener() {
+                /**
+                 * This method puts the course information when clicked
+                 * @param v
+                 */
                 @Override
                 public void onClick (View v) {
                     int position = getAdapterPosition();

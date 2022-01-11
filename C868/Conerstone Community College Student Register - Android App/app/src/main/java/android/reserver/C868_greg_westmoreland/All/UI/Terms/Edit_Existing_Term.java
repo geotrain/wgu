@@ -140,12 +140,24 @@ public class Edit_Existing_Term extends AppCompatActivity {
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT) {
+            /**
+             * This method holds the recycle view when moved
+             * @param recyclerView
+             * @param viewHolder
+             * @param target
+             * @return
+             */
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                                   RecyclerView.ViewHolder target) {
                 return false;
             }
 
+            /**
+             * This method swipes to delete a term
+             * @param viewHolder
+             * @param direction
+             */
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 String myName = adapter.getCourseAt(viewHolder.getLayoutPosition()).getCourseName();
@@ -276,6 +288,9 @@ public class Edit_Existing_Term extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * This method is used for deleting a term
+     */
     private void deleteExistingTerm() {
         repository.delete(currentTerm);
         Intent intentStart = new Intent(Edit_Existing_Term.this, List_Terms.class);
@@ -284,6 +299,9 @@ public class Edit_Existing_Term extends AppCompatActivity {
                 "deleted.", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * This method is used to add a course to the term
+     */
     private void addCourseToExistingTerm() {
         // Navigate to Courses_Add_New_Course class
         Intent intent = new Intent(Edit_Existing_Term.this, Add_New_Course.class);
@@ -291,6 +309,9 @@ public class Edit_Existing_Term extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * This method is used to navigate back to the home page
+     */
     private void returnToHome() {
         Intent intent = new Intent(Edit_Existing_Term.this, Main_Activity_Home_Page.class);
         startActivity(intent);

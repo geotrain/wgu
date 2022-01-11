@@ -1,7 +1,7 @@
 package android.reserver.C868_greg_westmoreland.All.Database;
 
-/*
-  Import statements
+/**
+ * Import statements
  */
 import android.app.Application;
 import android.reserver.C868_greg_westmoreland.All.DAO.AssessmentsDao;
@@ -417,6 +417,10 @@ public class SchedulerRepository {
         return mAllAssessmentsEntities;
     }
 
+    /**
+     * Search all assessments
+     * @return
+     */
     public List<AssessmentsEntity> searchAllAssessments() {
         databaseExecutor.execute(()-> {
             mAllAssessmentsEntities = mAssessmentsDAO.getAllAssessmentsSearch();

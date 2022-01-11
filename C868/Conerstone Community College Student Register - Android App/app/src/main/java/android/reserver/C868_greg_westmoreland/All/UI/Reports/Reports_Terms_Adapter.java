@@ -24,12 +24,20 @@ public class Reports_Terms_Adapter extends RecyclerView.Adapter<Reports_Terms_Ad
         private final TextView termStartDateView;
         private final TextView termEndDateView;
 
+        /**
+         * This method holds the terms view for the reports page
+         * @param itemView
+         */
         private TermsViewHolder(View itemView){
             super(itemView);
             termNameView = itemView.findViewById(R.id.report_term_name);
             termStartDateView=itemView.findViewById(R.id.report_term_start_date);
             termEndDateView=itemView.findViewById(R.id.report_term_end_date);
             itemView.setOnClickListener(new View.OnClickListener() {
+                /**
+                 * This method loads term data check clicked
+                 * @param v
+                 */
                 @Override
                 public void onClick (View v) {
                     int position = getAdapterPosition();
@@ -118,7 +126,6 @@ public class Reports_Terms_Adapter extends RecyclerView.Adapter<Reports_Terms_Ad
     public TermsEntity getTermsAt(int position) {
         return mTerms.get(position);
     }
-
 
     /**
      * Set Terms method

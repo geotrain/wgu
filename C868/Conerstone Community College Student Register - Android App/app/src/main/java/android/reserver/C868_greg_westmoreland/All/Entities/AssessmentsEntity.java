@@ -31,6 +31,7 @@ public class AssessmentsEntity {
                 '}';
     }
 
+    // Declare variables
     private String assessmentType;
     private String assessmentStartDate;
     private String assessmentEndDate;

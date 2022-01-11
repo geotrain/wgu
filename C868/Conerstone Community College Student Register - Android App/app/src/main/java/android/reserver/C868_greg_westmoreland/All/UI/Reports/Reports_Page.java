@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
-import android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms_Adapter;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.Objects;
 
 public class Reports_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

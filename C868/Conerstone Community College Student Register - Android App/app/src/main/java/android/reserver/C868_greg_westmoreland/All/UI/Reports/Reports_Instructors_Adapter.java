@@ -28,12 +28,20 @@ public class Reports_Instructors_Adapter extends RecyclerView.Adapter<Reports_In
         private final TextView instructorPhoneView;
         private final TextView instructorEmailView;
 
+        /**
+         * This method holds instructors view data
+         * @param itemView
+         */
         private InstructorsViewHolder(View itemView){
             super(itemView);
             instructorNameView = itemView.findViewById(R.id.report_instructor_name);
             instructorPhoneView = itemView.findViewById(R.id.report_instructor_phone);
             instructorEmailView = itemView.findViewById(R.id.report_instructor_email);
             itemView.setOnClickListener(new View.OnClickListener() {
+                /**
+                 * This method loads the instructor information when clicked
+                 * @param v
+                 */
                 @Override
                 public void onClick (View v) {
                     int position = getAdapterPosition();

@@ -18,12 +18,14 @@ public class UsersEntity {
     @PrimaryKey(autoGenerate = true)
     private int userID;
 
-    /**
-     * Declaration of variables uses for users_table
-     */
+   // Declare variables
     private String username;
     private String password;
 
+    /**
+     * Covert to string
+     * @return
+     */
     @Override
     public String toString() {
         return "Users{" +

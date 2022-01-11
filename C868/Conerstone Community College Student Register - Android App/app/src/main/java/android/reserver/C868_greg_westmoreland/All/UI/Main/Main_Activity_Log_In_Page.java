@@ -6,18 +6,11 @@ package android.reserver.C868_greg_westmoreland.All.UI.Main;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.reserver.C868_greg_westmoreland.All.DAO.UsersDao;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
-import android.reserver.C868_greg_westmoreland.All.Entities.UsersEntity;
-import android.reserver.C868_greg_westmoreland.All.UI.Assessments.List_Assessments;
-import android.reserver.C868_greg_westmoreland.All.UI.Courses.List_Courses;
-import android.reserver.C868_greg_westmoreland.All.UI.Terms.List_Terms;
 import android.reserver.C868_greg_westmoreland.R;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.List;
 
 public class Main_Activity_Log_In_Page extends AppCompatActivity {
 
@@ -52,6 +45,11 @@ public class Main_Activity_Log_In_Page extends AppCompatActivity {
         editPassword = findViewById(R.id.loginPassword);
     }
 
+    /**
+     * This method allows a user to log in with username and password from the users table
+     * @param view
+     * @throws Exception
+     */
     public void logIn(View view) throws Exception{
 
         String username = editUsername.getText().toString();

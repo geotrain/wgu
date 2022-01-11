@@ -6,26 +6,20 @@ package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.reserver.C868_greg_westmoreland.All.DAO.TermsDao;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import android.reserver.C868_greg_westmoreland.All.UI.Main.Main_Activity_Home_Page;
 import android.reserver.C868_greg_westmoreland.R;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -191,7 +185,6 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
      */
     @Override
     public void onClick(View v) {
-
     }
 
     /**
@@ -200,6 +193,5 @@ public class List_Terms extends AppCompatActivity implements View.OnClickListene
      */
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }

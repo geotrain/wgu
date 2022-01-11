@@ -7,7 +7,6 @@ import android.reserver.C868_greg_westmoreland.All.Entities.AssessmentsEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.CoursesEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import android.reserver.C868_greg_westmoreland.All.Entities.UsersEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 
