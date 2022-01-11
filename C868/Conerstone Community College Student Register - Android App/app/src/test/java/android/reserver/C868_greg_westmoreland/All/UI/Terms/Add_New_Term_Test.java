@@ -1,7 +1,6 @@
 package android.reserver.C868_greg_westmoreland.All.UI.Terms;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import android.reserver.C868_greg_westmoreland.All.Database.SchedulerRepository;
 import android.reserver.C868_greg_westmoreland.All.Entities.TermsEntity;
 import org.junit.Test;

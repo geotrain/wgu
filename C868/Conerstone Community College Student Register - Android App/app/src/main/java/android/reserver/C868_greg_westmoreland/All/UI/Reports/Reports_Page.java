@@ -127,45 +127,131 @@ public class Reports_Page extends AppCompatActivity implements AdapterView.OnIte
         System.out.println("The spinner selection is " + spinnerResult);
 
         if (spinnerResult.equals("Terms Report")) {
+            RecyclerView recyclerView;
             System.out.println(parent.getItemAtPosition(1));
             Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
-            RecyclerView recyclerView = findViewById(R.id.reportsTermRecyclerView);
+            unhideTermsReport();
+            recyclerView = findViewById(R.id.reportsTermRecyclerView);
             final Reports_Terms_Adapter reportsAdapter = new Reports_Terms_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             reportsAdapter.setTerms(repository.getAllTermsReport());
-
+            hideCoursesReport();
+            hideAssessmentsReport();
+            hideInstructorsReport();
         } else if (spinnerResult.equals("Courses Report")) {
+            RecyclerView recyclerView;
             System.out.println(parent.getItemAtPosition(2));
             Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
-            RecyclerView recyclerView = findViewById(R.id.reportsCourseRecyclerView);
+            unhideCoursesReport();
+            recyclerView = findViewById(R.id.reportsCourseRecyclerView);
             final Reports_Courses_Adapter reportsAdapter = new Reports_Courses_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             reportsAdapter.setCourses(repository.getAllCoursesReport());
-
+            hideTermsReport();
+            hideAssessmentsReport();
+            hideInstructorsReport();
         } else if (spinnerResult.equals("Assessments Report")) {
+            RecyclerView recyclerView;
             System.out.println(parent.getItemAtPosition(3));
             Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
-            RecyclerView recyclerView = findViewById(R.id.reportsAssessmentsRecyclerView);
+            unhideAssessmentsReport();
+            recyclerView = findViewById(R.id.reportsAssessmentsRecyclerView);
             final Reports_Assessments_Adapter reportsAdapter = new Reports_Assessments_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             reportsAdapter.setAssessments(repository.getAllAssessmentsReport());
-
+            unhideCoursesReport();
+            hideTermsReport();
+            hideCoursesReport();
+            hideInstructorsReport();
         } else if (spinnerResult.equals("Instructor Report")) {
+            RecyclerView recyclerView;
             System.out.println(parent.getItemAtPosition(4));
             Toast.makeText(getApplicationContext(), reports[position] + " was generated.", Toast.LENGTH_LONG).show();
-            RecyclerView recyclerView = findViewById(R.id.reportsInstructorRecyclerView);
+            unhideInstructorsReport();
+            recyclerView = findViewById(R.id.reportsInstructorRecyclerView);
             final Reports_Instructors_Adapter reportsAdapter = new Reports_Instructors_Adapter(this);
             recyclerView.setAdapter(reportsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             reportsAdapter.setInstructors(repository.getAllInstructorsReport());
+            hideTermsReport();
+            hideCoursesReport();
+            hideAssessmentsReport();
         }
     }
 
+    /**
+     * Not selected method shows brief toast message
+     * @param parent
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         Toast.makeText(getApplicationContext(), "Nothing selected.", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Hides Terms Report Recycle View
+     */
+    public void hideTermsReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsTermRecyclerView);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    /**
+     * Un-hides Terms Report Recycle View
+     */
+    public void unhideTermsReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsTermRecyclerView);
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Hides Courses Report Recycle View
+     */
+    public void hideCoursesReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsCourseRecyclerView);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    /**
+     * Un-hides Courses Report Recycle View
+     */
+    public void unhideCoursesReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsCourseRecyclerView);
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Hides Assessments Report Recycle View
+     */
+    public void hideAssessmentsReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsAssessmentsRecyclerView);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    /**
+     * Un-hides Assessments Report Recycle View
+     */
+    public void unhideAssessmentsReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsAssessmentsRecyclerView);
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Hides Instructor Report Recycle View
+     */
+    public void hideInstructorsReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsInstructorRecyclerView);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    /**
+     * Un-hides Instructor Report Recycle View
+     */
+    public void unhideInstructorsReport() {
+        RecyclerView recyclerView = findViewById(R.id.reportsInstructorRecyclerView);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 }
