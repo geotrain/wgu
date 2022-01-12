@@ -34,7 +34,7 @@ public class List_Courses extends AppCompatActivity {
     private SchedulerRepository repository;
 
     // Variables for Search
-    private List<CoursesEntity> mSearchTerms;
+    private List<CoursesEntity> mSearchCourses;
     private RecyclerView recyclerView;
 
     /**
@@ -112,13 +112,13 @@ public class List_Courses extends AppCompatActivity {
         List<CoursesEntity> searchResults = repository.getAllCoursesSearch(query);
         System.out.println(query);
         if (query != null) {
-            mSearchTerms = searchResults;
+            mSearchCourses = searchResults;
             final Courses_Adapter coursesAdapter = new Courses_Adapter(this);
             recyclerView = findViewById(R.id.coursesListRecyclerView);
             recyclerView.setAdapter(coursesAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             coursesAdapter.setCourses(searchResults);
-            coursesAdapter.setCourses(mSearchTerms);
+            coursesAdapter.setCourses(mSearchCourses);
         }
     }
 

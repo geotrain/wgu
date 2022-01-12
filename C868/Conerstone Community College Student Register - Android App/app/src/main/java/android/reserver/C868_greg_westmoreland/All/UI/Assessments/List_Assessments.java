@@ -34,7 +34,7 @@ public class List_Assessments extends AppCompatActivity {
     private SchedulerRepository repository;
 
     // Variables for Search
-    private List<AssessmentsEntity> mSearchTerms;
+    private List<AssessmentsEntity> mSearchAssessments;
     private RecyclerView recyclerView;
 
     /**
@@ -111,13 +111,13 @@ public class List_Assessments extends AppCompatActivity {
         List<AssessmentsEntity> searchResults = repository.getAllAssessmentsSearch(query);
         System.out.println(query);
         if (query != null) {
-            mSearchTerms = searchResults;
+            mSearchAssessments = searchResults;
             final Assessments_Adapter assessmentsAdapter = new Assessments_Adapter(this);
             recyclerView = findViewById(R.id.assessmentsListRecyclerView);
             recyclerView.setAdapter(assessmentsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             assessmentsAdapter.setAssessments(searchResults);
-            assessmentsAdapter.setAssessments(mSearchTerms);
+            assessmentsAdapter.setAssessments(mSearchAssessments);
         }
     }
 

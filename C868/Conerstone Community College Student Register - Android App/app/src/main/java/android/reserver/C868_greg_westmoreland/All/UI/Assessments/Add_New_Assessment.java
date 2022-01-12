@@ -101,9 +101,11 @@ public class Add_New_Assessment extends AppCompatActivity implements AdapterView
             case R.id.home_screen_from_add_new_assessment_screen:
                 Intent intent = new Intent( Add_New_Assessment.this, Main_Activity_Home_Page.class);
                 startActivity(intent);
+                return true;
             case R.id.assessments_screen_from_add_new_assessment_screen:
                 Intent intent2 = new Intent( Add_New_Assessment.this, List_Assessments.class);
                 startActivity(intent2);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
