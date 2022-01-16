@@ -34,7 +34,7 @@
         android:id="@+id/notifyStartDate"
         app:showAsAction="never"/>
 
-    <item android:title="Notify Course Date"
+    <item android:title="Notify Course End"
         android:orderInCategory="100"
         android:id="@+id/notifyEndDate"
         app:showAsAction="never"/>
