@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.2984375" />
+        <entry key="app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.2984375" />
+        <entry key="app/src/main/res/layout-land/activity_main_home_page.xml" value="0.3229166666666667" />
+        <entry key="app/src/main/res/layout-land/activity_main_log_in_page.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/activity_main_reports_page.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/activity_main_search_page.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/assessment_list_item.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/course_list_item.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/report_assessments_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/report_courses_list_item.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/layout-land/report_instructors_list_item.xml" value="0.30720720720720723" />
+        <entry key="app/src/main/res/layout-land/report_terms_list_item.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/layout-land/terms_list_item.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout/activity_add_new_assessment.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_add_new_course.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_add_new_term.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_courses_list.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/activity_edit_existing_assessment.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/activity_edit_existing_course.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_edit_existing_term.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_list_assessments.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/activity_list_terms.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_main_home_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main_log_in_page.xml" value="0.26413255360623783" />
+        <entry key="app/src/main/res/layout/activity_main_reports_page.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main_search_page.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/layout/activity_reports_page.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/assessment_list_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/course_list_item.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/layout/report_assessments_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/report_courses_list_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/report_instructors_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/report_terms_list_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/terms_list_item.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_add_new_assessments.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_add_new_course.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_add_new_term.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_assessments_list.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_assessments_list_recycleview.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_courses_list.xml" value="0.24814814814814815" />
+        <entry key="app/src/main/res/menu/menu_courses_list_recylceview.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_home_screen_recycleview.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_reports_list.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_search_list.xml" value="0.24259259259259258" />
+        <entry key="app/src/main/res/menu/menu_terms_list.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_terms_list_recylceview.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/searchable.xml" value="0.28229166666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
