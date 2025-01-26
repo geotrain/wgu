@@ -5,7 +5,9 @@ import random
 while True:
     # Get user selection and set to typecast int
     user_selection = int(input("What do you choose? Type 0 for Rock, 1 for Paper, or 2 for Scissors: \n"))
-    int(user_selection)
+    if user_selection != 0 or user_selection != 1 or user_selection != 2:
+        print("Next time select 0, 1, or 2. Play again soon!")
+        exit(0)
     if user_selection == 0:
         user_choice = "Rock"
     elif user_selection == 1:
